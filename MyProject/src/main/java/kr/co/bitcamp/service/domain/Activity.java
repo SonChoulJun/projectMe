@@ -26,6 +26,11 @@ public class Activity {
   public void setActivityText(String activityText) {
     this.activityText = activityText;
   }
+
+  @Override
+  public String toString() {
+    return "Activity [activityDate=" + activityDate + ", activityText=" + activityText + "]";
+  }
   
   
 
