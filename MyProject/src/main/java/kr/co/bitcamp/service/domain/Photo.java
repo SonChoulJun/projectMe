@@ -66,5 +66,13 @@ public class Photo {
   public void setGpsH(String gpsH) {
     this.gpsH = gpsH;
   }
+
+  @Override
+  public String toString() {
+    return "Photo [photoNo=" + photoNo + ", folderName=" + folderName + ", title=" + title + ", text=" + text
+        + ", photoDate=" + photoDate + ", arrayPhoto=" + arrayPhoto + ", gpsB=" + gpsB + ", gpsH=" + gpsH + "]";
+  }
+  
+  
   
 }

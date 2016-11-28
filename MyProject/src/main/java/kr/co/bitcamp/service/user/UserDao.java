@@ -16,7 +16,7 @@ public interface UserDao {
 	
 	public User updateUser(User user) throws Exception ;
 	
-	public User getUser(User user) throws Exception ;
+	public User getUser(String UserId) throws Exception ;
 
 	public List<User> getFollow(String UserId) throws Exception ;
 	

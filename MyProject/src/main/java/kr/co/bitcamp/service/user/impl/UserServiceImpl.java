@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public User getUser(User user) throws Exception {
+	public User getUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

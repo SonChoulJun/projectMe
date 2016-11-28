@@ -35,6 +35,11 @@ public class Alram {
   public void setAlarmDate(Date alarmDate) {
     this.alarmDate = alarmDate;
   }
+
+  @Override
+  public String toString() {
+    return "Alram [sendId=" + sendId + ", text=" + text + ", alarmDate=" + alarmDate + "]";
+  }
   
   
 }
