@@ -98,6 +98,13 @@ public class User {
   public void setAlramCount(int alramCount) {
     this.alramCount = alramCount;
   }
+
+  @Override
+  public String toString() {
+    return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", addr=" + addr
+        + ", phone=" + phone + ", phoneType=" + phoneType + ", activity=" + activity + ", joinDate=" + joinDate
+        + ", alramActivity=" + alramActivity + ", alramCount=" + alramCount + "]";
+  }
   
   
 
