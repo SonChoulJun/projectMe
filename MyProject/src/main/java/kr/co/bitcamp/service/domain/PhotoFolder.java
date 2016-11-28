@@ -43,5 +43,14 @@ public class PhotoFolder {
   }
   public void setPhotoTheme(List<String[]> photoTheme) {
     this.photoTheme = photoTheme;
+  }
+
+  @Override
+  public String toString() {
+    return "PhotoFolder [pfNo=" + pfNo + ", title=" + title + ", text=" + text + ", photoDate=" + photoDate
+        + ", photoTheme=" + photoTheme + "]";
   }  
+  
+  
+  
 }

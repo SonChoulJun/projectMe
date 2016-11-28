@@ -37,4 +37,11 @@ public class Comment {
   public void setUserId(String userId) {
     this.userId = userId;
   }
+
+  @Override
+  public String toString() {
+    return "Comment [commentNo=" + commentNo + ", text=" + text + ", date=" + date + ", userId=" + userId + "]";
+  }
+  
+  
 }

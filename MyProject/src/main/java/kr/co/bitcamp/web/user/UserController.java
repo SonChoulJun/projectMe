@@ -28,73 +28,73 @@ public class UserController {
     }
 
     
-    @RequestMapping("/add")
+    @RequestMapping("add")
     public String addUser(User user){
       
       return "";
     }
     
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public String loginUser(User user){
       
       return "";
     }
     
-    @RequestMapping("/remove")
+    @RequestMapping("remove")
     public String removeUser(String pw){
       
       return "";
     }
     
-    @RequestMapping("/update")
+    @RequestMapping("update")
      public String updateUser(User user){
       
       return "";
     }
     
-    @RequestMapping("/get")
+    @RequestMapping("get")
     public String getUser(String userId){
       
       return "";
     }
     
-    @RequestMapping("/getFollower")
+    @RequestMapping("getFollower")
     public String getFollow(String userId){
       
       return "";
     }
     
-    @RequestMapping("/removeFollower")
+    @RequestMapping("removeFollower")
     public String removeFollower(String followerId){
       
       return "";
     }
     
-    @RequestMapping("/removeFollowing")
+    @RequestMapping("removeFollowing")
     public String removeFollowing(String followingId){
       
       return "";
     }
     
-    @RequestMapping("/addFollower")
+    @RequestMapping("addFollower")
       public String addFollow(String follerId){
         
         return "";
       }
       
-      @RequestMapping("/getAlram")
+      @RequestMapping("getAlram")
       public String getAlram(){
         
         return "";
       }
       
-      @RequestMapping("/getActivity")
+      @RequestMapping("getActivity")
       public String getActivity(){
         
         return "";
       }
       
-      @RequestMapping("/setActivity")
+      @RequestMapping("setActivity")
       public String setActivity(Activity activity){
         
         return "";
