@@ -20,5 +20,9 @@
 	</resultMap>
 	
 	
+	<select id="getUser" parameterType="string" resultMap="userSelectMap">
+        select * from bt_user where userid=#{value}
+     </select>
+	
 
 </mapper>

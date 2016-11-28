@@ -1,9 +1,12 @@
 package kr.co.bitcamp.web.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,9 +41,20 @@ public class UserController {
     }
     
     @RequestMapping("login")
-    public String loginUser(User user){
+    public String loginUser(@ModelAttribute("user") User user, HttpSession session) 
+        throws Exception{
       
-      return "";
+      System.out.println("[login() start........................]");
+      
+      User user01=userService.login(user);
+    
+      session.setAttribute("user", user01);
+      
+      System.out.println("[login() end...............]\n");
+      
+      return "forward:/profile.jsp";
+      
+     
     }
     
     @RequestMapping("remove")

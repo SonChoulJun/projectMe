@@ -37,8 +37,10 @@ public class UserDaoImpl implements UserDao{
 	public User login(User user) throws Exception {
 		// TODO Auto-generated method stub
 	  
+	  String userId=user.getUserId();
 	  
-		return null;
+	  return (User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
+		
 	}
 
 	@Override
