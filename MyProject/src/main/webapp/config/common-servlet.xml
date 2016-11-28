@@ -62,12 +62,22 @@
 	     css , image, js 등 넣어 관리하며 아래와 같이 1번의 설정으로 관리
 	     <mvc:resources mapping="/resources/**" location="/resources/" />
 	--> 
+<<<<<<< HEAD
 	
    	<mvc:resources mapping="/images/**" location="/images/" />
    	<mvc:resources mapping="/dist/**" location="/dist/" />
    	<mvc:resources mapping="/node_modules/**" location="/node_modules/" />
    	<mvc:resources mapping="/plugins/**" location="/plugins/" />
    	<mvc:resources mapping="/assets/**" location="/assets/" />
+=======
+   	<mvc:resources mapping="/images/**" location="/images/" />
+   	<mvc:resources mapping="/dist/**" location="/dist/" />
+   	<mvc:resources mapping="/images/**" location="/images/" />
+   	<mvc:resources mapping="/node_modules/**" location="/node_modules/" />
+   	<mvc:resources mapping="/plugins/**" location="/plugins/" />
+   	<mvc:resources mapping="/assets/**" location="/assets/" />
+   	
+>>>>>>> df63c09971f9d9c4827373acf3264416c2a32047
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
 			:: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->
