@@ -11,8 +11,8 @@ import kr.co.bitcamp.service.user.UserService;
 @RequestMapping("/user/*")
 public class UserController {
     
-/*    @Autowired
-    @Qualifier("userServieImpl")
+    @Autowired
+    @Qualifier("userServiceImpl")
     private UserService userService;
 
     public UserController() {
@@ -22,7 +22,7 @@ public class UserController {
 
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }*/
+    }
     
     
     
