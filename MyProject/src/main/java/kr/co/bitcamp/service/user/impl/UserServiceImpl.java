@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     
     public UserServiceImpl() {
         super();
-        System.out.println("UserServiceImpl  실행");
+        System.out.println("UserServiceImpl 생성");
         // TODO Auto-generated constructor stub
     }
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public User getUser(User user) throws Exception {
+	public User getUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

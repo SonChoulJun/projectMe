@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao{
     private SqlSession sqlSession;
     
     public UserDaoImpl(){
-        System.out.println("UserDaoImpl  실행");
+        System.out.println("UserDaoImpl 생성");
     }
     
     public void setSqlSession(SqlSession sqlSession){
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public User getUser(User user) throws Exception {
+	public User getUser(String UserId) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

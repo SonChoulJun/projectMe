@@ -3,7 +3,10 @@ package kr.co.bitcamp.web.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.User;
@@ -52,11 +55,29 @@ public class UserController {
       return "";
     }
     
-    @RequestMapping("get")
-    public String getUser(String userId){
+    @RequestMapping( value="getUser", method=RequestMethod.GET )
+	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
       
-      return "";
+    	System.out.println("/user/getUser : GET");
+		//Business Logic
+		User user = userService.getUser(userId);
+		// Model 과 View 연결
+		model.addAttribute("user", user);
+		
+		return "";
     }
+    
+//    @RequestMapping( value="getUser", method=RequestMethod.GET )
+//	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+//		
+//		System.out.println("/user/getUser : GET");
+//		//Business Logic
+//		User user = userService.getUser(userId);
+//		// Model 과 View 연결
+//		model.addAttribute("user", user);
+//		
+//		return "forward:/user/getUser.jsp";
+//	}
     
     @RequestMapping("getFollower")
     public String getFollow(String userId){
