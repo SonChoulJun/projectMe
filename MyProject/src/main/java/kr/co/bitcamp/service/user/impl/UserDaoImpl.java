@@ -29,8 +29,12 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public boolean addUser(User user) throws Exception {
-    // TODO Auto-generated method stub
-    return false;
+    int insertOk=sqlSession.insert("UserMapper",user);
+    if(insertOk==0){
+        return true;
+    }else{
+        return false;
+    }
   }
 
   @Override
