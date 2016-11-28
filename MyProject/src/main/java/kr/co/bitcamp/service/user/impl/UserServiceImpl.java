@@ -46,15 +46,18 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-
 	@Override
-	public boolean removeUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
+  public boolean removeUser(User user) throws Exception {
+	  if(userDAO.pwCheak(user)==true){
+	    userDAO.removeUser(user.getUserId());
+	    return true;
+	  }else {
+	  return false;
+	  }
+  }
 
 
-	@Override
+  @Override
 	public User updateUser(User user) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -117,11 +120,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	@Override
+/*	@Override
 	public boolean pwCheak(User user) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}
-    
+    */
     
 }

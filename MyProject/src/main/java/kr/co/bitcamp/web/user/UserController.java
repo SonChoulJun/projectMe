@@ -1,5 +1,7 @@
 package kr.co.bitcamp.web.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -41,9 +43,14 @@ public class UserController {
     }
     
     @RequestMapping("remove")
-    public String removeUser(String pw){
-      
-      return "";
+    public String removeUser(String pw, HttpSession session) throws Exception{
+      System.out.println("\n:: ==> remove() start.....");
+     
+      User user = (User)session.getAttribute("sessionUser");
+      user.setUserId(user.getUserId());
+      user.setPassword(pw);
+      userService.removeUser(user);
+      return "forward:/user/removeUser.jsp";
     }
     
     @RequestMapping("update")
