@@ -4,11 +4,16 @@ import java.sql.Date;
 import java.util.List;
 
 public class PhotoFolder {
-  String pfNo;
-  String title;
-  String text;
-  Date photoDate;
-  List<String[]> photoTheme;
+  private String pfNo;
+  private String title;
+  private String text;
+  private Date photoDate;
+  private List<String[]> photoTheme;
+  
+  public PhotoFolder(){
+    
+  }
+  
   public String getPfNo() {
     return pfNo;
   }

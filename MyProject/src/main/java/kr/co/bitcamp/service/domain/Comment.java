@@ -3,10 +3,16 @@ package kr.co.bitcamp.service.domain;
 import java.sql.Date;
 
 public class Comment {
-  String commentNo;
-  String text;
-  Date date;
-  String userId;
+  
+  private String commentNo;
+  private String text;
+  private Date date;
+  private String userId;
+ 
+  public Comment(){
+    
+  }
+  
   public String getCommentNo() {
     return commentNo;
   }

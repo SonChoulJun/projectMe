@@ -5,14 +5,19 @@ import java.util.ArrayList;
 
 public class Photo {
   
-  String photoNo;
-  String folderName;
-  String title;
-  String text;
-  Date photoDate;
-  ArrayList arrayPhoto;
-  String gpsB;
-  String gpsH;
+  private String photoNo;
+  private String folderName;
+  private String title;
+  private String text;
+  private Date photoDate;
+  private ArrayList arrayPhoto;
+  private String gpsB;
+  private String gpsH;
+  
+  public Photo(){
+    
+  }
+  
   public String getPhotoNo() {
     return photoNo;
   }
