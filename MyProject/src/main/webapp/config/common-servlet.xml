@@ -64,7 +64,6 @@
 	--> 
    	<mvc:resources mapping="/images/**" location="/images/" />
    	<mvc:resources mapping="/dist/**" location="/dist/" />
-   	<mvc:resources mapping="/images/**" location="/images/" />
    	<mvc:resources mapping="/node_modules/**" location="/node_modules/" />
    	<mvc:resources mapping="/plugins/**" location="/plugins/" />
    	<mvc:resources mapping="/assets/**" location="/assets/" />
