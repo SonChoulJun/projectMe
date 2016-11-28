@@ -48,7 +48,6 @@ public class UserDaoImpl implements UserDao {
     } else {
       return false;
     }
-
   }
 
   @Override
@@ -58,7 +57,7 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
-  public User getUser(User user) throws Exception {
+  public User getUser(String UserId) throws Exception {
     // TODO Auto-generated method stub
     return null;
   }

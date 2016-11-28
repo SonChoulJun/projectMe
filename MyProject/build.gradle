@@ -49,6 +49,7 @@ dependencies {
   compile group: 'org.springframework', name: 'spring-aop', version: '4.3.4.RELEASE'
   compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.9'
   compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+  compile group: 'org.springframework', name: 'spring-test', version: '4.0.9.RELEASE'
   
   
   // 개발하는 동안 라이브러리를 사용하고, 개발이 끝난 후 배치에서 제외해야 하는 라이브러리는

@@ -16,7 +16,7 @@ public interface UserService {
 	
 	public User updateUser(User user) throws Exception ;
 	
-	public User getUser(User user) throws Exception ;
+	public User getUser(String userId) throws Exception ;
 
 	public List<User> getFollow(String UserId) throws Exception ;
 	
