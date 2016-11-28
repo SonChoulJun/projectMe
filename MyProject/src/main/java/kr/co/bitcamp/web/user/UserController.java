@@ -1,5 +1,6 @@
 package kr.co.bitcamp.web.user;
 
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -33,13 +34,16 @@ public class UserController {
 
     
     @RequestMapping("add")
-    public String addUser(@ModelAttribute("user") User user){
+    public String addUser(@ModelAttribute("user") User user,Model model){
+        System.out.println(user+"sssss");
       try {
         boolean ok =userService.addUser(user);
         if(ok)
-            return "forward:/product/afterAddProductView.jsp";
+            model.addAttribute("registerOk", "ok");
         else
-            return "forward:/product/login.html";
+            model.addAttribute("registerOk", "no");
+        return "forward:../login.jsp";
+
         
       } catch (Exception e) {
           // TODO Auto-generated catch block
