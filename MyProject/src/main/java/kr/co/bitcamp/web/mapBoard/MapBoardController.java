@@ -26,47 +26,47 @@ public class MapBoardController {
     public void setBoardService(MapBoardService boardService) {
         this.boardService = boardService;
     }
-    @RequestMapping(value="addFolder")
+    @RequestMapping("addFolder")
     public String addFolder(String folderName){
       return "";
     }
-    @RequestMapping(value="addPhoto")
+    @RequestMapping("addPhoto")
     public String addPhoto(List photoList){
       return "";
     }
-    @RequestMapping(value="getPhotoFolder")
+    @RequestMapping("getPhotoFolder")
     public String getPhotoFolder(String userId){
       return "";
     }
-    @RequestMapping(value="getMainPhoto")
+    @RequestMapping("getMainPhoto")
     public String getMainPhoto(String pfNo){
       return "";
     }
-    @RequestMapping(value="getSubPhoto")
+    @RequestMapping("getSubPhoto")
     public String getSubPhoto(String themeNo){
       return "";
     }
-    @RequestMapping(value="setLike") 
+    @RequestMapping("setLike") 
     public String setLike(String photoFolderNo, String userId){
       return "";
     }
-    @RequestMapping(value="setComment")
+    @RequestMapping("setComment")
     public String setComment(Comment comment){
       return "";
     }
-    @RequestMapping(value="updateComment")
+    @RequestMapping("updateComment")
     public String updateComment(Comment comment){
       return "";
     }
-    @RequestMapping(value="getComment")
+    @RequestMapping("getComment")
     public String getComment(String folderNo){
       return "";
     }
-    @RequestMapping(value="removeComment")
+    @RequestMapping("removeComment")
     public String removeComment(String commentNum){
       return "";
     }
-    @RequestMapping(value="getNewsFeed")
+    @RequestMapping("getNewsFeed")
     public String getNewsFeed(String userId){
       return "";
     }   
