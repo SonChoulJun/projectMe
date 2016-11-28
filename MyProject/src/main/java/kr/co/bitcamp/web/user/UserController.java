@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,9 +33,19 @@ public class UserController {
 
     
     @RequestMapping("add")
-    public String addUser(User user){
-      
-      return "";
+    public String addUser(@ModelAttribute("user") User user){
+      try {
+        boolean ok =userService.addUser(user);
+        if(ok)
+            return "forward:/product/afterAddProductView.jsp";
+        else
+            return "forward:/product/login.html";
+        
+      } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+          return "";
+      }
     }
     
     @RequestMapping("login")

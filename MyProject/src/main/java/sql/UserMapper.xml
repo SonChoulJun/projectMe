@@ -20,5 +20,20 @@
 	</resultMap>
 	
 	
+	 <insert id="addUser" parameterType="user">
+    INSERT 
+    INTO users(USER_NO,USERID,USER_NM,PASSWORD,PHONE,ACTIVITY,JOIN_DATE,ALRAM_ACTIVITY,ALRAM_COUNT)
+    VALUES(SEQ_BT_USER_NO.nextval,
+          #{userId},
+          #{userName},
+          #{password},
+          #{phone},
+          #{activity},
+          sysdate,
+          '0',
+          0)
+  </insert> 
+	
+	
 
 </mapper>

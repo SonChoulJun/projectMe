@@ -35,8 +35,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	  boolean ok =userDAO.addUser(user);
+	  if(ok){
+	      return true; 
+	  }else{
+	      return false;
+	  }
 	}
 
 
