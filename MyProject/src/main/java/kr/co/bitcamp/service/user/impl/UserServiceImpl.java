@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     
     public UserServiceImpl() {
         super();
-        System.out.println("UserServiceImpl  �깮�꽦");
+        System.out.println("UserServiceImpl 생성");
         // TODO Auto-generated constructor stub
     }
 

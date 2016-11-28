@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao{
     private SqlSession sqlSession;
     
     public UserDaoImpl(){
-        System.out.println("UserDaoImpl  �깮�꽦");
+        System.out.println("UserDaoImpl 생성");
     }
     
     public void setSqlSession(SqlSession sqlSession){

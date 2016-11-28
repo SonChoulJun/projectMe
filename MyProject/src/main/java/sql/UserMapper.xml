@@ -9,16 +9,16 @@
 
 	
 	<resultMap type="user" id="userSelectMap">
-		<result property="userId" column="user_id" jdbcType="VARCHAR"/>
-		<result property="userName" column="user_name" jdbcType="VARCHAR"/>
-		<result property="password" column="password" jdbcType="VARCHAR"/>
-		<result property="role" column="role" jdbcType="VARCHAR"/>
-		<result property="ssn" column="ssn" jdbcType="VARCHAR"/>
-		<result property="phone" column="cell_phone" jdbcType="VARCHAR"/>
-		<result property="addr" column="addr" jdbcType="VARCHAR"/>
-		<result property="email" column="email" jdbcType="VARCHAR"/>
-		<result property="regDate" column="reg_date" jdbcType="DATE"/>
+		<result property="userId" column="USERID" jdbcType="VARCHAR"/>
+		<result property="userName" column="USER_NM" jdbcType="VARCHAR"/>
+		<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+		<result property="phone" column="PHONE" jdbcType="VARCHAR"/>
+		<result property="activity" column="ACTIVITY" jdbcType="CHAR"/>
+		<result property="joinDate" column="JOIN_DATE" jdbcType="DATE"/>
+		<result property="alramActivity" column="ALRAM_ACTIVITY" jdbcType="CHAR"/>
+		<result property="alramCount" column="ALRAM_COUNT" jdbcType="NUMERIC"/>
 	</resultMap>
+	
 	
 
 </mapper>

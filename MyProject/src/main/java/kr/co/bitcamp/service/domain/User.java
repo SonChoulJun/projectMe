@@ -7,9 +7,7 @@ public class User {
   private String userId;
   private String password;
   private String userName;
-  private String addr;
   private String phone;
-  private String phoneType;
   private boolean activity;
   private Date joinDate;
   private boolean alramActivity;
@@ -43,13 +41,7 @@ public class User {
     this.userName = userName;
   }
 
-  public String getAddr() {
-    return addr;
-  }
 
-  public void setAddr(String addr) {
-    this.addr = addr;
-  }
 
   public String getPhone() {
     return phone;
@@ -59,13 +51,7 @@ public class User {
     this.phone = phone;
   }
 
-  public String getPhoneType() {
-    return phoneType;
-  }
 
-  public void setPhoneType(String phoneType) {
-    this.phoneType = phoneType;
-  }
 
   public boolean isActivity() {
     return activity;
