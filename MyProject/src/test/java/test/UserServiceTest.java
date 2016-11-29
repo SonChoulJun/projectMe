@@ -34,8 +34,8 @@ public class UserServiceTest {
   public void testAddUser() throws Exception {
 
     User user = new User();
-    user.setUserId("jw5555@naver.com");
-    user.setPassword("123123,123123");
+    user.setUserId("123@123.123");
+    user.setPassword("123123");
 
     boolean a = userService.removeUser(user);
 
