@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 
   @Override
   public boolean addUser(User user) throws Exception {
-    int insertOk=sqlSession.insert("UserMapper",user);
+    int insertOk=sqlSession.insert("UserMapper.addUser",user);
     if(insertOk==0){
         return true;
     }else{

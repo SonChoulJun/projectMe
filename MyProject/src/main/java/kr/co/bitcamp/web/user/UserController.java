@@ -35,20 +35,24 @@ public class UserController {
 
     
     @RequestMapping("add")
-    public String addUser(@ModelAttribute("user") User user){
-      try {
-        boolean ok =userService.addUser(user);
-        if(ok)
-            return "forward:/product/afterAddProductView.jsp";
-        else
-            return "forward:/product/login.html";
-        
-      } catch (Exception e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-          return "";
-      }
+    public String addUser(@ModelAttribute("user") User user,Model model){
+      return "forward:/login.jsp";
     }
+/*    System.out.println(user+"sssss");
+  try {
+    boolean ok =userService.addUser(user);
+    if(ok)
+        model.addAttribute("registerOk", "ok");
+    else
+        model.addAttribute("registerOk", "no");
+   
+
+    
+  } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+      return "";
+  }*/
     
     @RequestMapping("login")
     public String loginUser(User user){
