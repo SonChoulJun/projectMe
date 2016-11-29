@@ -35,20 +35,26 @@ public class UserController {
 
     
     @RequestMapping("add")
-    public String addUser(@ModelAttribute("user") User user){
+    public String addUser(@ModelAttribute("user") User user,Model model){
+      
+      System.out.println(user+"sssss");
       try {
         boolean ok =userService.addUser(user);
         if(ok)
-            return "forward:/product/afterAddProductView.jsp";
+            model.addAttribute("registerOk", "ok");
         else
-            return "forward:/product/login.html";
+            model.addAttribute("registerOk", "no");
+        return "forward:/login.jsp";
         
       } catch (Exception e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
           return "";
       }
+      
+      
     }
+    
     
     @RequestMapping("login")
     public String loginUser(@ModelAttribute("user") User user, HttpSession session) 
@@ -68,9 +74,14 @@ public class UserController {
     }
     
     @RequestMapping("remove")
-    public String removeUser(String pw){
-      
-      return "";
+    public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
+      System.out.println("\n:: ==> remove() start.....");
+     
+      User user = (User)session.getAttribute("sessionUser");
+      user.setUserId(user.getUserId());
+      user.setPassword(pw);
+      userService.removeUser(user);
+      return "forward:/user/removeUser.jsp";
     }
     
     @RequestMapping("update")

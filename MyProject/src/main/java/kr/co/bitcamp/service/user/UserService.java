@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public User login(User user) throws Exception ;
 	
-	public boolean removeUser(String userId) throws Exception ;
+	public boolean removeUser(User user) throws Exception ;
 	
 	public User updateUser(User user) throws Exception ;
 	
@@ -32,5 +32,5 @@ public interface UserService {
 	
 	public boolean setActivity(Activity activity) throws Exception ;
 	
-	public boolean pwCheak(User user) throws Exception ;
+//	public boolean pwCheak(User user) throws Exception ;
 }
