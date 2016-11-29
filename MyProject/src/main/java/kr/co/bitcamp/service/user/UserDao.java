@@ -10,7 +10,7 @@ public interface UserDao {
 	
 	public boolean addUser(User user) throws Exception ;
 	
-	public User login(User user) throws Exception ;
+	public User login(String userId) throws Exception ;
 	
 	public boolean removeUser(String userId) throws Exception ;
 	

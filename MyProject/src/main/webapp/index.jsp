@@ -30,7 +30,7 @@
         </header>
         <div class="container">
           <ul class="actions">
-             <li><a href="login.html" class="button special scrolly">Login</a></li>
+             <li><a href="login.jsp" class="button special scrolly">Login</a></li>
           </ul>
         </div>
       </section>

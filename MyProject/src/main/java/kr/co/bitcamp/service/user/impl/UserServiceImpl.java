@@ -35,22 +35,28 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean addUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	  boolean ok =userDAO.addUser(user);
+	  if(ok){
+	      return true; 
+	  }else{
+	      return false;
+	  }
 	}
 
 
 	@Override
 	public User login(User user) throws Exception {
 		// TODO Auto-generated method stub
+	  System.out.println("서비스단 진입??????????????????????/");
 	  
-	  
-	  User dbUser=userDAO.login(user);
+	  User dbUser=userDAO.login(user.getUserId());
     
-    if(! dbUser.getPassword().equals(user.getPassword())){
-    
-      throw new Exception("로그인에 실패했습니다.");
+    if(dbUser.getPassword().equals(user.getPassword())){
+      dbUser.setActivity(true);
+    }else{
+      dbUser.setActivity(false);
     }
+    
     return dbUser;
 	}
 

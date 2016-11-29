@@ -21,8 +21,26 @@
 	
 	
 	<select id="getUser" parameterType="string" resultMap="userSelectMap">
-        select * from bt_user where userid=#{value}
+        select  
+        USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+        FROM     bt_user
+        where userId=#{value}
      </select>
+
+	 <insert id="addUser" parameterType="user">
+    INSERT 
+    INTO users(USER_NO,USERID,USER_NM,PASSWORD,PHONE,ACTIVITY,JOIN_DATE,ALRAM_ACTIVITY,ALRAM_COUNT)
+    VALUES(SEQ_BT_USER_NO.nextval,
+          #{userId},
+          #{userName},
+          #{password},
+          #{phone},
+          #{activity},
+          sysdate,
+          '0',
+          0)
+  </insert> 
+	
 	
 
 </mapper>

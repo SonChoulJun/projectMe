@@ -29,17 +29,22 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public boolean addUser(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		int insertOk=sqlSession.insert("UserMapper",user);
+		if(insertOk==0){
+		    return true;
+		}else{
+		    return false;
+		}
 	}
 
 	@Override
-	public User login(User user) throws Exception {
+	public User login(String userId) throws Exception {
 		// TODO Auto-generated method stub
 	  
-	  String userId=user.getUserId();
-	  
-	  return (User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
+	  System.out.println("dao왔냐!!!!!!!!!!!!!!!");
+	   User user =(User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
+	   System.out.println(user);
+	  return user;
 		
 	}
 

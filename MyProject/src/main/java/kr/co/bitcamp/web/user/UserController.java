@@ -35,9 +35,19 @@ public class UserController {
 
     
     @RequestMapping("add")
-    public String addUser(User user){
-      
-      return "";
+    public String addUser(@ModelAttribute("user") User user){
+      try {
+        boolean ok =userService.addUser(user);
+        if(ok)
+            return "forward:/product/afterAddProductView.jsp";
+        else
+            return "forward:/product/login.html";
+        
+      } catch (Exception e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+          return "";
+      }
     }
     
     @RequestMapping("login")
