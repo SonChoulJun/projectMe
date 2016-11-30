@@ -44,6 +44,7 @@
       </div>
       <div class="form-group has-feedback">
         <input name ="RetypePassword" type="password" class="form-control"  placeholder="Retype password">
+
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -201,11 +202,14 @@ var idck=0;
 	      //////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
 	      //self.location ="/user/getUser?userId="+$(this).text().trim();
 	      ////////////////////////////////////////////////////////////////////////////////////////////
-	      var userId = $("input[name='userId']").val();
+	      var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+	      obj.userId = $("input[name='userId']").val();
+	       var json_data = JSON.stringify(obj)
 	      $.ajax( 
 	          {
-	            url : "/user/jsonLogin/"+userId ,
-	            method : "GET" ,
+	            url : "/user/jsonLogin",
+	             method :"POST",
+	             data :json_data,
 	            dataType : "json" ,
 	            headers : {
 	              "Accept" : "application/json",
@@ -235,6 +239,7 @@ var idck=0;
 	              
 	            }
 	        });
+	      
 	        ////////////////////////////////////////////////////////////////////////////////////////////
 	      
 	  });

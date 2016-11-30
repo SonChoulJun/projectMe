@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
   @Override
 	public User updateUser(User user) throws Exception {
 		// TODO Auto-generated method stub
+    
 		return null;
 	}
 
@@ -81,7 +82,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+	  User user=userDAO.getUser(userId);
+	  System.out.println(user);
+		return user;
 	}
 
 
