@@ -1,5 +1,6 @@
 package kr.co.bitcamp.web.user;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,20 +87,26 @@ public class UserController {
     
     @RequestMapping("update")
      public String updateUser(User user){
+      /*  User user01=userService.getUser(userId);
       
+        User user1=userService.updateUser(user);
+        */
       return "";
     }
     
-    @RequestMapping( value="getUser", method=RequestMethod.GET )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+    @RequestMapping("/getUser")
+    public String getUser(@RequestParam("userId") String userId, 
+                                    Model model,
+                    HttpServletRequest request) throws Exception{
+      System.out.println("[getUser() start........................]");
       
-    	System.out.println("/user/getUser : GET");
-		//Business Logic
-		User user = userService.getUser(userId);
-		// Model 과 View 연결
-		model.addAttribute("user", user);
-		
-		return "";
+      User user=userService.getUser(userId);
+     
+      model.addAttribute("user", user);
+      
+      System.out.println("[getUser() end...............]\n");
+      
+      return "";
     }
     
 //    @RequestMapping( value="getUser", method=RequestMethod.GET )
