@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,6 +74,24 @@ public class UserController {
       
      
     }
+    
+    ///////////////////////////////////////
+    @RequestMapping( value="jsonLogin/{userId}", method=RequestMethod.GET )
+    public void jsonLogin(  @PathVariable String userId, 
+                          HttpSession session,
+                          Model model) throws Exception{
+    
+      System.out.println("/user/jsonLogin : GET");
+      User user = userService.getUser(userId.trim());
+      System.out.println("/user/jsonLogin : GET"+user);
+      if( user != null && user.getPassword().equals(user.getPassword())){
+        model.addAttribute("userOk", "true");
+      }else{
+        model.addAttribute("userOk", "false");
+      }
+
+    }
+    
     
     @RequestMapping("remove")
     public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
