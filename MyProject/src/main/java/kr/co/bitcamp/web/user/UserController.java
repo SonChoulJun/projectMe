@@ -1,5 +1,6 @@
 package kr.co.bitcamp.web.user;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -73,6 +76,24 @@ public class UserController {
      
     }
     
+    ///////////////////////////////////////
+    @RequestMapping( value="jsonLogin", method=RequestMethod.POST )
+    public void jsonLogin(@RequestBody User user1,
+                          HttpSession session,
+                          Model model) throws Exception{
+    
+      System.out.println("/user/jsonLogin : GET"+user1.toString());
+      User user = userService.getUser(user1.getUserId().trim());
+      System.out.println("/user/jsonLogin : GET"+user);
+      if( user != null && user.getPassword().equals(user.getPassword())){
+        model.addAttribute("userOk", "false");
+      }else{
+        model.addAttribute("userOk", "true");
+      }
+
+    }
+    
+    
     @RequestMapping("remove")
     public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
       System.out.println("\n:: ==> remove() start.....");
@@ -86,20 +107,26 @@ public class UserController {
     
     @RequestMapping("update")
      public String updateUser(User user){
+      /*  User user01=userService.getUser(userId);
       
+        User user1=userService.updateUser(user);
+        */
       return "";
     }
     
-    @RequestMapping( value="getUser", method=RequestMethod.GET )
-	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
+    @RequestMapping("/getUser")
+    public String getUser(@RequestParam("userId") String userId, 
+                                    Model model,
+                    HttpServletRequest request) throws Exception{
+      System.out.println("[getUser() start........................]");
       
-    	System.out.println("/user/getUser : GET");
-		//Business Logic
-		User user = userService.getUser(userId);
-		// Model 과 View 연결
-		model.addAttribute("user", user);
-		
-		return "";
+      User user=userService.getUser(userId);
+     
+      model.addAttribute("user", user);
+      
+      System.out.println("[getUser() end...............]\n");
+      
+      return "";
     }
     
 //    @RequestMapping( value="getUser", method=RequestMethod.GET )
@@ -146,7 +173,6 @@ public class UserController {
       
       @RequestMapping("getActivity")
       public String getActivity(){
-        
         return "";
       }
       

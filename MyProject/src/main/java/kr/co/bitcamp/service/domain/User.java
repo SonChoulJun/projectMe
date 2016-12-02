@@ -18,6 +18,7 @@ public class User {
     
   }
   
+
   public String getUserNo() {
 	return userNo;
   }
@@ -25,6 +26,7 @@ public class User {
   public void setUserNo(String userNo) {
 	this.userNo = userNo;
   }
+
 
 
   public String getUserId() {

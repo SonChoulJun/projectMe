@@ -42,6 +42,14 @@ public class UserServiceTest {
     // ==> console Ȯ��
     System.out.println(a);
   }
+  
+  @Test
+  public void testGetUser() throws Exception{
+    System.out.println("getUser 실행 되었냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    User user=userService.getUser("jw688@naver.com");
+    System.out.println(user);
+    
+  }
 
   /*
    * @Test public void testAddUser() throws Exception {

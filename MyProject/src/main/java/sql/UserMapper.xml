@@ -9,7 +9,8 @@
 
 	
 	<resultMap type="user" id="userSelectMap">
-		<result property="userNo" column="USER_NO" jdbcType="VARCHAR"/>
+
+	    <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 		<result property="userId" column="USERID" jdbcType="VARCHAR"/>
 		<result property="userName" column="USER_NM" jdbcType="VARCHAR"/>
 		<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
@@ -30,7 +31,8 @@
 
 	<select id="getUser" parameterType="string" resultMap="userSelectMap">
         select  
-        USER_NO, USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+
         FROM     bt_user
         where userId=#{value}
      </select>

@@ -69,9 +69,10 @@ public class UserDaoImpl implements UserDao {
 	}
 /////
 	@Override
-	public User getUser(String UserId) throws Exception {
+	public User getUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+
+	  return (User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
 	}
 //////
 	@Override
