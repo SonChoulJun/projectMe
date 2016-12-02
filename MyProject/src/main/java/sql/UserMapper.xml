@@ -57,6 +57,18 @@
           '0',
           0)
   </insert> 
+  
+  <update id="updateUser" parameterType="user">
+        UPDATE bt_user 
+        <set>
+                                                   USER_NM = #{userName},
+                                                     PHONE = #{phone},
+                                                PASSWORD = #{password},
+                                                JOIN_DATE= sysdate
+                                                              
+        </set>
+        WHERE USERID = #{userId}       
+    </update>
 	
 	
 

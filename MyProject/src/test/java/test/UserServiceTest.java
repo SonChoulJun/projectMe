@@ -30,7 +30,7 @@ public class UserServiceTest {
   @Qualifier("userServiceImpl")
   private UserService userService;
 
-  @Test
+  //@Test
   public void testAddUser() throws Exception {
 
     User user = new User();
@@ -43,12 +43,28 @@ public class UserServiceTest {
     System.out.println(a);
   }
   
-  @Test
+  //@Test
   public void testGetUser() throws Exception{
     System.out.println("getUser 실행 되었냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     User user=userService.getUser("jw688@naver.com");
     System.out.println(user);
     
+  }
+  
+  @Test
+  public void testUpdateUser() throws Exception{
+    System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+   User user=userService.getUser("jw688@naver.com");
+   System.out.println("일단 불러왔어");
+    System.out.println(user);
+    user.setUserName("cheoljune"); 
+    user.setPhone("777-7777-7777");
+    user.setPassword("456456");
+  
+        User user01=userService.updateUser(user);
+    System.out.println("바뀌었니?");
+    System.out.println(user01);
+   
   }
 
   /*

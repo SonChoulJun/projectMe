@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -520,46 +523,46 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
-                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:17%; margin-left: 17%; background-image:url('images/profileimage.JPG') ;  background-color:rgba(192, 200, 88, 0.6);  " >
+                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
               <img src="images/pic07.jpg" ; alt=""/>
                 </div>
-            <div class="rectang" style="    padding-left: 40%; padding-top: 20%;  background-color: rgba(205, 211, 88, 0.6); " >
+            <div class="rectang" style="    padding-left: 40%; padding-top: 10%;  background-color: rgba(000, 051, 102, 0.3); border:1px solid rgba(160, 160, 160, 0.6);" >
             <div class="tab-pane" id="settings">
                 
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="/user/update">
                 
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                      <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label" style="width:10%;">Email(id)</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email(id)">
+                      <input name ="userId" type="email" class="form-control" id="inputEmail" placeholder=${user.userId }>
                     </div>
                   </div>
                   
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Password</label>
+                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Pwd</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <input type="text" class="form-control" id="inputName" placeholder="Password">
+                      <input name ="password" type="text" class="form-control" id="inputName" placeholder= ${user.password }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label" style="width:10%;">Phone</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <textarea class="form-control" id="inputExperience" placeholder="Phone"></textarea>
+                      <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label" style="width:10%;">Join Date</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Join Date">
+                      <input type="text" class="form-control" id="inputSkills" placeholder=${user.joinDate }>
                     </div>
                   </div>
                   
@@ -576,7 +579,7 @@
                   <div class="form-group" >
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
-                      <button type="submit" class="btn btn-danger"> 수 정</button>
+                      <button type="submit" class="btn btn-danger"> 확 인</button>
                     </div>
                   </div>
                   
