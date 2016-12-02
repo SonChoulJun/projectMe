@@ -93,4 +93,12 @@ public class MapBoardDaoImpl implements MapBoardDao {
         // TODO Auto-generated method stub
         return null;
     }
+    
+    @Override
+	public List<PhotoFolder> getSideBar(String userNo) throws Exception {
+    	Integer.parseInt(userNo);
+		return sqlSession.selectList("BoardMapper.getfolder", Integer.parseInt(userNo) );
+	}
+
+	
 }
