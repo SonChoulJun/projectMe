@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Photo {
   
-  private String photoNo;
+  private int photoNo;
   private String folderName;
   private String title;
   private String text;
@@ -18,10 +18,10 @@ public class Photo {
     
   }
   
-  public String getPhotoNo() {
+  public int getPhotoNo() {
     return photoNo;
   }
-  public void setPhotoNo(String photoNo) {
+  public void setPhotoNo(int photoNo) {
     this.photoNo = photoNo;
   }
   public String getFolderName() {

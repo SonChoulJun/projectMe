@@ -3,7 +3,8 @@ package kr.co.bitcamp.service.domain;
 import java.sql.Date;
 
 public class Alram {
-  
+ 
+  private int alramNo;
   private String sendId;
   private String text;
   private Date alarmDate;
@@ -11,8 +12,19 @@ public class Alram {
   public Alram(){
     
   }
+  
+  
+  public int getAlramNo() {
+    return alramNo;
+  }
+  
+  
+  public void setAlramNo(int alramNo) {
+      this.alramNo = alramNo;
+  }
 
-  public String getSendId() {
+
+public String getSendId() {
     return sendId;
   }
 

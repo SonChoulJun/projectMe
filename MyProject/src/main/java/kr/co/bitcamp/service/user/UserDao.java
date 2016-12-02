@@ -18,17 +18,17 @@ public interface UserDao {
 	
 	public User getUser(String UserId) throws Exception ;
 
-	public List<User> getFollow(String UserId) throws Exception ;
+	public List<User> getFollow(int UserNo) throws Exception ;
 	
-	public boolean removeFollower(String userId, String followId) throws Exception ;
+	public boolean removeFollower(int UserNo, int followNo) throws Exception ;
 	
-	public boolean removeFollowing(String userId, String followingId) throws Exception ;
+	public boolean removeFollowing(int UserNo, int followingNo) throws Exception ;
 	
-	public boolean addFollow(String userId, String followId) throws Exception ;
+	public boolean addFollow(int UserNo, int followNo) throws Exception ;
 	
-	public List<Alram> getAlram(String userId) throws Exception ;
+	public List<Alram> getAlram(int UserNo) throws Exception ;
 	
-	public List<Activity> getActivity(String userId) throws Exception ;
+	public List<Activity> getActivity(int UserNo) throws Exception ;
 	
 	public boolean setActivity(Activity activity) throws Exception ;
 	

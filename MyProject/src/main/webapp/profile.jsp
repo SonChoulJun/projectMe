@@ -23,7 +23,9 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   
-            <link rel="stylesheet" href="assets/css/style.css">  
+  <link rel="stylesheet" href="assets/css/style.css">  
+  
+  <link rel="stylesheet" href="folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -320,6 +322,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">여행목록</li>
+        <li class="folder_input" id="folder_input">+</li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>유럽 2012.07.08</span>
@@ -455,15 +458,10 @@
                 </div>
               <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
 
-<<<<<<< HEAD
               <h3 class="profile-username text-center"><b>${targetUser.userName}</b></h3>
 
               <p class="text-muted text-center">-</p>
-=======
-              <h3 class="profile-username text-center">이름받아오자</h3>
 
-              <p class="text-muted text-center">상태메시지넣자</p>
->>>>>>> 7525564f0e3ef370081b45ffc860d94ded102a27
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -1097,6 +1095,39 @@
 </div>
 <!-- ./wrapper -->
 
+
+<!-- input_folder popup -->
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h2>PhotoBorad input</h2>
+    <a class="close">&times;</a>
+    <div class="box box-warning">
+      <div class="box-header with-border">
+        <h3 class="box-title">pomnwq@naver.com</h3>
+      </div>
+            <!-- /.box-header -->
+     <div class="box-body">
+       <form role="form">
+                  <!-- text input -->
+         <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+         </div>
+  
+        <!-- textarea -->
+        <div class="form-group">
+           <label>Comment</label>
+           <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+        </div>
+        <button type="button" class="btn btn-block btn-primary btn-flat">summit</button>
+                 
+      </div>
+    </div>
+    <!--box box-warning-->
+  </div>
+</div>
+<!-- input_folder popup end -->
+
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -1137,7 +1168,11 @@ $("#fileUpload").fileinput({
     autoStart: true,
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
+
+
 </script>
+
+<script src="folder-input/folder-input.js"></script>
 
 
 </body>

@@ -49,7 +49,7 @@ public class MapBoardController {
 	public String getSideBar( HttpSession session, Model model ) throws Exception {
 /*    	User user =(User)session.getAttribute("user");
     	String userNo = user.getUserNo();*/
-    	String userNo = "10000";
+    	int userNo = 10000;
     	System.out.println("폴더 불러 오구연!!!!!!!!!!!!!!!!!!!");
 		//Business Logic
     	List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
