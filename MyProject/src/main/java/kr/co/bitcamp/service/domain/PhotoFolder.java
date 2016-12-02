@@ -4,20 +4,20 @@ import java.sql.Date;
 import java.util.List;
 
 public class PhotoFolder {
-  private String pfNo;
+  private int pfNo;
   private String title;
   private String text;
   private Date photoDate;
-  private List<String[]> photoTheme;
+  private List<String> photoTheme;
   
   public PhotoFolder(){
     
   }
   
-  public String getPfNo() {
+  public int getPfNo() {
     return pfNo;
   }
-  public void setPfNo(String pfNo) {
+  public void setPfNo(int pfNo) {
     this.pfNo = pfNo;
   }
   public String getTitle() {
@@ -38,10 +38,10 @@ public class PhotoFolder {
   public void setPhotoDate(Date photoDate) {
     this.photoDate = photoDate;
   }
-  public List<String[]> getPhotoTheme() {
+  public List<String> getPhotoTheme() {
     return photoTheme;
   }
-  public void setPhotoTheme(List<String[]> photoTheme) {
+  public void setPhotoTheme(List<String> photoTheme) {
     this.photoTheme = photoTheme;
   }
 

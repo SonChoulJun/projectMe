@@ -9,6 +9,7 @@
 
 	
 	<resultMap type="user" id="userSelectMap">
+
 	    <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 		<result property="userId" column="USERID" jdbcType="VARCHAR"/>
 		<result property="userName" column="USER_NM" jdbcType="VARCHAR"/>
@@ -22,7 +23,7 @@
 	
 	 <select id="findUser"     parameterType="User" resultMap="userSelectMap" >
         SELECT
-        * 
+        *
         FROM BT_USER
         WHERE USERID=#{userId} AND password=#{password}
      </select>
@@ -31,6 +32,7 @@
 	<select id="getUser" parameterType="string" resultMap="userSelectMap">
         select  
         USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+
         FROM     bt_user
         where userId=#{value}
      </select>
@@ -57,6 +59,18 @@
           '0',
           0)
   </insert> 
+  
+  <update id="updateUser" parameterType="user">
+        UPDATE bt_user 
+        <set>
+                                                   USER_NM = #{userName},
+                                                     PHONE = #{phone},
+                                                PASSWORD = #{password},
+                                                JOIN_DATE= sysdate
+                                                              
+        </set>
+        WHERE USERID = #{userId}       
+    </update>
 	
 	
 

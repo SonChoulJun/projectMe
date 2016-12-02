@@ -112,26 +112,59 @@ public class UserController {
       return "forward:/user/removeUser.jsp";
     }
     
-    @RequestMapping("update")
-     public String updateUser(User user){
-      /*  User user01=userService.getUser(userId);
+    @RequestMapping("get")
+    public String getUser(HttpSession session , Model model ) throws Exception{
+      User user =(User)session.getAttribute("user");
+      System.out.println("/getUser()  개인정보 불러와!!" );
+  
+      User user1 = userService.getUser(user.getUserId().trim());
       
-        User user1=userService.updateUser(user);
-        */
-      return "";
+      
+         model.addAttribute("user", user1);
+    
+      return "forward:/getUser.jsp";
     }
     
-    @RequestMapping("/getUser")
-    public String getUser(@RequestParam("userId") String userId, 
+    @RequestMapping("updateUserView")
+    public String updateUserView(HttpSession session , Model model ) throws Exception{
+      User user =(User)session.getAttribute("user");
+      System.out.println("/updateUserView 수정창  불러와!!" );
+
+      User user1 = userService.getUser(user.getUserId().trim());
+
+      model.addAttribute("user", user1);
+    
+      return "forward:/updateMyProfile.jsp";
+    }
+    
+    
+    
+    
+    @RequestMapping("update")
+    public String updateUser( @ModelAttribute("user") User user, HttpSession session) throws Exception{
+      
+      System.out.println("/updateUser 업데이트 된 개인정보 불러와!!!!!!!!!!!" );
+      userService.updateUser(user);
+      
+      String sessionId=((User)session.getAttribute("user")).getUserId();
+      if(sessionId.equals(user.getUserId())){
+        session.setAttribute("user", user);
+      } 
+      
+      return "forward:/getUser.jsp";
+    }
+    
+    @RequestMapping("read")
+    public String readUser(@RequestParam("userId") String userId, 
                                     Model model,
                     HttpServletRequest request) throws Exception{
-      System.out.println("[getUser() start........................]");
+      System.out.println("[readUser() start........................]");
       
       User user=userService.getUser(userId);
      
       model.addAttribute("user", user);
       
-      System.out.println("[getUser() end...............]\n");
+      System.out.println("[readUser() end...............]\n");
       
       return "";
     }

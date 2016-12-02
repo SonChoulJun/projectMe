@@ -75,7 +75,8 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User user) throws Exception {
 		// TODO Auto-generated method stub
     
-		return null;
+    userDAO.updateUser(user);
+		return user;
 	}
 
 
