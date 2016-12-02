@@ -137,6 +137,20 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+    @Override
+    public int getFollwerCount(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return userDAO.getFollwerCount(userNo);
+    }
+
+
+    @Override
+    public int getFollwingCount(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return userDAO.getFollwingCount(userNo);
+    }
+
+
 /*	@Override
 	public boolean pwCheak(User user) throws Exception {
 		// TODO Auto-generated method stub

@@ -32,5 +32,9 @@ public interface UserService {
 	
 	public boolean setActivity(Activity activity) throws Exception ;
 	
+  public int getFollwerCount(int userNo) throws Exception;
+	  
+  public int getFollwingCount(int userNo) throws Exception;
+	
 //	public boolean pwCheak(User user) throws Exception ;
 }

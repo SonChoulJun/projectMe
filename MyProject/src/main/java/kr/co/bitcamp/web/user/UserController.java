@@ -66,12 +66,13 @@ public class UserController {
       System.out.println("[login() start........................]");
       
       User user01=userService.login(user);
+      user01.setActivity(true);
     
       session.setAttribute("user", user01);
       
       System.out.println("[login() end...............]\n");
       
-      return "forward:/profile.jsp";
+      return "forward:/profile/mainProfile";
       
      
     }
@@ -129,17 +130,7 @@ public class UserController {
       return "";
     }
     
-//    @RequestMapping( value="getUser", method=RequestMethod.GET )
-//	public String getUser( @RequestParam("userId") String userId , Model model ) throws Exception {
-//		
-//		System.out.println("/user/getUser : GET");
-//		//Business Logic
-//		User user = userService.getUser(userId);
-//		// Model 과 View 연결
-//		model.addAttribute("user", user);
-//		
-//		return "forward:/user/getUser.jsp";
-//	}
+    
     
     @RequestMapping("getFollower")
     public String getFollow(String userId){
@@ -181,6 +172,7 @@ public class UserController {
         
         return "";
       }
+      
 
     
     

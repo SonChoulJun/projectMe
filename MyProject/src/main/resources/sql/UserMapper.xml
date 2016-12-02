@@ -58,7 +58,12 @@
           0)
   </insert> 
 	
-	
-
+  <select id="getFollwerCount" parameterType="int" resultType="int">	
+    select count(*) from BT_FOLLOWER where FOLLOWING_USER_NO =#{value}
+  </select>
+  
+  <select id="getFollwingCount" parameterType="int" resultType="int">  
+    select count(*) from BT_FOLLOWER where FOLLOWER_USER_NO =#{value}
+  </select>
 
 </mapper>

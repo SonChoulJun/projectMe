@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class User {
   
-  private String userNo;
+  private int userNo;
   private String userId;
   private String password;
   private String userName;
@@ -20,13 +20,13 @@ public class User {
   
   
 
-  public String getUserNo() {
+  public int getUserNo() {
     return userNo;
   }
 
 
 
-  public void setUserNo(String userNo) {
+  public void setUserNo(int userNo) {
     this.userNo = userNo;
   }
 

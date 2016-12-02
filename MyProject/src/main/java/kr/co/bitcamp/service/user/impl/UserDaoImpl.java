@@ -126,5 +126,16 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
+    @Override
+    public int getFollwerCount(int userNo) throws Exception {
+        return sqlSession.selectOne("UserMapper.getFollwerCount",userNo);
+    }
+
+    @Override
+    public int getFollwingCount(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return sqlSession.selectOne("UserMapper.getFollwingCount",userNo);
+    }
+
 
 }
