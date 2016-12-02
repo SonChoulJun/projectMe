@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,6 +22,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  
+            <link rel="stylesheet" href="assets/css/style.css">  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -267,7 +270,8 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                
+                  <a href="/user/get?userId=${user.getUserId() }" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -432,11 +436,34 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture">
+               <div class="avatar img-responsive img-circle">
+			    
+				      <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve">
+				            <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
+				              c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"></path>
+				            <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
+				              S17.7,10.3,17.7,7.5z"></path>
+				         <g id="plus">
+				            <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"></path>
+				            <path fill="none" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"></path>
+				        </g>
+				     </svg>
+				     <!-- <div id="openModal img-responsive img-circle">
+				       <span style="color:Yellow">Drop</span>
+				     </div> -->
+				      <input id="fileUpload" type="file">
+                </div>
+              <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
 
+<<<<<<< HEAD
               <h3 class="profile-username text-center"><b>${targetUser.userName}</b></h3>
 
               <p class="text-muted text-center">-</p>
+=======
+              <h3 class="profile-username text-center">이름받아오자</h3>
+
+              <p class="text-muted text-center">상태메시지넣자</p>
+>>>>>>> 7525564f0e3ef370081b45ffc860d94ded102a27
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -622,7 +649,8 @@
                   </div>
                   
                   <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                    <li><a href="#" class="link-black text-sm" data-js="twitter-share"><i class="fa fa-share margin-r-5"></i>Share on Twitter</a></li>
+                    <li><a href="#" class="link-black text-sm" data-js="facebook-share"><i class="fa fa-share margin-r-5"></i> Share On Facebook</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                     </li>
                     <li class="pull-right">
@@ -1079,5 +1107,38 @@
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script type="text/javascript">
+var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+twitterShare.onclick = function(e) {
+  e.preventDefault();
+  var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+  if(twitterWindow.focus) { twitterWindow.focus(); }
+    return false;
+  }
+
+var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+facebookShare.onclick = function(e) {
+  e.preventDefault();
+  var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+  if(facebookWindow.focus) { facebookWindow.focus(); }
+    return false;
+}
+</script>
+ <script src="assets/js/fileinput.js" type="text/javascript"></script>
+<script src="dist/js/index.js"></script>
+<script type="text/javascript">
+$("#fileUpload").fileinput({    
+    language: 'LANG',
+    uploadUrl: 'user/fileUpload/post',
+    uploadAsync: true,
+    autoStart: true,
+    allowedFileExtensions : ['jpg', 'png','gif']   
+});
+</script>
+
+
 </body>
 </html>

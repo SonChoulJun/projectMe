@@ -19,6 +19,10 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  
+  <!--파일업로드 CSS  -->
+        <link href="assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,22 +30,6 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  
-  <style type="text/css">
-
-    .profilephoto{
-        background-size: cover;
-
-    }
-
-    .profilephoto img{
-        
-        width:100%;
-        height:100%;
-        float: left;
-    }
-
-</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -435,7 +423,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        File Upload Test
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -448,144 +436,12 @@
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture">
-
-              <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-              <p class="text-muted text-center">Software Engineer</p>
-
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
-                </li>
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-              <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">Malibu, California</p>
-
-              <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-              <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:17%; margin-left: 17%; background-image:url('images/profileimage.JPG') ;  background-color:rgba(192, 200, 88, 0.6);  " >
-              <img src="images/pic07.jpg" ; alt=""/>
-                </div>
-            <div class="rectang" style="    padding-left: 40%; padding-top: 20%;  background-color: rgba(205, 211, 88, 0.6); " >
-            <div class="tab-pane" id="settings">
+       
+       
+           <input id="input-id" type="file" class="file" multiple="true" >
                 
-                <form class="form-horizontal">
-                
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label" style="width:10%;">Email(id)</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email(id)">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Password</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input type="text" class="form-control" id="inputName" placeholder="Password">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label" style="width:10%;">Phone</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <textarea class="form-control" id="inputExperience" placeholder="Phone"></textarea>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label" style="width:10%;">Join Date</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Join Date">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group" style="width:30%;">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group" >
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                      <button type="submit" class="btn btn-danger"> 수 정</button>
-                    </div>
-                  </div>
-                  
-                </form>
-              </div>
-              </div>
         
-        </div>
-        <!-- /.col -->
+        
       </div>
       <!-- /.row -->
 
@@ -807,5 +663,20 @@
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<!--파일업로드 자바스크립트  -->
+        <script src="assets/js/fileinput.js" type="text/javascript"></script>
+        <script src="assets/themes/fa/theme.js"></script>
+        <script src="assets/js/locales/LANG.js"></script>
+<script>
+$("#input-id").fileinput({
+	language: 'LANG',
+    uploadUrl: 'user/fileUpload/post',
+    uploadAsync: true,
+    multiple:true,
+    allowedFileExtensions : ['jpg', 'png','gif']   
+});
+
+
+</script>
 </body>
 </html>

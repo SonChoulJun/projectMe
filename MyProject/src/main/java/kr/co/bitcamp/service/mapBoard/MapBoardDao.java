@@ -29,5 +29,6 @@ public interface MapBoardDao {
     public boolean removeComment(String commentNum) throws Exception;
     
     public List<PhotoFolder> getNewsFeed(String userId) throws Exception;
-
+    
+    public List<PhotoFolder> getSideBar(String userNo) throws Exception;
 }

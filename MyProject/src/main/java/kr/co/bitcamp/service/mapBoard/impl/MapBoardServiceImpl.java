@@ -108,6 +108,14 @@ public class MapBoardServiceImpl implements MapBoardService {
         // TODO Auto-generated method stub
         return null;
     }
+
+
+	@Override
+	public List<PhotoFolder> getSideBar(String userNo) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("들어왔나요");
+		return boardDao.getSideBar(userNo);
+	}
     
     
     

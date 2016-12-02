@@ -18,7 +18,7 @@ public class User {
     
   }
   
-  
+
 
   public int getUserNo() {
     return userNo;
@@ -28,6 +28,7 @@ public class User {
 
   public void setUserNo(int userNo) {
     this.userNo = userNo;
+
   }
 
 

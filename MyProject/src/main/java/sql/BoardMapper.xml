@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 					
+<mapper namespace="BoardMapper">
+
+
+	<resultMap type="board" id="boardSelectMap">
+		<result property="pfNo" column="PF_NO" jdbcType="VARCHAR"/>
+		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
+		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
+		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE"/>
+		<association property="photoTheme" column="PF_NO" select="getTheme" javaType="ArrayList"></association>
+	</resultMap>
+	
+	<select id="getfolder" parameterType="int" resultMap="boardSelectMap">
+		select P.TITLE, P.PF_NO
+		from BT_PHOTO_FOLDER P, BT_USER U
+		WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
+		ORDER BY P.PF_NO
+    </select>
+    
+    <select id="getTheme" parameterType="int" resultType="String">
+		select T.TM_NM
+		from BT_PHOTO_FOLDER P, BT_TM T
+		WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value}
+		ORDER BY P.PF_NO
+    </select>
+    
+
+
+</mapper>

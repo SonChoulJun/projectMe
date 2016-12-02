@@ -529,57 +529,40 @@
             <div class="rectang" style="    padding-left: 40%; padding-top: 10%;  background-color: rgba(000, 051, 102, 0.3); border:1px solid rgba(160, 160, 160, 0.6);" >
             <div class="tab-pane" id="settings">
                 
-                <form class="form-horizontal" action="/user/updateUserView">
+                <form class="form-horizontal" action="/user/update">
                 
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>-
-                    <div class="col-sm-10" style="width: 50% ; ">
-                      <%-- <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }> --%>
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ;  border-style:solid; border-width:1px; ">
-                      ${user.userName }
-                      </div>
+                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>
+                    <div class="col-sm-10" style="width: 50%">
+                      <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label" style="width:10%;">Email(id)</label>
-                    <div class="col-sm-10" style="width: 50%; ">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.userId }
-                      </div>
+                    <div class="col-sm-10" style="width: 50%">
+                      <input name ="userId" type="email" class="form-control" id="inputEmail" placeholder=${user.userId }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Pwd</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.password }
-                      </div>
+                      <input name ="password" type="text" class="form-control" id="inputName" placeholder= ${user.password }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label" style="width:10%;">Phone</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <%-- <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea> --%>
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.phone }
-                      </div>
+                      <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label" style="width:10%;">Join Date</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.joinDate }
-                      </div>
+                      <input type="text" class="form-control" id="inputSkills" placeholder=${user.joinDate }>
                     </div>
                   </div>
                   
@@ -595,7 +578,8 @@
                   
                   <div class="form-group" >
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger"> 수 정</button>
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger"> 확 인</button>
                     </div>
                   </div>
                   
