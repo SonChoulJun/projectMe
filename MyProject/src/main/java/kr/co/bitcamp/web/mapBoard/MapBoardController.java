@@ -50,13 +50,7 @@ public class MapBoardController {
       }
       return "forward:/profile/mainProfile";
     }
-<<<<<<< HEAD
-    
-    
-    @RequestMapping("addPhoto")
-    public String addPhoto(List photoList){
-      return "";
-=======
+
     @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
     //@ResponseBody 
     public void addphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
@@ -96,8 +90,7 @@ public class MapBoardController {
                           
        }
           
-       // return "Upload Success";
->>>>>>> a86a8321e47e14e626371e29590ebba32f3fdfd8
+
     }
     
     
