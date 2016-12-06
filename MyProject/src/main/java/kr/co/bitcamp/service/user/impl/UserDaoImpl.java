@@ -75,6 +75,14 @@ public class UserDaoImpl implements UserDao {
 
 	  return (User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
 	}
+//////
+
+	@Override
+	public List<Activity> getActivity(int userNo) throws Exception {
+		// TODO Auto-generated method stub
+	  
+		return  sqlSession.selectList("ActivityMapper.getActivity", userNo);
+	}
 
 
 	@Override
@@ -130,13 +138,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<Alram> getAlram(int UserNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Activity> getActivity(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return sqlSession.selectList("UserMapper.getAlram", UserNo);
     }
 
 

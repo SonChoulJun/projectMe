@@ -4,27 +4,28 @@ import java.sql.Date;
 
 public class Activity {
   
-  private int ActivityNo;
   private Date activityDate;
   private String activityText;
+  private User user;
+  private int activityNo;
   
   public Activity(){
     
   }
-  
-  
+  public User getUser() {
+    return user;
+  }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
   public int getActivityNo() {
-    return ActivityNo;
+    return activityNo;
   }
-  
-  
-  
+
   public void setActivityNo(int activityNo) {
-      ActivityNo = activityNo;
+    this.activityNo = activityNo;
   }
-
-
 
 public Date getActivityDate() {
     return activityDate;

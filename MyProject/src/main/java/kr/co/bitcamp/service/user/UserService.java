@@ -18,18 +18,18 @@ public interface UserService {
 	
 	public User getUser(String userId) throws Exception ;
 
-	public List<User> getFollow(int UserNo) throws Exception ;
+	public List<User> getFollow(int userNo) throws Exception ;
 	
-	public boolean removeFollower(int UserNo, int followNo) throws Exception ;
+	public boolean removeFollower(int userNo, int followNo) throws Exception ;
 	
-	public boolean removeFollowing(int UserNo, int followingNo) throws Exception ;
+	public boolean removeFollowing(int userNo, int followingNo) throws Exception ;
 	
-	public boolean addFollow(int UserNo, int followNo) throws Exception ;
+	public boolean addFollow(int userNo, int followNo) throws Exception ;
 	
-	public List<Alram> getAlram(int UserNo) throws Exception ;
+	public List<Alram> getAlram(int userNo) throws Exception ;
 	
-	public List<Activity> getActivity(int UserNo) throws Exception ;
-	
+	public List<Activity> getActivity(int userNo) throws Exception ;
+
 	public boolean setActivity(Activity activity) throws Exception ;
 	
   public int getFollwerCount(int userNo) throws Exception;

@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
+import kr.co.bitcamp.service.domain.Activity;
+import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.user.UserService;
 
@@ -46,17 +49,18 @@ public class UserServiceTest {
   //@Test
   public void testGetUser() throws Exception{
     System.out.println("getUser 실행 되었냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    User user=userService.getUser("jw688@naver.com");
+    User user=userService.getUser("krh2122@naver.com");
     System.out.println(user);
     
   }
   
-  @Test
+  //@Test
   public void testUpdateUser() throws Exception{
     System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-   User user=userService.getUser("jw688@naver.com");
+   User user=userService.getUser("krh2122@naver.com");
    System.out.println("일단 불러왔어");
     System.out.println(user);
+    user.setUserNo(10000);
     user.setUserName("cheoljune"); 
     user.setPhone("777-7777-7777");
     user.setPassword("456456");
@@ -65,6 +69,41 @@ public class UserServiceTest {
     System.out.println("바뀌었니?");
     System.out.println(user01);
    
+  }
+
+  @Test
+  public void testGetActivity() throws Exception{
+    System.out.println("getActivity() 실행 했냡ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+    
+    String userId="jw688@naver.com";
+    User user=userService.getUser(userId);
+    List<Activity> listActivity = userService.getActivity(user.getUserNo());
+    System.out.println(listActivity);
+  }
+  @Test
+  public void testGetAlram() throws Exception{
+	  	  
+	  System.out.println("getAlram 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	  
+	  String userId="krh2122@naver.com";
+	  User user=userService.getUser(userId);
+	  System.out.println("dddddddddddd"+user);
+	  
+	  
+	  List<Alram> listAlram = userService.getAlram(user.getUserNo());
+	  System.out.println("뽑아줘제발"+listAlram);
+	  
+//	  List<Alram> alram=userService.getAlram(10000);
+//	  System.out.println("일단 불러왔어");
+//	  System.out.println(alram);
+//	  ((Alram) alram).setAlramNo(40000);
+//	  ((Alram) alram).setSendId("123123");
+//	  ((Alram) alram).setText("123123");
+//	  
+//	  List<Alram> alram01=userService.getAlram(10000);
+//	  System.out.println("빠귀었니?");
+//	  System.out.println(alram01);
+	  
   }
 
   /*

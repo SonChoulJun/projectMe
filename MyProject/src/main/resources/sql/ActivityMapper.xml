@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 					
+<mapper namespace="ActivityMapper">
+	
+	<resultMap type="activity" id="activitySelectMap">
+	
+	   <result property="activityDate" column="ACTIVITY_DATE" jdbcType="DATE" />
+	   <result property="activityText" column="TEXT" jdbcType="CLOB" />
+	   <result property="activityNo" column="ACTIVITY_NO" jdbcType="NUMERIC" />
+	   <association property="user" column="USER_NO" javaType="user" select="UserMapper.getUser" />
+
+	</resultMap>
+
+	
+	  <select id="getActivity" parameterType="int" resultMap="activitySelectMap">
+        select *
+        from bt_activity 
+        where user_no=#{user.userNo}
+        
+     </select>
+
+</mapper>

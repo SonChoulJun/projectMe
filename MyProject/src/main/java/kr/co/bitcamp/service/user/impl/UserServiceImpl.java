@@ -120,11 +120,20 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
+	@Override
+	public List<Activity> getActivity(int  userNo) throws Exception {
+		// TODO Auto-generated method stub
+	  
+		return userDAO.getActivity(userNo);
+		
+	}
     @Override
     public boolean removeFollower(int UserNo, int followNo) throws Exception {
         // TODO Auto-generated method stub
         return false;
     }
+
 
 
     @Override
@@ -142,17 +151,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<Alram> getAlram(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	public List<Alram> getAlram(int userNo) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getAlram(userNo);
+	}
 
 
-    @Override
-    public List<Activity> getActivity(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 
 /*	@Override
