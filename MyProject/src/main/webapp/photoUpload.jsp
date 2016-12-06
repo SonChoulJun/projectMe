@@ -670,7 +670,7 @@
 <script>
 $("#input-id").fileinput({
 	language: 'LANG',
-    uploadUrl: 'user/fileUpload/post',
+	uploadUrl: 'mapBoard/addphoto',
     uploadAsync: true,
     multiple:true,
     allowedFileExtensions : ['jpg', 'png','gif']   

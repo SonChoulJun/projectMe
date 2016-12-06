@@ -64,30 +64,7 @@
 	--> 
 
 	
-   	<mvc:resources mapping="/user/images/**" location="/images/" />
-   	<mvc:resources mapping="/user/dist/**" location="/dist/" />
-   	<mvc:resources mapping="/user/node_modules/**" location="/node_modules/" />
-   	<mvc:resources mapping="/user/plugins/**" location="/plugins/" />
-   	<mvc:resources mapping="/user/assets/**" location="/assets/" />
-   	<mvc:resources mapping="/user/folder-input/**" location="/folder-input/" />
-   	
-   	    <mvc:resources mapping="/mapBoard/images/**" location="/images/" />
-    <mvc:resources mapping="/mapBoard/dist/**" location="/dist/" />
-    <mvc:resources mapping="/mapBoard/node_modules/**" location="/node_modules/" />
-    <mvc:resources mapping="/mapBoard/plugins/**" location="/plugins/" />
-    <mvc:resources mapping="/mapBoard/assets/**" location="/assets/" />
-    <mvc:resources mapping="/mapBoard/folder-input/**" location="/folder-input/" />   
-   	
-
-   	<mvc:resources mapping="/images/**" location="/images/" />
-
-
-    <mvc:resources mapping="/dist/**" location="/dist/" />
-    <mvc:resources mapping="/node_modules/**" location="/node_modules/" />
-    <mvc:resources mapping="/plugins/**" location="/plugins/" />
-    <mvc:resources mapping="/assets/**" location="/assets/" />
-    <mvc:resources mapping="/ex/**" location="/ex/" />
-    <mvc:resources mapping="/folder-input/**" location="/folder-input/" />    
+   	<mvc:resources mapping="/html/**" location="/html/" />
 
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
