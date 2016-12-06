@@ -222,6 +222,7 @@ public class UserController {
         List<Activity> activityList =userService.getActivity(userNo);
         
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
+        model.addAttribute("targetUser", user);
         model.addAttribute("activity", activityList);
         
         return "forward:/MyActivity.jsp";
@@ -232,6 +233,18 @@ public class UserController {
         
         return "";
       }
+      @RequestMapping("myTravel")
+      public String travelPage(HttpSession session, Model model)throws Exception{
+        
+        System.out.println("login 객체 가지고 가야지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        User user=(User)session.getAttribute("user");
+        //int userNo=user.getUserNo();
+        
+        model.addAttribute("targetUser", user);
+        
+        return "forward:/profile.jsp";
+      }
+      
 
       @RequestMapping(value = "fileUpload/post", method=RequestMethod.POST) //ajax에서 호출하는 부분
       //@ResponseBody 이거 쓰면 멘트뿌려줄수있음.

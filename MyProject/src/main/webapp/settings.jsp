@@ -23,7 +23,9 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
   
-            <link rel="stylesheet" href="assets/css/style.css">  
+  <link rel="stylesheet" href="assets/css/style.css">  
+  
+  <link rel="stylesheet" href="folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,11 +42,9 @@
   <!-- Left side column. contains the logo and sidebar -->
   <c:import url="mainSideBar.jsp"></c:import>
   <!-- Content Wrapper. Contains page content -->
-  
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <c:import url="profileBar.jsp"></c:import>
-
     <!-- Main content -->
     <section class="content">
 
@@ -53,109 +53,66 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-            
               <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
               <li><a href="http://127.0.0.1:8080/timeLine.jsp" >TimeLine</a></li>
-              <li class="active"><a href="http://127.0.0.1:8080/user/getActivity"  data-toggle="tab"; >Activity</a></li>
-              <li><a href="http://127.0.0.1:8080/settings.jsp" >Settings</a></li>
+              <li><a href="http://127.0.0.1:8080/user/getActivity"  >Activity</a></li>
+              <li class="active"><a href="http://127.0.0.1:8080/settings.jsp" >Settings</a></li>
             </ul>
             <div class="tab-content">
-             
               
-              
-              <div class="active tab-pane" id="activity">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          ${activity[0].activityDate} 
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
+              <div class="active tab-pane" id="settings">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                        <c:forEach var="i" items="${activity }">
-                            <div class="timeline-body" >
-	                            ${i.activityText} 
-	                      </div>
-                        </c:forEach>
-                      
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                        </label>
                       </div>
                     </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        ${activity[1].activityText }
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
+                  </div>
+                </form>
               </div>
-              <!-- /.tab-pane -->
-              
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -170,14 +127,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.7
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
-
+<c:import url="mainFoot.jsp"></c:import>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -374,6 +324,41 @@
 </div>
 <!-- ./wrapper -->
 
+
+<!-- input_folder popup -->
+<div id="popup1" class="overlay">
+	<form action="/mapBoard/addFolder" method="post">
+	  <div class="popup">
+	    <h2>PhotoBorad input</h2>
+	    <a class="close">&times;</a>
+	    <div class="box box-warning">
+	      <div class="box-header with-border">
+	        <h3 class="box-title">pomnwq@naver.com</h3>
+	      </div>
+	            <!-- /.box-header -->
+	     <div class="box-body">
+	       <form role="form">
+	                  <!-- text input -->
+	         <div class="form-group">
+	            <label>Title</label>
+	            <input name="title" type="text" class="form-control" placeholder="Enter ...">
+	         </div>
+	  
+	        <!-- textarea -->
+	        <div class="form-group">
+	           <label>Comment</label>
+	           <textarea name="text"class="form-control" rows="3" placeholder="Enter ..."></textarea>
+	        </div>
+	        <button type="submit" class="btn btn-block btn-primary btn-flat">summit</button>
+	                 
+	      </div>
+	    </div>
+	    <!--box box-warning-->
+	  </div>
+	</form>
+</div>
+<!-- input_folder popup end -->
+
 <!-- jQuery 2.2.3 -->
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -414,7 +399,13 @@ $("#fileUpload").fileinput({
     autoStart: true,
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
+
+
 </script>
+
+<script src="folder-input/folder-input.js"></script>
+
+
 
 
 </body>
