@@ -53,6 +53,8 @@ public class ProfileController {
     public String mainProfile(@PathVariable String path,HttpSession session, Model model) throws Exception{
         User user = (User)session.getAttribute("user");
         int userNo =user.getUserNo();
+        System.out.println(user);
+        session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
         try{

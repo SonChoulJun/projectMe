@@ -10,11 +10,11 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>${user.userId}</p>
-          <c:if test="${user.activity}">
+          <p>${targetUser.userId}</p>
+          <c:if test="${targetUser.activity}">
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </c:if>
-          <c:if test="${!user.activity}">
+          <c:if test="${!targetUser.activity}">
           <a href="#"><i class="fa fa-circle text-success"></i> Offline</a>
           </c:if>
         </div>
