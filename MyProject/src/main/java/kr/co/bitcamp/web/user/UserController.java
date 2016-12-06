@@ -2,6 +2,7 @@ package kr.co.bitcamp.web.user;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.service.domain.Activity;
+import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.user.UserService;
 
@@ -196,11 +198,19 @@ public class UserController {
         return "";
       }
       
-      @RequestMapping("getAlram")
-      public String getAlram(){
-        
-        return "";
-      }
+    @RequestMapping( value="getAlram")
+  	public String getAlram( @RequestParam("userNo") int userNo , String userId, Model model ) throws Exception {
+  		
+  		System.out.println("알람 받아오구연 지리구연!!!!!!!!!!!!!!!!!!!");
+  		//Business Logic
+  		User user = userService.getUser(userId);
+  		List<Alram> alram = userService.getAlram(userNo);
+  		// Model 과 View 연결
+  		model.addAttribute("user", user);
+  		model.addAttribute("alram", alram);
+  		
+  		return "";
+  	}
       
       @RequestMapping("getActivity")
       public String getActivity(){

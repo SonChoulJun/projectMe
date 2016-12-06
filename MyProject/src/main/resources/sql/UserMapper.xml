@@ -21,6 +21,18 @@
 		<result property="alramCount" column="ALRAM_COUNT" jdbcType="NUMERIC"/>
 	</resultMap>
 	
+	
+	
+	
+	<select id="getAlram"     parameterType="int"  resultType="alram">
+        
+		select A.ALRAM_NO as alramNo, A.SEND_ID as sendId, A.TEXT as text, A.ALTAM_DATE as alarmDate
+		from BT_USER U, BT_PHOTO_FOLDER P, BT_ALRAM A
+		WHERE U.USER_NO = A.USER_NO AND P.PF_NO = A.PF_NO AND U.USER_NO = #{value}
+		ORDER BY A.ALTAM_DATE
+	</select>
+	
+	
 	 <select id="findUser"     parameterType="User" resultMap="userSelectMap" >
         SELECT
         *

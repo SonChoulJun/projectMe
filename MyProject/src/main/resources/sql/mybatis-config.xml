@@ -9,6 +9,7 @@
 	 <typeAliases>
 	 	<typeAlias alias="user" type="kr.co.bitcamp.service.domain.User"/>
 	 	<typeAlias alias="board" type="kr.co.bitcamp.service.domain.PhotoFolder"/>
+	 	<typeAlias alias="alram" type="kr.co.bitcamp.service.domain.Alram"/>
 	 </typeAliases>
 	 
   

@@ -14,6 +14,7 @@ public class User {
   private boolean alramActivity;
   private int alramCount;
   
+  
   public User(){
     
   }
@@ -103,7 +104,7 @@ public class User {
 
   @Override
   public String toString() {
-      return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", phone=" + phone
+      return "User [userNo=" + userNo + ",userId=" + userId + ", password=" + password + ", userName=" + userName + ", phone=" + phone
               + ", activity=" + activity + ", joinDate=" + joinDate + ", alramActivity=" + alramActivity + ", alramCount="
               + alramCount + "]";
   }
