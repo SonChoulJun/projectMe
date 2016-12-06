@@ -138,7 +138,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<Alram> getAlram(int UserNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return sqlSession.selectList("UserMapper.getAlram", UserNo);
     }
 
 

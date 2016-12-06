@@ -151,10 +151,10 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<Alram> getAlram(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	public List<Alram> getAlram(int userNo) throws Exception {
+		// TODO Auto-generated method stub
+		return userDAO.getAlram(userNo);
+	}
 
 
 
