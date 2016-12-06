@@ -39,14 +39,17 @@ public class MapBoardController {
     }
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
-      photoFolder.setUserNo(((User)session.getAttribute("user")).getUserNo());
+      int userNo = ((User)session.getAttribute("user")).getUserNo();
+      photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
+          List<PhotoFolder> photoFolder1 = boardService.getSideBar(userNo);
+          session.setAttribute("folderList", photoFolder1);
           model.addAttribute("addFolderOk","ok");
       }else{
           model.addAttribute("addFolderOk","no");
       }
-      return "forward:/profile/mainProfile";
+      return "forward:/profile.jsp";
     }
     @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
     //@ResponseBody 
