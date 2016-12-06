@@ -40,41 +40,7 @@ public class MapBoardDaoImpl implements MapBoardDao {
         return false;
     }
 
-    @Override
-    public List<PhotoFolder> getPhotoFolder(String userId) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Photo> getMainPhoto(String pfNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Photo> getSubPhoto(String themeNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean setLike(String photoFolderNo, String userId) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean setComment(Comment comment, String folderNo) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public List<Comment> getComment(String folderNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
+   
 
     @Override
     public boolean updateComment(Comment comment) throws Exception {
@@ -82,23 +48,60 @@ public class MapBoardDaoImpl implements MapBoardDao {
         return false;
     }
 
+
+    
     @Override
-    public boolean removeComment(String commentNum) throws Exception {
+	public List<PhotoFolder> getSideBar(int userNo) throws Exception {
+		return sqlSession.selectList("BoardMapper.getfolder", userNo );
+	}
+
+    @Override
+    public List<PhotoFolder> getPhotoFolder(int UserNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Photo> getMainPhoto(int pfNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Photo> getSubPhoto(int themeNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean setLike(int photoFolderNo, int UserNo) throws Exception {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public List<PhotoFolder> getNewsFeed(String userId) throws Exception {
+    public boolean setComment(Comment comment, int folderNo) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public List<Comment> getComment(int folderNo) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
     @Override
-	public List<PhotoFolder> getSideBar(String userNo) throws Exception {
-    	Integer.parseInt(userNo);
-		return sqlSession.selectList("BoardMapper.getfolder", Integer.parseInt(userNo) );
-	}
+    public boolean removeComment(int commentNum) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 	
 }

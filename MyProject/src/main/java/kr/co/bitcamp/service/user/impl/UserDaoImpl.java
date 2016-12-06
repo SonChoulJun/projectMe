@@ -76,42 +76,14 @@ public class UserDaoImpl implements UserDao {
 	  return (User)sqlSession.selectOne("UserMapper.getUser", userId.trim());
 	}
 //////
-	@Override
-	public List<User> getFollow(String UserId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-/////
-	@Override
-	public boolean removeFollower(String userId, String followId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-////
-	@Override
-	public boolean removeFollowing(String userId, String followingId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-/////
-	@Override
-	public boolean addFollow(String userId, String followId) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-//////
-	@Override
-	public List<Alram> getAlram(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-/////
+
 	@Override
 	public List<Activity> getActivity(int userNo) throws Exception {
 		// TODO Auto-generated method stub
 	  
 		return  sqlSession.selectList("ActivityMapper.getActivity", userNo);
 	}
+
 
 	@Override
 	public boolean setActivity(Activity activity) throws Exception {
@@ -137,6 +109,36 @@ public class UserDaoImpl implements UserDao {
     public int getFollwingCount(int userNo) throws Exception {
         // TODO Auto-generated method stub
         return sqlSession.selectOne("UserMapper.getFollwingCount",userNo);
+    }
+
+    @Override
+    public List<User> getFollow(int UserNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean removeFollower(int UserNo, int followNo) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean removeFollowing(int UserNo, int followingNo) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public boolean addFollow(int UserNo, int followNo) throws Exception {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public List<Alram> getAlram(int UserNo) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 

@@ -27,7 +27,7 @@ public class Activity {
     this.activityNo = activityNo;
   }
 
-  public Date getActivityDate() {
+public Date getActivityDate() {
     return activityDate;
   }
 

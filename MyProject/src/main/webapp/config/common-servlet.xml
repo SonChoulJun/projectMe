@@ -79,7 +79,8 @@
     <mvc:resources mapping="/node_modules/**" location="/node_modules/" />
     <mvc:resources mapping="/plugins/**" location="/plugins/" />
     <mvc:resources mapping="/assets/**" location="/assets/" />
-        <mvc:resources mapping="/ex/**" location="/ex/" />
+    <mvc:resources mapping="/ex/**" location="/ex/" />
+    <mvc:resources mapping="/folder-input/**" location="/folder-input/" />    
 
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
