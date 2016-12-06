@@ -81,7 +81,7 @@ public class UserController {
       
       System.out.println("[login() end...............]\n");
       
-      return "forward:/profile/mainProfile";
+      return "forward:/profile/mainProfile/login";
       
      
     }
@@ -229,7 +229,7 @@ public class UserController {
       
       @RequestMapping("setActivity")
       public String setActivity(Activity activity){
-        
+ 
         return "";
       }
 
