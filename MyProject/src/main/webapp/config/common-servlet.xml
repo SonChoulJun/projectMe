@@ -69,7 +69,14 @@
    	<mvc:resources mapping="/user/node_modules/**" location="/node_modules/" />
    	<mvc:resources mapping="/user/plugins/**" location="/plugins/" />
    	<mvc:resources mapping="/user/assets/**" location="/assets/" />
+   	<mvc:resources mapping="/user/folder-input/**" location="/folder-input/" />
    	
+   	    <mvc:resources mapping="/mapBoard/images/**" location="/images/" />
+    <mvc:resources mapping="/mapBoard/dist/**" location="/dist/" />
+    <mvc:resources mapping="/mapBoard/node_modules/**" location="/node_modules/" />
+    <mvc:resources mapping="/mapBoard/plugins/**" location="/plugins/" />
+    <mvc:resources mapping="/mapBoard/assets/**" location="/assets/" />
+    <mvc:resources mapping="/mapBoard/folder-input/**" location="/folder-input/" />   
    	
 
    	<mvc:resources mapping="/images/**" location="/images/" />

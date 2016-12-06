@@ -8,7 +8,7 @@ import kr.co.bitcamp.service.domain.PhotoFolder;
 
 public interface MapBoardService {
 
-    public boolean addFolder(String folderName) throws Exception;
+    public boolean addFolder(PhotoFolder photoFolder) throws Exception;
     
     public boolean addPhone(List photoList) throws Exception;
     

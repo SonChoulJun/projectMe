@@ -5,6 +5,7 @@ import java.util.List;
 
 public class PhotoFolder {
   private int pfNo;
+  private int userNo;
   private String title;
   private String text;
   private Date photoDate;
@@ -14,7 +15,17 @@ public class PhotoFolder {
     
   }
   
-  public int getPfNo() {
+  
+  
+  public int getUserNo() {
+    return userNo;
+  }
+
+  public void setUserNo(int userNo) {
+      this.userNo = userNo;
+  }
+
+    public int getPfNo() {
     return pfNo;
   }
   public void setPfNo(int pfNo) {

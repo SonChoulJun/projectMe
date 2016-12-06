@@ -9,7 +9,8 @@
 
 
 	<resultMap type="board" id="boardSelectMap">
-		<result property="pfNo" column="PF_NO" jdbcType="VARCHAR"/>
+		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
+		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
 		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
 		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE"/>
@@ -17,18 +18,30 @@
 	</resultMap>
 	
 	<select id="getfolder" parameterType="int" resultMap="boardSelectMap">
-		select P.TITLE, P.PF_NO
-		from BT_PHOTO_FOLDER P, BT_USER U
-		WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
-		ORDER BY P.PF_NO
+			select P.TITLE, P.PF_NO
+			from BT_PHOTO_FOLDER P, BT_USER U
+			WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
+			ORDER BY P.PF_NO
     </select>
     
     <select id="getTheme" parameterType="int" resultType="String">
-		select T.TM_NM
-		from BT_PHOTO_FOLDER P, BT_TM T
-		WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value}
-		ORDER BY P.PF_NO
+			select T.TM_NM
+			from BT_PHOTO_FOLDER P, BT_TM T
+			WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value}
+			ORDER BY P.PF_NO
     </select>
+    
+    
+    <insert id="setFolder" parameterType="board">
+      INSERT 
+	    INTO BT_PHOTO_FOLDER(PF_NO,USER_NO,TITLE,TEXT,FOLDER_DATE)
+	    VALUES(SEQ_BT_PF_NO.nextval,
+	          #{userNo},
+	          #{title},
+	          #{text},
+	          sysdate
+	          )
+    </insert>
     
 
 

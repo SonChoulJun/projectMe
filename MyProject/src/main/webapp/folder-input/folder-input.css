@@ -3,7 +3,7 @@
 
 
 .folder_input{white-space:nowrap;overflow:hidden;padding:7px;text-overflow:clip;text-align: center;color:#dddbdb;background: rgba(62, 62, 64, 0.51); padding:5px }
-.folder_input:fover{background: rgba(119, 119, 119, 0.44)}
+.folder_input:fover{white-space:nowrap;overflow:hidden;padding:7px;text-overflow:clip;text-align: center;color:#dddbdb;background: rgba(62, 62, 64, 0.51); padding:5px }
 .button {
   font-size: 1em;
   padding: 10px;

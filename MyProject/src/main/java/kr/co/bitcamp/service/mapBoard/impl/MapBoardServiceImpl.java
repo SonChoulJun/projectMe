@@ -34,9 +34,9 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public boolean addFolder(String folderName) throws Exception {
+    public boolean addFolder(PhotoFolder photoFolder) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+        return boardDao.addFolder(photoFolder);
     }
 
 

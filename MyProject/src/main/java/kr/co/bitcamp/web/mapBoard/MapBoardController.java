@@ -34,8 +34,15 @@ public class MapBoardController {
         this.boardService = boardService;
     }
     @RequestMapping("addFolder")
-    public String addFolder(String folderName){
-      return "";
+    public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
+      photoFolder.setUserNo(((User)session.getAttribute("user")).getUserNo());
+      boolean ok =boardService.addFolder(photoFolder);
+      if(ok){
+          model.addAttribute("addFolderOk","ok");
+      }else{
+          model.addAttribute("addFolderOk","no");
+      }
+      return "forward:/profile/mainProfile";
     }
     @RequestMapping("addPhoto")
     public String addPhoto(List photoList){
@@ -47,9 +54,8 @@ public class MapBoardController {
     }
     @RequestMapping( value="getSideBar", method=RequestMethod.GET )
 	public String getSideBar( HttpSession session, Model model ) throws Exception {
-/*    	User user =(User)session.getAttribute("user");
-    	String userNo = user.getUserNo();*/
-    	int userNo = 10000;
+    	User user =(User)session.getAttribute("user");
+    	int userNo = user.getUserNo();
     	System.out.println("폴더 불러 오구연!!!!!!!!!!!!!!!!!!!");
 		//Business Logic
     	List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
@@ -59,7 +65,7 @@ public class MapBoardController {
 		// Model 과 View 연결
 		model.addAttribute("photoFolder", photoFolder);
 		
-		return "forword:/profile.jsp";
+		return "forward:/profile.jsp";
     }
     
     @RequestMapping("getMainPhoto")

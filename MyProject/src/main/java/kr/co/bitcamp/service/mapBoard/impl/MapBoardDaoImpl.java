@@ -29,9 +29,15 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public boolean addFolder(String folderName) throws Exception {
+    public boolean addFolder(PhotoFolder photoFolder) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+        int ok =sqlSession.insert("BoardMapper.setFolder",photoFolder);
+        if(ok==1){
+            return true;    
+        }else
+        {
+            return false;
+        }
     }
 
     @Override
