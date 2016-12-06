@@ -107,9 +107,10 @@ public class UserDaoImpl implements UserDao {
 	}
 /////
 	@Override
-	public List<Activity> getActivity(String userId) throws Exception {
+	public List<Activity> getActivity(int userNo) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+	  
+		return  sqlSession.selectList("ActivityMapper.getActivity", userNo);
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public interface UserService {
 	
 	public List<Alram> getAlram(String userId) throws Exception ;
 	
-	public List<Activity> getActivity(String userId) throws Exception ;
+	public List<Activity> getActivity(int userNo) throws Exception ;
 	
 	public boolean setActivity(Activity activity) throws Exception ;
 	

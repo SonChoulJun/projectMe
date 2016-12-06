@@ -6,9 +6,25 @@ public class Activity {
   
   private Date activityDate;
   private String activityText;
+  private User user;
+  private int activityNo;
   
   public Activity(){
     
+  }
+  public User getUser() {
+    return user;
+  }
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public int getActivityNo() {
+    return activityNo;
+  }
+
+  public void setActivityNo(int activityNo) {
+    this.activityNo = activityNo;
   }
 
   public Date getActivityDate() {

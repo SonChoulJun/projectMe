@@ -2,6 +2,7 @@ package kr.co.bitcamp.web.user;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -203,8 +204,18 @@ public class UserController {
       }
       
       @RequestMapping("getActivity")
-      public String getActivity(){
-        return "";
+      public String getActivity(HttpSession session , Model model )throws Exception{
+       
+        System.out.println("하하하하하하하하하핫");
+        User user=(User)session.getAttribute("user");
+        int userNo=user.getUserNo();
+        
+        List<Activity> activityList =userService.getActivity(userNo);
+        
+        System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
+        model.addAttribute("activity", activityList);
+        
+        return "forward:/MyActivity.jsp";
       }
       
       @RequestMapping("setActivity")

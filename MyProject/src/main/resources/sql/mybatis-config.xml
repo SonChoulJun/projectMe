@@ -8,6 +8,7 @@
 
 	 <typeAliases>
 	 	<typeAlias alias="user" type="kr.co.bitcamp.service.domain.User"/>
+	 	<typeAlias alias="activity" type="kr.co.bitcamp.service.domain.Activity"/>
 	 	<typeAlias alias="board" type="kr.co.bitcamp.service.domain.PhotoFolder"/>
 	 </typeAliases>
 	 
@@ -16,6 +17,7 @@
   <mappers>
 	<mapper resource="sql/UserMapper.xml"/>
 	<mapper resource="sql/BoardMapper.xml"/>
+	<mapper resource="sql/ActivityMapper.xml"/>
   </mappers>
 
 </configuration>

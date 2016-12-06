@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.user.UserService;
 
@@ -51,7 +52,7 @@ public class UserServiceTest {
     
   }
   
-  @Test
+  //@Test
   public void testUpdateUser() throws Exception{
     System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
    User user=userService.getUser("jw688@naver.com");
@@ -65,6 +66,16 @@ public class UserServiceTest {
     System.out.println("바뀌었니?");
     System.out.println(user01);
    
+  }
+  @Test
+  public void testGetActivity() throws Exception{
+    System.out.println("getActivity() 실행 했냡ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+    
+    String userId="jw688@naver.com";
+    User user=userService.getUser(userId);
+    List<Activity> listActivity = userService.getActivity(user.getUserNo());
+    
+    System.out.println(listActivity);
   }
 
   /*

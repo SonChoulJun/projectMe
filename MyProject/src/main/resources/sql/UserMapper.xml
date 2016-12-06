@@ -6,7 +6,7 @@
 
  					
 <mapper namespace="UserMapper">
-
+ 
 	
 	<resultMap type="user" id="userSelectMap">
 
@@ -36,6 +36,8 @@
         FROM     bt_user
         where userId=#{value}
      </select>
+     
+     
 
 
      <delete id="removeUser"        parameterType="String">
