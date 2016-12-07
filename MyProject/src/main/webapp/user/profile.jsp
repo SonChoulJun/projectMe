@@ -55,44 +55,9 @@
     <section class="content">
 
       <div class="row">
-<<<<<<< HEAD
-=======
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
-               <div id='profile-upload'>
-				<div class="hvr-profile-img">
-				<input type="file" name="logo" id='getval'  class="upload w180" title="Dimensions 180 X 180" id="imag"></div>
-				  <i class="fa fa-camera"></i>
-			    </div>
-
-              <h3 class="profile-username text-center"><b>${targetUser.userName}</b></h3>
-
-              <p class="text-muted text-center">상태메시지넣자-</p>
 
 
-
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">${getFollwerCount}</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">${getFollwingCount}</a>
-                </li>
-              </ul>
-              <c:if test="${targetUser.userId!=user.userId}">
-                <a href="#" class="btn btn-primary btn-block"><b>FOLLWER</b></a>
-              </c:if>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
->>>>>>> 7803a8bd9ec38c49f66cd3c313b9aba33e2e7c71
-
-<%--         <c:import url="/common/profileSideBar.jsp"></c:import> --%>
+        <c:import url="/common/profileSideBar.jsp"></c:import> 
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
