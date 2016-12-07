@@ -43,5 +43,4 @@ public class Comment {
     return "Comment [commentNo=" + commentNo + ", text=" + text + ", date=" + date + ", userId=" + userId + "]";
   }
   
-  
 }

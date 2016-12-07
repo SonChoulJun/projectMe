@@ -10,12 +10,22 @@
 
 	<resultMap type="board" id="boardSelectMap">
 		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
-		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
 		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
 		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE"/>
 		<association property="photoTheme" column="PF_NO" select="getTheme" javaType="ArrayList"></association>
 	</resultMap>
+	
+	<insert id="setComment" parameterType="board">
+      INSERT 
+	    INTO BT_PHOTO_FOLDER(CMT_NO as commentNo, PF_NO as pfNo , USER_NO as userNo, TEXT as text ,COMMENT_DATE as date)
+	    VALUES(SEQ_BT_PF_NO.nextval,
+	          #{pfNo},
+	          #{userNo},
+	          #{text},
+	          sysdate
+	          )
+    </insert>
 	
 	<select id="getfolder" parameterType="int" resultMap="boardSelectMap">
 			select P.TITLE, P.PF_NO

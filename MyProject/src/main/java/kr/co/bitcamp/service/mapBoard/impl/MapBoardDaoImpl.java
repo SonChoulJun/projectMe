@@ -88,8 +88,14 @@ public class MapBoardDaoImpl implements MapBoardDao {
     @Override
     public boolean setComment(Comment comment, int folderNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
-    }
+    	int ok = sqlSession.insert("UserMapper.setComment", comment);
+    	if(ok==1){
+          return true;    
+      }else
+      {
+          return false;
+      }
+  }
 
     @Override
     public List<Comment> getComment(int folderNo) throws Exception {

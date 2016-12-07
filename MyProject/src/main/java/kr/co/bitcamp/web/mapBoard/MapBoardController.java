@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,14 +77,25 @@ public class MapBoardController {
     public String getSubPhoto(String themeNo){
       return "";
     }
+    
     @RequestMapping("setLike") 
     public String setLike(String photoFolderNo, String userId){
       return "";
     }
+
     @RequestMapping("setComment")
-    public String setComment(Comment comment){
-      return "";
-    }
+    public String setComment( @ModelAttribute("comment") Comment comment , Model model , HttpSession session) throws Exception{      
+		System.out.println("/domain/Comment");
+		comment.setCommentNo(((Comment)session.getAttribute("comment")).getCommentNo());
+		boolean ok = boardService.setComment(comment, 50000);
+		if(ok){
+          model.addAttribute("setCommentOk","ok");
+		}else{
+          model.addAttribute("setCommentOk","no");
+		}
+		return "forward:";
+    	}
+
     @RequestMapping("updateComment")
     public String updateComment(Comment comment){
       return "";

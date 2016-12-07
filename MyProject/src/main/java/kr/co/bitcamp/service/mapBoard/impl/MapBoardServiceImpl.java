@@ -20,7 +20,7 @@ public class MapBoardServiceImpl implements MapBoardService {
     @Qualifier("mapBoardDaoImpl")
     private MapBoardDao boardDao;
     
-    
+
     public MapBoardServiceImpl() {
         super();
         System.out.println("MapBoardServiceImpl  생성");

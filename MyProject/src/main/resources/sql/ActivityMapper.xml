@@ -16,10 +16,10 @@
 
 	</resultMap>
 
-	
+	 
 	  <select id="getActivity" parameterType="int" resultMap="activitySelectMap">
         select *
-        from bt_activity 
+        from bt_activity
         where user_no=#{user.userNo}
         
      </select>
