@@ -10,7 +10,6 @@ public class Photo {
   private String title;
   private String text;
   private Date photoDate;
-  private ArrayList arrayPhoto;
   private String gpsB;
   private String gpsH;
   
@@ -48,12 +47,6 @@ public class Photo {
   public void setPhotoDate(Date photoDate) {
     this.photoDate = photoDate;
   }
-  public ArrayList getArrayPhoto() {
-    return arrayPhoto;
-  }
-  public void setArrayPhoto(ArrayList arrayPhoto) {
-    this.arrayPhoto = arrayPhoto;
-  }
   public String getGpsB() {
     return gpsB;
   }
@@ -70,7 +63,7 @@ public class Photo {
   @Override
   public String toString() {
     return "Photo [photoNo=" + photoNo + ", folderName=" + folderName + ", title=" + title + ", text=" + text
-        + ", photoDate=" + photoDate + ", arrayPhoto=" + arrayPhoto + ", gpsB=" + gpsB + ", gpsH=" + gpsH + "]";
+        + ", photoDate=" + photoDate + ", gpsB=" + gpsB + ", gpsH=" + gpsH + "]";
   }
   
   

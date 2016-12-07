@@ -1,11 +1,14 @@
 package kr.co.bitcamp.web.mapBoard;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.sanselan.ImageReadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.bitcamp.common.util.MetadataExample;
 import kr.co.bitcamp.service.domain.Comment;
+import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
@@ -51,12 +56,13 @@ public class MapBoardController {
       }
       return "forward:/user/profile.jsp";
     }
+    
     @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
     //@ResponseBody 
     public void addphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
       
       System.out.println("들왓니?");
-      
+        ArrayList<Photo> photoList =null;
         Iterator<String> itr =  multipartRequest.getFileNames();
 
         String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
@@ -68,7 +74,7 @@ public class MapBoardController {
             String originFileName = mpf.getOriginalFilename();
             System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
             */
-             
+            Photo photo = new Photo(); 
             MultipartFile mpf = multipartRequest.getFile(itr.next());
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
@@ -80,8 +86,21 @@ public class MapBoardController {
                 mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
                  
                 System.out.println("originalFilename => "+originalFilename);
+                
                 System.out.println("fileFullPath => "+fileFullPath);
-      
+                
+                File outputfile = new File(fileFullPath);
+                
+                try {
+                    MetadataExample metadataExample = new MetadataExample();
+                    metadataExample.metadataExample(outputfile);
+                    System.out.println(metadataExample.getDate());
+                    
+                } catch (ImageReadException | IOException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
+                
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
                 e.printStackTrace();

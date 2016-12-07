@@ -37,7 +37,7 @@
         <c:forEach var="photoFolder" items="${folderList}">
        
           <li class="treeview">
-            <a href="/profile/mainProfile/mainPhoto">
+            <a href="/profile/photoPage/${photoFolder.pfNo}">
               <i class="fa fa-files-o"></i>
               <span>${photoFolder.title}</span>
               

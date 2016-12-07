@@ -68,5 +68,13 @@ public class ProfileController {
             return "forward:/user/profile.jsp";
     }
     
+    
+    
+    @RequestMapping("photoPage/{folderNo}")
+    public String photoPage(@PathVariable String folderNo,HttpSession session, Model model) throws Exception{
+        System.out.println(folderNo);
+            return "forward:/photo/mainUpload.jsp";
+    }
+    
 
 }
