@@ -23,6 +23,9 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
+
+  <!-- profile photo -->
+
   <link rel="stylesheet" href="/html/assets/css/style.css">  
   
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
@@ -52,8 +55,44 @@
     <section class="content">
 
       <div class="row">
+<<<<<<< HEAD
+=======
+        <div class="col-md-3">
 
-        <c:import url="/common/profileSideBar.jsp"></c:import>
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
+               <div id='profile-upload'>
+				<div class="hvr-profile-img">
+				<input type="file" name="logo" id='getval'  class="upload w180" title="Dimensions 180 X 180" id="imag"></div>
+				  <i class="fa fa-camera"></i>
+			    </div>
+
+              <h3 class="profile-username text-center"><b>${targetUser.userName}</b></h3>
+
+              <p class="text-muted text-center">상태메시지넣자-</p>
+
+
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>Followers</b> <a class="pull-right">${getFollwerCount}</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Following</b> <a class="pull-right">${getFollwingCount}</a>
+                </li>
+              </ul>
+              <c:if test="${targetUser.userId!=user.userId}">
+                <a href="#" class="btn btn-primary btn-block"><b>FOLLWER</b></a>
+              </c:if>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+>>>>>>> 7803a8bd9ec38c49f66cd3c313b9aba33e2e7c71
+
+<%--         <c:import url="/common/profileSideBar.jsp"></c:import> --%>
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -574,7 +613,13 @@
 <!-- AdminLTE App -->
 <script src="/html/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+
+
+<!-- profile photo -->
+<script src="/html/assets/js/index.js"></script>
+
 <script src="/html/dist/js/demo.js"></script>
+
 
 <script type="text/javascript">
 var twitterShare = document.querySelector('[data-js="twitter-share"]');
@@ -595,6 +640,7 @@ facebookShare.onclick = function(e) {
     return false;
 }
 </script>
+
  <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 <script src="/html/dist/js/index.js"></script>
 <script type="text/javascript">
@@ -607,8 +653,48 @@ $("#fileUpload").fileinput({
 });
 
 
+
+<script type="text/javascript">
+
+$("#getval").on('change', function(e){
+	console.log("zz");
+	var files = e.target.files;
+	var data = new FormData();
+	$.each(files, function(key, value)
+			 {
+			  //key는 다른 지정이 없다면 0부터 시작 할것이고, value는 파일 관련 정보입니다.
+			  data.append(key, value);
+			 });	
+	$.ajax({
+	    url: '/profile/addprfphoto',
+	    type: "post",
+	    dataType: "json",
+	    data: data,
+	    cache: false,
+	    processData: false,
+	    contentType: false,
+	    success: function(data, textStatus, jqXHR)
+        {
+         if(typeof data.error === 'undefined') //에러가 없다면
+         {
+        	 console.log("업로드완료");
+        	 
+         }
+         else//에러가 있다면
+         {
+          console.log('ERRORS: ' + data.error);
+         }
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+         console.log('ERRORS: ' + textStatus);
+        }
+	});
+});
 </script>
 
+
 <script src="/html/folder-input/folder-input.js"></script>
+
 </body>
 </html>
