@@ -17,7 +17,8 @@ public class PhotoMain {
 		    File outputfile = new File("C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto/20161122_113233.jpg");
 		    
 		    try {
-				MetadataExample.metadataExample(outputfile);
+		        MetadataExample metadataExample = new MetadataExample();
+				metadataExample.metadataExample(outputfile);
 			} catch (ImageReadException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -222,6 +222,7 @@ public class UserController {
         List<Activity> activityList =userService.getActivity(userNo);
         
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
+        model.addAttribute("targetUser", user);
         model.addAttribute("activity", activityList);
         
         return "forward:/user/MyActivity.jsp";
@@ -232,5 +233,17 @@ public class UserController {
  
         return "";
       }
+      @RequestMapping("myTravel")
+      public String travelPage(HttpSession session, Model model)throws Exception{
+        
+        System.out.println("login 객체 가지고 가야지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        User user=(User)session.getAttribute("user");
+        //int userNo=user.getUserNo();
+        
+        model.addAttribute("targetUser", user);
+        
+        return "forward:/profile.jsp";
+      }
+      
 
 }

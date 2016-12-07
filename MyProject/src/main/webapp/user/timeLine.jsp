@@ -22,9 +22,10 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
   
-            <link rel="stylesheet" href="/html/assets/css/style.css">  
+  <link rel="stylesheet" href="/html/assets/css/style.css">  
+  
+  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,21 +33,6 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <style type="text/css">
-
-    .profilephoto{
-        background-size: cover;
-
-    }
-
-    .profilephoto img{
-        
-        width:100%;
-        height:100%;
-        float: left;
-    }
-
-</style>
   
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -56,123 +42,205 @@
   <!-- Left side column. contains the logo and sidebar -->
   <c:import url="/common/mainSideBar.jsp"></c:import>
   <!-- Content Wrapper. Contains page content -->
-  
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <c:import url="/common/profileBar.jsp"></c:import>
-
     <!-- Main content -->
     <section class="content">
-
       <div class="row">
         <c:import url="/common/profileSideBar.jsp"></c:import>
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-            
-              <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
-              <li><a href="http://127.0.0.1:8080/user/timeLine.jsp" >TimeLine</a></li>
-              <li class="active"><a href="http://127.0.0.1:8080/user/getActivity"  data-toggle="tab"; >Activity</a></li>
+              <li><a href="http://127.0.0.1:8080/user/myTravel " >MyTravel</a></li>
+              <li class="active"><a href="#timeline" >TimeLine</a></li>
+              <li><a href="http://127.0.0.1:8080/user/getActivity " >Activity</a></li>
               <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
             </ul>
-            <div class="tab-content">
-             
+            
               
-              
-              <div class="active tab-pane" id="activity">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          ${activity[0].activityDate} 
+              <div class="active tab-pane" id="timeline">
+                <!-- Post -->
+                <div class="post">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="images/user1-128x128.jpg" alt="user image">
+                        <span class="username">
+                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
+                    <span class="description">Shared publicly - 7:30 PM today</span>
+                  </div>
+                  <!-- /.user-block -->
+                  
+                  <div class="row margin-bottom">
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  
+                  
+                  <ul class="list-inline">
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    </li>
+                    <li class="pull-right">
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                        (5)</a></li>
+                  </ul>
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                        <c:forEach var="i" items="${activity }">
-                            <div class="timeline-body" >
-	                            ${i.activityText} 
-	                      </div>
-                        </c:forEach>
-                      
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
+                  <form class="form-horizontal">
+                    <div class="form-group margin-bottom-none">
+                      <div class="col-sm-9">
+                        <input class="form-control input-sm" placeholder="Response">
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
                       </div>
                     </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
+                  </form>
+                </div>
+                <!-- /.post -->
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        ${activity[1].activityText }
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
+                <!-- Post -->
+                <div class="post clearfix">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="User Image">
+                        <span class="username">
+                          <a href="#">Sarah Ross</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
+                    <span class="description">Sent you a message - 3 days ago</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <div class="row margin-bottom">
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  
+                  <ul class="list-inline">
+                    <li><a href="#" class="link-black text-sm" data-js="twitter-share"><i class="fa fa-share margin-r-5"></i>Share on Twitter</a></li>
+                    <li><a href="#" class="link-black text-sm" data-js="facebook-share"><i class="fa fa-share margin-r-5"></i> Share On Facebook</a></li>
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    </li>
+                    <li class="pull-right">
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                        (5)</a></li>
+                  </ul>
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                  <form class="form-horizontal">
+                    <div class="form-group margin-bottom-none">
+                      <div class="col-sm-9">
+                        <input class="form-control input-sm" placeholder="Response">
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
                       </div>
                     </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
+                  </form>
+                </div>
+                <!-- /.post -->
+
+                <!-- Post -->
+                <div class="post">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user6-128x128.jpg" alt="User Image">
+                        <span class="username">
+                          <a href="#">Adam Jones</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">Posted 5 photos - 5 days ago</span>
+                  </div>
+                  <!-- /.user-block -->
+                  <div class="row margin-bottom">
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
+                          <br>
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+
+                  <ul class="list-inline">
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                    </li>
+                    <li class="pull-right">
+                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                        (5)</a></li>
+                  </ul>
+
+                                    <form class="form-horizontal">
+                    <div class="form-group margin-bottom-none">
+                      <div class="col-sm-9">
+                      </div>
+                      <div class="col-sm-3">
+                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
               
               <!-- /.tab-pane -->
+              
             </div>
             <!-- /.tab-content -->
           </div>
@@ -186,8 +254,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <c:import url="/common/mainFoot.jsp"></c:import>
-
+<c:import url="/common/mainFoot.jsp"></c:import>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -384,6 +451,41 @@
 </div>
 <!-- ./wrapper -->
 
+
+<!-- input_folder popup -->
+<div id="popup1" class="overlay">
+	<form action="/mapBoard/addFolder" method="post">
+	  <div class="popup">
+	    <h2>PhotoBorad input</h2>
+	    <a class="close">&times;</a>
+	    <div class="box box-warning">
+	      <div class="box-header with-border">
+	        <h3 class="box-title">pomnwq@naver.com</h3>
+	      </div>
+	            <!-- /.box-header -->
+	     <div class="box-body">
+	       <form role="form">
+	                  <!-- text input -->
+	         <div class="form-group">
+	            <label>Title</label>
+	            <input name="title" type="text" class="form-control" placeholder="Enter ...">
+	         </div>
+	  
+	        <!-- textarea -->
+	        <div class="form-group">
+	           <label>Comment</label>
+	           <textarea name="text"class="form-control" rows="3" placeholder="Enter ..."></textarea>
+	        </div>
+	        <button type="submit" class="btn btn-block btn-primary btn-flat">summit</button>
+	                 
+	      </div>
+	    </div>
+	    <!--box box-warning-->
+	  </div>
+	</form>
+</div>
+<!-- input_folder popup end -->
+
 <!-- jQuery 2.2.3 -->
 <script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -413,6 +515,7 @@ facebookShare.onclick = function(e) {
   if(facebookWindow.focus) { facebookWindow.focus(); }
     return false;
 }
+</script>
  <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 <script src="/html/dist/js/index.js"></script>
 <script type="text/javascript">
@@ -423,8 +526,14 @@ $("#fileUpload").fileinput({
     autoStart: true,
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
+
+
 </script>
+
 <script src="/html/folder-input/folder-input.js"></script>
+
+
+
 
 </body>
 </html>

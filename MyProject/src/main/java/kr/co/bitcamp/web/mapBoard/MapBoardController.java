@@ -42,6 +42,8 @@ public class MapBoardController {
     public void setBoardService(MapBoardService boardService) {
         this.boardService = boardService;
     }
+    
+    
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
       int userNo = ((User)session.getAttribute("user")).getUserNo();
@@ -109,12 +111,16 @@ public class MapBoardController {
                           
        }
           
-       // return "Upload Success";
+
     }
+    
+    
     @RequestMapping("getPhotoFolder")
     public String getPhotoFolder(String userId){    	
       return "";
     }
+    
+    
     @RequestMapping( value="getSideBar", method=RequestMethod.GET )
 	public String getSideBar( HttpSession session, Model model ) throws Exception {
     	User user =(User)session.getAttribute("user");
