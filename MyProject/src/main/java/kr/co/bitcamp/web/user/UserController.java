@@ -56,7 +56,7 @@ public class UserController {
             model.addAttribute("registerOk", "ok");
         else
             model.addAttribute("registerOk", "no");
-        return "forward:/login.jsp";
+        return "forward:/user/login.jsp";
         
       } catch (Exception e) {
           // TODO Auto-generated catch block
@@ -125,7 +125,7 @@ public class UserController {
       
          model.addAttribute("user", user1);
     
-      return "forward:/getUser.jsp";
+      return "forward:/user/getUser.jsp";
     }
     
     @RequestMapping("updateUserView")
@@ -137,7 +137,7 @@ public class UserController {
 
       model.addAttribute("user", user1);
     
-      return "forward:/updateMyProfile.jsp";
+      return "forward:/user/updateMyProfile.jsp";
     }
     
     
@@ -154,7 +154,7 @@ public class UserController {
         session.setAttribute("user", user);
       } 
       
-      return "forward:/getUser.jsp";
+      return "forward:/user/getUser.jsp";
     }
     
     @RequestMapping("read")
@@ -224,12 +224,12 @@ public class UserController {
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
         model.addAttribute("activity", activityList);
         
-        return "forward:/MyActivity.jsp";
+        return "forward:/user/MyActivity.jsp";
       }
       
       @RequestMapping("setActivity")
       public String setActivity(Activity activity){
-        
+ 
         return "";
       }
 

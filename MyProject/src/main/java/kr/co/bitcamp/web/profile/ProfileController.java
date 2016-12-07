@@ -54,22 +54,24 @@ public class ProfileController {
     }
 
     @RequestMapping("mainProfile")
-    public String mainProfile(HttpSession session,Model model) throws Exception{
+    public String mainProfile(HttpSession session, Model model) throws Exception{
         User user = (User)session.getAttribute("user");
         int userNo =user.getUserNo();
         System.out.println(user);
-        model.addAttribute("targetUser",user);
+        session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
         try{
-            model.addAttribute("folderList", photoFolder);
-            model.addAttribute("getFollwerCount",userService.getFollwerCount(userNo));
-            model.addAttribute("getFollwingCount",userService.getFollwingCount(userNo));
+            session.setAttribute("folderList", photoFolder);
+            session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
+            session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
         }catch (Exception e) {
             e.getMessage();
         }
-        return "forward:/profile.jsp";
+
+            return "forward:/user/profile.jsp";
     }
+
     @RequestMapping("addprfphoto")
     public void addprfphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
       
@@ -77,7 +79,7 @@ public class ProfileController {
       
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:\\Users\\BitCamp\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\dist\\img\\profile"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\BitCamp\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\dist\\img\\profile"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -115,6 +117,7 @@ public class ProfileController {
        // return "Upload Success";
     }
     
+
     
 
 }

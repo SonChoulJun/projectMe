@@ -39,14 +39,17 @@ public class MapBoardController {
     }
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
-      photoFolder.setUserNo(((User)session.getAttribute("user")).getUserNo());
+      int userNo = ((User)session.getAttribute("user")).getUserNo();
+      photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
+          List<PhotoFolder> photoFolder1 = boardService.getSideBar(userNo);
+          session.setAttribute("folderList", photoFolder1);
           model.addAttribute("addFolderOk","ok");
       }else{
           model.addAttribute("addFolderOk","no");
       }
-      return "forward:/profile/mainProfile";
+      return "forward:/user/profile.jsp";
     }
     @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
     //@ResponseBody 
@@ -56,7 +59,7 @@ public class MapBoardController {
       
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:\\Users\\BitCamp\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -106,7 +109,7 @@ public class MapBoardController {
 		// Model 과 View 연결
 		model.addAttribute("photoFolder", photoFolder);
 		
-		return "forward:/profile.jsp";
+		return "forward:/user/profile.jsp";
     }
     
     @RequestMapping("getMainPhoto")
