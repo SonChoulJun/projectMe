@@ -81,7 +81,7 @@ public class UserController {
       
       System.out.println("[login() end...............]\n");
       
-      return "forward:/profile/mainProfile";
+      return "forward:/profile/mainProfile/login";
       
      
     }
@@ -229,52 +229,8 @@ public class UserController {
       
       @RequestMapping("setActivity")
       public String setActivity(Activity activity){
-        
+ 
         return "";
       }
-
-      @RequestMapping(value = "fileUpload/post", method=RequestMethod.POST) //ajax에서 호출하는 부분
-      //@ResponseBody 이거 쓰면 멘트뿌려줄수있음.
-      public String upload(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
-        
-        System.out.println("들왓니?");
-        
-          Iterator<String> itr =  multipartRequest.getFileNames();
-
-          String filePath = "C:/test"; //설정파일로 뺀다.
-           
-          while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
-               
-              /* 기존 주석처리
-              MultipartFile mpf = multipartRequest.getFile(itr.next());
-              String originFileName = mpf.getOriginalFilename();
-              System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
-              */
-               
-              MultipartFile mpf = multipartRequest.getFile(itr.next());
-        
-              String originalFilename = mpf.getOriginalFilename(); //파일명
-        
-              String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
-        
-              try {
-                  //파일 저장
-                  mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
-                   
-                  System.out.println("originalFilename => "+originalFilename);
-                  System.out.println("fileFullPath => "+fileFullPath);
-        
-              } catch (Exception e) {
-                  System.out.println("postTempFile_ERROR======>"+fileFullPath);
-                  e.printStackTrace();
-              }
-                            
-         }
-            
-          return "Upload Success";
-      }
-    
-    
-    
 
 }

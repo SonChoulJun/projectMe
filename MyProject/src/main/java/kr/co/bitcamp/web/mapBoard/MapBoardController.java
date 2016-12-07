@@ -1,5 +1,7 @@
 package kr.co.bitcamp.web.mapBoard;
 
+import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.PhotoFolder;
@@ -36,18 +40,58 @@ public class MapBoardController {
     }
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
-      photoFolder.setUserNo(((User)session.getAttribute("user")).getUserNo());
+      int userNo = ((User)session.getAttribute("user")).getUserNo();
+      photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
+          List<PhotoFolder> photoFolder1 = boardService.getSideBar(userNo);
+          session.setAttribute("folderList", photoFolder1);
           model.addAttribute("addFolderOk","ok");
       }else{
           model.addAttribute("addFolderOk","no");
       }
-      return "forward:/profile/mainProfile";
+      return "forward:/profile.jsp";
     }
-    @RequestMapping("addPhoto")
-    public String addPhoto(List photoList){
-      return "";
+    @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
+    //@ResponseBody 
+    public void addphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
+      
+      System.out.println("들왓니?");
+      
+        Iterator<String> itr =  multipartRequest.getFileNames();
+
+        String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
+         
+        while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
+             
+            /* 기존 주석처리
+            MultipartFile mpf = multipartRequest.getFile(itr.next());
+            String originFileName = mpf.getOriginalFilename();
+            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
+            */
+             
+            MultipartFile mpf = multipartRequest.getFile(itr.next());
+      
+            String originalFilename = mpf.getOriginalFilename(); //파일명
+      
+            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+      
+            try {
+                //파일 저장
+                mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
+                 
+                System.out.println("originalFilename => "+originalFilename);
+                System.out.println("fileFullPath => "+fileFullPath);
+      
+            } catch (Exception e) {
+                System.out.println("postTempFile_ERROR======>"+fileFullPath);
+                e.printStackTrace();
+                //return "Upload Failed";
+            }
+                          
+       }
+          
+       // return "Upload Success";
     }
     @RequestMapping("getPhotoFolder")
     public String getPhotoFolder(String userId){    	

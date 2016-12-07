@@ -12,20 +12,20 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
-  <link rel="stylesheet" href="assets/css/style.css">  
+  <link rel="stylesheet" href="/html/assets/css/style.css">  
   
-  <link rel="stylesheet" href="folder-input/folder-input.css">
+  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,21 +66,21 @@
           <div class="box box-primary">
             <div class="box-body box-profile">
                <div class="avatar img-responsive img-circle">
-			    
-				      <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve">
-				            <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
-				              c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"></path>
-				            <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
-				              S17.7,10.3,17.7,7.5z"></path>
-				         <g id="plus">
-				            <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"></path>
-				            <path fill="none" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"></path>
-				        </g>
-				     </svg>
-				     <!-- <div id="openModal img-responsive img-circle">
-				       <span style="color:Yellow">Drop</span>
-				     </div> -->
-				      <input id="fileUpload" type="file">
+          
+              <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve">
+                    <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
+                      c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"></path>
+                    <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
+                      S17.7,10.3,17.7,7.5z"></path>
+                 <g id="plus">
+                    <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"></path>
+                    <path fill="none" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"></path>
+                </g>
+             </svg>
+             <!-- <div id="openModal img-responsive img-circle">
+               <span style="color:Yellow">Drop</span>
+             </div> -->
+              <input id="fileUpload" type="file">
                 </div>
               <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
 
@@ -713,50 +713,16 @@
 <!-- ./wrapper -->
 
 
-<!-- input_folder popup -->
-<div id="popup1" class="overlay">
-	<form action="/mapBoard/addFolder" method="post">
-	  <div class="popup">
-	    <h2>PhotoBorad input</h2>
-	    <a class="close">&times;</a>
-	    <div class="box box-warning">
-	      <div class="box-header with-border">
-	        <h3 class="box-title">pomnwq@naver.com</h3>
-	      </div>
-	            <!-- /.box-header -->
-	     <div class="box-body">
-	       <form role="form">
-	                  <!-- text input -->
-	         <div class="form-group">
-	            <label>Title</label>
-	            <input name="title" type="text" class="form-control" placeholder="Enter ...">
-	         </div>
-	  
-	        <!-- textarea -->
-	        <div class="form-group">
-	           <label>Comment</label>
-	           <textarea name="text"class="form-control" rows="3" placeholder="Enter ..."></textarea>
-	        </div>
-	        <button type="submit" class="btn btn-block btn-primary btn-flat">summit</button>
-	                 
-	      </div>
-	    </div>
-	    <!--box box-warning-->
-	  </div>
-	</form>
-</div>
-<!-- input_folder popup end -->
-
 <!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/html/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
+<script src="/html/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="/html/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="/html/dist/js/demo.js"></script>
 
 <script type="text/javascript">
 var twitterShare = document.querySelector('[data-js="twitter-share"]');
@@ -791,7 +757,7 @@ $("#fileUpload").fileinput({
 
 </script>
 
-<script src="folder-input/folder-input.js"></script>
+<script src="/html/folder-input/folder-input.js"></script>
 
 
 

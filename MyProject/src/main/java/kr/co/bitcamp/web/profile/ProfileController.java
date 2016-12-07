@@ -49,25 +49,24 @@ public class ProfileController {
         this.userService = userService;
     }
 
-    @RequestMapping("mainProfile")
-    public String mainProfile(HttpSession session,Model model) throws Exception{
+    @RequestMapping("mainProfile/{path}")
+    public String mainProfile(@PathVariable String path,HttpSession session, Model model) throws Exception{
         User user = (User)session.getAttribute("user");
         int userNo =user.getUserNo();
         System.out.println(user);
-        model.addAttribute("targetUser",user);
+        session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
         try{
-            model.addAttribute("folderList", photoFolder);
-            model.addAttribute("getFollwerCount",userService.getFollwerCount(userNo));
-            model.addAttribute("getFollwingCount",userService.getFollwingCount(userNo));
+            session.setAttribute("folderList", photoFolder);
+            session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
+            session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
         }catch (Exception e) {
             e.getMessage();
         }
-        return "forward:/profile.jsp";
+
+            return "forward:/profile.jsp";
     }
-    
-    
     
 
 }

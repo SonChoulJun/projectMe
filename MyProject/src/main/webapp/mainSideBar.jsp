@@ -35,26 +35,39 @@
         <li class="header">여행목록</li>
         <li class="folder_input" id="folder_input">+</li>
         <c:forEach var="photoFolder" items="${folderList}">
+       
           <li class="treeview">
-            <a href="#">
+            <a href="/profile/mainProfile/mainPhoto">
               <i class="fa fa-files-o"></i>
               <span>${photoFolder.title}</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              
+              <c:if test="${photoFolder.photoTheme.isEmpty()}">
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">new</small>
+                </span>
+              </c:if>
+              
+               <c:if test="${!photoFolder.photoTheme.isEmpty()}">
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                 </span>
+              </c:if>
+              
+              <c:if test="${photoFolder.photoTheme.isEmpty()}">
+                 <ul class="treeview-menu">
+                  <c:forEach var="valus" items="${photoFolder.photoTheme}">
+                    <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i>${valus}</a></li>
+                  </c:forEach>
+                 </ul>
+              </c:if>
             </a>
-            <ul class="treeview-menu">
-               <c:forEach var="valus" items="${photoFolder.photoTheme}">
-                 <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i>${valus}</a></li>
-               </c:forEach>
-               <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> 부산</a></li>
-            </ul>
+           
           </li>
         </c:forEach>
         
         
         <li>
-          <a href="#">
+          <a href="/photo_upload/mainUpload.jsp">
             <i class="fa fa-th"></i> <span>대만돌기</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
@@ -117,5 +130,40 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
+  
+  
+  
+ <!-- input_folder popup -->
+<div id="popup1" class="overlay">
+  <form action="/mapBoard/addFolder" method="post">
+    <div class="popup">
+      <h2>PhotoBorad input</h2>
+      <a class="close">&times;</a>
+      <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">pomnwq@naver.com</h3>
+        </div>
+              <!-- /.box-header -->
+       <div class="box-body">
+         <form role="form">
+                    <!-- text input -->
+           <div class="form-group">
+              <label>Title</label>
+              <input name="title" type="text" class="form-control" placeholder="Enter ...">
+           </div>
+    
+          <!-- textarea -->
+          <div class="form-group">
+             <label>Comment</label>
+             <textarea name="text"class="form-control" rows="3" placeholder="Enter ..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary btn-flat">summit</button>
+                   
+        </div>
+      </div>
+      <!--box box-warning-->
+    </div>
+  </form>
+</div>
+<!-- input_folder popup end -->
   <!-- Content Wrapper. Contains page content -->
