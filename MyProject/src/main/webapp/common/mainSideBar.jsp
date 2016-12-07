@@ -7,7 +7,7 @@
       <!-- 유저정보 -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>${targetUser.userId}</p>
@@ -165,5 +165,7 @@
     </div>
   </form>
 </div>
+
+<script src="/html/folder-input/folder-input.js"></script>
 <!-- input_folder popup end -->
   <!-- Content Wrapper. Contains page content -->

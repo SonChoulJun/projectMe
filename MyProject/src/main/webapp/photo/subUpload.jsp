@@ -35,10 +35,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <c:import url="../headerBar.jsp"></c:import>
+   <c:import url="/common/headerBar.jsp"></c:import>
  
   <!-- Left side column. contains the logo and sidebar -->
-  <c:import url="../mainSideBar.jsp"></c:import>
+  <c:import url="/common/mainSideBar.jsp"></c:import>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

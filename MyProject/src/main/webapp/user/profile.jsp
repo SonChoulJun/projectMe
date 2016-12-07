@@ -37,10 +37,10 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-  <c:import url="headerBar.jsp"></c:import>
+  <c:import url="/common/headerBar.jsp"></c:import>
  
   <!-- Left side column. contains the logo and sidebar -->
-  <c:import url="mainSideBar.jsp"></c:import>
+  <c:import url="/common/mainSideBar.jsp"></c:import>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -161,7 +161,7 @@
               <div class="active tab-pane" id="myTravel">
                  <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="dist/img/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user1-128x128.jpg" alt="user image">
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -171,7 +171,7 @@
                   
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <a href="photo.jsp" onClick="window.open(this.href, '', 'width=900, height=600'); return false;" class="image featured"><img class="img-responsive" src="images/map.PNG" alt="Photo"></a>
+                      <a href="photo.jsp" onClick="window.open(this.href, '', 'width=900, height=600'); return false;" class="image featured"><img class="img-responsive" src="/html/images/map.PNG" alt="Photo"></a>
                     </div>
                   </div>
                 </div>
@@ -181,7 +181,7 @@
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="images/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="/html/images/user1-128x128.jpg" alt="user image">
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -192,21 +192,21 @@
                   
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo2.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo3.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo4.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                         </div>
                         <!-- /.col -->
                       </div>
@@ -241,7 +241,7 @@
                 <!-- Post -->
                 <div class="post clearfix">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="dist/img/user7-128x128.jpg" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -251,21 +251,21 @@
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo2.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo3.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo4.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                         </div>
                         <!-- /.col -->
                       </div>
@@ -300,7 +300,7 @@
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="dist/img/user6-128x128.jpg" alt="User Image">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user6-128x128.jpg" alt="User Image">
                         <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -310,21 +310,21 @@
                   <!-- /.user-block -->
                   <div class="row margin-bottom">
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                       <div class="row">
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo2.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo3.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
-                          <img class="img-responsive" src="dist/img/photo4.jpg" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
                           <br>
-                          <img class="img-responsive" src="dist/img/photo1.png" alt="Photo">
+                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
                         </div>
                         <!-- /.col -->
                       </div>
@@ -515,7 +515,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-<c:import url="mainFoot.jsp"></c:import>
+<c:import url="/common/mainFoot.jsp"></c:import>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -758,9 +758,5 @@ $("#fileUpload").fileinput({
 </script>
 
 <script src="/html/folder-input/folder-input.js"></script>
-
-
-
-
 </body>
 </html>
