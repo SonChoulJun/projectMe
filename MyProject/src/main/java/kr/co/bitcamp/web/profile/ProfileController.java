@@ -49,8 +49,8 @@ public class ProfileController {
         this.userService = userService;
     }
 
-    @RequestMapping("mainProfile/{path}")
-    public String mainProfile(@PathVariable String path,HttpSession session, Model model) throws Exception{
+    @RequestMapping("mainProfile")
+    public String mainProfile(HttpSession session, Model model) throws Exception{
         User user = (User)session.getAttribute("user");
         int userNo =user.getUserNo();
         System.out.println(user);
@@ -65,7 +65,7 @@ public class ProfileController {
             e.getMessage();
         }
 
-            return "forward:/profile.jsp";
+            return "forward:/user/profile.jsp";
     }
     
 

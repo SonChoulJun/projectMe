@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,20 +12,19 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
   
-  <!--파일업로드 CSS  -->
-        <link href="../assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-  
+            <link rel="stylesheet" href="/html/assets/css/style.css">  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,39 +32,153 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+
+    .profilephoto{
+        background-size: cover;
+
+    }
+
+    .profilephoto img{
+        
+        width:100%;
+        height:100%;
+        float: left;
+    }
+
+</style>
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <c:import url="../headerBar.jsp"></c:import>
- 
+  <c:import url="/common/headerBar.jsp"></c:import>
   <!-- Left side column. contains the logo and sidebar -->
-  <c:import url="../mainSideBar.jsp"></c:import>
-
+  <c:import url="/common/mainSideBar.jsp"></c:import>
   <!-- Content Wrapper. Contains page content -->
+  
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        File Upload Test
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
-      </ol>
-    </section>
+    <c:import url="/common/profileBar.jsp"></c:import>
 
     <!-- Main content -->
     <section class="content">
 
       <div class="row">
-       
-       
-           <input id="input-id" type="file" class="file" multiple="true" >
-                
-        
-        
+        <c:import url="/common/profileSideBar.jsp"></c:import>
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+            
+              <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
+              <li><a href="http://127.0.0.1:8080/user/timeLine.jsp" >TimeLine</a></li>
+              <li class="active"><a href="http://127.0.0.1:8080/user/getActivity"  data-toggle="tab"; >Activity</a></li>
+              <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
+            </ul>
+            <div class="tab-content">
+             
+              
+              
+              <div class="active tab-pane" id="activity">
+                <!-- The timeline -->
+                <ul class="timeline timeline-inverse">
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                        <span class="bg-red">
+                          ${activity[0].activityDate} 
+                        </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-envelope bg-blue"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                        <c:forEach var="i" items="${activity }">
+                            <div class="timeline-body" >
+	                            ${i.activityText} 
+	                      </div>
+                        </c:forEach>
+                      
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-user bg-aqua"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                      </h3>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-comments bg-yellow"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                      <div class="timeline-body">
+                        ${activity[1].activityText }
+                      </div>
+                      <div class="timeline-footer">
+                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <!-- timeline time label -->
+                  <li class="time-label">
+                        <span class="bg-green">
+                          3 Jan. 2014
+                        </span>
+                  </li>
+                  <!-- /.timeline-label -->
+                  <!-- timeline item -->
+                  <li>
+                    <i class="fa fa-camera bg-purple"></i>
+
+                    <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+
+                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                      <div class="timeline-body">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                        <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      </div>
+                    </div>
+                  </li>
+                  <!-- END timeline item -->
+                  <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.tab-pane -->
+              
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
       </div>
       <!-- /.row -->
 
@@ -71,13 +186,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.7
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+  <c:import url="/common/mainFoot.jsp"></c:import>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -276,29 +385,46 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/html/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
+<script src="/html/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../dist/js/app.min.js"></script>
+<script src="/html/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!--파일업로드 자바스크립트  -->
-        <script src="../assets/js/fileinput.js" type="text/javascript"></script>
-        <script src="../assets/themes/fa/theme.js"></script>
-        <script src="../assets/js/locales/LANG.js"></script>
-<script>
-$("#input-id").fileinput({
-	language: 'LANG',
+<script src="/html/dist/js/demo.js"></script>
+
+<script type="text/javascript">
+var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+twitterShare.onclick = function(e) {
+  e.preventDefault();
+  var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+  if(twitterWindow.focus) { twitterWindow.focus(); }
+    return false;
+  }
+
+var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+facebookShare.onclick = function(e) {
+  e.preventDefault();
+  var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+  if(facebookWindow.focus) { facebookWindow.focus(); }
+    return false;
+}
+ <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
+<script src="/html/dist/js/index.js"></script>
+<script type="text/javascript">
+$("#fileUpload").fileinput({    
+    language: 'LANG',
     uploadUrl: 'user/fileUpload/post',
     uploadAsync: true,
-    multiple:true,
+    autoStart: true,
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
-
-
 </script>
+<script src="/html/folder-input/folder-input.js"></script>
+
 </body>
 </html>

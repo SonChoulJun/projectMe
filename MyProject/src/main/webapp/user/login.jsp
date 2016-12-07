@@ -9,15 +9,15 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="/html/plugins/iCheck/square/blue.css">
   
   
 
@@ -68,7 +68,7 @@
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="/register.jsp" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+      <a href="/user/register.jsp" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
       <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
@@ -84,7 +84,7 @@
 <!-- /.login-box -->
 
 <!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script type="text/javascript">
 <!--
     function fncLogin() {
@@ -106,9 +106,9 @@
 -->
 </script>
 <!-- Bootstrap 3.3.6 -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/html/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="plugins/iCheck/icheck.min.js"></script>
+<script src="/html/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('input').iCheck({

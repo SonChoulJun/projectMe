@@ -51,7 +51,7 @@ public class MapBoardController {
       }else{
           model.addAttribute("addFolderOk","no");
       }
-      return "forward:/profile.jsp";
+      return "forward:/user/profile.jsp";
     }
 
     @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
@@ -116,7 +116,7 @@ public class MapBoardController {
 		// Model 과 View 연결
 		model.addAttribute("photoFolder", photoFolder);
 		
-		return "forward:/profile.jsp";
+		return "forward:/user/profile.jsp";
     }
     
     @RequestMapping("getMainPhoto")

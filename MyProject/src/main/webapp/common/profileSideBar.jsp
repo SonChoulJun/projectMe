@@ -23,7 +23,7 @@
                      </div> -->
                       <input id="fileUpload" type="file">
                 </div>
-              <!-- <img class="profile-user-img img-responsive img-circle" src="dist/img/user2-160x160.jpg" alt="User profile picture"> -->
+              <!-- <img class="profile-user-img img-responsive img-circle" src="/html/dist/img/user2-160x160.jpg" alt="User profile picture"> -->
 
 
               <h3 class="profile-username text-center"><b>${targetUser.userName}</b></h3>

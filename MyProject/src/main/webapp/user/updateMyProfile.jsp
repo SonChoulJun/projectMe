@@ -12,16 +12,17 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,81 +50,64 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <c:import url="headerBar.jsp"></c:import>
-   
-    <c:import url="mainSideBar.jsp"></c:import>
-    
-    
-   
+  <c:import url="/common/headerBar.jsp"></c:import>
+  
+  <c:import url="/common/mainSideBar.jsp"></c:import>
+  
   
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <c:import url="profileBar.jsp"></c:import>
+    <c:import url="/common/profileBar.jsp"></c:import>
 
     <!-- Main content -->
     <section class="content">
 
       <div class="row">
-         <c:import url="profileSideBar.jsp"></c:import>
+        <c:import url="/common/profileSideBar.jsp"></c:import>
+        
+        
         <!-- /.col -->
         <div class="col-md-9">
-                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
-              <img src="images/pic07.jpg" ; alt=""/>
+                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('/html/images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
+              <img src="/html/images/pic07.jpg" ; alt=""/>
                 </div>
             <div class="rectang" style="    padding-left: 40%; padding-top: 10%;  background-color: rgba(000, 051, 102, 0.3); border:1px solid rgba(160, 160, 160, 0.6);" >
             <div class="tab-pane" id="settings">
                 
-                <form class="form-horizontal" action="/user/updateUserView">
+                <form class="form-horizontal" action="/user/update">
                 
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>-
-                    <div class="col-sm-10" style="width: 50% ; ">
-                      <%-- <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }> --%>
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ;  border-style:solid; border-width:1px; ">
-                      ${user.userName }
-                      </div>
+                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>
+                    <div class="col-sm-10" style="width: 50%">
+                      <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label" style="width:10%;">Email(id)</label>
-                    <div class="col-sm-10" style="width: 50%; ">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.userId }
-                      </div>
+                    <div class="col-sm-10" style="width: 50%">
+                      <input name ="userId" type="email" class="form-control" id="inputEmail" placeholder=${user.userId }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Pwd</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.password }
-                      </div>
+                      <input name ="password" type="text" class="form-control" id="inputName" placeholder= ${user.password }>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label" style="width:10%;">Phone</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <%-- <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea> --%>
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.phone }
-                      </div>
+                      <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea>
                     </div>
                   </div>
                   
                   <div class="form-group">
                     <label for="inputSkills" class="col-sm-2 control-label" style="width:10%;">Join Date</label>
                     <div class="col-sm-10" style="width: 50%">
-                      <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ; ">
-                      ${user.joinDate }
-                      </div>
+                      <input type="text" class="form-control" id="inputSkills" placeholder=${user.joinDate }>
                     </div>
                   </div>
                   
@@ -139,7 +123,8 @@
                   
                   <div class="form-group" >
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger"> 수 정</button>
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger"> 확 인</button>
                     </div>
                   </div>
                   
@@ -156,13 +141,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.7
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+  <c:import url="/common/mainFoot.jsp"></c:import>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -361,14 +340,15 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/html/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
+<script src="/html/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="/html/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="/html/dist/js/demo.js"></script>
+<script src="/html/folder-input/folder-input.js"></script>
 </body>
 </html>

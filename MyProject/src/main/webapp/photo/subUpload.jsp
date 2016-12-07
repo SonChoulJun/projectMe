@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,20 +10,20 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   
-  <link rel="stylesheet" href="assets/css/style.css">  
+  <!--파일업로드 CSS  -->
+        <link href="/html/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
   
-  <link rel="stylesheet" href="folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,93 +31,39 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <c:import url="headerBar.jsp"></c:import>
+   <c:import url="/common/headerBar.jsp"></c:import>
+ 
   <!-- Left side column. contains the logo and sidebar -->
-  <c:import url="mainSideBar.jsp"></c:import>
+  <c:import url="/common/mainSideBar.jsp"></c:import>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <c:import url="profileBar.jsp"></c:import>
+    <section class="content-header">
+      <h1>
+        File Upload Test
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+      </ol>
+    </section>
+
     <!-- Main content -->
     <section class="content">
 
       <div class="row">
-        <c:import url="profileSideBar.jsp"></c:import>
-        <div class="col-md-9">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
-              <li><a href="http://127.0.0.1:8080/timeLine.jsp" >TimeLine</a></li>
-              <li><a href="http://127.0.0.1:8080/user/getActivity"  >Activity</a></li>
-              <li class="active"><a href="http://127.0.0.1:8080/settings.jsp" >Settings</a></li>
-            </ul>
-            <div class="tab-content">
-              
-              <div class="active tab-pane" id="settings">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
-
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <!-- /.col -->
+       
+       
+           <input id="input-id" type="file" class="file" multiple="true" >
+                
+        
+        
       </div>
       <!-- /.row -->
 
@@ -127,7 +71,14 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-<c:import url="mainFoot.jsp"></c:import>
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.7
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -324,89 +275,30 @@
 </div>
 <!-- ./wrapper -->
 
-
-<!-- input_folder popup -->
-<div id="popup1" class="overlay">
-	<form action="/mapBoard/addFolder" method="post">
-	  <div class="popup">
-	    <h2>PhotoBorad input</h2>
-	    <a class="close">&times;</a>
-	    <div class="box box-warning">
-	      <div class="box-header with-border">
-	        <h3 class="box-title">pomnwq@naver.com</h3>
-	      </div>
-	            <!-- /.box-header -->
-	     <div class="box-body">
-	       <form role="form">
-	                  <!-- text input -->
-	         <div class="form-group">
-	            <label>Title</label>
-	            <input name="title" type="text" class="form-control" placeholder="Enter ...">
-	         </div>
-	  
-	        <!-- textarea -->
-	        <div class="form-group">
-	           <label>Comment</label>
-	           <textarea name="text"class="form-control" rows="3" placeholder="Enter ..."></textarea>
-	        </div>
-	        <button type="submit" class="btn btn-block btn-primary btn-flat">summit</button>
-	                 
-	      </div>
-	    </div>
-	    <!--box box-warning-->
-	  </div>
-	</form>
-</div>
-<!-- input_folder popup end -->
-
 <!-- jQuery 2.2.3 -->
-<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
+<script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
+<script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-
-<script type="text/javascript">
-var twitterShare = document.querySelector('[data-js="twitter-share"]');
-
-twitterShare.onclick = function(e) {
-  e.preventDefault();
-  var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
-  if(twitterWindow.focus) { twitterWindow.focus(); }
-    return false;
-  }
-
-var facebookShare = document.querySelector('[data-js="facebook-share"]');
-
-facebookShare.onclick = function(e) {
-  e.preventDefault();
-  var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
-  if(facebookWindow.focus) { facebookWindow.focus(); }
-    return false;
-}
-</script>
- <script src="assets/js/fileinput.js" type="text/javascript"></script>
-<script src="dist/js/index.js"></script>
-<script type="text/javascript">
-$("#fileUpload").fileinput({    
-    language: 'LANG',
+<script src="../dist/js/demo.js"></script>
+<!--파일업로드 자바스크립트  -->
+        <script src="../assets/js/fileinput.js" type="text/javascript"></script>
+        <script src="../assets/themes/fa/theme.js"></script>
+        <script src="../assets/js/locales/LANG.js"></script>
+<script>
+$("#input-id").fileinput({
+	language: 'LANG',
     uploadUrl: 'user/fileUpload/post',
     uploadAsync: true,
-    autoStart: true,
+    multiple:true,
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
 
 
 </script>
-
-<script src="folder-input/folder-input.js"></script>
-
-
-
-
 </body>
 </html>
