@@ -20,6 +20,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="/html/folder-input/folder-input.css">
   
   <!--파일업로드 CSS  -->
         <link href="../assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
@@ -285,6 +286,7 @@
 <script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script src="/html/folder-input/folder-input.js"></script>
 <!--파일업로드 자바스크립트  -->
         <script src="../assets/js/fileinput.js" type="text/javascript"></script>
         <script src="../assets/themes/fa/theme.js"></script>
