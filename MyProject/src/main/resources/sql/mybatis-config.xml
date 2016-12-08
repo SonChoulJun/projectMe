@@ -11,6 +11,8 @@
 	 	<typeAlias alias="activity" type="kr.co.bitcamp.service.domain.Activity"/>
 	 	<typeAlias alias="board" type="kr.co.bitcamp.service.domain.PhotoFolder"/>
 	 	<typeAlias alias="alram" type="kr.co.bitcamp.service.domain.Alram"/>
+	 	<typeAlias alias="photo" type="kr.co.bitcamp.service.domain.Photo"/>
+	 	<typeAlias alias="theme" type="kr.co.bitcamp.service.domain.PhotoTheme"/>
 	 </typeAliases>
 	 
   

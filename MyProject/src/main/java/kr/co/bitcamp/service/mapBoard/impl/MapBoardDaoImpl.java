@@ -1,6 +1,8 @@
 package kr.co.bitcamp.service.mapBoard.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +43,8 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public boolean addPhone(List photoList) throws Exception {
-        // TODO Auto-generated method stub
+    public boolean addPhoto(List<Photo> photoList) throws Exception {
+/*        sqlSession.insert();*/
         return false;
     }
 
@@ -53,6 +55,8 @@ public class MapBoardDaoImpl implements MapBoardDao {
         // TODO Auto-generated method stub
         return false;
     }
+    
+    
 
 
     
@@ -62,9 +66,8 @@ public class MapBoardDaoImpl implements MapBoardDao {
 	}
 
     @Override
-    public List<PhotoFolder> getPhotoFolder(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+    public PhotoFolder getPhotoFolder(int folderNo) throws Exception {
+        return sqlSession.selectOne("BoardMapper.getfolderOne", folderNo );
     }
 
     @Override
@@ -107,6 +110,25 @@ public class MapBoardDaoImpl implements MapBoardDao {
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean addTheme(int photoFolderNo,List<Photo> photoList) {
+        Map<Object, Object> themeMap = new HashMap<Object, Object>();
+        themeMap.put("photoFolderNo", photoFolderNo);
+        int themeName =sqlSession.selectOne("BoardMapper.getMaxThemeNo",photoFolderNo);
+        themeName++;
+        themeMap.put("themeName", themeName);
+        System.out.println("sdasdasdasdasdasdsadsadasdasd테마맵맵"+themeMap);        
+        sqlSession.insert("BoardMapper.setTheme",themeMap);
+        int setThemeNo =sqlSession.selectOne("BoardMapper.getThemeNo",themeMap);
+        for (Photo photo : photoList) {
+            System.out.println(photo);
+            photo.setThemeNo(setThemeNo);
+            sqlSession.insert("BoardMapper.setMainPhoto",photo);
+        }
+        
+        return true;
     }
 
 	

@@ -1,6 +1,9 @@
+<%@page import="kr.co.bitcamp.service.domain.PhotoFolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,11 +24,12 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
+
+  <!-- profile photo -->
+
+  <link rel="stylesheet" href="/html/assets/css/style.css">  
+  
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
-  
-  <!--파일업로드 CSS  -->
-        <link href="/html/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
-  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,39 +37,57 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <c:import url="/common/headerBar.jsp"></c:import>
+  <c:import url="/common/headerBar.jsp"></c:import>
  
   <!-- Left side column. contains the logo and sidebar -->
   <c:import url="/common/mainSideBar.jsp"></c:import>
 
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        MainPhotoUpload
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
     <section class="content">
 
       <div class="row">
-       
-       
-           <input id="input-id" type="file" class="file" multiple="true" >
-                
-        
-        
+
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="active tab-pane" id="myTravel">
+                 <div class="post">
+                  <div class="user-block">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user1-128x128.jpg" alt="user image">
+                        <span class="username">
+                          <a href="#">${photoFolderOne.title}</a>
+                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                        </span>
+                    <span class="description">${photoFolderOne.photoDate}</span>
+                  </div>
+                  
+                  <div class="row margin-bottom">
+                    <div class="col-sm-6" >
+                      <div class="img-responsive" id="map" style="height: 400px; margin:0px auto;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+          
+              <!-- /.tab-pane -->
+              
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
       </div>
       <!-- /.row -->
 
@@ -73,14 +95,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.7
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
-
+<c:import url="/common/mainFoot.jsp"></c:import>
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -236,7 +251,6 @@
 
             <p>
               Allow the user to show his name in blog posts
-
             </p>
           </div>
           <!-- /.form-group -->
@@ -278,6 +292,7 @@
 </div>
 <!-- ./wrapper -->
 
+
 <!-- jQuery 2.2.3 -->
 <script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -287,23 +302,113 @@
 <!-- AdminLTE App -->
 <script src="/html/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
+
+
+<!-- profile photo -->
+<script src="/html/assets/js/index.js"></script>
+
+
 <script src="/html/dist/js/demo.js"></script>
-<!--파일업로드 자바스크립트  -->
-        <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
-        <script src="/html/assets/themes/fa/theme.js"></script>
-        <script src="/html/assets/js/locales/LANG.js"></script>
-<script>
-$("#input-id").fileinput({
-  language: 'LANG',
-  uploadUrl: '/mapBoard/addphoto/${folderNo}',
-  uploadAsync: true,
-  multiple:true,
-  allowedFileExtensions : ['jpg', 'png','gif']   
-});
-
-
-</script>
-
+<script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
+<script src="/html/dist/js/index.js"></script>
 <script src="/html/folder-input/folder-input.js"></script>
+
+<%
+  PhotoFolder folder = (PhotoFolder)request.getAttribute("photoFolderOne"); 
+  System.out.print(folder.getPhotoTheme().get(1).getPhotoList().get(0).getFolderName());
+%>
+<script type="text/javascript">
+  function initMap() {
+  var locations = [
+                   
+                   <%for(int i=0;i<folder.getPhotoTheme().size();i++){%>
+                    {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
+                   <%}%>
+                 ];
+  
+
+
+                 var map = new google.maps.Map(document.getElementById('map'), {
+                   zoom: 10,
+                   center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+                   mapTypeId: google.maps.MapTypeId.ROADMAP
+                 });
+                
+                  var lineSymbol = {
+                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+                    };
+                  var flightPath = new google.maps.Polyline({
+                      path: locations,
+                      geodesic: true,//거리는 기본적으로 미터 단위로 계산 or 픽셀단위
+                      strokeColor: '#FF0000',
+                      strokeOpacity: 1.0, //불투명도 1.0(불투명)~0.0(투명)
+                      strokeWeight: 2, // 두께
+                      icons: [{
+                          icon: lineSymbol,
+                          offset: '100%'
+                        }],
+                        map: map
+                    });
+                  animateCircle(flightPath);
+                 //flightPath.setMap(map); 
+                    
+                 var infowindow = new google.maps.InfoWindow();
+
+                 var marker, i;
+                /*  var image = {
+                     url: i+'.png',
+                     //size: new google.maps.Size(100, 100),
+                     origin: new google.maps.Point(0, 0),
+                     anchor: new google.maps.Point(0, 32),
+                     scaledSize: new google.maps.Size(50, 50)
+                 } */
+                    
+                 for (i = 0; i < locations.length; i++) {  
+                   marker = new google.maps.Marker({
+                     position: locations[i],
+                     map: map,
+                     icon: image= {
+                             url: '/html/assets/img/uploadedPhoto/123123.PNG',
+                             //size: new google.maps.Size(100, 100),
+                             origin: new google.maps.Point(0, 0),
+                             anchor: new google.maps.Point(0, 32),
+                             scaledSize: new google.maps.Size(50, 50)
+                     }
+                   });
+                   
+                   
+                   
+
+                   google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                     return function() {
+                       //infowindow.setContent(locations[i][1]);
+                       //infowindow.open(map, marker);
+                       //marker.map.setZoom(13); 
+                       window.open("http://www.naver.com", "네이버새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+                      
+                     }
+                     
+                   })(marker, i));
+                 }
+                 
+  }
+  
+  function animateCircle(line) {
+      var count = 0;
+      window.setInterval(function() {
+        count = (count + 1) % 200;
+
+        var icons = line.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        line.set('icons', icons);
+    }, 20);
+  }
+  </script>
+   <script src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap" 
+          type="text/javascript"></script>
+
+
+
+
 </body>
 </html>
