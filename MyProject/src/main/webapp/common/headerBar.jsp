@@ -1,7 +1,7 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="http://127.0.0.1:8080/profile/mainProfile" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -224,11 +224,11 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
-                  ${user.userName}
+                           ${user.userName}
                   <small> ${user.joinDate}</small>
                 </p>
+                
               </li>
               <!-- Menu Body -->
               <!-- Menu Footer-->

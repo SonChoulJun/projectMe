@@ -58,9 +58,11 @@ public class ProfileController {
         User user = (User)session.getAttribute("user");
         int userNo =user.getUserNo();
         System.out.println(user);
+       
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
+        model.addAttribute("user", user);
         try{
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));

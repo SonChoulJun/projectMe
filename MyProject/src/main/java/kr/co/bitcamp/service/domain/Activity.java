@@ -4,12 +4,16 @@ import java.sql.Date;
 
 public class Activity {
   
-  private Date activityDate;
+  private String activityDate;
+  private String activityTime;
   private String activityText;
   private User user;
   private int activityNo;
   
+ 
+  
   public Activity(){
+    
     
   }
   public User getUser() {
@@ -27,11 +31,11 @@ public class Activity {
     this.activityNo = activityNo;
   }
 
-public Date getActivityDate() {
+public String getActivityDate() {
     return activityDate;
   }
 
-  public void setActivityDate(Date activityDate) {
+  public void setActivityDate(String activityDate) {
     this.activityDate = activityDate;
   }
 
@@ -42,11 +46,24 @@ public Date getActivityDate() {
   public void setActivityText(String activityText) {
     this.activityText = activityText;
   }
+  
+  
 
+  public String getActivityTime() {
+    return activityTime;
+  }
+  public void setActivityTime(String activityTime) {
+    this.activityTime = activityTime;
+  }
+  
   @Override
   public String toString() {
-    return "Activity [activityDate=" + activityDate + ", activityText=" + activityText + "]";
+    return "Activity [activityDate=" + activityDate + ", activityTime=" + activityTime + ", activityText="
+        + activityText + ", user=" + user + ", activityNo=" + activityNo + "]";
   }
+ 
+  
+ 
   
   
 
