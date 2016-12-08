@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cglib.reflect.MethodDelegate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,6 +22,7 @@ import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
+import kr.co.bitcamp.service.user.UserService;
 
 @Controller
 @RequestMapping("/mapBoard/*")
@@ -29,6 +31,7 @@ public class MapBoardController {
     @Autowired
     @Qualifier("mapBoardServiceImpl")
     private MapBoardService boardService;
+    private UserService userService;
 
     public MapBoardController() {
         super();
@@ -131,7 +134,7 @@ public class MapBoardController {
     public String setComment( @ModelAttribute("comment") Comment comment , Model model , HttpSession session) throws Exception{      
 		System.out.println("/domain/Comment");
 		comment.setCommentNo(((Comment)session.getAttribute("comment")).getCommentNo());
-		boolean ok = boardService.setComment(comment, 50000);
+		boolean ok = boardService.setComment(comment);
 		if(ok){
           model.addAttribute("setCommentOk","ok");
 		}else{
@@ -141,16 +144,47 @@ public class MapBoardController {
     	}
 
     @RequestMapping("updateComment")
-    public String updateComment(Comment comment){
-      return "";
+    public String updateComment(@ModelAttribute("comment")Comment comment,Model model){
+    	
+        System.out.println(comment+"sssss");
+        try {
+            boolean ok =boardService.updateComment(comment);
+            if(ok)
+                model.addAttribute("updateOk", "ok");
+            else
+                model.addAttribute("updateOk", "no");
+            return "";
+            
+          } catch (Exception e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+              return "";
+          }
+          
+          
+        }
+    @RequestMapping( value="getComment")
+  	public String getComment( @RequestParam("folderNo")int userNo ,String userId, String folderNo, Model model ) throws Exception {
+    	
+    	System.out.println("getComment받아와랏!!!!!!!!!!!!!");
+  		//Business Logic
+    	User user = userService.getUser(userId);
+    	List<Comment> comment = boardService.getComment(userNo);
+  		// Model 과 View 연결
+    	model.addAttribute("user", user);
+  		model.addAttribute("comment", comment);
+    	
+    	return "";
     }
-    @RequestMapping("getComment")
-    public String getComment(String folderNo){
-      return "";
-    }
+
     @RequestMapping("removeComment")
-    public String removeComment(String commentNum){
-      return "";
+    public String removeComment(@RequestParam("commentNum") int commentNum, HttpSession session) throws Exception{
+        System.out.println("\n:: ==> remove() start.....");
+        
+        User user = (User)session.getAttribute("sessionUser");
+        user.setUserId(user.getUserId());
+        boardService.removeComment(commentNum);
+        return "";
     }
     @RequestMapping("getNewsFeed")
     public String getNewsFeed(String userId){

@@ -20,7 +20,7 @@ public interface MapBoardService {
 
     public boolean setLike(int photoFolderNo,int UserNo) throws Exception;
     
-    public boolean setComment(Comment comment,int folderNo) throws Exception;
+    public boolean setComment(Comment comment) throws Exception;
     
     public List<Comment> getComment(int folderNo) throws Exception;
     
@@ -31,4 +31,5 @@ public interface MapBoardService {
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     
     public List<PhotoFolder> getSideBar(int userNo) throws Exception;
+    
 }

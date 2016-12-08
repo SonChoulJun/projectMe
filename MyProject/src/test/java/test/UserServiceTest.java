@@ -14,7 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.User;
+import kr.co.bitcamp.service.mapBoard.MapBoardService;
 import kr.co.bitcamp.service.user.UserService;
 
 import kr.co.bitcamp.service.user.impl.UserServiceImpl;
@@ -32,6 +34,10 @@ public class UserServiceTest {
   @Autowired
   @Qualifier("userServiceImpl")
   private UserService userService;
+  
+  @Autowired
+  @Qualifier("mapBoardServiceImpl")
+  private MapBoardService boardService;
 
   //@Test
   public void testAddUser() throws Exception {
@@ -81,7 +87,7 @@ public class UserServiceTest {
     System.out.println(listActivity);
   }
   
-  @Test
+  //@Test
   public void testGetAlram() throws Exception{
 	  	  
 	  System.out.println("getAlram 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -93,5 +99,62 @@ public class UserServiceTest {
 	  List<Alram> listAlram = userService.getAlram(user.getUserNo());
 	  System.out.println("뽑아줘제발"+listAlram);
 
+  }
+  
+  //@Test
+  public void testSetComment() throws Exception{
+	  
+	  System.out.println("SetCommen 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	  
+	  String userId="krh2122@naver.com";
+	  User user=userService.getUser(userId);
+//	  System.out.println("<SetComment>"+user);
+//	  List<Comment> listComment = boardService.getComment(user.getUserNo());
+//	  System.out.println("뽑아줘제발"+listComment);
+	  Comment comment = new Comment();
+	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
+	  comment.setUserId(user.getUserId());
+	  comment.setFolderNo(20000);
+	  
+	  boardService.setComment(comment);
+	  System.out.println("바귐?");
+
+  }
+
+  //@Test
+  public void testGetComment() throws Exception{
+	  	  
+	  System.out.println("getComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	  
+	  String userId="krh2122@naver.com";
+	  User user=userService.getUser(userId);
+	  System.out.println("dddddddddddd"+user);
+	  
+	  List<Comment> listComment = boardService.getComment(user.getUserNo());
+	  System.out.println("뽑아줘제발"+listComment);
+  }
+
+  //@Test
+  public void testUpdateComment() throws Exception{
+    System.out.println("UpdateComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+	List<Comment> commentList = boardService.getComment(20000);
+    System.out.println("일단 불러왔어");
+    System.out.println(commentList);
+    ((Comment) commentList).setText("text change");
+
+    String userId="krh2122@naver.com";
+	  User user=userService.getUser(userId);
+//	  System.out.println("<SetComment>"+user);
+//	  List<Comment> listComment = boardService.getComment(user.getUserNo());
+//	  System.out.println("뽑아줘제발"+listComment);
+//	  Comment comment = new Comment();
+//	  comment.
+//	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
+//	  comment.setUserId(user.getUserId());
+//	  comment.setFolderNo(20000);
+//	  
+//	  boardService.setComment(comment);
+//	  System.out.println("바귐?");
+   
   }
 }

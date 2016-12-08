@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
+import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardDao;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
 import kr.co.bitcamp.service.user.UserDao;
@@ -19,6 +20,10 @@ public class MapBoardServiceImpl implements MapBoardService {
     @Autowired
     @Qualifier("mapBoardDaoImpl")
     private MapBoardDao boardDao;
+    
+    @Autowired
+    @Qualifier("userDaoImpl")
+    private UserDao userDAO;
     
 
     public MapBoardServiceImpl() {
@@ -52,10 +57,13 @@ public class MapBoardServiceImpl implements MapBoardService {
     @Override
     public boolean updateComment(Comment comment) throws Exception {
         // TODO Auto-generated method stub
-        return false;
-    }
-
-
+    	boolean ok = boardDao.updateComment(comment);
+    	if(ok){
+  	      return true; 
+  	  }else{
+  	      return false;
+  	  }
+  	}
 
 
 	@Override
@@ -95,24 +103,29 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public boolean setComment(Comment comment, int folderNo) throws Exception {
+    public boolean setComment(Comment comment) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+    	return boardDao.setComment(comment);    
     }
 
 
     @Override
     public List<Comment> getComment(int folderNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return boardDao.getComment(folderNo);
     }
 
 
-    @Override
-    public boolean removeComment(int commentNum) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
-    }
+//    @Override
+//    public boolean removeComment(int commentNum) throws Exception {
+//        // TODO Auto-generated method stub
+//    	if(userDAO.pwCheak(user)==true){
+//    	    boardDao.removeComment(commentNum);
+//    	    return true;
+//    	  }else {
+//    	  return false;
+//    	  }
+//      }
 
 
     @Override
@@ -120,7 +133,15 @@ public class MapBoardServiceImpl implements MapBoardService {
         // TODO Auto-generated method stub
         return null;
     }
-    
+
+
+	@Override
+	public boolean removeComment(int commentNum) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
     
     
 }

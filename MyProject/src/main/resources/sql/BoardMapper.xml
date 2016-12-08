@@ -13,10 +13,35 @@
 		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
 		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE"/>
-		<association property="photoTheme" column="PF_NO" select="getTheme" javaType="ArrayList"></association>
+		<association property="photoTheme" 	column="PF_NO" 			select="getTheme" 	javaType="ArrayList"></association>
 	</resultMap>
 	
-	<insert id="setComment" parameterType="board">
+	
+	<delete id="removeUser"        parameterType="int">
+        DELETE
+        FROM BT_COMMENT
+        WHERE USERID = #{value}
+    </delete>
+	
+	
+	<update id="updateComment" parameterType="int"  >
+        UPDATE BT_COMMENT 
+        <set>        	
+            TEXT = #{text}
+        </set>
+        WHERE BT_COMMENT.PF_NO = BT_PHOTO_FOLDER.PF_NO AND BT_COMMENT.USER_NO=BT_USER.USER_NO      
+    </update>
+	
+	
+	<select id="getComment"     parameterType="int"  resultType="comment">
+
+		select C.CMT_NO as commentNo,U.USERID,C.TEXT as text,C.COMMENT_DATE
+		from BT_COMMENT C ,BT_USER U , BT_PHOTO_FOLDER P
+		where C.PF_NO = P.PF_NO AND C.USER_NO=U.USER_NO
+	</select>
+	
+	
+	<insert id="setComment" parameterType="int">
       INSERT 
 	    INTO BT_PHOTO_FOLDER(CMT_NO as commentNo, PF_NO as pfNo , USER_NO as userNo, TEXT as text ,COMMENT_DATE as date)
 	    VALUES(SEQ_BT_PF_NO.nextval,

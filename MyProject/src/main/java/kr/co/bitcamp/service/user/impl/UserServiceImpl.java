@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	public boolean addUser(User user) throws Exception {
 	  boolean ok =userDAO.addUser(user);
 	  if(ok){
-	      return true; 
+	      return true;
 	  }else{
 	      return false;
 	  }
@@ -156,6 +156,7 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getAlram(userNo);
 	}
 
+    
 
 
 

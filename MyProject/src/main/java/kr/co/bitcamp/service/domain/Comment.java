@@ -5,7 +5,16 @@ import java.sql.Date;
 public class Comment {
   
   private int commentNo;
-  private String text;
+  private int folderNo;
+  public int getFolderNo() {
+	return folderNo;
+}
+
+public void setFolderNo(int folderNo) {
+	this.folderNo = folderNo;
+}
+
+private String text;
   private Date date;
   private String userId;
  
