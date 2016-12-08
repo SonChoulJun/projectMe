@@ -41,9 +41,10 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public boolean addPhone(List photoList) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean addPhoto(int folderNo,List<Photo> photoList) throws Exception {
+            System.out.println("몇번들어오나욧 형님들~~");
+            boardDao.addTheme(folderNo,photoList);
+         return true;
     }
 
 
@@ -67,9 +68,9 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public List<PhotoFolder> getPhotoFolder(int UserNo) throws Exception {
+    public PhotoFolder getPhotoFolder(int folderNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return boardDao.getPhotoFolder(folderNo);
     }
 
 

@@ -125,8 +125,13 @@ public class ProfileController {
     
     @RequestMapping("photoPage/{folderNo}")
     public String photoPage(@PathVariable String folderNo,HttpSession session, Model model) throws Exception{
+        User user = (User)session.getAttribute("user");
+        int userNo =user.getUserNo();
+        List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
+        session.setAttribute("folderList", photoFolder);
         System.out.println(folderNo);
-            return "forward:/photo/mainUpload.jsp";
+        model.addAttribute("folderNo",folderNo);
+        return "forward:/photo/mainUpload.jsp";
     }
     
 

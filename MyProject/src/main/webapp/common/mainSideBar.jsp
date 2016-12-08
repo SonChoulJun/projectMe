@@ -54,10 +54,10 @@
                  </span>
               </c:if>
               
-              <c:if test="${photoFolder.photoTheme.isEmpty()}">
+              <c:if test="${!photoFolder.photoTheme.isEmpty()}">
                  <ul class="treeview-menu">
-                  <c:forEach var="valus" items="${photoFolder.photoTheme}">
-                    <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i>${valus}</a></li>
+                  <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
+                    <li><a href="/mapBoard/getPhotoFolder?folderNum=${photoFolder.pfNo}"><i class="fa fa-circle-o"></i>${photoTheme.themeName}</a></li>
                   </c:forEach>
                  </ul>
               </c:if>
@@ -65,9 +65,9 @@
            
           </li>
         </c:forEach>
+
         
-        
-        <li>
+      <!--   <li>
           <a href="/photo_upload/mainUpload.jsp">
             <i class="fa fa-th"></i> <span>대만돌기</span>
             <span class="pull-right-container">
@@ -115,7 +115,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> 1</a></li>
+            <li><a href="/mapBoard/getPhotoFolder?folderNum=10074"><i class="fa fa-circle-o"></i> 1</a></li>
             <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> 2</a></li>
             <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> 3</a></li>
           </ul>

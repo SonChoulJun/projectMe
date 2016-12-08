@@ -665,7 +665,6 @@ $("#getval").on('change', function(e){
 });
 </script>
 
-
 <script src="/html/folder-input/folder-input.js"></script>
 
 </body>

@@ -10,26 +10,56 @@
 
 	<resultMap type="board" id="boardSelectMap">
 		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
-		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC"/>
 		<result property="title" column="TITLE" jdbcType="VARCHAR"/>
 		<result property="text" column="TEXT" jdbcType="VARCHAR"/>
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE"/>
 		<association property="photoTheme" column="PF_NO" select="getTheme" javaType="ArrayList"></association>
 	</resultMap>
 	
-	<select id="getfolder" parameterType="int" resultMap="boardSelectMap">
-			select P.TITLE, P.PF_NO
+	<resultMap type="theme" id="themeSelectMap">
+	 <result property="themeNo" column="TM_NO" jdbcType="NUMERIC"/>
+	 <result property="themeName" column="TM_NM" jdbcType="VARCHAR"/>
+	 <association property="photoList" column="TM_NO" select="getPhoto" javaType="ArrayList"></association>
+	</resultMap>
+	
+	
+  <resultMap type="photo" id="photoSelectMap">
+   <result property="photoNo" column="PHOTO_NO" jdbcType="NUMERIC"/>
+   <result property="folderName" column="SV_FD" jdbcType="VARCHAR"/>
+   <result property="text" column="TEXT" jdbcType="CLOB"/>
+   <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+   <result property="photoDate" column="PHOTO_DATE" jdbcType="DATE"/>
+   <result property="gpsB" column="GPS_B" jdbcType="VARCHAR"/>
+   <result property="gpsH" column="GPS_H" jdbcType="VARCHAR"/>
+  </resultMap>
+	
+	 <select id="getfolder" parameterType="int" resultMap="boardSelectMap">
+			select P.TITLE, P.PF_NO, P.FOLDER_DATE
 			from BT_PHOTO_FOLDER P, BT_USER U
 			WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
 			ORDER BY P.PF_NO
     </select>
     
-    <select id="getTheme" parameterType="int" resultType="String">
-			select T.TM_NM
+    <select id="getfolderOne" parameterType="int" resultMap="boardSelectMap">
+      select P.TITLE, P.PF_NO, P.FOLDER_DATE,P.TEXT
+      from BT_PHOTO_FOLDER P, BT_USER U
+      WHERE U.USER_NO = P.USER_NO AND P.PF_NO=#{value}
+      ORDER BY P.PF_NO
+    </select>
+    
+    <select id="getPhoto" parameterType="int" resultMap="photoSelectMap">
+      select PHOTO_NO,SV_FD,TEXT,TITLE,PHOTO_DATE,GPS_B,GPS_H 
+      FROM BT_PHOTO 
+      WHERE TM_NO =#{value} AND POINT='0'
+    </select>
+    
+    <select id="getTheme" parameterType="int" resultMap="themeSelectMap">
+			select T.TM_NM,T.TM_NO
 			from BT_PHOTO_FOLDER P, BT_TM T
 			WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value}
-			ORDER BY P.PF_NO
+			ORDER BY T.TM_NM
     </select>
+    
     
     
     <insert id="setFolder" parameterType="board">
@@ -41,6 +71,27 @@
 	          #{text},
 	          sysdate
 	          )
+    </insert>
+    
+    
+    <select id="getMaxThemeNo" parameterType="int" resultType="int">
+      select count(*) from BT_TM where PF_NO=#{value}
+    </select>
+    
+    <select id="getThemeNo" parameterType="hashmap" resultType="int">
+      select TM_NO from BT_TM where TM_NM=#{themeName} AND PF_NO = #{photoFolderNo}
+    </select>
+    
+    <insert id="setTheme" parameterType="hashmap">
+      insert 
+      into BT_TM(TM_NO,PF_NO,TM_NM) 
+      values(SEQ_BT_TM_NO.nextval,#{photoFolderNo},#{themeName})
+    </insert>
+    
+    <insert id="setMainPhoto" parameterType="photo">
+      insert 
+      into BT_PHOTO(PHOTO_NO,POINT,TM_NO,SV_FD,TEXT,TITLE,PHOTO_DATE,GPS_B,GPS_H) 
+      values(SEQ_BT_PHOTO_NO.nextval,'0',#{themeNo},#{folderName},'...','제목',to_date(#{photoDate:DATE},'YYYY:MM:DD HH24:MI:SS'),#{gpsB:VARCHAR},#{gpsH:VARCHAR})
     </insert>
     
 

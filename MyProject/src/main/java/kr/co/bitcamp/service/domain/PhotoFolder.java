@@ -9,7 +9,7 @@ public class PhotoFolder {
   private String title;
   private String text;
   private Date photoDate;
-  private List<String> photoTheme;
+  private List<PhotoTheme> photoTheme;
   
   public PhotoFolder(){
     
@@ -49,10 +49,10 @@ public class PhotoFolder {
   public void setPhotoDate(Date photoDate) {
     this.photoDate = photoDate;
   }
-  public List<String> getPhotoTheme() {
+  public List<PhotoTheme> getPhotoTheme() {
     return photoTheme;
   }
-  public void setPhotoTheme(List<String> photoTheme) {
+  public void setPhotoTheme(List<PhotoTheme> photoTheme) {
     this.photoTheme = photoTheme;
   }
 

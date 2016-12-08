@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.sanselan.ImageReadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,12 +62,12 @@ public class MapBoardController {
       return "forward:/user/profile.jsp";
     }
     
-    @RequestMapping(value = "addphoto", method=RequestMethod.POST) //ajax에서 호출하는 부분
+    @RequestMapping(value = "addphoto/{folderNo}", method=RequestMethod.POST) //ajax에서 호출하는 부분
     //@ResponseBody 
-    public void addphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
+    public void addphoto(@PathVariable int folderNo,MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
       
       System.out.println("들왓니?");
-        ArrayList<Photo> photoList =null;
+        ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
         String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
@@ -96,7 +99,20 @@ public class MapBoardController {
                 try {
                     MetadataExample metadataExample = new MetadataExample();
                     metadataExample.metadataExample(outputfile);
-                    System.out.println(metadataExample.getDate());
+                    if(metadataExample.getLatitude()!=0 && metadataExample.getLongitude()!=0){
+                      photo.setGpsB(metadataExample.getLatitude()+"");
+                      photo.setGpsH(metadataExample.getLongitude()+"");
+                    }else{
+                    
+                    }
+                    
+                    String date =metadataExample.getDate();
+                    if(date!=null){
+                      String[] dateArray=date.split("'");
+                      photo.setPhotoDate(dateArray[1]);
+                    }
+                      photo.setFolderName(originalFilename);
+                      photoList.add(photo);
                     
                 } catch (ImageReadException | IOException e) {
                   // TODO Auto-generated catch block
@@ -110,14 +126,43 @@ public class MapBoardController {
             }
                           
        }
+        
+        try {
+            System.out.println(boardService.addPhoto(folderNo, photoList));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
           
 
     }
     
     
+    @RequestMapping("getPhotoFolder/{folderNum}")
+    public String getPhotoFolder(@PathVariable int folderNum, Model model){ 
+        try {
+            PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            model.addAttribute("photoFolderOne", photoFolderOne);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+      return "forward:/user/photoFolderOne.jsp";
+    }
+    
+    
     @RequestMapping("getPhotoFolder")
-    public String getPhotoFolder(String userId){    	
-      return "";
+    public String getPhotoFolderEx(@RequestParam("folderNum") int folderNum,Model model){ 
+        try {
+            System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
+            PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            model.addAttribute("photoFolderOne", photoFolderOne);
+            System.out.println("getPhotoFolder"+photoFolderOne);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+      return "forward:/user/photoFolderOne.jsp";
     }
     
     
@@ -132,9 +177,9 @@ public class MapBoardController {
     	System.out.println("폴더 불러 오구연!!!!!!!!!!!!!!!!!!!"+pFolder.toString());
 
 		// Model 과 View 연결
-		model.addAttribute("photoFolder", photoFolder);
+		    model.addAttribute("photoFolder", photoFolder);
 		
-		return "forward:/user/profile.jsp";
+		    return "forward:/user/profile.jsp";
     }
     
     @RequestMapping("getMainPhoto")

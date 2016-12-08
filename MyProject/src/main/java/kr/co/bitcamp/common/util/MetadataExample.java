@@ -10,6 +10,7 @@ import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
 import org.apache.sanselan.formats.tiff.TiffField;
 import org.apache.sanselan.formats.tiff.TiffImageMetadata;
 import org.apache.sanselan.formats.tiff.constants.TiffTagConstants;
+import org.apache.sanselan.formats.tiff.constants.GPSTagConstants;
 import org.apache.sanselan.formats.tiff.constants.TagInfo;
 
 public class MetadataExample {
@@ -43,8 +44,9 @@ public void metadataExample(final File file) throws ImageReadException,
         final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
 
         System.out.println("file: " + file.getPath());
-        date =jpegMetadata.getItems().get(10).toString();
-        printTagValue(jpegMetadata, TiffTagConstants.TIFF_TAG_DATE_TIME);
+        date = jpegMetadata
+                .findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_DATE_TIME).toString();
+        System.out.println(date);
 
 
         System.out.println();
