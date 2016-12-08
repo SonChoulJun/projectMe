@@ -363,12 +363,16 @@
                      scaledSize: new google.maps.Size(50, 50)
                  } */
                     
-                 for (i = 0; i < locations.length; i++) {  
+                 for (i = 0; i < locations.length; i++) {
+                	 <%
+                	  int i =-1;
+                	  i++;
+                	 %>
                    marker = new google.maps.Marker({
                      position: locations[i],
                      map: map,
                      icon: image= {
-                             url: '/html/assets/img/uploadedPhoto/123123.PNG',
+                             url: '/html/assets/img/uploadedPhoto/<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>',
                              //size: new google.maps.Size(100, 100),
                              origin: new google.maps.Point(0, 0),
                              anchor: new google.maps.Point(0, 32),
