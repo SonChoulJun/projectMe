@@ -23,7 +23,7 @@
       <!-- 검색 -->
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" id="q" class="form-control" placeholder="Search..." onkeyup='{filter();return false}' onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -32,12 +32,12 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">여행목록</li>
+      <ul class="sidebar-menu" id="folder-menu">
+        <li class="header" id="t_menu">여행목록</li>
         <li class="folder_input" id="folder_input">+</li>
         <c:forEach var="photoFolder" items="${folderList}">
        
-          <li class="treeview">
+          <li class="treeview" name="${photoFolder.title}">
             <a href="/profile/photoPage/${photoFolder.pfNo}">
               <i class="fa fa-files-o"></i>
               <span>${photoFolder.title}</span>
@@ -168,5 +168,6 @@
 </div>
 
 <script src="/html/folder-input/folder-input.js"></script>
+
 <!-- input_folder popup end -->
   <!-- Content Wrapper. Contains page content -->

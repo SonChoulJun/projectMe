@@ -314,23 +314,50 @@
 <script src="/html/folder-input/folder-input.js"></script>
 
 <%
-  PhotoFolder folder = (PhotoFolder)request.getAttribute("photoFolderOne"); 
-  System.out.print(folder.getPhotoTheme().get(1).getPhotoList().get(0).getFolderName());
+  PhotoFolder folder = (PhotoFolder)request.getAttribute("photoFolderOne");
 %>
+<%int z =-1;   
+ double latDefault=37.56347;
+ double lngDefault=126.990347; %>
 <script type="text/javascript">
+var folderName = new Array();
+<%System.out.print("등어오닝??");
+for(int i=0;i<folder.getPhotoTheme().size();i++){%> 
+
+}
+ folderName[<%=i%>]="<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>";
+ <%}%>
+
   function initMap() {
+	
   var locations = [
                    
-                   <%for(int i=0;i<folder.getPhotoTheme().size();i++){%>
-                    {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
-                   <%}%>
+                   <%for(int i=0;i<folder.getPhotoTheme().size();i++){
+                    if(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()!=null){
+                   %>
+                      {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
+                   <%}else{%>
+                    
+                      {lat: <%=latDefault%>, lng:<%=lngDefault%>},
+                    <% 
+                      lngDefault+=0.01; 
+                    }
+                   }
+                   %>
                  ];
   
 
 
                  var map = new google.maps.Map(document.getElementById('map'), {
                    zoom: 10,
-                   center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+                   <%
+                    if(folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()==null){
+                   %>
+                    center: new google.maps.LatLng(37.56347,126.990347),
+                   <%}else{%>
+                    center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+                   <%}%>
+                    
                    mapTypeId: google.maps.MapTypeId.ROADMAP
                  });
                 
@@ -362,17 +389,15 @@
                      anchor: new google.maps.Point(0, 32),
                      scaledSize: new google.maps.Size(50, 50)
                  } */
-                    
                  for (i = 0; i < locations.length; i++) {
-                	 <%
-                	  int i =-1;
-                	  i++;
-                	 %>
+                	 alert(i);
                    marker = new google.maps.Marker({
                      position: locations[i],
                      map: map,
+                     draggable: true,
+                     animation: google.maps.Animation.DROP,
                      icon: image= {
-                             url: '/html/assets/img/uploadedPhoto/<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>',
+                             url: '/html/assets/img/uploadedPhoto/'+folderName[i],
                              //size: new google.maps.Size(100, 100),
                              origin: new google.maps.Point(0, 0),
                              anchor: new google.maps.Point(0, 32),
@@ -381,21 +406,32 @@
                    });
                    
                    
-                   
 
                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
                      return function() {
                        //infowindow.setContent(locations[i][1]);
                        //infowindow.open(map, marker);
-                       //marker.map.setZoom(13); 
+                       //marker.map.setZoom(13)
                        window.open("http://www.naver.com", "네이버새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
                       
                      }
                      
                    })(marker, i));
                  }
+                
+
+                
+                 
+
                  
   }
+  function toggleBounce() {
+	  if (marker.getAnimation() !== null) {
+	    marker.setAnimation(null);
+	  } else {
+	    marker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	}
   
   function animateCircle(line) {
       var count = 0;
@@ -407,6 +443,7 @@
         line.set('icons', icons);
     }, 20);
   }
+  
   </script>
    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap" 
           type="text/javascript"></script>

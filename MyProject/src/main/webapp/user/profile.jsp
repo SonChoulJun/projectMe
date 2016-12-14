@@ -651,6 +651,8 @@ $("#getval").on('change', function(e){
 </script>
 
 <script src="/html/folder-input/folder-input.js"></script>
+<script src="/html/side_menu/side_search.js"></script>
+
 
 </body>
 </html>

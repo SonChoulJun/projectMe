@@ -413,6 +413,7 @@ facebookShare.onclick = function(e) {
   if(facebookWindow.focus) { facebookWindow.focus(); }
     return false;
 }
+</script>
  <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 <script src="/html/dist/js/index.js"></script>
 <script type="text/javascript">
@@ -425,6 +426,7 @@ $("#fileUpload").fileinput({
 });
 </script>
 <script src="/html/folder-input/folder-input.js"></script>
+<script src="/html/side_menu/side_search.js"></script>
 
 </body>
 </html>
