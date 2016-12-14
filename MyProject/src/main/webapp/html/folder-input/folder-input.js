@@ -3,7 +3,7 @@
 	 $(".overlay").css("display","block");
  }
  
- $(function() {
+ $(function(){
 	 $("#folder_input").on("click",function(){
 		  pageLoad();
 	 });

@@ -92,8 +92,8 @@
                   <!-- timeline item -->
                   <li>
                     <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
+  <!-- ////////////////// -->
+                    <div class="timeline-item" >
                       <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
 
                       <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
@@ -108,6 +108,39 @@
                         <a class="btn btn-danger btn-xs">Delete</a>
                       </div>
                     </div>
+  <!--  /////////////////// -->
+                    <div class="timeline-item" >
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                        <c:forEach var="i" items="${activity }">
+                            <div class="timeline-body" >
+                                ${i.activityText} 
+                          </div>
+                        </c:forEach>
+                      
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+         <!-- //////////////////// -->
+                         <div class="timeline-item" >
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                        <c:forEach var="i" items="${activity }">
+                            <div class="timeline-body" >
+                                ${i.activityText} 
+                          </div>
+                        </c:forEach>
+                      
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+            <!--  ///////////////////////// -->       
                   </li>
                   <!-- END timeline item -->
                   <!-- timeline item -->

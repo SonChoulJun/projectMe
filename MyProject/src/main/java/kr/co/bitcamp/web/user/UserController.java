@@ -103,6 +103,21 @@ public class UserController {
 
     }
     
+    @RequestMapping("logout")
+    public String logoutUser(HttpSession session) throws Exception{
+      
+      
+        System.out.println("[로그아웃시작]");
+        
+        session.invalidate();
+        
+        System.out.println("[로그아웃 완료");
+        
+      
+      
+      return "forward:/index.jsp";
+    }
+    
     
     @RequestMapping("remove")
     public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
