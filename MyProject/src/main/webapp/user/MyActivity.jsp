@@ -92,9 +92,9 @@
                   <!-- timeline item -->
                   <li>
                     <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+  <!-- ////////////////// -->
+                    <div class="timeline-item" >
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
 
                       <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
                         <c:forEach var="i" items="${activity }">
@@ -108,6 +108,39 @@
                         <a class="btn btn-danger btn-xs">Delete</a>
                       </div>
                     </div>
+  <!--  /////////////////// -->
+                    <div class="timeline-item" >
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                        <c:forEach var="i" items="${activity }">
+                            <div class="timeline-body" >
+                                ${i.activityText} 
+                          </div>
+                        </c:forEach>
+                      
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+         <!-- //////////////////// -->
+                         <div class="timeline-item" >
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
+
+                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                        <c:forEach var="i" items="${activity }">
+                            <div class="timeline-body" >
+                                ${i.activityText} 
+                          </div>
+                        </c:forEach>
+                      
+                      <div class="timeline-footer">
+                        <a class="btn btn-primary btn-xs">Read more</a>
+                        <a class="btn btn-danger btn-xs">Delete</a>
+                      </div>
+                    </div>
+            <!--  ///////////////////////// -->       
                   </li>
                   <!-- END timeline item -->
                   <!-- timeline item -->
@@ -115,7 +148,7 @@
                     <i class="fa fa-user bg-aqua"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[0].activityTime}</span>
 
                       <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
                       </h3>
@@ -127,9 +160,9 @@
                     <i class="fa fa-comments bg-yellow"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[0].activityTime}</span>
 
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                      <h3 class="timeline-header"><a href="#">${activity[0].user.userName}</a> 님을 Following 하셨습니다.</h3>
 
                       <div class="timeline-body">
                         ${activity[1].activityText }

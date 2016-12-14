@@ -24,8 +24,9 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" id="q" class="form-control" placeholder="Search..." onkeyup='{filter();return false}' onkeypress='javascript:if(event.keyCode==13){ filter(); return false;}'>
+
               <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
         </div>
@@ -166,6 +167,7 @@
     </div>
   </form>
 </div>
+
 
 <script src="/html/folder-input/folder-input.js"></script>
 
