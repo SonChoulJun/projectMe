@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Photo {
   
   private int photoNo;
+  private int themeNo;
   private String folderName;
   private String title;
   private String text;
-  private Date photoDate;
-  private ArrayList arrayPhoto;
+  private String photoDate;
   private String gpsB;
   private String gpsH;
   
@@ -18,7 +18,15 @@ public class Photo {
     
   }
   
-  public int getPhotoNo() {
+  public int getThemeNo() {
+    return themeNo;
+  }
+
+  public void setThemeNo(int themeNo) {
+      this.themeNo = themeNo;
+  }
+
+    public int getPhotoNo() {
     return photoNo;
   }
   public void setPhotoNo(int photoNo) {
@@ -42,17 +50,11 @@ public class Photo {
   public void setText(String text) {
     this.text = text;
   }
-  public Date getPhotoDate() {
+  public String getPhotoDate() {
     return photoDate;
   }
-  public void setPhotoDate(Date photoDate) {
+  public void setPhotoDate(String photoDate) {
     this.photoDate = photoDate;
-  }
-  public ArrayList getArrayPhoto() {
-    return arrayPhoto;
-  }
-  public void setArrayPhoto(ArrayList arrayPhoto) {
-    this.arrayPhoto = arrayPhoto;
   }
   public String getGpsB() {
     return gpsB;
@@ -67,11 +69,13 @@ public class Photo {
     this.gpsH = gpsH;
   }
 
-  @Override
-  public String toString() {
-    return "Photo [photoNo=" + photoNo + ", folderName=" + folderName + ", title=" + title + ", text=" + text
-        + ", photoDate=" + photoDate + ", arrayPhoto=" + arrayPhoto + ", gpsB=" + gpsB + ", gpsH=" + gpsH + "]";
-  }
+@Override
+public String toString() {
+    return "Photo [photoNo=" + photoNo + ", themeNo=" + themeNo + ", folderName=" + folderName + ", title=" + title
+            + ", text=" + text + ", photoDate=" + photoDate + ", gpsB=" + gpsB + ", gpsH=" + gpsH + "]";
+}
+
+
   
   
   

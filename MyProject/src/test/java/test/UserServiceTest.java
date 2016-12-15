@@ -62,7 +62,8 @@ public class UserServiceTest {
   
   //@Test
   public void testUpdateUser() throws Exception{
-    System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"); 
+    
    User user=userService.getUser("krh2122@naver.com");
    System.out.println("일단 불러왔어");
     System.out.println(user);
@@ -108,17 +109,11 @@ public class UserServiceTest {
 	  
 	  String userId="krh2122@naver.com";
 	  User user=userService.getUser(userId);
-//	  System.out.println("<SetComment>"+user);
-//	  List<Comment> listComment = boardService.getComment(user.getUserNo());
-//	  System.out.println("뽑아줘제발"+listComment);
 	  Comment comment = new Comment();
 	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
 	  comment.setUserId(user.getUserId());
 	  comment.setFolderNo(20000);
-	  
 	  boardService.setComment(comment);
-	  System.out.println("바귐?");
-
   }
 
   //@Test
@@ -134,27 +129,18 @@ public class UserServiceTest {
 	  System.out.println("뽑아줘제발"+listComment);
   }
 
-  //@Test
+  @Test
   public void testUpdateComment() throws Exception{
     System.out.println("UpdateComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	List<Comment> commentList = boardService.getComment(20000);
     System.out.println("일단 불러왔어");
     System.out.println(commentList);
-    ((Comment) commentList).setText("text change");
+    
+    Comment comment = new Comment();
+	comment.setText("택스트 드감? ");
+	boardService.setComment(comment);
+	System.out.println(comment);
 
-    String userId="krh2122@naver.com";
-	  User user=userService.getUser(userId);
-//	  System.out.println("<SetComment>"+user);
-//	  List<Comment> listComment = boardService.getComment(user.getUserNo());
-//	  System.out.println("뽑아줘제발"+listComment);
-//	  Comment comment = new Comment();
-//	  comment.
-//	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
-//	  comment.setUserId(user.getUserId());
-//	  comment.setFolderNo(20000);
-//	  
-//	  boardService.setComment(comment);
-//	  System.out.println("바귐?");
-   
   }
-}
+   
+ }

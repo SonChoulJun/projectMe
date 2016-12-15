@@ -10,9 +10,9 @@ public interface MapBoardService {
 
     public boolean addFolder(PhotoFolder photoFolder) throws Exception;
     
-    public boolean addPhone(List photoList) throws Exception;
+    public boolean addPhoto(int folderNo,List<Photo> photoList) throws Exception;
     
-    public List<PhotoFolder> getPhotoFolder(int UserNo) throws Exception;
+    public PhotoFolder getPhotoFolder(int folderNo) throws Exception;
     
     public List<Photo> getMainPhoto(int pfNo) throws Exception;
     
@@ -26,7 +26,7 @@ public interface MapBoardService {
     
     public boolean updateComment(Comment comment) throws Exception;
     
-    public boolean removeComment(int commentNum) throws Exception;
+    public boolean removeComment(int commentNo) throws Exception;
     
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     

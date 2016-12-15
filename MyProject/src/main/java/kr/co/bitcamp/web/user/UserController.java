@@ -56,7 +56,7 @@ public class UserController {
             model.addAttribute("registerOk", "ok");
         else
             model.addAttribute("registerOk", "no");
-        return "forward:/login.jsp";
+        return "forward:/user/login.jsp";
         
       } catch (Exception e) {
           // TODO Auto-generated catch block
@@ -81,7 +81,7 @@ public class UserController {
       
       System.out.println("[login() end...............]\n");
       
-      return "forward:/profile/mainProfile/login";
+      return "forward:/profile/mainProfile";
       
      
     }
@@ -125,7 +125,7 @@ public class UserController {
       
          model.addAttribute("user", user1);
     
-      return "forward:/getUser.jsp";
+      return "forward:/user/getUser.jsp";
     }
     
     @RequestMapping("updateUserView")
@@ -137,7 +137,7 @@ public class UserController {
 
       model.addAttribute("user", user1);
     
-      return "forward:/updateMyProfile.jsp";
+      return "forward:/user/updateMyProfile.jsp";
     }
     
     
@@ -154,7 +154,7 @@ public class UserController {
         session.setAttribute("user", user);
       } 
       
-      return "forward:/getUser.jsp";
+      return "forward:/user/getUser.jsp";
     }
     
     @RequestMapping("read")
@@ -222,9 +222,10 @@ public class UserController {
         List<Activity> activityList =userService.getActivity(userNo);
         
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
+        model.addAttribute("targetUser", user);
         model.addAttribute("activity", activityList);
         
-        return "forward:/MyActivity.jsp";
+        return "forward:/user/MyActivity.jsp";
       }
       
       @RequestMapping("setActivity")
@@ -232,5 +233,17 @@ public class UserController {
  
         return "";
       }
+      @RequestMapping("myTravel")
+      public String travelPage(HttpSession session, Model model)throws Exception{
+        
+        System.out.println("login 객체 가지고 가야지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        User user=(User)session.getAttribute("user");
+        //int userNo=user.getUserNo();
+        
+        model.addAttribute("targetUser", user);
+        
+        return "forward:/profile.jsp";
+      }
+      
 
 }
