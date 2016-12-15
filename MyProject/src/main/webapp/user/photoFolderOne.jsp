@@ -444,7 +444,6 @@
 
 	<script src="/html/dist/js/demo.js"></script>
 	<script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
-	<script src="/html/dist/js/index.js"></script>
 	<script src="/html/folder-input/folder-input.js"></script>
 
 <%
@@ -458,7 +457,6 @@ var folderName = new Array();
 <%System.out.print("등어오닝??");
 for(int i=0;i<folder.getPhotoTheme().size();i++){%> 
 
-}
  folderName[<%=i%>]="<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>";
  <%}%>
 
