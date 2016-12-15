@@ -84,10 +84,11 @@ public class UserServiceTest {
     
     String userId="krh2122@naver.com";
     User user=userService.getUser(userId);
+    System.out.println("뭐먹징");
     List<Activity> listActivity = userService.getActivity(user.getUserNo());
     System.out.println(listActivity);
   }
-  
+
   //@Test
   public void testGetAlram() throws Exception{
 	  	  

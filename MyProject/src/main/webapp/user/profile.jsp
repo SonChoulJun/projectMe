@@ -36,6 +36,21 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style type="text/css">
+
+    .profilephoto{
+        background-size: cover;
+
+    }
+
+    .profilephoto img{
+        
+        width:100%;
+        height:100%;
+        float: left;
+    }
+
+</style>
   
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -651,6 +666,8 @@ $("#getval").on('change', function(e){
 </script>
 
 <script src="/html/folder-input/folder-input.js"></script>
+<script src="/html/side_menu/side_search.js"></script>
+
 
 </body>
 </html>

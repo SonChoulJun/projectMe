@@ -1,7 +1,7 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="http://127.0.0.1:8080/profile/mainProfile" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -16,6 +16,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
+      <form action="#" method="get" class="sidebar-form" style="width: 30%; ">
+        <div class="input-group">
+          <!-- <input type="text" name="q" class="form-control" placeholder="Search..."> -->
+          <input type='text' class="form-control" id='txtFilter' onkeyup='{filter();return false}' onkeypress='javascript:if(event.keyCode==13){filter();return false;}'>
+            
+            
+              <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -224,11 +236,11 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
-                  ${user.userName}
+                           ${user.userName}
                   <small> ${user.joinDate}</small>
                 </p>
+                
               </li>
               <!-- Menu Body -->
               <!-- Menu Footer-->
@@ -238,7 +250,7 @@
                   <a href="/user/get?userId=${user.getUserId() }" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

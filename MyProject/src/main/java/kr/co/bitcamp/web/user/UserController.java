@@ -103,6 +103,21 @@ public class UserController {
 
     }
     
+    @RequestMapping("logout")
+    public String logoutUser(HttpSession session) throws Exception{
+      
+      
+        System.out.println("[로그아웃시작]");
+        
+        session.invalidate();
+        
+        System.out.println("[로그아웃 완료");
+        
+      
+      
+      return "forward:/index.jsp";
+    }
+    
     
     @RequestMapping("remove")
     public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
@@ -220,6 +235,7 @@ public class UserController {
         int userNo=user.getUserNo();
         
         List<Activity> activityList =userService.getActivity(userNo);
+       
         
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
         model.addAttribute("targetUser", user);
@@ -242,7 +258,15 @@ public class UserController {
         
         model.addAttribute("targetUser", user);
         
-        return "forward:/profile.jsp";
+        return "forward:/user/profile.jsp";
+      }
+      
+      @RequestMapping("removeActivity")
+      public String removeActivity(HttpSession session)throws Exception{
+        
+        session.getAttribute("user");
+        
+        return "";
       }
       
 

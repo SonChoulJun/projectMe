@@ -80,8 +80,16 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<Activity> getActivity(int userNo) throws Exception {
 		// TODO Auto-generated method stub
+	  List<Activity> activityList=sqlSession.selectList("ActivityMapper.getActivity", userNo);
+	 
+	  for(int i=0;i<activityList.size()-1;i++){
+  	  String[] dateArray=activityList.get(i).getActivityDate().split(" ");
+      activityList.get(i).setActivityDate(dateArray[0]);
+      activityList.get(i).setActivityTime(dateArray[1]);
+	  }
+    
 	  
-		return  sqlSession.selectList("ActivityMapper.getActivity", userNo);
+		return  activityList;
 	}
 
 

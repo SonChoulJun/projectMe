@@ -72,7 +72,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:/Users/jin/git-realproject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
