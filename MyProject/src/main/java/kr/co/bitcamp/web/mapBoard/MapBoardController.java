@@ -190,9 +190,20 @@ public class MapBoardController {
     public String getSubPhoto(String themeNo){
       return "";
     }
-    @RequestMapping("setLike") 
-    public String setLike(String photoFolderNo, String userId){
-      return "";
+    @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
+    public void jsonSetLike(@PathVariable int userNo,
+                                  @PathVariable int pfNo,
+                                     Model model) throws Exception{
+      
+      PhotoFolder pf=boardService.getPhotoFolder(pfNo);
+      boolean likeCode = boardService.setLike(pfNo, userNo);
+      
+      if(likeCode==true){
+        pf.setLikeCode(1);
+      }else{
+        pf.setLikeCode(0);
+      }
+      
     }
     @RequestMapping("setComment")
     public String setComment(Comment comment){

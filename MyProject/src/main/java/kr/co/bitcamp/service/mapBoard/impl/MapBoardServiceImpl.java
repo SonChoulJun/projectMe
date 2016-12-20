@@ -89,9 +89,16 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public boolean setLike(int photoFolderNo, int UserNo) throws Exception {
+    public boolean setLike(int photoFolderNo, int userNo) throws Exception {
         // TODO Auto-generated method stub
+      boolean boardlike=boardDao.setLike(photoFolderNo, userNo);
+      
+      if(boardlike==true){
+        return true;
+      }else{
         return false;
+      }
+      
     }
 
 

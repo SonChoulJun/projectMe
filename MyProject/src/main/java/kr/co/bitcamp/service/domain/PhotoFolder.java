@@ -10,6 +10,7 @@ public class PhotoFolder {
   private String text;
   private Date photoDate;
   private List<PhotoTheme> photoTheme;
+  private int likeCode;
   
   public PhotoFolder(){
     
@@ -56,11 +57,26 @@ public class PhotoFolder {
     this.photoTheme = photoTheme;
   }
 
+  public int getLikeCode() {
+    return likeCode;
+  }
+
+
+
+  public void setLikeCode(int likeCode) {
+    this.likeCode = likeCode;
+  }
+
+
+
   @Override
   public String toString() {
-    return "PhotoFolder [pfNo=" + pfNo + ", title=" + title + ", text=" + text + ", photoDate=" + photoDate
-        + ", photoTheme=" + photoTheme + "]";
-  }  
+    return "PhotoFolder [pfNo=" + pfNo + ", userNo=" + userNo + ", title=" + title + ", text=" + text + ", photoDate="
+        + photoDate + ", photoTheme=" + photoTheme + ", likeCode=" + likeCode + "]";
+  }
+
+
+
   
   
   

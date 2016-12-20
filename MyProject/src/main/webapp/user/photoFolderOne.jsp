@@ -102,7 +102,7 @@
 											<button type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-share"></i> Share
 											</button>
-											<button type="button" class="btn btn-default btn-xs">
+											<button id="likebtn" type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-thumbs-o-up"></i> Like
 											</button>
 											<span class="pull-right text-muted">127 likes - 3
@@ -542,7 +542,43 @@
 	<script
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap"
 		type="text/javascript"></script>
-
+		
+ <script type="text/javascript">
+       $(function(){
+    	   
+          
+       
+	    	   $("#likebtn").on("click",function(){
+	    		   var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+	               obj.userNo = ${user.userNo};
+	               obj.folderNo = ${photoFolderOne.pfNo};
+	                var json_data = JSON.stringify(obj);	   
+	    		   
+	    		   $.ajax({
+	                   
+		                   url: "/mapBoard/setLike/${user.userNo}/${photoFolderOne.pfNo}",
+		                   method :"POST",
+		                   data :json_data,
+		                   dataType : "json" ,
+		                   headers : {
+		                     "Accept" : "application/json",
+		                     "Content-Type" : "application/json"
+		                   },
+		                   success: function(result){
+			            	   if($(result).){
+				            	   $("#likebtn").css("background-color", "red");
+				            	   
+				               }
+			            	   
+		                   }
+		                   
+	    		    })
+	    		    
+	    		    
+	    	    })
+    	  
+       })
+ </script>
 
 
 

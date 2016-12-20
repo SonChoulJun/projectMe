@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 					
+
+
+
+<mapper namespace="LikeMapper">
+	
+
+	
+	<resultMap type="like" id="likeSelectMap">
+	<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+	<result property="pfNo" column="PF_NO" jdbcType="NUMERIC" />
+	<result property="likeCode" column="LIKE_CODE" jdbcType="NUMERIC" />
+	</resultMap>
+	
+	<insert id="addLike" parameterType="like">
+	   INSERT
+	   INTO BT_LIKE(USER_NO, PF_NO, LIKE_CODE)
+	   VALUES
+	   ()
+	</insert>
+  
+	
+	 <select id="getfolder" parameterType="int" resultMap="boardSelectMap">
+			select P.TITLE, P.PF_NO, P.FOLDER_DATE
+			from BT_PHOTO_FOLDER P, BT_USER U
+			WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
+			ORDER BY P.PF_NO
+    </select>
+    
+    <select id="getLikeCode" parameterType="photoFolder" resultMap="photoSelectMap">
+        select P.LIKE_CODE 
+        from BT_PHOTO_FOLDER P, BT_USER U
+        where P.USER_NO=#{userNo} AND P.USER_NO=U.USER_NO AND P.PF_NO= #{pfNo}
+    </select>
+    
+    <update id="updateLikeCode" parameterType="like" >
+        update 
+        <set>
+            
+        </set>
+	</update>    
+    
+
+
+</mapper>

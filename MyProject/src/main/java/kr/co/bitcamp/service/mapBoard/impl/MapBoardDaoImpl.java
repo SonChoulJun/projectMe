@@ -83,9 +83,19 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public boolean setLike(int photoFolderNo, int UserNo) throws Exception {
+    public boolean setLike(PhotoFolder photoFolder) throws Exception {
         // TODO Auto-generated method stub
+      int likecode=sqlSession.selectOne("LikeMapper.getLikeCode", photoFolder);
+      
+      if(likecode==0){
+        sqlSession.update("LikeMapper.updateLikeCode",1);
+        
+        return true;
+      }else{
+        sqlSession.update("LikeMapper.updateLikeCode",0);
+       
         return false;
+      }
     }
 
     @Override

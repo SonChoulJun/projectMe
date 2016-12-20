@@ -16,7 +16,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <form action="#" method="get" class="sidebar-form" style="width: 30%; ">
+      <form action="#" method="get" class="sidebar-form" style="width: 30%; margin-top:5px;">
         <div class="input-group">
           <!-- <input type="text" name="q" class="form-control" placeholder="Search..."> -->
           <input type='text' class="form-control" id='txtFilter' onkeyup='{filter();return false}' onkeypress='javascript:if(event.keyCode==13){filter();return false;}'>

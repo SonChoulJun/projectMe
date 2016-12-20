@@ -20,7 +20,7 @@ public interface MapBoardDao {
     
     public boolean addTheme(int photoFolderNo,List<Photo> photoList);
 
-    public boolean setLike(int photoFolderNo,int UserNo) throws Exception;
+    public boolean setLike(PhotoFolder photoFolder) throws Exception;
     
     public boolean setComment(Comment comment,int folderNo) throws Exception;
     
