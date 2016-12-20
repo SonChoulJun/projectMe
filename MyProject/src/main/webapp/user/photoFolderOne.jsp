@@ -140,7 +140,7 @@
 													src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
 												<!-- .img-push is used to add margin to elements next to floating images -->
 												<div class="img-push">
-                          <input type="hidden" value="${user.userNo}" name="userNo" >
+                          <input type="hidden" value="${myUser.userNo}" name="userNo" >
                           <input type="hidden" value="${photoFolderOne.pfNo}" name="folderNo" >
 													<input type="text" class="form-control input-sm"
 														placeholder="Press enter to post comment" name="text">
