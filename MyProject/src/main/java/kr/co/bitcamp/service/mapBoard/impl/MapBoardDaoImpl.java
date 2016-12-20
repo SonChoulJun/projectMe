@@ -53,9 +53,14 @@ public class MapBoardDaoImpl implements MapBoardDao {
     @Override
     public boolean updateComment(Comment comment) throws Exception {
         // TODO Auto-generated method stub
-        return false;
-    }
-    
+    	int updateOk = sqlSession.update("BoardMapper.updateComment", comment);
+    	if(updateOk==0){
+            return true;
+        }else{
+            return false;
+        }
+      }
+
     
 
 
@@ -99,22 +104,34 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public boolean setComment(Comment comment, int folderNo) throws Exception {
+    public boolean setComment(Comment comment) throws Exception {
         // TODO Auto-generated method stub
-        return false;
-    }
+    	int ok = sqlSession.insert("BoardMapper.setComment", comment);
+    	if(ok==1){
+          return true;
+      }else
+      {
+          return false;
+      }
+  }
 
     @Override
     public List<Comment> getComment(int folderNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return sqlSession.selectList("BoardMapper.getComment", folderNo);
     }
 
     @Override
     public boolean removeComment(int commentNum) throws Exception {
         // TODO Auto-generated method stub
-        return false;
-    }
+    	int count = sqlSession.delete("BoardMapper.removeComment", commentNum);
+    	// 1개의삭제가 되었다는 가정
+        if (count == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
 
     @Override
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {

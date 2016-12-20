@@ -22,13 +22,13 @@ public interface MapBoardDao {
 
     public boolean setLike(PhotoFolder photoFolder) throws Exception;
     
-    public boolean setComment(Comment comment,int folderNo) throws Exception;
+    public boolean setComment(Comment comment) throws Exception;
     
     public List<Comment> getComment(int folderNo) throws Exception;
     
     public boolean updateComment(Comment comment) throws Exception;
     
-    public boolean removeComment(int commentNum) throws Exception;
+    public boolean removeComment(int commentNo) throws Exception;
     
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     

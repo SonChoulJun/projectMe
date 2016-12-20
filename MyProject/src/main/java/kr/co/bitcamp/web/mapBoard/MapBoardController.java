@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.sanselan.ImageReadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +28,7 @@ import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
+import kr.co.bitcamp.service.user.UserService;
 
 @Controller
 @RequestMapping("/mapBoard/*")
@@ -36,6 +37,7 @@ public class MapBoardController {
     @Autowired
     @Qualifier("mapBoardServiceImpl")
     private MapBoardService boardService;
+    private UserService userService;
 
     public MapBoardController() {
         super();
@@ -49,7 +51,7 @@ public class MapBoardController {
     
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
-      int userNo = ((User)session.getAttribute("user")).getUserNo();
+      int userNo = ((User)session.getAttribute("myUser")).getUserNo();
       photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
@@ -142,7 +144,10 @@ public class MapBoardController {
     public String getPhotoFolder(@PathVariable int folderNum, Model model){ 
         try {
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            List<Comment> comment = boardService.getComment(folderNum);
+            System.out.println(comment);
             model.addAttribute("photoFolderOne", photoFolderOne);
+            model.addAttribute("commentList", comment);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -156,8 +161,11 @@ public class MapBoardController {
         try {
             System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            List<Comment> comment = boardService.getComment(folderNum);
             model.addAttribute("photoFolderOne", photoFolderOne);
             System.out.println("getPhotoFolder"+photoFolderOne);
+            model.addAttribute("commentList", comment);
+            System.out.println(comment);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -168,7 +176,7 @@ public class MapBoardController {
     
     @RequestMapping( value="getSideBar", method=RequestMethod.GET )
 	public String getSideBar( HttpSession session, Model model ) throws Exception {
-    	User user =(User)session.getAttribute("user");
+    	User user =(User)session.getAttribute("myUser");
     	int userNo = user.getUserNo();
     	System.out.println("폴더 불러 오구연!!!!!!!!!!!!!!!!!!!");
 		//Business Logic
@@ -190,6 +198,7 @@ public class MapBoardController {
     public String getSubPhoto(String themeNo){
       return "";
     }
+
     @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
     public void jsonSetLike(@PathVariable int userNo,
                                   @PathVariable int pfNo,
@@ -203,24 +212,67 @@ public class MapBoardController {
       }else{
         pf.setLikeCode(0);
       }
+    }
       
-    }
+
+
     @RequestMapping("setComment")
-    public String setComment(Comment comment){
-      return "";
-    }
+    public String setComment( @ModelAttribute("comment") Comment comment , Model model , HttpSession session) throws Exception{      
+		System.out.println("/domain/Comment");
+		System.out.println(comment);
+		boolean ok = boardService.setComment(comment);
+		if(ok){
+          model.addAttribute("setCommentOk","ok");
+		}else{
+          model.addAttribute("setCommentOk","no");
+		}
+		return "forward:/mapBoard/getPhotoFolder?folderNum="+comment.getFolderNo();
+    	}
+
     @RequestMapping("updateComment")
-    public String updateComment(Comment comment){
-      return "";
+    public String updateComment(@ModelAttribute("comment")Comment comment,Model model){
+    	
+        System.out.println(comment+"sssss");
+        try {
+            boolean ok =boardService.updateComment(comment);
+            if(ok)
+                model.addAttribute("updateOk", "ok");
+            else
+                model.addAttribute("updateOk", "no");
+            return "";
+            
+          } catch (Exception e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+              return "";
+          }
+          
+          
+        }
+    @RequestMapping( value="getComment")
+  	public String getComment( @RequestParam("folderNo")int userNo ,String userId, String folderNo, Model model ) throws Exception {
+    	
+    	System.out.println("getComment받아와랏!!!!!!!!!!!!!");
+  		//Business Logic
+    	User user = userService.getUser(userId);
+    	List<Comment> comment = boardService.getComment(userNo);
+  		// Model 과 View 연결
+    	model.addAttribute("user", user);
+  		model.addAttribute("comment", comment);
+    	
+    	return "";
     }
-    @RequestMapping("getComment")
-    public String getComment(String folderNo){
-      return "";
-    }
+
     @RequestMapping("removeComment")
-    public String removeComment(String commentNum){
-      return "";
+    public String removeComment(@RequestParam("commentNo") int commentNo, HttpSession session) throws Exception{
+        System.out.println("\n:: ==> remove() start.....");
+        
+        User user = (User)session.getAttribute("myUser");
+        user.setUserId(user.getUserId());
+        boardService.removeComment(commentNo);
+        return "";
     }
+    
     @RequestMapping("getNewsFeed")
     public String getNewsFeed(String userId){
       return "";

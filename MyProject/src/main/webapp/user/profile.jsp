@@ -666,6 +666,42 @@ $("#getval").on('change', function(e){
 </script>
 
 <script src="/html/folder-input/folder-input.js"></script>
+<script src="/html/side_menu/side_search.js"></script>
+<script type="text/javascript">
+$(function() {
+    $("#follwerBt").on("click",function() {
+        //Debug..
+        alert(  "팔로워" );
+        
+        $.ajax( 
+            {
+              url : "/user/addFollower?followNo=${targetUser.userNo}&userNo=${myUser.userNo}",
+               method :"POST",
+              dataType : "json" ,
+              headers : {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+              },
+              success : function(JSONData , status) {
+            	  if(JSONData.followOk=="insert"){
+            		  $("#FollowerCount").text(JSONData.followCount);
+            		  $("#follwerBt").text("팔로워해제");
+            	  }else{
+            		  $("#FollowerCount").text(JSONData.followCount);
+            		  $("#follwerBt").text("팔로워");
+            	  }
+              }
+          });
+        
+          ////////////////////////////////////////////////////////////////////////////////////////////
+        
+    });
+    
+    
+    
+  }); 
+</script>
+
 
 </body>
 </html>

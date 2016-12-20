@@ -15,19 +15,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
-      <form action="#" method="get" class="sidebar-form" style="width: 30%; margin-top:5px;">
-        <div class="input-group">
-          <!-- <input type="text" name="q" class="form-control" placeholder="Search..."> -->
-          <input type='text' class="form-control" id='txtFilter' onkeyup='{filter();return false}' onkeypress='javascript:if(event.keyCode==13){filter();return false;}'>
-            
-            
-              <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
+
+
+        
+
+      <div class="navbar-custom-menu">
+         <form action="/profile/search" method="post">
+          <input type="text" name="searchText" class="form-control" placeholder="Search..."   name="text">
+        </form>
+      </div>
+<!--        -->
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -36,7 +35,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <c:if test="user.alramCount!=0">
-                <span class="label label-success">${user.alramCount}</span>
+                <span class="label label-success">${myUser.alramCount}</span>
               </c:if>
             </a>
             <ul class="dropdown-menu">
@@ -230,15 +229,15 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/html/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">${user.userId}</span>
+              <span class="hidden-xs">${myUser.userId}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                           ${user.userName}
-                  <small> ${user.joinDate}</small>
+                           ${myUser.userName}
+                  <small> ${myUser.joinDate}</small>
                 </p>
                 
               </li>
@@ -247,7 +246,7 @@
               <li class="user-footer">
                 <div class="pull-left">
                 
-                  <a href="/user/get?userId=${user.getUserId() }" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/user/get?userId=${myUser.getUserId() }" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -256,9 +255,6 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
         </ul>
       </div>
     </nav>

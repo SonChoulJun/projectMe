@@ -16,8 +16,9 @@
 
 	</resultMap>
 
-	
+	 
 	  <select id="getActivity" parameterType="int" resultMap="activitySelectMap">
+
         select 
         ACTIVITY_NO, USER_NO, TEXT, TO_CHAR(ACTIVITY_DATE, 'yyyy/mm/dd hh24:mi:ss') as ACTIVITY_DATE
         from bt_activity 

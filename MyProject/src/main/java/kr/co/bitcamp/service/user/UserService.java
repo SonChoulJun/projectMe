@@ -20,11 +20,13 @@ public interface UserService {
 
 	public List<User> getFollow(int userNo) throws Exception ;
 	
-	public boolean removeFollower(int userNo, int followNo) throws Exception ;
+	public boolean followOk(int userNo, int followNo) throws Exception ;
+	
+	public void removeFollower(int userNo, int followNo) throws Exception ;
 	
 	public boolean removeFollowing(int userNo, int followingNo) throws Exception ;
 	
-	public boolean addFollow(int userNo, int followNo) throws Exception ;
+	public void addFollow(int userNo, int followNo) throws Exception ;
 	
 	public List<Alram> getAlram(int userNo) throws Exception ;
 	
@@ -35,6 +37,8 @@ public interface UserService {
   public int getFollwerCount(int userNo) throws Exception;
 	  
   public int getFollwingCount(int userNo) throws Exception;
+  
+  public List<User> searchUser(String userId) throws Exception;
 	
 //	public boolean pwCheak(User user) throws Exception ;
 }

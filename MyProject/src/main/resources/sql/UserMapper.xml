@@ -22,8 +22,6 @@
 	</resultMap>
 	
 	
-	
-	
 	<select id="getAlram"     parameterType="int"  resultType="alram">
         
 		select A.ALRAM_NO as alramNo, A.SEND_ID as sendId, A.TEXT as text, A.ALTAM_DATE as alarmDate
@@ -38,6 +36,14 @@
         *
         FROM BT_USER
         WHERE USERID=#{userId} AND password=#{password}
+     </select>
+     
+     
+       <select id="searchUser"     parameterType="string" resultMap="userSelectMap" >
+        SELECT
+        *
+        FROM BT_USER
+        WHERE USER_NM LIKE #{value}
      </select>
 	
 
@@ -73,6 +79,20 @@
           '0',
           0)
   </insert> 
+  
+  
+  <insert id="addFollowing" parameterType="map" >
+    insert into BT_FOLLOWER(FOLLOWER_NO, FOLLOWER_USER_NO, FOLLOWING_USER_NO) 
+    VALUES(SEQ_BT_FOLLOWER_NO.nextval,#{myId},#{follwerId})
+  </insert>
+  
+  <delete id="removeFollower" parameterType="map">
+    delete from BT_FOLLOWER WHERE FOLLOWER_USER_NO=#{myId} AND FOLLOWING_USER_NO=#{follwerId} 
+  </delete> 
+  
+  <select id="getOneFollwer" parameterType="map" resultType="string">
+    select FOLLOWER_USER_NO from BT_FOLLOWER WHERE FOLLOWER_USER_NO=#{myId} AND FOLLOWING_USER_NO=#{follwerId}
+  </select> 
   
   <update id="updateUser" parameterType="user">
         UPDATE bt_user 

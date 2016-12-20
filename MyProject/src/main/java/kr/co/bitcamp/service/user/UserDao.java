@@ -20,11 +20,13 @@ public interface UserDao {
 
 	public List<User> getFollow(int userNo) throws Exception ;
 	
-	public boolean removeFollower(int userNo, int followNo) throws Exception ;
+	public void removeFollower(int userNo, int followNo) throws Exception ;
 	
 	public boolean removeFollowing(int userNo, int followingNo) throws Exception ;
 	
-	public boolean addFollow(int userNo, int followNo) throws Exception ;
+	public void addFollow(int userNo, int followNo) throws Exception ;
+	
+	public boolean FollowOk(int userNo, int followNo) throws Exception ;
 	
 	public List<Alram> getAlram(int userNo) throws Exception ;
 	
@@ -37,6 +39,8 @@ public interface UserDao {
 	public int getFollwerCount(int userNo) throws Exception;
 	
 	public int getFollwingCount(int userNo) throws Exception;
+	
+	public List<User> searchUser(String userId) throws Exception;
 }
 
 

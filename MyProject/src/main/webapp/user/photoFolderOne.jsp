@@ -57,9 +57,9 @@
 		<div class="content-wrapper">
 			<section class="content">
 
-			<div class="row">
+			<div class="row" style="margin:0 auto;">
 
-				<div class="col-md-9" style="width:50%;">
+				<div class="col-md-9" style="width:100%;margin:0 auto;">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
@@ -102,7 +102,10 @@
 											<button type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-share"></i> Share
 											</button>
-											<button id="likebtn" type="button" class="btn btn-default btn-xs">
+
+
+											<button id="likeBt" type="button" class="btn btn-default btn-xs">
+
 												<i class="fa fa-thumbs-o-up"></i> Like
 											</button>
 											<span class="pull-right text-muted">127 likes - 3
@@ -110,46 +113,38 @@
 										</div>
 										<!-- /.box-body -->
 										<div class="box-footer box-comments">
-											<div class="box-comment">
-												<!-- User image -->
-												<img class="img-circle img-sm"
-													src="/html/dist/img/user3-128x128.jpg" alt="User Image">
-
-												<div class="comment-text">
-													<span class="username"> A녀 <span
-														class="text-muted pull-right">8:03 PM Today</span>
-													</span>
-													<!-- /.username -->
-													어머 철준이 잘지내고 있는거야???????
+										  <c:forEach var="commentList" items="${commentList}">
+												<div class="box-comment">
+													<!-- User image -->
+													<img class="img-circle img-sm"
+														src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+	
+													<div class="comment-text">
+														<span class="username"> ${commentList.userId}<span  
+															class="text-muted pull-right">${commentList.date}</span>
+														</span>
+														<!-- /.username -->
+														${commentList.text}
+													</div>
+													<!-- /.comment-text -->
 												</div>
-												<!-- /.comment-text -->
-											</div>
+											</c:forEach>
 											<!-- /.box-comment -->
-											<div class="box-comment">
-												<!-- User image -->
-												<img class="img-circle img-sm"
-													src="/html/dist/img/user4-128x128.jpg" alt="User Image">
 
-												<div class="comment-text">
-													<span class="username"> B녀 <span
-														class="text-muted pull-right">8:03 PM Today</span>
-													</span>
-													<!-- /.username -->
-													ㅁㄴㄹㄴㅇㄹ ㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅁㅇㄹㄴㅁㅇ
-												</div>
-												<!-- /.comment-text -->
-											</div>
 											<!-- /.box-comment -->
 										</div>
 										<!-- /.box-footer -->
 										<div class="box-footer">
-											<form action="#" method="post">
+											<form action="/mapBoard/setComment" method="post">
 												<img class="img-responsive img-circle img-sm"
 													src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
 												<!-- .img-push is used to add margin to elements next to floating images -->
 												<div class="img-push">
+                          <input type="hidden" value="${user.userNo}" name="userNo" >
+                          <input type="hidden" value="${photoFolderOne.pfNo}" name="folderNo" >
 													<input type="text" class="form-control input-sm"
-														placeholder="Press enter to post comment">
+														placeholder="Press enter to post comment" name="text">
+													 <button type="submit" class="btn bg-olive margin">commit</button>
 												</div>
 											</form>
 										</div>
@@ -444,26 +439,52 @@
 
 	<script src="/html/dist/js/demo.js"></script>
 	<script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
-	<script src="/html/dist/js/index.js"></script>
 	<script src="/html/folder-input/folder-input.js"></script>
 
-	<%
-	  PhotoFolder folder = (PhotoFolder) request.getAttribute("photoFolderOne");
-	%>
-	<script type="text/javascript">
+<%
+  PhotoFolder folder = (PhotoFolder)request.getAttribute("photoFolderOne");
+%>
+<%int z =-1;   
+ double latDefault=37.56347;
+ double lngDefault=126.990347; %>
+<script type="text/javascript">
+var folderName = new Array();
+<%System.out.print("등어오닝??");
+for(int i=0;i<folder.getPhotoTheme().size();i++){%> 
+
+ folderName[<%=i%>]="<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>";
+ <%}%>
+
   function initMap() {
+	
   var locations = [
                    
-                   <%for (int i = 0; i < folder.getPhotoTheme().size(); i++) {%>
-                    {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
-                   <%}%>
+                   <%for(int i=0;i<folder.getPhotoTheme().size();i++){
+                    if(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()!=null){
+                   %>
+                      {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
+                   <%}else{%>
+                    
+                      {lat: <%=latDefault%>, lng:<%=lngDefault%>},
+                    <% 
+                      lngDefault+=0.01; 
+                    }
+                   }
+                   %>
                  ];
   
 
 
                  var map = new google.maps.Map(document.getElementById('map'), {
                    zoom: 10,
-                   center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+                   <%
+                    if(folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()==null){
+                   %>
+                    center: new google.maps.LatLng(37.56347,126.990347),
+                   <%}else{%>
+                    center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+                   <%}%>
+                    
                    mapTypeId: google.maps.MapTypeId.ROADMAP
                  });
                 
@@ -495,15 +516,15 @@
                      anchor: new google.maps.Point(0, 32),
                      scaledSize: new google.maps.Size(50, 50)
                  } */
-                    
                  for (i = 0; i < locations.length; i++) {
-                	 <%int i = -1;
-			i++;%>
+                	 
                    marker = new google.maps.Marker({
                      position: locations[i],
                      map: map,
+                     draggable: true,
+                     animation: google.maps.Animation.DROP,
                      icon: image= {
-                             url: '/html/assets/img/uploadedPhoto/<%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getFolderName()%>',
+                             url: '/html/assets/img/uploadedPhoto/'+folderName[i],
                              //size: new google.maps.Size(100, 100),
                              origin: new google.maps.Point(0, 0),
                              anchor: new google.maps.Point(0, 32),
@@ -512,21 +533,32 @@
                    });
                    
                    
-                   
 
                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
                      return function() {
                        //infowindow.setContent(locations[i][1]);
                        //infowindow.open(map, marker);
-                       //marker.map.setZoom(13); 
+                       //marker.map.setZoom(13)
                        window.open("http://www.naver.com", "네이버새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
                       
                      }
                      
                    })(marker, i));
                  }
+                
+
+                
+                 
+
                  
   }
+  function toggleBounce() {
+	  if (marker.getAnimation() !== null) {
+	    marker.setAnimation(null);
+	  } else {
+	    marker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
+	}
   
   function animateCircle(line) {
       var count = 0;
@@ -538,6 +570,11 @@
         line.set('icons', icons);
     }, 20);
   }
+  
+  
+  $(function(){
+	  $("#likeBt").css("color","red");
+  });
   </script>
 	<script
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap"
@@ -548,7 +585,7 @@
     	   
           
        
-	    	   $("#likebtn").on("click",function(){
+	    	   $("#likeBt").on("click",function(){
 	    		   var obj = new Object(); // JSON형식으로 변환 할 오브젝트
 	               obj.userNo = ${user.userNo};
 	               obj.folderNo = ${photoFolderOne.pfNo};
@@ -566,7 +603,7 @@
 		                   },
 		                   success: function(result){
 			            	   if($(result).){
-				            	   $("#likebtn").css("background-color", "red");
+				            	   $("#likeBt").css("background-color", "red");
 				            	   
 				               }
 			            	   

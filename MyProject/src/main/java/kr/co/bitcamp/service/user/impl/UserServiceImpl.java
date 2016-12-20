@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	public boolean addUser(User user) throws Exception {
 	  boolean ok =userDAO.addUser(user);
 	  if(ok){
-	      return true; 
+	      return true;
 	  }else{
 	      return false;
 	  }
@@ -129,9 +129,9 @@ public class UserServiceImpl implements UserService {
 		
 	}
     @Override
-    public boolean removeFollower(int UserNo, int followNo) throws Exception {
+    public void removeFollower(int userNo, int followNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+        userDAO.removeFollower(userNo, followNo);
     }
 
 
@@ -144,9 +144,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean addFollow(int UserNo, int followNo) throws Exception {
-        // TODO Auto-generated method stub
-        return false;
+    public void addFollow(int UserNo, int followNo) throws Exception {
+        userDAO.addFollow(UserNo, followNo);
+
     }
 
 
@@ -156,6 +156,20 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getAlram(userNo);
 	}
 
+
+    @Override
+    public List<User> searchUser(String userId) throws Exception {
+        // TODO Auto-generated method stub
+        return userDAO.searchUser(userId);
+    }
+
+
+    @Override
+    public boolean followOk(int userNo, int followNo) throws Exception {
+       return userDAO.FollowOk(userNo, followNo);
+    }
+
+    
 
 
 
