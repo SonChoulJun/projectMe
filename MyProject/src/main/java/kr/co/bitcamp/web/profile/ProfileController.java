@@ -55,15 +55,37 @@ public class ProfileController {
 
     @RequestMapping("mainProfile")
     public String mainProfile(HttpSession session, Model model) throws Exception{
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("myUser");
         int userNo =user.getUserNo();
         System.out.println(user);
        
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
-        model.addAttribute("user", user);
         try{
+            session.setAttribute("folderList", photoFolder);
+            session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
+            session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
+        }catch (Exception e) {
+            e.getMessage();
+        }
+
+            return "forward:/user/profile.jsp";
+    }
+    
+    
+    @RequestMapping("subProfile")
+    public String subProfile(@RequestParam("userId") String userId,HttpSession session, Model model) throws Exception{
+        User myUser = (User)session.getAttribute("myUser");
+        User user = userService.getUser(userId);
+        System.out.println(user);
+        int userNo =user.getUserNo();
+       
+        session.setAttribute("targetUser",user);
+        List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
+        System.out.println("asdasdsasad"+photoFolder);
+        try{
+            session.setAttribute("followerOk",userService.followOk(myUser.getUserNo(), userNo) );
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
             session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
@@ -125,13 +147,21 @@ public class ProfileController {
     
     @RequestMapping("photoPage/{folderNo}")
     public String photoPage(@PathVariable String folderNo,HttpSession session, Model model) throws Exception{
-        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("myUser");
         int userNo =user.getUserNo();
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         session.setAttribute("folderList", photoFolder);
         System.out.println(folderNo);
         model.addAttribute("folderNo",folderNo);
         return "forward:/photo/mainUpload.jsp";
+    }
+    
+    
+    @RequestMapping("search")
+    public String search(@RequestParam("searchText") String searchTest,Model model) throws Exception{
+        List<User> userList =userService.searchUser(searchTest);
+        model.addAttribute("listUser",userList);
+        return "forward:/user/searchList.jsp";
     }
     
 

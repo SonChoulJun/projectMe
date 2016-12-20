@@ -57,9 +57,9 @@
 		<div class="content-wrapper">
 			<section class="content">
 
-			<div class="row">
+			<div class="row" style="margin:0 auto;">
 
-				<div class="col-md-9" style="width:50%;">
+				<div class="col-md-9" style="width:100%;margin:0 auto;">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
@@ -102,7 +102,7 @@
 											<button type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-share"></i> Share
 											</button>
-											<button type="button" class="btn btn-default btn-xs">
+											<button id="likeBt" type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-thumbs-o-up"></i> Like
 											</button>
 											<span class="pull-right text-muted">127 likes - 3
@@ -110,46 +110,38 @@
 										</div>
 										<!-- /.box-body -->
 										<div class="box-footer box-comments">
-											<div class="box-comment">
-												<!-- User image -->
-												<img class="img-circle img-sm"
-													src="/html/dist/img/user3-128x128.jpg" alt="User Image">
-
-												<div class="comment-text">
-													<span class="username"> A녀 <span
-														class="text-muted pull-right">8:03 PM Today</span>
-													</span>
-													<!-- /.username -->
-													어머 철준이 잘지내고 있는거야???????
+										  <c:forEach var="commentList" items="${commentList}">
+												<div class="box-comment">
+													<!-- User image -->
+													<img class="img-circle img-sm"
+														src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+	
+													<div class="comment-text">
+														<span class="username"> ${commentList.userId}<span  
+															class="text-muted pull-right">${commentList.date}</span>
+														</span>
+														<!-- /.username -->
+														${commentList.text}
+													</div>
+													<!-- /.comment-text -->
 												</div>
-												<!-- /.comment-text -->
-											</div>
+											</c:forEach>
 											<!-- /.box-comment -->
-											<div class="box-comment">
-												<!-- User image -->
-												<img class="img-circle img-sm"
-													src="/html/dist/img/user4-128x128.jpg" alt="User Image">
 
-												<div class="comment-text">
-													<span class="username"> B녀 <span
-														class="text-muted pull-right">8:03 PM Today</span>
-													</span>
-													<!-- /.username -->
-													ㅁㄴㄹㄴㅇㄹ ㄴㅇㄻㄴㅇㄻㄴㅇㄹㄴㅁㅇㄹㄴㅁㅇ
-												</div>
-												<!-- /.comment-text -->
-											</div>
 											<!-- /.box-comment -->
 										</div>
 										<!-- /.box-footer -->
 										<div class="box-footer">
-											<form action="#" method="post">
+											<form action="/mapBoard/setComment" method="post">
 												<img class="img-responsive img-circle img-sm"
 													src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
 												<!-- .img-push is used to add margin to elements next to floating images -->
 												<div class="img-push">
+                          <input type="hidden" value="${user.userNo}" name="userNo" >
+                          <input type="hidden" value="${photoFolderOne.pfNo}" name="folderNo" >
 													<input type="text" class="form-control input-sm"
-														placeholder="Press enter to post comment">
+														placeholder="Press enter to post comment" name="text">
+													 <button type="submit" class="btn bg-olive margin">commit</button>
 												</div>
 											</form>
 										</div>
@@ -576,6 +568,10 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
     }, 20);
   }
   
+  
+  $(function(){
+	  $("#likeBt").css("color","red");
+  });
   </script>
 	<script
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap"

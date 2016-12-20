@@ -9,6 +9,7 @@ public class Comment {
 	private String text;
 	private Date date;
 	private String userId;
+	private int userNo;
 
 	public Comment() {
 
@@ -46,17 +47,34 @@ public class Comment {
 		this.date = date;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 
-	@Override
-	public String toString() {
-		return "Comment [commentNo=" + commentNo + ", text=" + text + ", date=" + date + ", userId=" + userId + "]";
-	}
+    public int getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
+    }
+
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment [commentNo=" + commentNo + ", folderNo=" + folderNo + ", text=" + text + ", date=" + date
+                + ", userId=" + userId + ", userNo=" + userNo + "]";
+    }
+    
+    
+    
+
 
 }

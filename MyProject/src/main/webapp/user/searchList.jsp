@@ -47,26 +47,57 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <section class="content">
 
-      <div class="row">
-			  <!--Pattern HTML-->
-			  <div id="pattern" class="pattern">
-			    <ul class="list img-list">
-			      <li>
-			        <a href="#" class="inner">
-			          <div class="li-img">
-			            <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
-			          </div>
-			          <div class="li-text">
-			            <h4 class="li-head">손철준</h4>
-			            <p class="li-sub">Summary of content</p>
-			            <div class="bt_w">
-			             <button class="btn bg-orange margin">팔로워</button>
-			            </div>
-			          </div>
-			        </a>
-			      </li>
+    <section class="content">
+      <div><p>회원검색</p></div>
+	      <div class="row">
+				  <!--Pattern HTML-->
+				 <div id="pattern" class="pattern">
+          <ul class="list img-list">
+          <c:if test="${!listUser.isEmpty()}">
+				   <c:forEach var="user" items="${listUser}">
+					      <li>
+					        <a href="/profile/subProfile?userId=${user.userId}" class="inner">
+					          <div class="li-img">
+					            <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
+					          </div>
+					          <div class="li-text">
+					            <h4 class="li-head">${user.userName}</h4>
+					            <p class="li-sub">${user.joinDate}</p>
+					          </div>
+					        </a>
+					      </li>
+					   </c:forEach>
+					 </c:if>
+					 <c:if test="${listUser.isEmpty()}">
+			        <p>검색결과없음</p>
+			      </c:if>
+				  </ul>
+		     </div>
+	     </div>
+
+    </section>
+    
+    <section class="content">
+      <div><p>게시물 검색</p></div>
+            <div class="row">
+        <!--Pattern HTML-->
+        <div id="pattern" class="pattern">
+          <ul class="list img-list">
+            <li>
+              <a href="#" class="inner">
+                <div class="li-img">
+                  <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
+                </div>
+                <div class="li-text">
+                  <h4 class="li-head">손철준</h4>
+                  <p class="li-sub">Summary of content</p>
+                  <div class="bt_w">
+                   <button class="btn bg-orange margin">팔로워</button>
+                  </div>
+                </div>
+              </a>
+            </li>
             <li>
               <a href="#" class="inner">
                 <div class="li-img">
@@ -80,7 +111,7 @@
                   </div>
                 </div>
               </a>
-            </li>			      
+            </li>           
             <li>
               <a href="#" class="inner">
                 <div class="li-img">
@@ -108,20 +139,6 @@
                   </div>
                 </div>
               </a>
-            </li>	
-            <li>
-              <a href="#" class="inner">
-                <div class="li-img">
-                  <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
-                </div>
-                <div class="li-text">
-                  <h4 class="li-head">Title of Content</h4>
-                  <p class="li-sub">Summary of content</p>
-                  <div class="bt_w">
-                   <button class="btn bg-orange margin">팔로워</button>
-                  </div>
-                </div>
-              </a>
             </li> 
             <li>
               <a href="#" class="inner">
@@ -150,10 +167,24 @@
                   </div>
                 </div>
               </a>
-            </li> 		         
-			    </ul>
-			  </div>
-			  <!--End Pattern HTML-->
+            </li> 
+            <li>
+              <a href="#" class="inner">
+                <div class="li-img">
+                  <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
+                </div>
+                <div class="li-text">
+                  <h4 class="li-head">Title of Content</h4>
+                  <p class="li-sub">Summary of content</p>
+                  <div class="bt_w">
+                   <button class="btn bg-orange margin">팔로워</button>
+                  </div>
+                </div>
+              </a>
+            </li>              
+          </ul>
+        </div>
+        <!--End Pattern HTML-->
       </div>
     </section>
   </div>

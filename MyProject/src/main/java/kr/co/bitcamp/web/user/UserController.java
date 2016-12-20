@@ -76,8 +76,7 @@ public class UserController {
       
       User user01=userService.login(user);
       user01.setActivity(true);
-    
-      session.setAttribute("user", user01);
+      session.setAttribute("myUser", user01);
       
       System.out.println("[login() end...............]\n");
       
@@ -123,7 +122,7 @@ public class UserController {
     public String removeUser(@RequestParam("password") String pw, HttpSession session) throws Exception{
       System.out.println("\n:: ==> remove() start.....");
      
-      User user = (User)session.getAttribute("sessionUser");
+      User user = (User)session.getAttribute("myUser");
       user.setUserId(user.getUserId());
       user.setPassword(pw);
       userService.removeUser(user);
@@ -132,7 +131,7 @@ public class UserController {
     
     @RequestMapping("get")
     public String getUser(HttpSession session , Model model ) throws Exception{
-      User user =(User)session.getAttribute("user");
+      User user =(User)session.getAttribute("myUser");
       System.out.println("/getUser()  개인정보 불러와!!" );
   
       User user1 = userService.getUser(user.getUserId().trim());
@@ -145,7 +144,7 @@ public class UserController {
     
     @RequestMapping("updateUserView")
     public String updateUserView(HttpSession session , Model model ) throws Exception{
-      User user =(User)session.getAttribute("user");
+      User user =(User)session.getAttribute("myUser");
       System.out.println("/updateUserView 수정창  불러와!!" );
 
       User user1 = userService.getUser(user.getUserId().trim());
@@ -164,9 +163,9 @@ public class UserController {
       System.out.println("/updateUser 업데이트 된 개인정보 불러와!!!!!!!!!!!" );
       userService.updateUser(user);
       
-      String sessionId=((User)session.getAttribute("user")).getUserId();
+      String sessionId=((User)session.getAttribute("myUser")).getUserId();
       if(sessionId.equals(user.getUserId())){
-        session.setAttribute("user", user);
+        session.setAttribute("myUser", user);
       } 
       
       return "forward:/user/getUser.jsp";
@@ -208,9 +207,16 @@ public class UserController {
     }
     
     @RequestMapping("addFollower")
-      public String addFollow(String follerId){
-        
-        return "";
+      public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model) throws Exception{
+        if(userService.followOk(userNo, followNo)){
+            userService.addFollow(userNo, followNo);
+            model.addAttribute("followOk","insert");
+            model.addAttribute("followCount",userService.getFollwerCount(followNo));
+        }else{
+            userService.removeFollower(userNo, followNo);
+            model.addAttribute("followOk","remove");
+            model.addAttribute("followCount",userService.getFollwerCount(followNo));
+        }
       }
       
     @RequestMapping( value="getAlram")
@@ -231,7 +237,7 @@ public class UserController {
       public String getActivity(HttpSession session , Model model )throws Exception{
        
         System.out.println("하하하하하하하하하핫");
-        User user=(User)session.getAttribute("user");
+        User user=(User)session.getAttribute("myUser");
         int userNo=user.getUserNo();
         
         List<Activity> activityList =userService.getActivity(userNo);
@@ -253,7 +259,7 @@ public class UserController {
       public String travelPage(HttpSession session, Model model)throws Exception{
         
         System.out.println("login 객체 가지고 가야지!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        User user=(User)session.getAttribute("user");
+        User user=(User)session.getAttribute("myUser");
         //int userNo=user.getUserNo();
         
         model.addAttribute("targetUser", user);
@@ -264,10 +270,12 @@ public class UserController {
       @RequestMapping("removeActivity")
       public String removeActivity(HttpSession session)throws Exception{
         
-        session.getAttribute("user");
+        session.getAttribute("myUser");
         
         return "";
       }
+      
+     
       
 
 }

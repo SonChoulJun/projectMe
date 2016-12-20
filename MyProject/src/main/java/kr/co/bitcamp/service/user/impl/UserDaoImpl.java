@@ -1,6 +1,8 @@
 package kr.co.bitcamp.service.user.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,9 +128,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean removeFollower(int UserNo, int followNo) throws Exception {
+    public void removeFollower(int UserNo, int followNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+        Map map = new HashMap();
+        map.put( "myId", UserNo );
+        map.put( "follwerId", followNo );
+        sqlSession.delete("UserMapper.removeFollower",map);
     }
 
     @Override
@@ -138,15 +143,41 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean addFollow(int UserNo, int followNo) throws Exception {
+    public void addFollow(int UserNo, int followNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+        Map map = new HashMap();
+        map.put( "myId", UserNo );
+        map.put( "follwerId", followNo );
+        System.out.println(map);
+        sqlSession.insert("UserMapper.addFollowing",map);
     }
 
     @Override
     public List<Alram> getAlram(int UserNo) throws Exception {
         // TODO Auto-generated method stub
         return sqlSession.selectList("UserMapper.getAlram", UserNo);
+    }
+
+    @Override
+    public List<User> searchUser(String userId) throws Exception {
+        // TODO Auto-generated method stub
+        System.out.println(sqlSession.selectList("UserMapper.searchUser", "%"+userId+"%"));
+        return sqlSession.selectList("UserMapper.searchUser", "%"+userId+"%");
+    }
+
+    @Override
+    public boolean FollowOk(int userNo, int followNo) throws Exception {
+        // TODO Auto-generated method stub
+        Map map = new HashMap();
+        map.put( "myId", userNo );
+        map.put( "follwerId", followNo );
+        String a =sqlSession.selectOne("UserMapper.getOneFollwer", map);
+        System.out.println("followerOk"+a);
+        if(a==null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

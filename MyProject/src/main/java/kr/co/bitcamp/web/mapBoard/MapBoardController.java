@@ -51,7 +51,7 @@ public class MapBoardController {
     
     @RequestMapping("addFolder")
     public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
-      int userNo = ((User)session.getAttribute("user")).getUserNo();
+      int userNo = ((User)session.getAttribute("myUser")).getUserNo();
       photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
@@ -144,7 +144,10 @@ public class MapBoardController {
     public String getPhotoFolder(@PathVariable int folderNum, Model model){ 
         try {
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            List<Comment> comment = boardService.getComment(folderNum);
+            System.out.println(comment);
             model.addAttribute("photoFolderOne", photoFolderOne);
+            model.addAttribute("commentList", comment);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -158,8 +161,11 @@ public class MapBoardController {
         try {
             System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            List<Comment> comment = boardService.getComment(folderNum);
             model.addAttribute("photoFolderOne", photoFolderOne);
             System.out.println("getPhotoFolder"+photoFolderOne);
+            model.addAttribute("commentList", comment);
+            System.out.println(comment);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -170,7 +176,7 @@ public class MapBoardController {
     
     @RequestMapping( value="getSideBar", method=RequestMethod.GET )
 	public String getSideBar( HttpSession session, Model model ) throws Exception {
-    	User user =(User)session.getAttribute("user");
+    	User user =(User)session.getAttribute("myUser");
     	int userNo = user.getUserNo();
     	System.out.println("폴더 불러 오구연!!!!!!!!!!!!!!!!!!!");
 		//Business Logic
@@ -201,14 +207,14 @@ public class MapBoardController {
     @RequestMapping("setComment")
     public String setComment( @ModelAttribute("comment") Comment comment , Model model , HttpSession session) throws Exception{      
 		System.out.println("/domain/Comment");
-		comment.setCommentNo(((Comment)session.getAttribute("comment")).getCommentNo());
+		System.out.println(comment);
 		boolean ok = boardService.setComment(comment);
 		if(ok){
           model.addAttribute("setCommentOk","ok");
 		}else{
           model.addAttribute("setCommentOk","no");
 		}
-		return "forward:";
+		return "forward:/mapBoard/getPhotoFolder?folderNum="+comment.getFolderNo();
     	}
 
     @RequestMapping("updateComment")
@@ -249,7 +255,7 @@ public class MapBoardController {
     public String removeComment(@RequestParam("commentNo") int commentNo, HttpSession session) throws Exception{
         System.out.println("\n:: ==> remove() start.....");
         
-        User user = (User)session.getAttribute("sessionUser");
+        User user = (User)session.getAttribute("myUser");
         user.setUserId(user.getUserId());
         boardService.removeComment(commentNo);
         return "";

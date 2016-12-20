@@ -38,7 +38,8 @@
 		<result property="folderNo" column="PF_NO" jdbcType="VARCHAR" />
 		<result property="text" column="TEXT" jdbcType="CLOB" />
 		<result property="date" column="COMMENT_DATE" jdbcType="DATE" />
-		<result property="userId" column="SEND_ID" jdbcType="VARCHAR" />
+		<result property="userId" column="USER_NM" jdbcType="VARCHAR" />
+		<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 	</resultMap>
 
 	<delete id="removeComment" parameterType="comment">
@@ -61,19 +62,18 @@
 	<select id="getComment" parameterType="int" resultMap="commentSelectMap">
 
 		select
-		C.CMT_NO,U.USERID,C.TEXT,C.COMMENT_DATE
+		C.CMT_NO,U.USER_NM,C.TEXT,C.COMMENT_DATE,U.USER_NO 
 		from
-		BT_COMMENT C ,BT_USER U , BT_PHOTO_FOLDER P
-		where C.PF_NO = P.PF_NO AND
-		C.USER_NO=U.USER_NO
+		BT_COMMENT C ,BT_USER U 
+		where C.USER_NO=U.USER_NO AND C.PF_NO = #{value}
 	</select>
 
 
-	<insert id="setComment" parameterType="int">
+	<insert id="setComment" parameterType="comment">
 		INSERT
-		INTO BT_PHOTO_FOLDER(CMT_NO , PF_NO , USER_NO , TEXT ,COMMENT_DATE)
+		INTO BT_COMMENT(CMT_NO , PF_NO , USER_NO , TEXT ,COMMENT_DATE)
 		VALUES(SEQ_BT_PF_NO.nextval,
-		#{pfNo},
+		#{folderNo},
 		#{userNo},
 		#{text},
 		sysdate

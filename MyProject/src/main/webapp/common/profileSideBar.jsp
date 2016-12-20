@@ -23,14 +23,19 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">${getFollwerCount}</a>
+                  <b>Followers</b> <a id="FollowerCount" class="pull-right">${getFollwerCount}</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">${getFollwingCount}</a>
+                  <b>Following</b> <a id="FollowingCount" class="pull-right">${getFollwingCount}</a>
                 </li>
               </ul>
-              <c:if test="${targetUser.userId!=user.userId}">
-                <a href="#" class="btn btn-primary btn-block"><b>FOLLWER</b></a>
+              <c:if test="${targetUser.userNo!=myUser.userNo}">
+                <c:if test="${followerOk}">
+                  <a id="follwerBt" class="btn btn-primary btn-block"><b>팔로우</b></a>
+                </c:if>
+                <c:if test="${!followerOk}">
+                  <a id="follwerBt" class="btn btn-primary btn-block"><b>팔로우해제</b></a>
+                </c:if>
               </c:if>
             </div>
             <!-- /.box-body -->
@@ -79,3 +84,5 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
+        
+        
