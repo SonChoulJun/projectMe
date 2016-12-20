@@ -35,19 +35,27 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" id="folder-menu">
         <li class="header" id="t_menu">여행목록</li>
-        <li class="folder_input" id="folder_input">+</li>
+        <c:if test="${targetUser.userNo==myUser.userNo}">
+          <li class="folder_input" id="folder_input">+</li>
+        </c:if>
         <c:forEach var="photoFolder" items="${folderList}">
        
           <li class="treeview" name="${photoFolder.title}">
+          <c:if test="${targetUser.userNo==myUser.userNo}">
             <a href="/profile/photoPage/${photoFolder.pfNo}">
+          </c:if>
+          <c:if test="${targetUser.userNo!=myUser.userNo}">
+            <a>
+          </c:if>
               <i class="fa fa-files-o"></i>
               <span>${photoFolder.title}</span>
-              
+
               <c:if test="${photoFolder.photoTheme.isEmpty()}">
                 <span class="pull-right-container">
                   <small class="label pull-right bg-green">new</small>
                 </span>
               </c:if>
+
               
                <c:if test="${!photoFolder.photoTheme.isEmpty()}">
                 <span class="pull-right-container">
