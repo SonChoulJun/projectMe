@@ -162,7 +162,7 @@
                     <div class="timeline-item">
                       <span class="time"><i class="fa fa-clock-o"></i> ${activity[0].activityTime}</span>
 
-                      <h3 class="timeline-header"><a href="#">${activity[0].user.userName}</a> 님을 Following 하셨습니다.</h3>
+                      <h3 class="timeline-header"><a href="#">${user.userName}</a> 님을 Following 하셨습니다.</h3>
 
                       <div class="timeline-body">
                         ${activity[1].activityText }

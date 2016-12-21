@@ -93,9 +93,9 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public boolean setActivity(Activity activity) throws Exception {
+	public void setActivity(Activity activity) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		userDAO.setActivity(activity);
 	}
 
 

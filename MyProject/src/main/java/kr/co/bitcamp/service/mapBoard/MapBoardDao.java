@@ -20,7 +20,13 @@ public interface MapBoardDao {
     
     public boolean addTheme(int photoFolderNo,List<Photo> photoList);
 
-    public boolean setLike(PhotoFolder photoFolder) throws Exception;
+    public void setLike(int photoFolderNo,int userNo) throws Exception;
+    
+    public void removeLike(int pfNo, int userNo)throws Exception;
+    
+    public int getLikeCount(int pfNo)throws Exception;
+    
+    public boolean likeOk(int photoFolderNo, int userNo)throws Exception;
     
     public boolean setComment(Comment comment) throws Exception;
     
@@ -28,7 +34,7 @@ public interface MapBoardDao {
     
     public boolean updateComment(Comment comment) throws Exception;
     
-    public boolean removeComment(int commentNo) throws Exception;
+    public void removeComment(int commentNum) throws Exception;
     
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     

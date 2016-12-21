@@ -42,10 +42,10 @@
 		<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 	</resultMap>
 
-	<delete id="removeComment" parameterType="comment">
+	<delete id="removeComment" parameterType="int">
 		DELETE
 		FROM BT_COMMENT
-		WHERE SEND_ID = #{value}
+		WHERE CMT_NO = #{value}
 	</delete>
 
 

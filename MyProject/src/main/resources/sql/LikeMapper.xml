@@ -10,39 +10,36 @@
 	
 
 	
-	<resultMap type="like" id="likeSelectMap">
+	<resultMap type="board" id="likeSelectMap">
 	<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 	<result property="pfNo" column="PF_NO" jdbcType="NUMERIC" />
-	<result property="likeCode" column="LIKE_CODE" jdbcType="NUMERIC" />
 	</resultMap>
 	
-	<insert id="addLike" parameterType="like">
+	<insert id="addLike" parameterType="map">
 	   INSERT
-	   INTO BT_LIKE(USER_NO, PF_NO, LIKE_CODE)
+	   INTO BT_LIKE(USER_NO, PF_NO)
 	   VALUES
-	   ()
+	   (#{userNo}, #{pfNo} )
 	</insert>
-  
+    
+    <select id="getLikeList" parameterType="int" resultMap="likeSelectMap">
+        SELECT * FROM BT_LIKE
+        WHERE PF_NO=#{value}
+    </select>
+    
+    <select id="getLikeOk" parameterType="map" resultMap="likeSelectMap">
+        select USER_NO 
+        from BT_LIKE 
+        where USER_NO = #{userNo} AND PF_NO = #{pfNo}
+    </select>
+    
+    
 	
-	 <select id="getfolder" parameterType="int" resultMap="boardSelectMap">
-			select P.TITLE, P.PF_NO, P.FOLDER_DATE
-			from BT_PHOTO_FOLDER P, BT_USER U
-			WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
-			ORDER BY P.PF_NO
-    </select>
-    
-    <select id="getLikeCode" parameterType="photoFolder" resultMap="photoSelectMap">
-        select P.LIKE_CODE 
-        from BT_PHOTO_FOLDER P, BT_USER U
-        where P.USER_NO=#{userNo} AND P.USER_NO=U.USER_NO AND P.PF_NO= #{pfNo}
-    </select>
-    
-    <update id="updateLikeCode" parameterType="like" >
-        update 
-        <set>
-            
-        </set>
-	</update>    
+	<delete id="removeLike" parameterType="map">
+	   DELETE
+	   FROM BT_LIKE
+	   WHERE USER_NO=#{userNo} AND PF_NO=#{pfNo}
+	</delete>
     
 
 
