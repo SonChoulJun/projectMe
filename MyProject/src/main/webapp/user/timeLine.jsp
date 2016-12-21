@@ -52,10 +52,10 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li><a href="http://127.0.0.1:8080/user/myTravel " >MyTravel</a></li>
+              <li><a href="/user/myTravel " >MyTravel</a></li>
               <li class="active"><a href="#timeline" >TimeLine</a></li>
-              <li><a href="http://127.0.0.1:8080/user/getActivity " >Activity</a></li>
-              <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
+              <li><a href="/user/getActivity " >Activity</a></li>
+              <li><a href="/user/settings.jsp" >Settings</a></li>
             </ul>
             
             <div class="tab-content">
