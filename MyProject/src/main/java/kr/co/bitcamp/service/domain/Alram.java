@@ -9,6 +9,7 @@ public class Alram {
   private String text;
   private Date alarmDate;
 
+
   public Alram(){
     
   }

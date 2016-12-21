@@ -161,8 +161,7 @@ public class MapBoardDaoImpl implements MapBoardDao {
 
     @Override
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return sqlSession.selectList("BoardMapper.getTimeline", UserNo );
     }
 
     @Override

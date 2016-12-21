@@ -6,6 +6,7 @@ import java.util.List;
 public class PhotoFolder {
   private int pfNo;
   private int userNo;
+  private User user;
   private String title;
   private String text;
   private Date photoDate;
@@ -18,7 +19,19 @@ public class PhotoFolder {
   
   
   
-  public int getUserNo() {
+  public User getUser() {
+    return user;
+  }
+
+
+
+  public void setUser(User user) {
+      this.user = user;
+  }
+
+
+
+public int getUserNo() {
     return userNo;
   }
 
@@ -68,14 +81,11 @@ public class PhotoFolder {
   }
 
 
-
   @Override
   public String toString() {
-    return "PhotoFolder [pfNo=" + pfNo + ", userNo=" + userNo + ", title=" + title + ", text=" + text + ", photoDate="
-        + photoDate + ", photoTheme=" + photoTheme + ", likeCode=" + likeCode + "]";
+      return "PhotoFolder [pfNo=" + pfNo + ", userNo=" + userNo + ", user=" + user + ", title=" + title + ", text=" + text
+              + ", photoDate=" + photoDate + ", photoTheme=" + photoTheme + "]";
   }
-
-
 
   
   

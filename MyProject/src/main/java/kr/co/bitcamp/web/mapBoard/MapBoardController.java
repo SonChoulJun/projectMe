@@ -85,7 +85,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:/Users/jin/git-realproject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -99,7 +99,7 @@ public class MapBoardController {
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
       
-            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+            String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
       
             try {
                 //파일 저장
@@ -311,8 +311,11 @@ public class MapBoardController {
     }
     
     @RequestMapping("getNewsFeed")
-    public String getNewsFeed(String userId){
-      return "";
+    public String getNewsFeed(@RequestParam("userNo") int userNo,Model model)throws Exception{
+      List<PhotoFolder> newsfeed =boardService.getNewsFeed(userNo);
+      model.addAttribute("newsfeed",newsfeed);
+      System.out.println("newfeed"+newsfeed);
+      return "forward:/user/timeLine.jsp";
     }   
    
 }

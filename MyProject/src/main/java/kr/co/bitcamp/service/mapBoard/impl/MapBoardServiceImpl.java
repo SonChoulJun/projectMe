@@ -147,7 +147,7 @@ public class MapBoardServiceImpl implements MapBoardService {
     @Override
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return boardDao.getNewsFeed(UserNo);
     }
 
 

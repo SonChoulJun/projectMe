@@ -58,46 +58,39 @@
               <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
             </ul>
             
+            <div class="tab-content">
               
-              <div class="active tab-pane" id="timeline">
+              <div class="active tab-pane" id="activity">
                 <!-- Post -->
-                <div class="post">
+                <c:forEach var="photoFolder" items="${newsfeed}">
+                 <div class="post">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="images/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#">${photoFolder.user.userName }</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
+                    <span class="description">${photoFolder.user.userId} - ${photoFolder.photoDate}</span>
                   </div>
-                  <!-- /.user-block -->
-                  
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  
-                  
+                  <c:if test="${!photoFolder.photoTheme.isEmpty()}">
+	                  <div class="row margin-bottom">
+	                    <div class="col-sm-6">
+	                     <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
+	                      <c:if test="${!photoTheme.photoList.isEmpty()}">
+	                       <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoTheme.photoList.get(0).folderName}" alt="Photo">
+	                      </c:if>
+	                     </c:forEach>
+	                    </div>
+	                    <!-- /.col -->
+	                    <div class="col-sm-6">
+	                      
+	                    </div>
+	                    <!-- /.col -->
+	                  </div>
+                  </c:if>
+                  <p>
+                    ${photoFolder.text}
+                  </p>
                   <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
@@ -106,7 +99,6 @@
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
                         (5)</a></li>
                   </ul>
-
                   <form class="form-horizontal">
                     <div class="form-group margin-bottom-none">
                       <div class="col-sm-9">
@@ -117,7 +109,15 @@
                       </div>
                     </div>
                   </form>
-                </div>
+                 </div>
+                </c:forEach>
+                  <!-- /.user-block -->
+                  
+                  
+                  
+
+
+
                 <!-- /.post -->
 
                 <!-- Post -->

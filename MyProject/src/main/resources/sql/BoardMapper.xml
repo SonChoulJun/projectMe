@@ -10,9 +10,11 @@
 
 	<resultMap type="board" id="boardSelectMap">
 		<result property="pfNo" column="PF_NO" jdbcType="NUMERIC" />
+		<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 		<result property="title" column="TITLE" jdbcType="VARCHAR" />
 		<result property="text" column="TEXT" jdbcType="VARCHAR" />
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE" />
+		<association property="user" column="USER_NO" select="UserMapper.getUser2" javaType="user"></association>
 		<association property="photoTheme" column="PF_NO" select="getTheme"	javaType="ArrayList"></association>
 	</resultMap>
 
@@ -41,6 +43,11 @@
 		<result property="userId" column="USER_NM" jdbcType="VARCHAR" />
 		<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 	</resultMap>
+	
+	
+	<select id="getTimeline" parameterType="int" resultMap="boardSelectMap">
+	 select * from BT_PHOTO_FOLDER where USER_NO IN (select FOLLOWING_USER_NO from BT_FOLLOWER where FOLLOWER_USER_NO = #{value}) ORDER BY FOLDER_DATE DESC
+	</select>
 
 	<delete id="removeComment" parameterType="int">
 		DELETE
