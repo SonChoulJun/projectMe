@@ -50,9 +50,16 @@
 	<select id="getUser" parameterType="string" resultMap="userSelectMap">
         select  
         USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
-
-        FROM     bt_user
+        FROM bt_user
         where userId=#{value}
+   </select>
+     
+     
+      <select id="getUser2" parameterType="int" resultMap="userSelectMap">
+        select  
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+        FROM     bt_user
+        where USER_NO=#{value}
      </select>
      
      

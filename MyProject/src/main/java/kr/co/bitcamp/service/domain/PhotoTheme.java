@@ -35,6 +35,11 @@ public class PhotoTheme {
     public void setPhotoList(List<Photo> photoList) {
         this.photoList = photoList;
     }
+
+    @Override
+    public String toString() {
+        return "PhotoTheme [themeNo=" + themeNo + ", themeName=" + themeName + ", photoList=" + photoList + "]";
+    }
     
     
 
