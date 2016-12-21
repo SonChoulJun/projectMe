@@ -70,10 +70,10 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
             
-              <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
-              <li><a href="http://127.0.0.1:8080/user/timeLine.jsp" >TimeLine</a></li>
-              <li class="active"><a href="http://127.0.0.1:8080/user/getActivity"  data-toggle="tab"; >Activity</a></li>
-              <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
+              <li><a href="/user/myTravel" >MyTravel</a></li>
+              <li><a href="/user/timeLine.jsp" >TimeLine</a></li>
+              <li class="active"><a href="user/getActivity"  data-toggle="tab"; >Activity</a></li>
+              <li><a href="/user/settings.jsp" >Settings</a></li>
             </ul>
             <div class="tab-content">
              

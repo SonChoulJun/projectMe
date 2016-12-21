@@ -78,8 +78,8 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
               <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
-              <li><a href="http://127.0.0.1:8080/user/getActivity" >Activity</a></li>
-              <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
+              <li><a href="/user/getActivity" >Activity</a></li>
+              <li><a href="/user/settings.jsp" >Settings</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="myTravel">
