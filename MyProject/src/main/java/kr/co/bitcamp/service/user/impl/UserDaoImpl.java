@@ -96,9 +96,9 @@ public class UserDaoImpl implements UserDao {
 
 
 	@Override
-	public boolean setActivity(Activity activity) throws Exception {
+	public void setActivity(Activity activity) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		sqlSession.insert("ActivityMapper.addActivity",activity);
 	}
 
 	@Override

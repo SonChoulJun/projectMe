@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.common.util.MetadataExample;
+import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
@@ -37,6 +38,9 @@ public class MapBoardController {
     @Autowired
     @Qualifier("mapBoardServiceImpl")
     private MapBoardService boardService;
+    
+    @Autowired
+    @Qualifier("userServiceImpl")
     private UserService userService;
 
     public MapBoardController() {
@@ -58,9 +62,18 @@ public class MapBoardController {
           List<PhotoFolder> photoFolder1 = boardService.getSideBar(userNo);
           session.setAttribute("folderList", photoFolder1);
           model.addAttribute("addFolderOk","ok");
+          
+          Activity activity=new Activity();
+          activity.setActivityText("새로운 여행을 등록하였습니다 ! 추억이 쌓여가요~!!");
+          activity.setUserNo(userNo);
+          userService.setActivity(activity);
       }else{
           model.addAttribute("addFolderOk","no");
       }
+      
+      
+      
+      
       return "forward:/user/profile.jsp";
     }
     
@@ -72,7 +85,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:/Users/BitCamp/git-realProject/projectMe/MyProject/src/main/webapp/html/assets/img/uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -86,7 +99,7 @@ public class MapBoardController {
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
       
-            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+            String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
       
             try {
                 //파일 저장
@@ -157,14 +170,19 @@ public class MapBoardController {
     
     
     @RequestMapping("getPhotoFolder")
-    public String getPhotoFolderEx(@RequestParam("folderNum") int folderNum,Model model){ 
+    public String getPhotoFolderEx(@RequestParam("folderNum") int folderNum,Model model,HttpSession session){ 
         try {
+          
             System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
             List<Comment> comment = boardService.getComment(folderNum);
             model.addAttribute("photoFolderOne", photoFolderOne);
             System.out.println("getPhotoFolder"+photoFolderOne);
             model.addAttribute("commentList", comment);
+            model.addAttribute("likeOk", boardService.likeOk(folderNum, ((User)session.getAttribute("myUser")).getUserNo()));
+            model.addAttribute("likeCount", boardService.getLikeCount(folderNum));
+            int commentCount=boardService.getComment(folderNum).size();
+            model.addAttribute("commentCount",commentCount);
             System.out.println(comment);
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -199,21 +217,51 @@ public class MapBoardController {
       return "";
     }
     
-    @RequestMapping("setLike") 
-    public String setLike(String photoFolderNo, String userId){
-      return "";
+
+    @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
+    public void jsonSetLike(@PathVariable("userNo") int userNo,@PathVariable("pfNo") int pfNo,
+                                     Model model) throws Exception{
+      
+      if(boardService.likeOk(pfNo, userNo)){
+        boardService.setLike(pfNo, userNo);
+        model.addAttribute("likeOk", "add");
+        model.addAttribute("likeCount", boardService.getLikeCount(pfNo));
+      }
+      else{
+        boardService.removeLike(pfNo, userNo);
+        model.addAttribute("likeOk", "remove");
+        model.addAttribute("likeCount", boardService.getLikeCount(pfNo));
+      }
+      
+      /*PhotoFolder pf=boardService.getPhotoFolder(pfNo);
+      boolean likeCode = boardService.setLike(pfNo, userNo);
+      
+      
+    
+      
+      if(likeCode==true){
+        pf.setLikeCode(1);
+      }else{
+        pf.setLikeCode(0);
+      }*/
     }
+      
+
 
     @RequestMapping("setComment")
     public String setComment( @ModelAttribute("comment") Comment comment , Model model , HttpSession session) throws Exception{      
 		System.out.println("/domain/Comment");
 		System.out.println(comment);
 		boolean ok = boardService.setComment(comment);
+		int commentCount=boardService.getComment(comment.getFolderNo()).size();
+		
 		if(ok){
           model.addAttribute("setCommentOk","ok");
 		}else{
           model.addAttribute("setCommentOk","no");
 		}
+		
+		model.addAttribute("commentCount", commentCount);
 		return "forward:/mapBoard/getPhotoFolder?folderNum="+comment.getFolderNo();
     	}
 
@@ -252,13 +300,14 @@ public class MapBoardController {
     }
 
     @RequestMapping("removeComment")
-    public String removeComment(@RequestParam("commentNo") int commentNo, HttpSession session) throws Exception{
+    public void removeComment(@RequestParam("commentNo") int commentNo, HttpSession session) throws Exception{
         System.out.println("\n:: ==> remove() start.....");
         
-        User user = (User)session.getAttribute("myUser");
-        user.setUserId(user.getUserId());
+       /* User user = (User)session.getAttribute("myUser");
+        user.setUserId(user.getUserId());*/
         boardService.removeComment(commentNo);
-        return "";
+        
+       
     }
     
     @RequestMapping("getNewsFeed")

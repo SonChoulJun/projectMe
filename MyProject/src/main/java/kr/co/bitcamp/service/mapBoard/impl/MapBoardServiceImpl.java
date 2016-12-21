@@ -94,13 +94,32 @@ public class MapBoardServiceImpl implements MapBoardService {
         // TODO Auto-generated method stub
         return null;
     }
+    @Override
+    public boolean likeOk(int photoFolderNo, int userNo)throws Exception{
+      return boardDao.likeOk(photoFolderNo, userNo);
+    }
 
 
     @Override
-    public boolean setLike(int photoFolderNo, int UserNo) throws Exception {
+    public void setLike(int photoFolderNo, int userNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+      boardDao.setLike(photoFolderNo, userNo);
+      
     }
+    
+    @Override
+    public void removeLike(int pfNo, int userNo) throws Exception{
+      
+      boardDao.removeLike(pfNo, userNo);
+     
+    }
+    
+    @Override
+    public int getLikeCount(int pfNo)throws Exception{
+      return boardDao.getLikeCount(pfNo);
+    }
+    
+    
 
 
     @Override
@@ -118,13 +137,10 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public boolean removeComment(int commentNo) throws Exception {
+    public void removeComment(int commentNo) throws Exception {
         // TODO Auto-generated method stub
-    	if(boardDao.removeComment(commentNo)){
-    	  return true;
-    	  }else {
-    	  return false;
-    	  }
+    	boardDao.removeComment(commentNo);
+    	  
       }
 
 

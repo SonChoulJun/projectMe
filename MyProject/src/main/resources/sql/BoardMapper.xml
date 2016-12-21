@@ -49,10 +49,10 @@
 	 select * from BT_PHOTO_FOLDER where USER_NO IN (select FOLLOWING_USER_NO from BT_FOLLOWER where FOLLOWER_USER_NO = #{value}) ORDER BY FOLDER_DATE DESC
 	</select>
 
-	<delete id="removeComment" parameterType="comment">
+	<delete id="removeComment" parameterType="int">
 		DELETE
 		FROM BT_COMMENT
-		WHERE SEND_ID = #{value}
+		WHERE CMT_NO = #{value}
 	</delete>
 
 

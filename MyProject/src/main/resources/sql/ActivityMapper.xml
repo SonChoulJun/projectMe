@@ -12,7 +12,8 @@
 	   <result property="activityDate" column="ACTIVITY_DATE" jdbcType="DATE" />
 	   <result property="activityText" column="TEXT" jdbcType="CLOB" />
 	   <result property="activityNo" column="ACTIVITY_NO" jdbcType="NUMERIC" />
-	   <association property="user" column="USER_NO" javaType="user" select="UserMapper.getUser" />
+	   <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+	   <!-- <association property="user" column="USER_NO" javaType="user" select="UserMapper.getUser" /> -->
 
 	</resultMap>
 
@@ -22,8 +23,19 @@
         select 
         ACTIVITY_NO, USER_NO, TEXT, TO_CHAR(ACTIVITY_DATE, 'yyyy/mm/dd hh24:mi:ss') as ACTIVITY_DATE
         from bt_activity 
-        where user_no=#{user.userNo}
+        where user_no=#{userNo}
         
      </select>
+     
+     <insert id="addActivity" parameterType="activity">
+        INSERT INTO 
+        BT_ACTIVITY(ACTIVITY_DATE, TEXT, ACTIVITY_NO, USER_NO)
+        VALUES(SYSDATE,
+                    #{activityText},
+                   SEQ_BT_ACTIVITY_NO.nextval,
+                    #{userNo}
+                    )
+        
+     </insert>
 
 </mapper>

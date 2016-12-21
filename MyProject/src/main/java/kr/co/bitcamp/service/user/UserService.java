@@ -32,7 +32,7 @@ public interface UserService {
 	
 	public List<Activity> getActivity(int userNo) throws Exception ;
 
-	public boolean setActivity(Activity activity) throws Exception ;
+	public void setActivity(Activity activity) throws Exception ;
 	
   public int getFollwerCount(int userNo) throws Exception;
 	  
