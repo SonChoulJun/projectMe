@@ -16,6 +16,7 @@
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE" />
 		<association property="user" column="USER_NO" select="UserMapper.getUser2" javaType="user"></association>
 		<association property="photoTheme" column="PF_NO" select="getTheme"	javaType="ArrayList"></association>
+		<association property="commentList" column="PF_NO" select="getComment" javaType="ArrayList"></association>
 	</resultMap>
 
 	<resultMap type="theme" id="themeSelectMap">

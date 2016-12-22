@@ -99,16 +99,40 @@
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
                         (5)</a></li>
                   </ul>
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
+                   <div class="box-footer box-comments">
+                      <c:forEach var="commentList" items="${photoFolder.commentList}">
+                        <div class="box-comment">
+                          <!-- User image -->
+                          <img class="img-circle img-sm"
+                            src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+  
+                          <div class="comment-text">
+                            <span class="username"> ${commentList.userId}<span  
+                              class="text-muted pull-right">${commentList.date}</span>
+                            </span>
+                            <!-- /.username -->
+                            ${commentList.text}
+                          </div>
+                          <!-- /.comment-text -->
+                        </div>
+                      </c:forEach>
+                      <!-- /.box-comment -->
+
+                      <!-- /.box-comment -->
                     </div>
-                  </form>
+                    <div class="box-footer">
+                      <form action="/mapBoard/setComment" method="post">
+                        <img class="img-responsive img-circle img-sm"
+                          src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
+                        <!-- .img-push is used to add margin to elements next to floating images -->
+                        <div class="img-push">
+                          <input type="hidden" value="${myUser.userNo}" name="userNo" >
+                          <input type="hidden" value="${photoFolder.pfNo}" name="folderNo" >
+                          <input type="text" class="form-control input-sm"
+                            placeholder="Press enter to post comment" name="text">
+                        </div>
+                      </form>
+                    </div>
                  </div>
                 </c:forEach>
                   <!-- /.user-block -->
