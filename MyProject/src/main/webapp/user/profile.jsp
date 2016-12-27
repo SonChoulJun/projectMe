@@ -78,8 +78,10 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
               <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
+              <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
               <li><a href="/user/settings.jsp" >Settings</a></li>
+              </c:if>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="myTravel">
@@ -582,6 +584,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<%-- <c:import url="/common/aaa.jsp"></c:import> --%>
 
 
 <!-- jQuery 2.2.3 -->
@@ -675,7 +678,7 @@ $(function() {
         
         $.ajax( 
             {
-              url : "/user/addFollower?followNo=${targetUser.userNo}&userNo=${myUser.userNo}",
+              url : "/user/addFollower?followNo=${targetUser.userNo}&userNo=${myUser.userNo}&followId=${targetUser.userId}",
                method :"POST",
               dataType : "json" ,
               headers : {
@@ -696,12 +699,123 @@ $(function() {
           ////////////////////////////////////////////////////////////////////////////////////////////
         
     });
+  }); 
+</script>
+<!-- <script type="text/javascript">
+        $(function(){
+            $("#FollowerCount").click(function(){
+                $('div.modal').modal();
+            })
+        })
+</script> -->
+
+<!-- <script type="text/javascript">
+$(function() {
+    $("#FollowerCount").on("click",function() {
+        //Debug..        
+        $.ajax( 
+            {
+              url : "/user/getFollower/${targetUser.userNo}",
+               method :"GET",
+              headers : {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+              },
+              success : function(followerList){
+            	  $('#bodyModal').html("");
+            	    for(var i=0 ; i<followerList.length ;i++){
+            	    	
+            	    	 var row ='';
+            	    	 row+='<li><a href="/profile/subProfile?userId=pomnwq@naver.com" class="inner">';
+            	    	row+='<div class="li-img">';
+            	    	row+=' <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" /> </div>';
+            	    	row+='<div class="li-text">';
+            	    	row+='<h4 class="li-head">'+followerList[i].userName+'</h4>';
+            	    	row+='<p class="li-sub">2016-12-21</p></div></a></li>';
+            	    	
+            	    	 $('#bodyModal').append(row);
+            	    	
+            	    	
+            	    }
+            	
+            
+            	  $('div.modal').modal(); 
+              }
+          });
+          ////////////////////////////////////////////////////////////////////////////////////////////
+       
+    });
     
-    
+  }); 
+</script> -->
+<c:import url="/user/layer.jsp"></c:import>
+<c:import url="/user/Following.jsp"></c:import>
+<!-- <script type="text/javascript">
+   $(function(){
+	   $("#myModal").on("click",function(){
+		   $.ajax({
+			   url : "/user/getFollower/${targetUser.userNo}"
+		   })
+	   })
+   })
+
+    function show(str){
+        //show 호출시 넘겨준 값을 이용하여 ajax 등을 통해 modal 을 띄울때 동적으로 바뀌어야 하는 값을 얻어온다.  
+        
+        //얻어온 값을 이용하여, modal 에서 동적으로 바뀌어야 하는 값을 바꾸어 준다..  
+        $("#title").html("ajax를 통해 얻어온 id에 해당하는 값");
+        $("#content").html("ajax를 통해 얻어온 id에 해당하는 값");
+
+
+        //modal을 띄워준다.  
+        $("#myModal").modal('show');
+  
+      
+    }
+</script> -->
+<script type="text/javascript">
+$(function() {
+    $("#updateStatus").on("click",function() {
+        //Debug..        
+       
+        var aaa = $("#statusMessage").val();
+        //alert("들어옴??"+aaa);
+        var object = new Object();
+        object.status = aaa;
+        var json_data = JSON.stringify(object);
+        JSON
+        $.ajax( 
+            {
+              url : "/user/updateStatus",
+               method :"POST",
+               data :json_data,
+               dataType : "json" ,
+              headers : {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+              },
+              success : function(status){
+                  var row='';
+                  row+='<h3>'+status+'</h3>'
+                  $('#statusButton').append(row);
+                    
+                        /*  var row ='';
+                         row+='<textarea name ="status" class="form-control" id="statusMessage" placeholder=${'+status+'}></textarea>';
+                       
+                        
+                         $('#statusmodal').append(row);
+                        
+                 
+            
+                  $('div.modal').modal();  */
+              }
+          });
+          ////////////////////////////////////////////////////////////////////////////////////////////
+       
+    });
     
   }); 
 </script>
-
 
 </body>
 </html>

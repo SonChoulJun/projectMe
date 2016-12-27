@@ -651,6 +651,42 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
     	  
        })
  </script>
+ <script type="text/javascript">
+ $(function(){
+     
+     
+     $(document).on("click","#sendCommentBt",function(){
+         var userNo=$(this).find("div").eq(0).attr("name");
+         var pfNo=$(this).find("div").eq(1).attr("name");
+         alert(userNo+"+++"+pfNo);
+         var post = $(this).parents(".post");
+         var aaa =$(this);
+         alert(post.attr("name"));
+       $.ajax({
+             
+             url: "/mapBoard/setComment/"+userNo+"/"+pfNo,
+             method :"GET",
+             dataType : "json" ,
+             headers : {
+               "Accept" : "application/json",
+               "Content-Type" : "application/json"
+             },
+             success : function(JSONData , status) {
+                 if(JSONData.likeOk=="add"){
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","blue");
+                 }else{
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","#444");
+                 }
+             }
+             
+       });
+         post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username"> ${commentList.userId} <span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">${commentList.date}</span>   </span> ${commentList.text} </div> </div>');
+         
+    });
+ });
+ </script>
 
 
 

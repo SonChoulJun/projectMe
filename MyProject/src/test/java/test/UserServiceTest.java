@@ -26,7 +26,7 @@ import kr.co.bitcamp.service.user.impl.UserServiceImpl;
 @ContextConfiguration(locations = { "classpath:config/context-aspect.xml",
                                     "classpath:config/context-common.xml",  
                                     "classpath:config/context-mybatis.xml",  
-                                    "classpath:config/context-transaction.xml",  
+                                    "classpath:config/context-transaction.xml"  
 })
 public class UserServiceTest {
 
@@ -53,95 +53,113 @@ public class UserServiceTest {
   }
   
   //@Test
-  public void testGetUser() throws Exception{
-    System.out.println("getUser 실행 되었냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    User user=userService.getUser("krh2122@naver.com");
-    System.out.println(user);
-    
-  }
+    public void testGetUser() throws Exception{
+      System.out.println("getUser 실행 되었냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      User user=userService.getUser("krh2122@naver.com");
+      System.out.println(user);
+      
+    }
   
   //@Test
-  public void testUpdateUser() throws Exception{
-    System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"); 
+    public void testUpdateUser() throws Exception{
+      System.out.println("updateUser 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"); 
+      
+     User user=userService.getUser("krh2122@naver.com");
+     System.out.println("일단 불러왔어");
+      System.out.println(user);
+      user.setUserNo(10000);
+      user.setUserName("cheoljune"); 
+      user.setPhone("777-7777-7777");
+      user.setPassword("456456");
     
-   User user=userService.getUser("krh2122@naver.com");
-   System.out.println("일단 불러왔어");
-    System.out.println(user);
-    user.setUserNo(10000);
-    user.setUserName("cheoljune"); 
-    user.setPhone("777-7777-7777");
-    user.setPassword("456456");
+          User user01=userService.updateUser(user);
+      System.out.println("바뀌었니?");
+      System.out.println(user01);
+     
+    }
+
+  //@Test
+    public void testGetActivity() throws Exception{
+      System.out.println("getActivity() 실행 했냡ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
+      
+      String userId="krh2122@naver.com";
+      User user=userService.getUser(userId);
+      System.out.println("뭐먹징");
+      List<Activity> listActivity = userService.getActivity(user.getUserNo());
+      System.out.println(listActivity);
+    }
+
+  //@Test
+    public void testGetAlram() throws Exception{
+  	  	  
+  	  System.out.println("getAlram 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  	  
+  	  String userId="krh2122@naver.com";
+  	  User user=userService.getUser(userId);
+  	  System.out.println("dddddddddddd"+user);
+  	  
+  	  List<Alram> listAlram = userService.getAlram(user.getUserNo());
+  	  System.out.println("뽑아줘제발"+listAlram);
   
-        User user01=userService.updateUser(user);
-    System.out.println("바뀌었니?");
-    System.out.println(user01);
-   
-  }
-
-  //@Test
-  public void testGetActivity() throws Exception{
-    System.out.println("getActivity() 실행 했냡ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
-    
-    String userId="krh2122@naver.com";
-    User user=userService.getUser(userId);
-    System.out.println("뭐먹징");
-    List<Activity> listActivity = userService.getActivity(user.getUserNo());
-    System.out.println(listActivity);
-  }
-
-  //@Test
-  public void testGetAlram() throws Exception{
-	  	  
-	  System.out.println("getAlram 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	  
-	  String userId="krh2122@naver.com";
-	  User user=userService.getUser(userId);
-	  System.out.println("dddddddddddd"+user);
-	  
-	  List<Alram> listAlram = userService.getAlram(user.getUserNo());
-	  System.out.println("뽑아줘제발"+listAlram);
-
-  }
+    }
   
   //@Test
-  public void testSetComment() throws Exception{
-	  
-	  System.out.println("SetCommen 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	  
-	  String userId="krh2122@naver.com";
-	  User user=userService.getUser(userId);
-	  Comment comment = new Comment();
-	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
-	  comment.setUserId(user.getUserId());
-	  comment.setFolderNo(20000);
-	  boardService.setComment(comment);
-  }
+    public void testSetComment() throws Exception{
+  	  
+  	  System.out.println("SetCommen 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  	  
+  	  String userId="krh2122@naver.com";
+  	  User user=userService.getUser(userId);
+  	  Comment comment = new Comment();
+  	  comment.setText("택스트 드감? ㅇㅈ? ㅇ ㅇㅈ");
+  	  comment.setUserId(user.getUserId());
+  	  comment.setFolderNo(20000);
+  	  boardService.setComment(comment);
+    }
 
   //@Test
-  public void testGetComment() throws Exception{
-	  	  
-	  System.out.println("getComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	  
-	  String userId="krh2122@naver.com";
-	  User user=userService.getUser(userId);
-	  System.out.println("dddddddddddd"+user);
-	  
-	  List<Comment> listComment = boardService.getComment(user.getUserNo());
-	  System.out.println("뽑아줘제발"+listComment);
-  }
+    public void testGetComment() throws Exception{
+  	  	  
+  	  System.out.println("getComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  	  
+  	  String userId="krh2122@naver.com";
+  	  User user=userService.getUser(userId);
+  	  System.out.println("dddddddddddd"+user);
+  	  
+  	  List<Comment> listComment = boardService.getComment(user.getUserNo());
+  	  System.out.println("뽑아줘제발"+listComment);
+    }
 
-  @Test
-  public void testUpdateComment() throws Exception{
-    System.out.println("UpdateComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-	List<Comment> commentList = boardService.getComment(20000);
-    System.out.println("일단 불러왔어");
-    System.out.println(commentList);
-    
-    Comment comment = new Comment();
-	comment.setText("택스트 드감? ");
-	boardService.setComment(comment);
-	System.out.println(comment);
-
-  }
+  //@Test
+    public void testUpdateComment() throws Exception{
+      System.out.println("UpdateComment 실행 했냐!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  	List<Comment> commentList = boardService.getComment(20000);
+      System.out.println("일단 불러왔어");
+      System.out.println(commentList);
+      
+      Comment comment = new Comment();
+  	comment.setText("택스트 드감? ");
+  	boardService.setComment(comment);
+  	System.out.println(comment);
+  
+    }
+  
+  //@Test
+    public void testGetFollowing() throws Exception{
+      System.out.println("testGetFollowing start().............................................");
+      int userNo=10000;
+      List<User> list =userService.getFollowing(userNo);
+      
+      System.out.println("내가 팔로잉한 사람아 나와주세요~"+list);
+    }
+  
+    @Test
+    public void testGetFollower() throws Exception{
+      System.out.println("testGetFollower start().............................................");
+      int userNo=10000;
+      List<User> list =userService.getFollower(userNo);
+      
+      System.out.println("나를 팔로워한 사람아 나와주세요~"+list);
+    }
    
  }

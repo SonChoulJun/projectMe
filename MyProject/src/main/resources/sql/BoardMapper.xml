@@ -72,7 +72,7 @@
 		C.CMT_NO,U.USER_NM,C.TEXT,C.COMMENT_DATE,U.USER_NO 
 		from
 		BT_COMMENT C ,BT_USER U 
-		where C.USER_NO=U.USER_NO AND C.PF_NO = #{value}
+		where C.USER_NO=U.USER_NO AND C.PF_NO = #{value} ORDER BY COMMENT_DATE
 	</select>
 
 

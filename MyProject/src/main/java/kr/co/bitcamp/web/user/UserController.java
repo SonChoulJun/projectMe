@@ -154,6 +154,21 @@ public class UserController {
       return "forward:/user/updateMyProfile.jsp";
     }
     
+    @RequestMapping("updateStatus")
+    public @ResponseBody String updateStatus(@RequestBody User user1 ,HttpSession session, Model model)throws Exception{
+    
+      User user=(User)session.getAttribute("myUser");
+      int userNo=user.getUserNo();
+      
+      userService.updateStatus(user1.getStatus(), userNo);
+      
+      String status=user1.getStatus();
+      
+      System.out.println(status);
+      
+      return status;
+    }
+    
     
     
     
@@ -185,13 +200,24 @@ public class UserController {
       
       return "";
     }
-    
-    
-    
-    @RequestMapping("getFollower")
-    public String getFollow(String userId){
+    @RequestMapping("getFollowing/{userNo}")
+    public @ResponseBody List<User> getFollowing(@PathVariable int userNo , Model model)throws Exception{
       
-      return "";
+      List<User> followingList=userService.getFollowing(userNo);
+      System.out.println("이 사람이 팔로잉 한 사람들은 누구누구???"+followingList);
+      
+      return followingList;
+       
+    }
+    
+    @RequestMapping("getFollower/{userNo}")
+    public @ResponseBody List<User> getFollower(@PathVariable int userNo , Model model)throws Exception{
+      
+      List<User> followerList=userService.getFollower(userNo);
+      System.out.println("이 사람을 팔로워 한 사람들은 누구누구???"+followerList);
+ 
+      
+      return followerList;
     }
     
     @RequestMapping("removeFollower")
@@ -207,16 +233,29 @@ public class UserController {
     }
     
     @RequestMapping("addFollower")
-      public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model) throws Exception{
+      public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model,
+                                @RequestParam("followId") String followId) throws Exception{
+      
+        Activity activity=new Activity();
+        activity.setUserNo(userNo);
+        User user=userService.getUser(followId);
+       
         if(userService.followOk(userNo, followNo)){
             userService.addFollow(userNo, followNo);
             model.addAttribute("followOk","insert");
             model.addAttribute("followCount",userService.getFollwerCount(followNo));
+            System.out.println(userNo);
+            
+            activity.setActivityText(user.getUserName()+"님을 팔로잉 하셨습니다.");
+            
         }else{
             userService.removeFollower(userNo, followNo);
             model.addAttribute("followOk","remove");
             model.addAttribute("followCount",userService.getFollwerCount(followNo));
+            
+            activity.setActivityText(user.getUserName()+"님을 팔로잉 해제 하셨습니다.");
         }
+        userService.setActivity(activity);
       }
       
     @RequestMapping( value="getAlram")
