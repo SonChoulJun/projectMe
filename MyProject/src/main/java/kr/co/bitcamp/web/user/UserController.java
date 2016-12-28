@@ -1,13 +1,12 @@
 package kr.co.bitcamp.web.user;
 
-import java.io.File;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.ResultType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
@@ -154,6 +151,22 @@ public class UserController {
       return "forward:/user/updateMyProfile.jsp";
     }
     
+    @RequestMapping("updateStatus")
+    public @ResponseBody Map<String,String> updateStatus(@RequestBody User user1 ,HttpSession session, Model model)throws Exception{
+    
+      User user=(User)session.getAttribute("myUser");
+      int userNo=user.getUserNo();
+      
+      userService.updateStatus(user1.getStatus(), userNo);
+      
+      String status=user1.getStatus();
+      Map<String,String> map = new HashMap<String,String>();
+      map.put("status", status);
+      
+      System.out.println("맵"+map);
+      return map;
+    }
+    
     
     
     
@@ -185,13 +198,24 @@ public class UserController {
       
       return "";
     }
-    
-    
-    
-    @RequestMapping("getFollower")
-    public String getFollow(String userId){
+    @RequestMapping("getFollowing/{userNo}")
+    public @ResponseBody List<User> getFollowing(@PathVariable int userNo , Model model)throws Exception{
       
-      return "";
+      List<User> followingList=userService.getFollowing(userNo);
+      System.out.println("이 사람이 팔로잉 한 사람들은 누구누구???"+followingList);
+      
+      return followingList;
+       
+    }
+    
+    @RequestMapping("getFollower/{userNo}")
+    public @ResponseBody List<User> getFollower(@PathVariable int userNo , Model model)throws Exception{
+      
+      List<User> followerList=userService.getFollower(userNo);
+      System.out.println("이 사람을 팔로워 한 사람들은 누구누구???"+followerList);
+ 
+      
+      return followerList;
     }
     
     @RequestMapping("removeFollower")
@@ -207,16 +231,29 @@ public class UserController {
     }
     
     @RequestMapping("addFollower")
-      public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model) throws Exception{
+      public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model,
+                                @RequestParam("followId") String followId) throws Exception{
+      
+        Activity activity=new Activity();
+        activity.setUserNo(userNo);
+        User user=userService.getUser(followId);
+       
         if(userService.followOk(userNo, followNo)){
             userService.addFollow(userNo, followNo);
             model.addAttribute("followOk","insert");
             model.addAttribute("followCount",userService.getFollwerCount(followNo));
+            System.out.println(userNo);
+            
+            activity.setActivityText(user.getUserName()+"님을 팔로잉 하셨습니다.");
+            
         }else{
             userService.removeFollower(userNo, followNo);
             model.addAttribute("followOk","remove");
             model.addAttribute("followCount",userService.getFollwerCount(followNo));
+            
+            activity.setActivityText(user.getUserName()+"님을 팔로잉 해제 하셨습니다.");
         }
+        userService.setActivity(activity);
       }
       
     @RequestMapping( value="getAlram")

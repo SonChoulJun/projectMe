@@ -120,18 +120,24 @@ public class UserDaoImpl implements UserDao {
         // TODO Auto-generated method stub
         return sqlSession.selectOne("UserMapper.getFollwingCount",userNo);
     }
-
+    
     @Override
-    public List<User> getFollow(int UserNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+    public List<User> getFollowing(int userNo)throws Exception{
+     
+      return sqlSession.selectList("UserMapper.getFollowing", userNo);
     }
 
     @Override
-    public void removeFollower(int UserNo, int followNo) throws Exception {
+    public List<User> getFollower(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return sqlSession.selectList("UserMapper.getFollower", userNo);
+    }
+
+    @Override
+    public void removeFollower(int userNo, int followNo) throws Exception {
         // TODO Auto-generated method stub
         Map map = new HashMap();
-        map.put( "myId", UserNo );
+        map.put( "myId", userNo );
         map.put( "follwerId", followNo );
         sqlSession.delete("UserMapper.removeFollower",map);
     }
@@ -179,6 +185,17 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+    @Override
+    public void updateStatus(String status, int userNo) throws Exception {
+      // TODO Auto-generated method stub
+      Map map=new HashMap();
+      map.put("status", status);
+      map.put("userNo", userNo);
+      sqlSession.update("UserMapper.updateStatus",map);
+    }
+    
+    
 
 
 }

@@ -59,7 +59,7 @@
 					      <li>
 					        <a href="/profile/subProfile?userId=${user.userId}" class="inner">
 					          <div class="li-img">
-					            <img src="/html/assets/img/uploadedPhoto/son.jpg" alt="Image Alt Text" />
+					            <img src="/html/assets/img/uploadedPhoto/Desert.jpg" alt="Image Alt Text" />
 					          </div>
 					          <div class="li-text">
 					            <h4 class="li-head">${user.userName}</h4>

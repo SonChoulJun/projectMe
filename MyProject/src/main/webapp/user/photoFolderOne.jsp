@@ -658,6 +658,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
     	  
        })
  </script>
+
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -688,17 +689,45 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
   //]]>
 </script>
 
-<!-- <script type='text/javascript'>
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('41020c22a903ed6423f936e1bd2fd29f');
-    function sendLink() {
-      Kakao.Link.sendTalkLink({
-        label: '나만의여행'
-      });
-    }
-  //]]>
-</script> -->
+ <script type="text/javascript">
+ $(function(){
+     
+     
+     $(document).on("click","#sendCommentBt",function(){
+         var userNo=$(this).find("div").eq(0).attr("name");
+         var pfNo=$(this).find("div").eq(1).attr("name");
+         alert(userNo+"+++"+pfNo);
+         var post = $(this).parents(".post");
+         var aaa =$(this);
+         alert(post.attr("name"));
+       $.ajax({
+             
+             url: "/mapBoard/setComment/"+userNo+"/"+pfNo,
+             method :"GET",
+             dataType : "json" ,
+             headers : {
+               "Accept" : "application/json",
+               "Content-Type" : "application/json"
+             },
+             success : function(JSONData , status) {
+                 if(JSONData.likeOk=="add"){
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","blue");
+                 }else{
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","#444");
+                 }
+             }
+             
+       });
+         post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username"> ${commentList.userId} <span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">${commentList.date}</span>   </span> ${commentList.text} </div> </div>');
+         
+    });
+ });
+ </script>
+
+
+
 
 </body>
 </html>

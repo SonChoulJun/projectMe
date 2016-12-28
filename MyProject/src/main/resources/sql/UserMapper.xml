@@ -19,6 +19,8 @@
 		<result property="joinDate" column="JOIN_DATE" jdbcType="DATE"/>
 		<result property="alramActivity" column="ALRAM_ACTIVITY" jdbcType="CHAR"/>
 		<result property="alramCount" column="ALRAM_COUNT" jdbcType="NUMERIC"/>
+		<result property="status" column="STATUS" jdbcType="VARCHAR"/>
+		<result property="profileImg" column="PROFILE_IMG" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	
@@ -30,7 +32,6 @@
 		ORDER BY A.ALTAM_DATE
 	</select>
 	
-	
 	 <select id="findUser"     parameterType="User" resultMap="userSelectMap" >
         SELECT
         *
@@ -38,8 +39,7 @@
         WHERE USERID=#{userId} AND password=#{password}
      </select>
      
-     
-       <select id="searchUser"     parameterType="string" resultMap="userSelectMap" >
+      <select id="searchUser"     parameterType="string" resultMap="userSelectMap" >
         SELECT
         *
         FROM BT_USER
@@ -49,7 +49,7 @@
 
 	<select id="getUser" parameterType="string" resultMap="userSelectMap">
         select  
-        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT, STATUS, PROFILE_IMG
         FROM bt_user
         where userId=#{value}
    </select>
@@ -57,22 +57,17 @@
      
       <select id="getUser2" parameterType="int" resultMap="userSelectMap">
         select  
-        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT,STATUS, PROFILE_IMG
         FROM     bt_user
         where USER_NO=#{value}
      </select>
      
-     
-
-
      <delete id="removeUser"        parameterType="String">
         DELETE
         FROM BT_USER
         WHERE USERID = #{value}
     </delete>
     
-
-
 	 <insert id="addUser" parameterType="user">
     INSERT 
     INTO BT_USER(USER_NO,USERID,USER_NM,PASSWORD,PHONE,ACTIVITY,JOIN_DATE,ALRAM_ACTIVITY,ALRAM_COUNT)
@@ -101,6 +96,27 @@
     select FOLLOWER_USER_NO from BT_FOLLOWER WHERE FOLLOWER_USER_NO=#{myId} AND FOLLOWING_USER_NO=#{follwerId}
   </select> 
   
+  <select id="getFollowing" parameterType="int" resultMap="userSelectMap">
+      select  
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT, PROFILE_IMG
+        FROM     bt_user
+        where USER_NO IN (SELECT FOLLOWING_USER_NO
+         FROM BT_FOLLOWER
+         WHERE FOLLOWER_USER_NO = #{value})
+
+  </select>
+  
+  <select id="getFollower" parameterType="int" resultMap="userSelectMap">
+    select  
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT, PROFILE_IMG
+        FROM     bt_user
+        where USER_NO  IN (SELECT FOLLOWER_USER_NO
+         FROM BT_FOLLOWER
+         WHERE FOLLOWING_USER_NO = #{value})
+  </select>
+  
+  
+  
   <update id="updateUser" parameterType="user">
         UPDATE bt_user 
         <set>
@@ -120,5 +136,13 @@
   <select id="getFollwingCount" parameterType="int" resultType="int">  
     select count(*) from BT_FOLLOWER where FOLLOWER_USER_NO =#{value}
   </select>
+  
+  <update id="updateStatus" parameterType="map">
+    update bt_user 
+    <set>
+        STATUS=#{status}
+    </set>
+    WHERE USER_NO=#{userNo}
+  </update>
 
 </mapper>

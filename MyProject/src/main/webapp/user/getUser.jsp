@@ -77,11 +77,11 @@
        
         <!-- /.col -->
         <div class="col-md-9">
-                <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('/html/images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
+                <!-- <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('/html/images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
               <img src="/html/images/pic07.jpg" ; alt=""/>
-                </div>
-            <div class="rectang" style="    padding-left: 40%; padding-top: 10%;  background-color: rgba(000, 051, 102, 0.3); border:1px solid rgba(160, 160, 160, 0.6);" >
-            <div class="tab-pane" id="settings">
+                </div> -->
+            <div class="rectang" style=" padding-left: 10%; padding-top: 5%; padding-bottom:5%;  background-color: rgba(000, 051, 103, 0.10);  border-radius: 3px; border-top:3px solid #3c8dbc;" >
+            <div class="tab-pane" id="settings" >
                 
                 <form class="form-horizontal" action="/user/updateUserView">
                 
@@ -90,8 +90,8 @@
                     <div class="col-sm-10" style="width: 50% ; ">
                       <%-- <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }> --%>
                       <div class="nodop" style=" background-color: rgb(255, 255, 255); font-size: 14px ; color:rgb(85, 85, 85); font-;padding-left: 12px; padding-right: 12px;
-                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ;  border-style:solid; border-width:1px; ">
-                      ${user.userName }
+		                    padding-top:6px; padding-bottom:6px; border-color: rgb(210, 214, 222) ;  border-style:solid; border-width:1px; ">
+		                      ${user.userName }
                       </div>
                     </div>
                   </div>

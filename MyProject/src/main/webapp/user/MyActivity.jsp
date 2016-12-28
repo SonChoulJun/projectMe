@@ -72,8 +72,10 @@
             
               <li><a href="/user/myTravel" >MyTravel</a></li>
               <li><a href="/user/timeLine.jsp" >TimeLine</a></li>
+              <c:if test="${targetUser.userNo==user.userNo}">
               <li class="active"><a href="user/getActivity"  data-toggle="tab"; >Activity</a></li>
               <li><a href="/user/settings.jsp" >Settings</a></li>
+              </c:if>
             </ul>
             <div class="tab-content">
              
@@ -109,51 +111,25 @@
                       </div>
                     </div>
   <!--  /////////////////// -->
-                    <div class="timeline-item" >
-                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                        <c:forEach var="i" items="${activity }">
-                            <div class="timeline-body" >
-                                ${i.activityText} 
-                          </div>
-                        </c:forEach>
-                      
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
+                   
          <!-- //////////////////// -->
-                         <div class="timeline-item" >
-                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-                        <c:forEach var="i" items="${activity }">
-                            <div class="timeline-body" >
-                                ${i.activityText} 
-                          </div>
-                        </c:forEach>
-                      
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
+                        
             <!--  ///////////////////////// -->       
                   </li>
                   <!-- END timeline item -->
                   <!-- timeline item -->
+                  <c:forEach var="i" items="${activity }">
                   <li>
                     <i class="fa fa-user bg-aqua"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> ${activity[0].activityTime}</span>
+                      <span class="time"><i class="fa fa-clock-o"></i> ${i.activityTime}</span>
 
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
+                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a>  ${i.activityText} 
                       </h3>
                     </div>
                   </li>
+                  </c:forEach>
                   <!-- END timeline item -->
                   <!-- timeline item -->
                   <li>
@@ -460,6 +436,8 @@ $("#fileUpload").fileinput({
 </script>
 <script src="/html/folder-input/folder-input.js"></script>
 <script src="/html/side_menu/side_search.js"></script>
+
+<c:import url="/user/layer.jsp"></c:import>
 
 </body>
 </html>
