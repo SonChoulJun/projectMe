@@ -783,7 +783,6 @@ $(function() {
         var object = new Object();
         object.status = aaa;
         var json_data = JSON.stringify(object);
-        JSON
         $.ajax( 
             {
               url : "/user/updateStatus",
@@ -794,24 +793,16 @@ $(function() {
                 "Accept" : "application/json",
                 "Content-Type" : "application/json"
               },
-              success : function(status){
-                  var row='';
-                  row+='<h3>'+status+'</h3>'
-                  $('#statusButton').append(row);
-                    
-                        /*  var row ='';
-                         row+='<textarea name ="status" class="form-control" id="statusMessage" placeholder=${'+status+'}></textarea>';
-                       
-                        
-                         $('#statusmodal').append(row);
-                        
-                 
-            
-                  $('div.modal').modal();  */
+              success : function(data){
+            	
+            	  $("#statusButton").text(data.status);
+                
               }
+              
+              
           });
           ////////////////////////////////////////////////////////////////////////////////////////////
-       
+       /*  location.href="/profile/mainProfile"; */
     });
     
   }); 
@@ -902,7 +893,6 @@ $(function() {
   
 
         
-
 
 
 </body>
