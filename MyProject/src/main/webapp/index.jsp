@@ -1,460 +1,376 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-
-
-<!--
-  Highlights by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>나만의 여행</title>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="/html/assets/css/main.css" />
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-  </head>
-  <body>
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <met
+    
+    a name="author" content="">
+
+    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/html/index/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/html/index/css/stylish-portfolio.css" rel="stylesheet">
+    
+    <!--Slider CSS(ìì ) -->
+    
+    <link rel="stylesheet" href="/html/index/css/slider.css">
+    
+    <!-- Custom Fonts -->
+    <link href="/html/index/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="#top" onclick=$("#menu-close").click();>Start Bootstrap</a>
+            </li>
+            <li>
+                <a href="#top" onclick=$("#menu-close").click();>Home</a>
+            </li>
+            <li>
+                <a href="#about" onclick=$("#menu-close").click();>About</a>
+            </li>
+            <li>
+                <a href="#services" onclick=$("#menu-close").click();>Services</a>
+            </li>
+            <li>
+                <a href="#portfolio" onclick=$("#menu-close").click();>Portfolio</a>
+            </li>
+            <li>
+                <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Header -->
-      <section id="header">
-        <header class="major">
-          <a href="main2.jsp"><h1>나만의 여행지도</h1></a>
-          <p>나만의 여행지도로 추억을 기록하세요 </p>
-        </header>
-        <div class="container">
-          <ul class="actions">
-             <li><a href="/user/login.jsp" class="button special scrolly">Login</a></li>
-          </ul>
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>Social Trip</h1>
+            <!-- Slider -->
+                            <section class="cd-intro">
+                                <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
+                                <span class="cd-words-wrapper">
+                                    <b class="is-visible">Trip</b>
+                                    <b>LoadMap</b>
+                                    <b>Planner</b>
+                                    <b>Social</b>
+                                    <b>Our Memory</b>
+                                </span>
+                                </h1>
+                                </section>
+            <br>
+            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+            <a href="/user/login.jsp" class="btn btn-dark btn-lg">login</a>
         </div>
-      </section>
+    </header>
 
-    <!-- One -->
-      <section id="one" class="main special">
+    <!-- About -->
+    <section id="about" class="about">
         <div class="container">
-          <span class="image fit primary"><img src="/html//html/images/pic01.jpg" alt="" /></span>
-          <div class="content">
-            <header class="major">
-              <h2>사이트 소개</h2>
-            </header>
-            <p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
-          </div>
-          <a href="#two" class="goto-next scrolly">Next</a>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2> 많은 사람들이 <br>당신의 아름다운 여행을 기다리고있습니다!</h2>
+                    <p class="lead"> A lot of people are waitfing for your beautiful trip</p>
+                </div>
+            </div>
+            <!-- /.row -->
         </div>
-      </section>
+        <!-- /.container -->
+    </section>
 
-    <!-- Two -->
-      <section id="two" class="main special">
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <section id="services" class="services bg-primary">
         <div class="container">
-          <span class="image fit primary"><img src="/html//html/images/pic02.jpg" alt="" /></span>
-          <div class="content">
-            <header class="major">
-              <h2>장점</h2>
-            </header>
-            <p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
-            <ul class="icons-grid">
-              <li>
-                <span class="icon major fa-camera-retro"></span>
-                <h3>Magna Etiam</h3>
-              </li>
-              <li>
-                <span class="icon major fa-pencil"></span>
-                <h3>Lorem Ipsum</h3>
-              </li>
-              <li>
-                <span class="icon major fa-code"></span>
-                <h3>Nulla Tempus</h3>
-              </li>
-              <li>
-                <span class="icon major fa-coffee"></span>
-                <h3>Sed Feugiat</h3>
-              </li>
-            </ul>
-          </div>
-          <a href="#three" class="goto-next scrolly">Next</a>
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Our Services</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>'Memory'</strong>
+                                </h4>
+                                <p>하나뿐인 여행, 커플, 축제, 행사<br>우리들의 추억을 기록합니다</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>'Planner'</strong>
+                                </h4>
+                                <p>다른사람들의 여행을 통해 <br>나만의 여행플래너를 만드세요</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>'Navigation'</strong>
+                                </h4>
+                                <p>여행을 갈 때 당신의 목적지로 안내합니다</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>'Sharing'</strong>
+                                </h4>
+                                <p>자신의 여행을 공유하고 <br>사람들과 이야기하세요</p>
+                                <a href="#" class="btn btn-light">Lear
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>      
+                    </div>                        
+                                          
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
         </div>
-      </section>
+        <!-- /.container -->
+    </section>
 
-<!--     Three
-      <section id="three" class="main special">
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
         <div class="container">
-          <span class="image fit primary"><img src="/html//html/images/pic03.jpg" alt="" /></span>
-          <div class="content">
-            <header class="major">
-              <h2>One more thing</h2>
-            </header>
-            <p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
-          </div>
-          <a href="#footer" class="goto-next scrolly">Next</a>
-        </div>
-      </section> -->
-
-    <!-- Four -->
-    <!--
-      <section id="four" class="main">
-        <div class="container">
-          <div class="content">
-            <header class="major">
-              <h2>Elements</h2>
-            </header>
-            <section>
-              <h4>Text</h4>
-              <p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-              This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-              This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-              <hr />
-              <header>
-                <h4>Heading with a Subtitle</h4>
-                <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-              </header>
-              <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-              <header>
-                <h5>Heading with a Subtitle</h5>
-                <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-              </header>
-              <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-              <hr />
-              <h2>Heading Level 2</h2>
-              <h3>Heading Level 3</h3>
-              <h4>Heading Level 4</h4>
-              <h5>Heading Level 5</h5>
-              <h6>Heading Level 6</h6>
-              <hr />
-              <h5>Blockquote</h5>
-              <blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-              <h5>Preformatted</h5>
-              <pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-print 'Iteration ' + i;
-deck.shuffle();
-i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-            </section>
-
-            <section>
-              <h4>Lists</h4>
-              <div class="row">
-                <div class="6u 12u$(medium)">
-                  <h5>Unordered</h5>
-                  <ul>
-                    <li>Dolor pulvinar etiam.</li>
-                    <li>Sagittis adipiscing.</li>
-                    <li>Felis enim feugiat.</li>
-                  </ul>
-                  <h5>Alternate</h5>
-                  <ul class="alt">
-                    <li>Dolor pulvinar etiam.</li>
-                    <li>Sagittis adipiscing.</li>
-                    <li>Felis enim feugiat.</li>
-                  </ul>
-                </div>
-                <div class="6u$ 12u(medium)">
-                  <h5>Ordered</h5>
-                  <ol>
-                    <li>Dolor pulvinar etiam.</li>
-                    <li>Etiam vel felis viverra.</li>
-                    <li>Felis enim feugiat.</li>
-                    <li>Dolor pulvinar etiam.</li>
-                    <li>Etiam vel felis lorem.</li>
-                    <li>Felis enim et feugiat.</li>
-                  </ol>
-                  <h5>Icons</h5>
-                  <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5>Actions</h5>
-              <ul class="actions">
-                <li><a href="#" class="button special">Default</a></li>
-                <li><a href="#" class="button">Default</a></li>
-              </ul>
-              <ul class="actions small">
-                <li><a href="#" class="button special small">Small</a></li>
-                <li><a href="#" class="button small">Small</a></li>
-              </ul>
-              <div class="row">
-                <div class="6u 12u$(small)">
-                  <ul class="actions vertical">
-                    <li><a href="#" class="button special">Default</a></li>
-                    <li><a href="#" class="button">Default</a></li>
-                  </ul>
-                </div>
-                <div class="6u$ 12u$(small)">
-                  <ul class="actions vertical small">
-                    <li><a href="#" class="button special small">Small</a></li>
-                    <li><a href="#" class="button small">Small</a></li>
-                  </ul>
-                </div>
-                <div class="6u 12u$(small)">
-                  <ul class="actions vertical">
-                    <li><a href="#" class="button special fit">Default</a></li>
-                    <li><a href="#" class="button fit">Default</a></li>
-                  </ul>
-                </div>
-                <div class="6u$ 12u$(small)">
-                  <ul class="actions vertical small">
-                    <li><a href="#" class="button special small fit">Small</a></li>
-                    <li><a href="#" class="button small fit">Small</a></li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <h4>Table</h4>
-              <h5>Default</h5>
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Item One</td>
-                      <td>Ante turpis integer aliquet porttitor.</td>
-                      <td>29.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Two</td>
-                      <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                      <td>19.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Three</td>
-                      <td> Morbi faucibus arcu accumsan lorem.</td>
-                      <td>29.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Four</td>
-                      <td>Vitae integer tempus condimentum.</td>
-                      <td>19.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Five</td>
-                      <td>Ante turpis integer aliquet porttitor.</td>
-                      <td>29.99</td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2"></td>
-                      <td>100.00</td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-
-              <h5>Alternate</h5>
-              <div class="table-wrapper">
-                <table class="alt">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Item One</td>
-                      <td>Ante turpis integer aliquet porttitor.</td>
-                      <td>29.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Two</td>
-                      <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                      <td>19.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Three</td>
-                      <td> Morbi faucibus arcu accumsan lorem.</td>
-                      <td>29.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Four</td>
-                      <td>Vitae integer tempus condimentum.</td>
-                      <td>19.99</td>
-                    </tr>
-                    <tr>
-                      <td>Item Five</td>
-                      <td>Ante turpis integer aliquet porttitor.</td>
-                      <td>29.99</td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2"></td>
-                      <td>100.00</td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-            </section>
-
-            <section>
-              <h4>Buttons</h4>
-              <ul class="actions">
-                <li><a href="#" class="button special">Special</a></li>
-                <li><a href="#" class="button">Default</a></li>
-              </ul>
-              <ul class="actions">
-                <li><a href="#" class="button">Default</a></li>
-                <li><a href="#" class="button small">Small</a></li>
-              </ul>
-              <ul class="actions fit">
-                <li><a href="#" class="button special fit">Fit</a></li>
-                <li><a href="#" class="button fit">Fit</a></li>
-              </ul>
-              <ul class="actions fit small">
-                <li><a href="#" class="button special fit small">Fit + Small</a></li>
-                <li><a href="#" class="button fit small">Fit + Small</a></li>
-              </ul>
-              <ul class="actions">
-                <li><a href="#" class="button special icon fa-download">Icon</a></li>
-                <li><a href="#" class="button icon fa-download">Icon</a></li>
-              </ul>
-              <ul class="actions">
-                <li><span class="button special disabled">Disabled</span></li>
-                <li><span class="button disabled">Disabled</span></li>
-              </ul>
-            </section>
-
-            <section>
-              <h4>Form</h4>
-              <form method="post" action="#">
-                <div class="row uniform">
-                  <div class="6u 12u$(xsmall)">
-                    <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-                  </div>
-                  <div class="6u$ 12u$(xsmall)">
-                    <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-                  </div>
-                  <div class="12u$">
-                    <div class="select-wrapper">
-                      <select name="demo-category" id="demo-category">
-                        <option value="">- Category -</option>
-                        <option value="1">Manufacturing</option>
-                        <option value="1">Shipping</option>
-                        <option value="1">Administration</option>
-                        <option value="1">Human Resources</option>
-                      </select>
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h2>Our Work</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="/html/index/img/portfolio-1.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="/html/index/img/portfolio-2.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="/html/index/img/portfolio-3.jpg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portfolio-item">
+                                <a href="#">
+                                    <img class="img-portfolio img-responsive" src="/html/index/img/portfolio-4.jpg">
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="4u 12u$(small)">
-                    <input type="radio" id="demo-priority-low" name="demo-priority" checked>
-                    <label for="demo-priority-low">Low</label>
-                  </div>
-                  <div class="4u 12u$(small)">
-                    <input type="radio" id="demo-priority-normal" name="demo-priority">
-                    <label for="demo-priority-normal">Normal</label>
-                  </div>
-                  <div class="4u$ 12u$(small)">
-                    <input type="radio" id="demo-priority-high" name="demo-priority">
-                    <label for="demo-priority-high">High</label>
-                  </div>
-                  <div class="6u 12u$(small)">
-                    <input type="checkbox" id="demo-copy" name="demo-copy">
-                    <label for="demo-copy">Email me a copy</label>
-                  </div>
-                  <div class="6u$ 12u$(small)">
-                    <input type="checkbox" id="demo-human" name="demo-human" checked>
-                    <label for="demo-human">Not a robot</label>
-                  </div>
-                  <div class="12u$">
-                    <textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-                  </div>
-                  <div class="12u$">
-                    <ul class="actions">
-                      <li><input type="submit" value="Send Message" class="special" /></li>
-                      <li><input type="reset" value="Reset" /></li>
-                    </ul>
-                  </div>
+                    <!-- /.row (nested) -->
+                    <a href="#" class="btn btn-dark">View More Items</a>
                 </div>
-              </form>
-            </section>
-
-            <section>
-              <h4>Image</h4>
-              <h5>Fit</h5>
-              <div class="box alt">
-                <div class="row uniform 50%">
-                  <div class="12u"><span class="image fit"><img src="/html//html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                  <div class="4u"><span class="image fit"><img src="/html/images/pic04.jpg" alt="" /></span></div>
-                </div>
-              </div>
-              <h5>Left &amp; Right</h5>
-              <p><span class="image left"><img src="/html/images/pic05.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-              <p><span class="image right"><img src="/html/images/pic05.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-            </section>
-
-          </div>
-          <a href="#footer" class="goto-next scrolly">Next</a>
+                <!-- /.col-lg-10 -->
+            </div>
+            <!-- /.row -->
         </div>
-      </section>
-    -->
+        <!-- /.container -->
+    </section>
+
+    <!-- Call to Action -->
+    <aside class="call-to-action bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>The buttons below are impossible to resist.</h3>
+                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
+                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Map -->
+    <section id="contact" class="map">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://192.168.0.17:8080/mappc.jsp"></iframe>
+        <br />1
+        <small>
+            <a href="http://192.168.0.17:8080/mappc.html"></a>
+        </small>
+        </iframe>
+    </section>
+    
+    <section id="contact" class="mapPhone" >
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://192.168.0.17:8080/mapmobile.jsp"></iframe>
+        <br />
+        <small>
+            <a href="http://192.168.0.17:8080/mapmobile.html"></a>
+        </small>
+        </iframe>
+    </section>
 
     <!-- Footer -->
-      <section id="footer">
-        <!-- <div class="container">
-          <header class="major">
-            <h2>Get in touch</h2>
-          </header>
-          <form method="post" action="#">
-            <div class="row uniform">
-              <div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-              <div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-              <div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-              <div class="12u$">
-                <ul class="actions">
-                  <li><input type="submit" value="Send Message" class="special" /></li>
-                </ul>
-              </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Start Bootstrap</strong>
+                    </h4>
+                    <p>3481 Melrose Place
+                        <br>Beverly Hills, CA 90210</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
             </div>
-          </form>
-        </div> -->
-        <footer>
-          <ul class="icons">
-            <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon alt fa-dribbble"><span class="label">Dribbble</span></a></li>
-            <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-          </ul>
-          <ul class="copyright">
-            <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>Demo Images: <a href="http://unsplash.com">Unsplash</a></li>
-          </ul>
-        </footer>
-      </section>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
 
-    <!-- Scripts -->
-      <script src="/html/assets/js/jquery.min.js"></script>
-      <script src="/html/assets/js/skel.min.js"></script>
-      <script src="/html/assets/js/main.js"></script>
+    <!-- jQuery -->
+    <script src="/html/index/js/jquery.js"></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/html/index/js/bootstrap.min.js"></script>
+    
+    <!-- Slider JavaScript -->
+    <script src="/html/index/js/slider.js"></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    //#to-top button appears after scrolling
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                // $('#to-top').css({position:'fixed', display:'block'});
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+    // Disable Google Maps scrolling
+    // See http://stackoverflow.com/a/25904582/1607849
+    // Disable scroll zooming and bind back the click event
+    var onMapMouseleaveHandler = function(event) {
+        var that = $(this);
+        that.on('click', onMapClickHandler);
+        that.off('mouseleave', onMapMouseleaveHandler);
+        that.find('iframe').css("pointer-events", "none");
+    }
+    var onMapClickHandler = function(event) {
+            var that = $(this);
+            // Disable the click handler until the user leaves the map area
+            that.off('click', onMapClickHandler);
+            // Enable scrolling zoom
+            that.find('iframe').css("pointer-events", "auto");
+            // Handle the mouse leave event
+            that.on('mouseleave', onMapMouseleaveHandler);
+        }
+        // Enable map zooming with mouse scroll when the user clicks the map
+    $('.map').on('click', onMapClickHandler);
+    </script>
 
-  </body>
+</body>
+
 </html>

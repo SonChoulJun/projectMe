@@ -10,6 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | User Profile</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -42,6 +43,12 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+<!--  facebook -->
+    <meta property="og:url"           content="http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="ShareTrip" />
+    <meta property="og:description"   content="당신만의 특별한 추억 공유" />
+    <meta property="og:image"         content="http://192.168.0.17:8080/html/0.png" />
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -99,11 +106,10 @@
                                                 style="height: 400px; margin: 0px auto;"></div>
 
 											<p>오랜만에 서울에 있는 철준이네 집에 다녀왔다. 여전히 연기를 잘한다.</p>
-											<button type="button" class="btn btn-default btn-xs">
-												<i class="fa fa-share"></i> Share
-											</button>
-
-
+											<div class="fb-share-button" data-href="http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.0.17%3A8080%2FmapBoard%2FgetPhotoFolder%3FfolderNum%3D10002&amp;src=sdkpreparse">공유하기</a></div>
+											
+								            <a id="kakao-link-btn" href="javascript:sendLink()"><img src="/html/images/kakao.PNG" ></a>  
+											
 											<button id="likeBt" type="button" class="btn btn-default btn-xs">
                          <div name="${myUser.userNo}"></div>
                          <div name="${photoFolderOne.pfNo}"></div>
@@ -447,6 +453,7 @@
 	<script src="/html/dist/js/demo.js"></script>
 	<script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 	<script src="/html/folder-input/folder-input.js"></script>
+	
 
 <%
   PhotoFolder folder = (PhotoFolder)request.getAttribute("photoFolderOne");
@@ -582,9 +589,81 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap"
 		type="text/javascript"></script>
 
+
  <script src="/html/photo/comment.js"></script>
 
  <script src="/html/photo/like.js"></script>
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('41020c22a903ed6423f936e1bd2fd29f');
+    // // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createTalkLinkButton({
+      container: '#kakao-link-btn',
+      label: '나만의 여행으로 소통하자',
+      image: {
+        src: 'http://192.168.0.17:8080/html/0.png',
+        width: '300',
+        height: '200'
+      },
+      webButton: {
+        text: '나만의 여행앱 ShareTrip',
+        url: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      }
+    });
+  //]]>
+</script>
+
+ <script type="text/javascript">
+ $(function(){
+     
+     
+     $(document).on("click","#sendCommentBt",function(){
+         var userNo=$(this).find("div").eq(0).attr("name");
+         var pfNo=$(this).find("div").eq(1).attr("name");
+         alert(userNo+"+++"+pfNo);
+         var post = $(this).parents(".post");
+         var aaa =$(this);
+         alert(post.attr("name"));
+       $.ajax({
+             
+             url: "/mapBoard/setComment/"+userNo+"/"+pfNo,
+             method :"GET",
+             dataType : "json" ,
+             headers : {
+               "Accept" : "application/json",
+               "Content-Type" : "application/json"
+             },
+             success : function(JSONData , status) {
+                 if(JSONData.likeOk=="add"){
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","blue");
+                 }else{
+                     $("#likeCount").text(JSONData.likeCount+" likeCount");
+                     upthis.css("color","#444");
+                 }
+             }
+             
+       });
+         post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username"> ${commentList.userId} <span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">${commentList.date}</span>   </span> ${commentList.text} </div> </div>');
+         
+    });
+ });
+ </script>
 
 
 

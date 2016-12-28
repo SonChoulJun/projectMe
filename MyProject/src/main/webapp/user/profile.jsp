@@ -23,6 +23,8 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
+  <link rel="stylesheet" href="/html/assets/test/css/style.css">
+  
 
   <!-- profile photo -->
 
@@ -626,6 +628,7 @@ facebookShare.onclick = function(e) {
 
  <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 <script src="/html/dist/js/index.js"></script>
+<script src="/html/assets/test/js/index.js"></script>
 
 
 
