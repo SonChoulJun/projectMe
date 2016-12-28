@@ -111,12 +111,20 @@ public class UserServiceImpl implements UserService {
         // TODO Auto-generated method stub
         return userDAO.getFollwingCount(userNo);
     }
+    
+    @Override
+    public List<User> getFollowing(int userNo)throws Exception{
+      
+      
+      return userDAO.getFollowing(userNo);
+    }
 
 
     @Override
-    public List<User> getFollow(int UserNo) throws Exception {
+    public List<User> getFollower(int userNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+      
+        return userDAO.getFollower(userNo);
     }
 
 
@@ -168,6 +176,15 @@ public class UserServiceImpl implements UserService {
     public boolean followOk(int userNo, int followNo) throws Exception {
        return userDAO.FollowOk(userNo, followNo);
     }
+
+
+    @Override
+    public void updateStatus(String status, int userNo) throws Exception {
+      // TODO Auto-generated method stub
+      userDAO.updateStatus(status, userNo);
+    }
+    
+    
 
     
 

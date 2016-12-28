@@ -404,7 +404,7 @@ $("#fileUpload").fileinput({
 </script>
 
 <script src="/html/folder-input/folder-input.js"></script>
-
+<c:import url="/user/layer.jsp"></c:import>
 
 
 

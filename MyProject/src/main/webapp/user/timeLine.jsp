@@ -518,6 +518,9 @@ $("#fileUpload").fileinput({
 
 
 
+<c:import url="/user/layer.jsp"></c:import>
+
+
 
 </body>
 </html>

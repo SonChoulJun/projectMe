@@ -583,8 +583,9 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
 		type="text/javascript"></script>
 
  <script src="/html/photo/comment.js"></script>
-		
+
  <script src="/html/photo/like.js"></script>
+
 
 
 

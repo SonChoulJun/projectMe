@@ -17,8 +17,10 @@ public interface UserService {
 	public User updateUser(User user) throws Exception ;
 	
 	public User getUser(String userId) throws Exception ;
+	
+	public List<User> getFollowing(int userNo)throws Exception;
 
-	public List<User> getFollow(int userNo) throws Exception ;
+	public List<User> getFollower(int userNo) throws Exception;
 	
 	public boolean followOk(int userNo, int followNo) throws Exception ;
 	
@@ -39,6 +41,10 @@ public interface UserService {
   public int getFollwingCount(int userNo) throws Exception;
   
   public List<User> searchUser(String userId) throws Exception;
+  
+  public void updateStatus(String status, int userNo)throws Exception;
+  
+  
 	
 //	public boolean pwCheak(User user) throws Exception ;
 }
