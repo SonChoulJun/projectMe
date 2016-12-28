@@ -1,13 +1,12 @@
 package kr.co.bitcamp.web.user;
 
-import java.io.File;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.ResultType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
@@ -155,7 +152,7 @@ public class UserController {
     }
     
     @RequestMapping("updateStatus")
-    public @ResponseBody String updateStatus(@RequestBody User user1 ,HttpSession session, Model model)throws Exception{
+    public @ResponseBody Map<String,String> updateStatus(@RequestBody User user1 ,HttpSession session, Model model)throws Exception{
     
       User user=(User)session.getAttribute("myUser");
       int userNo=user.getUserNo();
@@ -163,10 +160,11 @@ public class UserController {
       userService.updateStatus(user1.getStatus(), userNo);
       
       String status=user1.getStatus();
+      Map<String,String> map = new HashMap<String,String>();
+      map.put("status", status);
       
-      System.out.println(status);
-      
-      return status;
+      System.out.println("맵"+map);
+      return map;
     }
     
     

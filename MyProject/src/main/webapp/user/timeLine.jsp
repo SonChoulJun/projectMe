@@ -54,8 +54,10 @@
             <ul class="nav nav-tabs">
               <li><a href="/user/myTravel " >MyTravel</a></li>
               <li class="active"><a href="#timeline" >TimeLine</a></li>
+              <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity " >Activity</a></li>
               <li><a href="/user/settings.jsp" >Settings</a></li>
+              </c:if>
             </ul>
             
             <div class="tab-content">
