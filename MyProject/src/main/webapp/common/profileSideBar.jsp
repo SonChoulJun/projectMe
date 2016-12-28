@@ -23,11 +23,11 @@
 			<p id="teststatus" class="text-muted text-center">
 			<c:if test="${targetUser.userNo==myUser.userNo}">
 			<a id="statusButton" data-target="#getStatus" data-toggle="modal">
-			=====${targetUser.status}=====
+			=====${targetUser.status}=====</h5>
 			</a>
 			</c:if>
 			<c:if test="${targetUser.userNo!=myUser.userNo}">
-			=====${targetUser.status}=====
+			<h5>=====${targetUser.status}=====</h5>
 			</c:if>
 			</p>
 
@@ -80,7 +80,7 @@
 									<div class="row">
 										<div class="pattern">
 											<ul id="bodyModal" class="list img-list" style="padding:0;">
-			                                     
+			                               
 			                                </ul>
 										</div>
 									</div>
