@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,13 +54,13 @@ public class MapBoardController {
     
     
     @RequestMapping("addFolder")
-    public String addFolder(PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
+    public void addFolder(@RequestBody PhotoFolder photoFolder,HttpSession session, Model model) throws Exception{
       int userNo = ((User)session.getAttribute("myUser")).getUserNo();
       photoFolder.setUserNo(userNo);
       boolean ok =boardService.addFolder(photoFolder);
       if(ok){
           List<PhotoFolder> photoFolder1 = boardService.getSideBar(userNo);
-          session.setAttribute("folderList", photoFolder1);
+          model.addAttribute("folderNo",photoFolder1.get(0).getPfNo());
           model.addAttribute("addFolderOk","ok");
           
           Activity activity=new Activity();
@@ -72,9 +72,7 @@ public class MapBoardController {
       }
       
       
-      
-      
-      return "forward:/user/profile.jsp";
+   
     }
     
     @RequestMapping(value = "addphoto/{folderNo}", method=RequestMethod.POST) //ajax에서 호출하는 부분
@@ -85,7 +83,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\BitCamp\\git-realProject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -264,6 +262,28 @@ public class MapBoardController {
 		model.addAttribute("commentCount", commentCount);
 		return "forward:/mapBoard/getPhotoFolder?folderNum="+comment.getFolderNo();
     	}
+    
+    
+    
+    
+    @RequestMapping("jsonSetComment")
+    public void jsonSetComment(@RequestBody Comment comment, Model model , HttpSession session) throws Exception{      
+    System.out.println("/domain/Comment");
+
+    boolean ok = boardService.setComment(comment);
+    List<Comment> comentList=boardService.getComment(comment.getFolderNo());
+    int commentCount=boardService.getComment(comment.getFolderNo()).size();
+    Comment comment2 = comentList.get(commentCount-1);
+    
+    if(ok){
+          model.addAttribute("setCommentOk","ok");
+    }else{
+          model.addAttribute("setCommentOk","no");
+    }
+    
+    model.addAttribute("commentCount", commentCount);
+    model.addAttribute("comment", comment2);
+    }
 
     @RequestMapping("updateComment")
     public String updateComment(@ModelAttribute("comment")Comment comment,Model model){
@@ -286,7 +306,7 @@ public class MapBoardController {
           
         }
     @RequestMapping( value="getComment")
-  	public String getComment( @RequestParam("folderNo")int userNo ,String userId, String folderNo, Model model ) throws Exception {
+  	public void getComment( @RequestParam("folderNo")int userNo ,String userId, String folderNo, Model model ) throws Exception {
     	
     	System.out.println("getComment받아와랏!!!!!!!!!!!!!");
   		//Business Logic
@@ -295,8 +315,7 @@ public class MapBoardController {
   		// Model 과 View 연결
     	model.addAttribute("user", user);
   		model.addAttribute("comment", comment);
-    	
-    	return "";
+
     }
 
     @RequestMapping("removeComment")

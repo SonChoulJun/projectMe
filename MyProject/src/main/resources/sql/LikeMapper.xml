@@ -27,11 +27,17 @@
         WHERE PF_NO=#{value}
     </select>
     
+    <select id="likeCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM BT_LIKE
+        WHERE PF_NO=#{value}
+    </select>
+    
     <select id="getLikeOk" parameterType="map" resultMap="likeSelectMap">
         select USER_NO 
         from BT_LIKE 
         where USER_NO = #{userNo} AND PF_NO = #{pfNo}
     </select>
+    
     
     
 	

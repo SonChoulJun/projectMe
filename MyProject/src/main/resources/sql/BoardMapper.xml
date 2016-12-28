@@ -16,7 +16,25 @@
 		<result property="photoDate" column="FOLDER_DATE" jdbcType="DATE" />
 		<association property="user" column="USER_NO" select="UserMapper.getUser2" javaType="user"></association>
 		<association property="photoTheme" column="PF_NO" select="getTheme"	javaType="ArrayList"></association>
+		<association property="commentList" column="PF_NO" select="getComment" javaType="ArrayList"></association>
+		<association property="commentCount" column="PF_NO" select="countComment" javaType="int"></association>
+    <association property="likeCount" column="PF_NO" select="LikeMapper.likeCount" javaType="int"></association>
 	</resultMap>
+	
+	
+	 <resultMap type="board" id="boardSelectMap2">
+    <result property="pfNo" column="PF_NO" jdbcType="NUMERIC" />
+    <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+    <result property="title" column="TITLE" jdbcType="VARCHAR" />
+    <result property="text" column="TEXT" jdbcType="VARCHAR" />
+    <result property="photoDate" column="FOLDER_DATE" jdbcType="DATE" />
+    <association property="user" column="USER_NO" select="UserMapper.getUser2" javaType="user"></association>
+    <association property="photoTheme" column="PF_NO" select="getTheme" javaType="ArrayList"></association>
+    <association property="commentList" column="PF_NO" select="getComment" javaType="ArrayList"></association>
+    <association property="commentCount" column="PF_NO" select="countComment" javaType="int"></association>
+    <association property="likeCount" column="PF_NO" select="LikeMapper.likeCount" javaType="int"></association>
+    <association property="likeCode" column="{userNo=FOLLOWER_USER_NO,pfNo=PF_NO}" select="getLikeOk2" javaType="int"></association>
+  </resultMap>
 
 	<resultMap type="theme" id="themeSelectMap">
 		<result property="themeNo" column="TM_NO" jdbcType="NUMERIC" />
@@ -45,8 +63,17 @@
 	</resultMap>
 	
 	
-	<select id="getTimeline" parameterType="int" resultMap="boardSelectMap">
-	 select * from BT_PHOTO_FOLDER where USER_NO IN (select FOLLOWING_USER_NO from BT_FOLLOWER where FOLLOWER_USER_NO = #{value}) ORDER BY FOLDER_DATE DESC
+	  <select id="getLikeOk2" resultType="int">
+        select USER_NO 
+        from BT_LIKE 
+        where USER_NO = #{userNo} AND PF_NO = #{pfNo}
+    </select>
+	
+	
+	<select id="getTimeline" parameterType="int" resultMap="boardSelectMap2">
+		select * from BT_PHOTO_FOLDER A, (select * from BT_FOLLOWER where FOLLOWER_USER_NO = #{value}) B 
+		where A.USER_NO=B.FOLLOWING_USER_NO
+		ORDER BY A.FOLDER_DATE DESC
 	</select>
 
 	<delete id="removeComment" parameterType="int">
@@ -74,6 +101,15 @@
 		BT_COMMENT C ,BT_USER U 
 		where C.USER_NO=U.USER_NO AND C.PF_NO = #{value} ORDER BY COMMENT_DATE
 	</select>
+	
+	
+	 <select id="countComment" parameterType="int" resultType="int">
+    select
+    count(*)
+    from
+    BT_COMMENT
+    where PF_NO = #{value}
+  </select>
 
 
 	<insert id="setComment" parameterType="comment">
@@ -88,14 +124,14 @@
 	</insert>
 
 	<select id="getfolder" parameterType="int" resultMap="boardSelectMap">
-		select P.TITLE, P.PF_NO
+		select P.TITLE, P.PF_NO, U.USER_NO
 		from BT_PHOTO_FOLDER P, BT_USER U
 		WHERE U.USER_NO = P.USER_NO AND U.USER_NO=#{value}
-		ORDER BY P.PF_NO
+		ORDER BY P.FOLDER_DATE DESC
 	</select>
 
 	<select id="getfolderOne" parameterType="int" resultMap="boardSelectMap">
-		select P.TITLE, P.PF_NO, P.FOLDER_DATE,P.TEXT
+		select P.TITLE, P.PF_NO, P.FOLDER_DATE,P.TEXT,U.USER_NO
 		from BT_PHOTO_FOLDER P, BT_USER U
 		WHERE U.USER_NO = P.USER_NO AND P.PF_NO=#{value}
 		ORDER BY P.PF_NO

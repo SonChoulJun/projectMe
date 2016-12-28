@@ -56,11 +56,11 @@ public class ProfileController {
     @RequestMapping("mainProfile")
     public String mainProfile(HttpSession session, Model model) throws Exception{
         User user = (User)session.getAttribute("myUser");
-        int userNo =user.getUserNo();
+        int userNo =user.getUserNo(); // 세션에서 넘버거져오고
         System.out.println(user);
        
         session.setAttribute("targetUser",user);
-        List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
+        List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);  // 사이트바 위해 포토폴더 받아오기
         System.out.println("asdasdsasad"+photoFolder);
         try{
             session.setAttribute("folderList", photoFolder);
