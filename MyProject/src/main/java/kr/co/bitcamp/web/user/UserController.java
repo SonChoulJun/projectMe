@@ -244,16 +244,18 @@ public class UserController {
        
         
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
-        model.addAttribute("targetUser", user);
+        model.addAttribute("user", user);
         model.addAttribute("activity", activityList);
         
         return "forward:/user/MyActivity.jsp";
       }
       
       @RequestMapping("setActivity")
-      public String setActivity(Activity activity){
+      public void setActivity(Activity activity)throws Exception{
+        
+          userService.setActivity(activity);
  
-        return "";
+        
       }
       @RequestMapping("myTravel")
       public String travelPage(HttpSession session, Model model)throws Exception{

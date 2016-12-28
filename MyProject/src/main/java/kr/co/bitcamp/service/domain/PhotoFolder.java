@@ -12,6 +12,10 @@ public class PhotoFolder {
   private Date photoDate;
   private List<PhotoTheme> photoTheme;
   private List<Comment> commentList;
+  private int likeCode;
+  private int commentCount;
+  private int likeCount;
+
   
   public PhotoFolder(){
     
@@ -70,6 +74,15 @@ public int getUserNo() {
     this.photoTheme = photoTheme;
   }
 
+  public int getLikeCode() {
+    return likeCode;
+  }
+
+
+
+  public void setLikeCode(int likeCode) {
+    this.likeCode = likeCode;
+  }
 
 
   public List<Comment> getCommentList() {
@@ -84,10 +97,36 @@ public int getUserNo() {
 
 
 
+  
+  public int getCommentCount() {
+    return commentCount;
+  }
+  
+  
+  
+  public void setCommentCount(int commentCount) {
+      this.commentCount = commentCount;
+  }
+  
+  
+  
+  public int getLikeCount() {
+      return likeCount;
+  }
+  
+  
+  
+  public void setLikeCount(int likeCount) {
+      this.likeCount = likeCount;
+  }
+
+
+
   @Override
   public String toString() {
       return "PhotoFolder [pfNo=" + pfNo + ", userNo=" + userNo + ", user=" + user + ", title=" + title + ", text=" + text
-              + ", photoDate=" + photoDate + ", photoTheme=" + photoTheme + ", commentList=" + commentList + "]";
+              + ", photoDate=" + photoDate + ", photoTheme=" + photoTheme + ", commentList=" + commentList + ", likeCode="
+              + likeCode + ", commentCount=" + commentCount + ", likeCount=" + likeCount + "]";
   }
 
 

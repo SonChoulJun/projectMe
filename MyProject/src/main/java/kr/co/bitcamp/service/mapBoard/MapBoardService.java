@@ -17,8 +17,14 @@ public interface MapBoardService {
     public List<Photo> getMainPhoto(int pfNo) throws Exception;
     
     public List<Photo> getSubPhoto(int themeNo) throws Exception;
+    
+    public boolean likeOk(int photoFolderNo, int userNo) throws Exception;
 
-    public boolean setLike(int photoFolderNo,int UserNo) throws Exception;
+    public void setLike(int photoFolderNo,int UserNo) throws Exception;
+    
+    public void removeLike(int pfNo, int userNo) throws Exception;
+    
+    public int getLikeCount(int pfNo) throws Exception;
     
     public boolean setComment(Comment comment) throws Exception;
     
@@ -26,10 +32,12 @@ public interface MapBoardService {
     
     public boolean updateComment(Comment comment) throws Exception;
     
-    public boolean removeComment(int commentNo) throws Exception;
+    public void removeComment(int commentNo) throws Exception;
     
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     
     public List<PhotoFolder> getSideBar(int userNo) throws Exception;
+
+    
     
 }

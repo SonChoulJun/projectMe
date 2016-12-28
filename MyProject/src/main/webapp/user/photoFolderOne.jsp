@@ -102,11 +102,18 @@
 											<button type="button" class="btn btn-default btn-xs">
 												<i class="fa fa-share"></i> Share
 											</button>
+
+
 											<button id="likeBt" type="button" class="btn btn-default btn-xs">
+                         <div name="${myUser.userNo}"></div>
+                         <div name="${photoFolderOne.pfNo}"></div>
+                         <div name="${likeOk}"></div>
 												<i class="fa fa-thumbs-o-up"></i> Like
 											</button>
-											<span class="pull-right text-muted">127 likes - 3
-												comments</span>
+											<span id="likeCount" class="pull-right text-muted"><a href="#">${likeCount} likeCount</a></span>
+											<span class="pull-right text-muted"><a href="#" id="commentCount">${commentCount} comment</a></span>
+											<!-- span id="commentCount" class="pull-right text-muted"> comment</span> -->
+											
 										</div>
 										<!-- /.box-body -->
 										<div class="box-footer box-comments">
@@ -117,8 +124,11 @@
 														src="/html/dist/img/user3-128x128.jpg" alt="User Image">
 	
 													<div class="comment-text">
-														<span class="username"> ${commentList.userId}<span  
-															class="text-muted pull-right">${commentList.date}</span>
+														<span class="username"> ${commentList.userId}
+														<span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span>
+														<br/>
+														<span  class="text-muted pull-right">${commentList.date}</span>
+														
 														</span>
 														<!-- /.username -->
 														${commentList.text}
@@ -544,9 +554,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
                  }
                 
 
-                
-                 
-
+              
                  
   }
   function toggleBounce() {
@@ -569,14 +577,14 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
   }
   
   
-  $(function(){
-	  $("#likeBt").css("color","red");
-  });
   </script>
 	<script
 		src="http://maps.google.com/maps/api/js?key=AIzaSyAtigIrLnYLdIioQQT2bn9jZCiXk52JAuw&signed_in=true&callback=initMap"
 		type="text/javascript"></script>
 
+ <script src="/html/photo/comment.js"></script>
+		
+ <script src="/html/photo/like.js"></script>
 
 
 

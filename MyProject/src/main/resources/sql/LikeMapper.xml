@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 					
+
+
+
+<mapper namespace="LikeMapper">
+	
+
+	
+	<resultMap type="board" id="likeSelectMap">
+	<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+	<result property="pfNo" column="PF_NO" jdbcType="NUMERIC" />
+	</resultMap>
+	
+	<insert id="addLike" parameterType="map">
+	   INSERT
+	   INTO BT_LIKE(USER_NO, PF_NO)
+	   VALUES
+	   (#{userNo}, #{pfNo} )
+	</insert>
+    
+    <select id="getLikeList" parameterType="int" resultMap="likeSelectMap">
+        SELECT * FROM BT_LIKE
+        WHERE PF_NO=#{value}
+    </select>
+    
+    <select id="likeCount" parameterType="int" resultType="int">
+        SELECT count(*) FROM BT_LIKE
+        WHERE PF_NO=#{value}
+    </select>
+    
+    <select id="getLikeOk" parameterType="map" resultMap="likeSelectMap">
+        select USER_NO 
+        from BT_LIKE 
+        where USER_NO = #{userNo} AND PF_NO = #{pfNo}
+    </select>
+    
+    
+    
+	
+	<delete id="removeLike" parameterType="map">
+	   DELETE
+	   FROM BT_LIKE
+	   WHERE USER_NO=#{userNo} AND PF_NO=#{pfNo}
+	</delete>
+    
+
+
+</mapper>

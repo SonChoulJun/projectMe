@@ -7,7 +7,7 @@ public class Activity {
   private String activityDate;
   private String activityTime;
   private String activityText;
-  private User user;
+  private int userNo;
   private int activityNo;
   
  
@@ -16,11 +16,11 @@ public class Activity {
     
     
   }
-  public User getUser() {
-    return user;
+  public int getUser() {
+    return userNo;
   }
-  public void setUser(User user) {
-    this.user = user;
+  public void setUserNo(int userNo) {
+    this.userNo = userNo;
   }
 
   public int getActivityNo() {
@@ -59,7 +59,7 @@ public String getActivityDate() {
   @Override
   public String toString() {
     return "Activity [activityDate=" + activityDate + ", activityTime=" + activityTime + ", activityText="
-        + activityText + ", user=" + user + ", activityNo=" + activityNo + "]";
+        + activityText + ", userNo=" + userNo + ", activityNo=" + activityNo + "]";
   }
  
   

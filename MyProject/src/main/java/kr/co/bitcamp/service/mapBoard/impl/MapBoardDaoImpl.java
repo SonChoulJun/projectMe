@@ -86,11 +86,46 @@ public class MapBoardDaoImpl implements MapBoardDao {
         // TODO Auto-generated method stub
         return null;
     }
+    @Override
+    public boolean likeOk(int photoFolderNo, int userNo) throws Exception{
+      Map map=new HashMap();
+      map.put("pfNo", photoFolderNo);
+      map.put("userNo", userNo);
+      
+        if(sqlSession.selectOne("LikeMapper.getLikeOk", map)==null){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
 
     @Override
-    public boolean setLike(int photoFolderNo, int UserNo) throws Exception {
+    public void setLike(int photoFolderNo,int userNo) throws Exception {
         // TODO Auto-generated method stub
-        return false;
+      
+      Map map=new HashMap();
+      map.put("pfNo", photoFolderNo);
+      map.put("userNo", userNo);
+      
+      System.out.println("map에 들어가 있는 값은?"+map);
+      
+      sqlSession.insert("LikeMapper.addLike",map);
+    }
+    
+    @Override
+    public void removeLike(int pfNo, int userNo)throws Exception{
+      Map map=new HashMap();
+      map.put("pfNo", pfNo);
+      map.put("userNo", userNo);
+      
+      sqlSession.delete("LikeMapper.removeLike", map);
+    }
+    
+    @Override
+    public int getLikeCount(int pfNo)throws Exception{
+      
+      return sqlSession.selectList("LikeMapper.getLikeList", pfNo).size();
     }
 
     @Override
@@ -112,15 +147,16 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public boolean removeComment(int commentNum) throws Exception {
+    public void removeComment(int commentNum) throws Exception {
         // TODO Auto-generated method stub
-    	int count = sqlSession.delete("BoardMapper.removeComment", commentNum);
+        sqlSession.delete("BoardMapper.removeComment", commentNum);
+      /*	int count = sqlSession.delete("BoardMapper.removeComment", commentNum);
     	// 1개의삭제가 되었다는 가정
         if (count == 1) {
           return true;
         } else {
           return false;
-        }
+        }*/
       }
 
     @Override

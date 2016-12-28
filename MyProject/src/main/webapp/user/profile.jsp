@@ -78,8 +78,8 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
               <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
-              <li><a href="http://127.0.0.1:8080/user/getActivity" >Activity</a></li>
-              <li><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
+              <li><a href="/user/getActivity" >Activity</a></li>
+              <li><a href="/user/settings.jsp" >Settings</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="myTravel">
@@ -701,6 +701,92 @@ $(function() {
     
   }); 
 </script>
+
+
+  <script src="/html/photo/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+  <!--  Plugin for the Wizard -->
+  <script src="/html/photo/assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+  <!--  More information about jquery.validate here: http://jqueryvalidation.org/  -->
+  <script src="/html/photo/assets/js/jquery.validate.min.js" type="text/javascript"></script>
+  
+  
+  <!--파일업로드 자바스크립트  -->
+  <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
+  <script src="/html/assets/themes/fa/theme.js"></script>
+  <script src="/html/assets/js/locales/LANG.js"></script>
+        
+  <script type="text/javascript">
+  var folderNo;
+  $(function() {
+	    $( "#fileInputBt" ).on("click",function() {
+	        //Debug..
+	        //alert(  $( this ).text().trim() );
+	        
+	        //////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
+	        //self.location ="/user/getUser?userId="+$(this).text().trim();
+	        ////////////////////////////////////////////////////////////////////////////////////////////
+	        var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+	        obj.title = $("#fileinputTitle").val();
+	        obj.text = $("#fileinputText").val();
+	         var json_data = JSON.stringify(obj);
+	        $.ajax( 
+	            {
+	              url : "/mapBoard/addFolder",
+	               method :"POST",
+	               data :json_data,
+	              dataType : "json" ,
+	              headers : {
+	                "Accept" : "application/json",
+	                "Content-Type" : "application/json"
+	              },
+	              success : function(JSONData , status) {
+	            	  $("#folderNo").attr("name",JSONData.folderNo);
+	            	  folderNo=JSONData.folderNo;
+	            	  alert("등록완료"+folderNo);
+	                
+	            	  
+	            	  //$("#input-id").fileinput();
+	            	  $("#input-id").fileinput('refresh', {
+	                        language: 'LANG',
+	                        uploadUrl: '/mapBoard/addphoto/'+folderNo,
+	                        uploadAsync: true,
+	                        multiple:true,
+	                        allowedFileExtensions : ['jpg', 'png','gif']   
+	                      });
+	              }
+	          });
+	        
+	          ////////////////////////////////////////////////////////////////////////////////////////////
+	        
+	    });
+	    
+	    
+	    
+	  }); 
+  
+  
+
+  </script>
+  <script type="text/javascript">
+  $('#input-id').on('filebatchuploadcomplete', function(event, files, extra) {
+      console.log('File batch upload complete');
+      alert("가나다");
+      $("#inputNext").attr("type","button");
+  });
+  
+  
+  $("#Finish").on("click",function(){
+	  var url = "/profile/mainProfile";    
+	  $(location).attr('href',url);
+  });
+  </script>
+  
+  
+  
+  <!--파일업로드 자바스크립트  -->
+        
 
 
 </body>

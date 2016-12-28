@@ -134,7 +134,7 @@ var idck=0;
 
 	              //Debug...                  
 	              //alert(displayValue);
-	              $('form div p').remove();
+	              $('#LIKE').remove();
 	              $('form div h3').remove();
 	              $('form div p2').remove();
 	              if(JSONData.userOk =="true"){
