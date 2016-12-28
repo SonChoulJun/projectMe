@@ -1,13 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <met
+    
+    a name="author" content="">
 
     <title>Stylish Portfolio - Start Bootstrap Theme</title>
 
@@ -17,7 +21,8 @@
     <!-- Custom CSS -->
     <link href="/html/index/css/stylish-portfolio.css" rel="stylesheet">
     
-    <!--Slider CSS(수정) -->
+    <!--Slider CSS(ìì ) -->
+    
     <link rel="stylesheet" href="/html/index/css/slider.css">
     
     <!-- Custom Fonts -->
@@ -115,7 +120,7 @@
                                 <h4>
                                     <strong>'Memory'</strong>
                                 </h4>
-                                <p>하나뿐인 가족여행, 커플, 축제, 행사<br>우리들의 추억을 기록합니다</p>
+                                <p>하나뿐인 여행, 커플, 축제, 행사<br>우리들의 추억을 기록합니다</p>
                                 <a href="#" class="btn btn-light">Learn More</a>
                             </div>
                         </div>
@@ -155,6 +160,7 @@
                                     <strong>'Sharing'</strong>
                                 </h4>
                                 <p>자신의 여행을 공유하고 <br>사람들과 이야기하세요</p>
+                                <a href="#" class="btn btn-light">Lear
                                 <a href="#" class="btn btn-light">Learn More</a>
                             </div>
                         </div>      

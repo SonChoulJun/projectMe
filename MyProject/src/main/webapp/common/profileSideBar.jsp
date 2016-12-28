@@ -44,11 +44,156 @@
 
           <!-- About Me Box -->
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
+             <div class='et_pb_column et_pb_column_1_3'>
+              <div class='module post-module'>
+                <div class='module-head'>
+                  <h1>All</h1>
+                  <div class='module-filter'>
+                    <b>Top 5</b>
+                  </div>
+                </div>
+                <div class='main-post'>
+                  <article>
+                    <div class='header'>
+                      <a href='#'>
+                        <img src='http://placehold.it/500x250/519bf5/ffffff'>
+                        <span class='et_overlay'></span>
+                      </a>
+                    </div>
+                    <div class='post-content'>
+                      <h2>This is a post title.</h2>
+                      <div class='post-meta'>
+                        <p>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </p>
+                      </div>
+                      <div class='excerpt'>Cupcake ipsum dolor. Sit amet marzipan croissant. Chocolate bar I love gummi bears biscuit. I love oat cake donut dessert apple pie carrot cake chocolate bar bear claw biscuit.</div>
+                    </div>
+                  </article>
+                </div>
+                <ul class='posts-list' style="margin:0;padding:0">
+                  <li>
+                    <article>
+                      <a class='post-thumbnail'>
+                        <img src='http://placehold.it/50/519bf5/ffffff'>
+                      </a>
+                      <div class='post-content'>
+                        <h3>
+                          This is a post title.
+                        </h3>
+                        <div class='post-meta'>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <a class='post-thumbnail'>
+                        <img src='http://placehold.it/50/519bf5/ffffff'>
+                      </a>
+                      <div class='post-content'>
+                        <h3>
+                          This is a post title.
+                        </h3>
+                        <div class='post-meta'>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <a class='post-thumbnail'>
+                        <img src='http://placehold.it/50/519bf5/ffffff'>
+                      </a>
+                      <div class='post-content'>
+                        <h3>
+                          This is a post title.
+                        </h3>
+                        <div class='post-meta'>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <a class='post-thumbnail'>
+                        <img src='http://placehold.it/50/519bf5/ffffff'>
+                      </a>
+                      <div class='post-content'>
+                        <h3>
+                          This is a post title.
+                        </h3>
+                        <div class='post-meta'>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                  <li>
+                    <article>
+                      <a class='post-thumbnail'>
+                        <img src='http://placehold.it/50/519bf5/ffffff'>
+                      </a>
+                      <div class='post-content'>
+                        <h3>
+                          This is a post title.
+                        </h3>
+                        <div class='post-meta'>
+                          By | <a href='#'>Andy Tran</a> | Jun 8, 2015 | <a href='#'>Uncategorized</a> 
+                          <span class='rating-stars'>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                            <div class='rating-star'></div>
+                          </span>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+              </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <!-- <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
               <p class="text-muted">
@@ -79,7 +224,7 @@
 
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
             </div>
-            <!-- /.box-body -->
+            /.box-body -->
           </div>
           <!-- /.box -->
         </div>
