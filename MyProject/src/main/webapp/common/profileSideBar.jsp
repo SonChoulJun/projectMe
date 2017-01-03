@@ -171,6 +171,7 @@
 						                                </div>
 						                            </div>
 						                        </div>
+						                        </div>
 					</li>
 			</ul>
 			<c:if test="${targetUser.userNo!=myUser.userNo}">

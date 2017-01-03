@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
+import kr.co.bitcamp.service.domain.PhotoTheme;
 import kr.co.bitcamp.service.mapBoard.MapBoardDao;
 
 @Repository
@@ -82,9 +83,8 @@ public class MapBoardDaoImpl implements MapBoardDao {
     }
 
     @Override
-    public List<Photo> getSubPhoto(int themeNo) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+    public PhotoTheme getSubPhoto(int themeNo) throws Exception {
+        return sqlSession.selectOne("BoardMapper.getThemeOne", themeNo);
     }
     @Override
     public boolean likeOk(int photoFolderNo, int userNo) throws Exception{
@@ -160,24 +160,31 @@ public class MapBoardDaoImpl implements MapBoardDao {
       }
 
     @Override
-    public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
-        return sqlSession.selectList("BoardMapper.getTimeline", UserNo );
+    public List<PhotoFolder> getNewsFeed(int UserNo,int col) throws Exception {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("userNo", UserNo);
+        map.put("startRowNum", 5*(col-1)+1);
+        map.put("endRowNum", 5*(col));
+        return sqlSession.selectList("BoardMapper.getTimeline", map );
     }
 
     @Override
     public boolean addTheme(int photoFolderNo,List<Photo> photoList) {
         Map<Object, Object> themeMap = new HashMap<Object, Object>();
         themeMap.put("photoFolderNo", photoFolderNo);
-        int themeName =sqlSession.selectOne("BoardMapper.getMaxThemeNo",photoFolderNo);
-        themeName++;
-        themeMap.put("themeName", themeName);
-        System.out.println("sdasdasdasdasdasdsadsadasdasd테마맵맵"+themeMap);        
+        themeMap.put("themeName", "제목");
+        System.out.println("sdasdasdasdasdasdsadsadasdasd테마맵맵"+themeMap); 
         sqlSession.insert("BoardMapper.setTheme",themeMap);
-        int setThemeNo =sqlSession.selectOne("BoardMapper.getThemeNo",themeMap);
+        int setThemeNo =Integer.parseInt(themeMap.get("TM_NO").toString());
+        System.out.println(setThemeNo+"1231231");
         for (Photo photo : photoList) {
             System.out.println(photo);
             photo.setThemeNo(setThemeNo);
-            sqlSession.insert("BoardMapper.setMainPhoto",photo);
+            if(photo.getPhotoDate()==null){
+                sqlSession.insert("BoardMapper.setMainPhotoNull",photo);
+            }else{
+                sqlSession.insert("BoardMapper.setMainPhoto",photo);
+            }
         }
         
         return true;
@@ -191,6 +198,25 @@ public class MapBoardDaoImpl implements MapBoardDao {
       return sqlSession.selectList("BoardMapper.searchBoard", "%"+text+"%");
     }
 
-    
+    public void updateGSP(Photo photo) throws Exception {
+        // TODO Auto-generated method stub
+        sqlSession.update("BoardMapper.updateGPS", photo);
+        System.out.println(sqlSession.update("BoardMapper.updateGPS",photo));
+    }
+
+    @Override
+    public boolean addSubPhoto(int themeNo, List<Photo> photoList) throws Exception {
+        for (Photo photo : photoList) {
+            System.out.println(photo);
+            photo.setThemeNo(themeNo);
+            if(photo.getPhotoDate()==null){
+                sqlSession.insert("BoardMapper.setSubPhotoNull",photo);
+            }else{
+                sqlSession.insert("BoardMapper.setSubPhoto",photo);
+            }
+        }
+        return true;
+    }
+
 	
 }

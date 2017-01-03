@@ -16,6 +16,7 @@ import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.PhotoFolder;
+import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
 import kr.co.bitcamp.service.user.UserService;
@@ -163,7 +164,7 @@ public class UserServiceTest {
       System.out.println("나를 팔로워한 사람아 나와주세요~"+list);
     }
     
-    @Test
+    //@Test
     public void testSearchBoard() throws Exception{
       System.out.println("searchBoard start().................................");
       List<PhotoFolder> list=boardService.searchBoard("유럽여행");
@@ -171,6 +172,14 @@ public class UserServiceTest {
       
       System.out.println("사진 불러오기");
       System.out.println(list.get(0).getPhotoTheme().get(0).getPhotoList());
+    }
+    //@Test
+    public void aaaa() throws Exception{
+        Photo photo = new Photo();
+        photo.setPhotoNo(10109);
+        photo.setGpsH("128.02697096354166");
+        photo.setGpsB("37.45708761844412");
+        boardService.updateGSP(photo);
     }
    
  }

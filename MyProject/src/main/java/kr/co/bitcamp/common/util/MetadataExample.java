@@ -44,8 +44,10 @@ public void metadataExample(final File file) throws ImageReadException,
         final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
 
         System.out.println("file: " + file.getPath());
-        date = jpegMetadata
-                .findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_DATE_TIME).toString();
+        if(jpegMetadata.findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_DATE_TIME)!=null){
+          date = jpegMetadata
+                  .findEXIFValueWithExactMatch(TiffTagConstants.TIFF_TAG_DATE_TIME).toString();
+        }
         System.out.println(date);
 
 
