@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html> 
 <head>
-  <script type="text/javascript"
-    src="/1/js/jquery-3.1.1.min.js"></script>
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
   <title>Google Maps Multiple Markers</title> 
  
@@ -25,10 +24,10 @@
    
   function Locations() {  
       var locations = [
-                   {lat: 37.799027, lng: 128.912813},   // 강원도 해수욕제
-                   {lat: 37.7966576, lng: 127.6381803}, // 번지점프
-                   {lat: 37.4586074, lng: 128.063184},  // 횡성갈비
-                   {lat: 37.510944, lng: 127.0959589},  // 롯데월드    
+                   {lat: 37.799027, lng: 128.912813},   // �
+                   {lat: 37.7966576, lng: 127.6381803}, // ��
+                   {lat: 37.4586074, lng: 128.063184},  // �
+                   {lat: 37.510944, lng: 127.0959589},  //   
                    ];     
       var tempIndex;
       var flightPath;
@@ -153,7 +152,7 @@
     
               flightPath =  new google.maps.Polyline({
               path: locations,
-              geodesic: true,//거리는 기본적으로 미터 단위로 계산 or 픽셀단위
+              geodesic:true,
               strokeColor: '#2E2EFE',
               strokeOpacity: 0.7, //불투명도 1.0(불투명)~0.0(투명)
               strokeWeight: 1, // 두께

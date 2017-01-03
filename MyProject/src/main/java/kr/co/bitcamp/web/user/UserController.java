@@ -53,14 +53,16 @@ public class UserController {
             model.addAttribute("registerOk", "ok");
         else
             model.addAttribute("registerOk", "no");
+
+        
         return "forward:/user/login.jsp";
+       
         
       } catch (Exception e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
           return "";
       }
-      
       
     }
     
@@ -76,6 +78,18 @@ public class UserController {
       session.setAttribute("myUser", user01);
       
       System.out.println("[login() end...............]\n");
+      List<Activity> list=userService.getActivity(user01.getUserNo());
+      
+          if(list.size()==0){
+            
+            Activity activity=new Activity();
+            activity.setUserNo(user01.getUserNo());
+            activity.setActivityText("회원가입을 환영합니다. 새로운 추억을 만들어가세요~");
+            userService.setActivity(activity);
+          }else{
+            System.out.println("이래서 안되는 거였니???????");
+          }
+      
       
       return "forward:/profile/mainProfile";
       
@@ -127,16 +141,16 @@ public class UserController {
     }
     
     @RequestMapping("get")
-    public String getUser(HttpSession session , Model model ) throws Exception{
+    public String getUser(@RequestParam("userId") String userId, HttpSession session , Model model ) throws Exception{
       User user =(User)session.getAttribute("myUser");
       System.out.println("/getUser()  개인정보 불러와!!" );
   
-      User user1 = userService.getUser(user.getUserId().trim());
+      User user1 = userService.getUser(userId.trim());
       
       
          model.addAttribute("user", user1);
     
-      return "forward:/user/getUser.jsp";
+      return "forward:/user/getUser.jsp?";
     }
     
     @RequestMapping("updateUserView")
@@ -162,6 +176,8 @@ public class UserController {
       String status=user1.getStatus();
       Map<String,String> map = new HashMap<String,String>();
       map.put("status", status);
+      
+      session.setAttribute("myUser", user1);
       
       System.out.println("맵"+map);
       return map;
@@ -203,6 +219,7 @@ public class UserController {
       
       List<User> followingList=userService.getFollowing(userNo);
       System.out.println("이 사람이 팔로잉 한 사람들은 누구누구???"+followingList);
+      
       
       return followingList;
        
@@ -307,12 +324,25 @@ public class UserController {
       }
       
       @RequestMapping("removeActivity")
-      public String removeActivity(HttpSession session)throws Exception{
+      public void removeActivity(@RequestParam("activityNo") int activityNo , HttpSession session)throws Exception{
         
-        session.getAttribute("myUser");
         
-        return "";
+        userService.removeActivity(activityNo);
+        
       }
+      
+      /*@RequestMapping("firstActivity")
+      public void firstActivity(HttpSession session)throws Exception{
+        
+        userService.firstActivity();
+        
+        User user=(User)session.getAttribute("myUser");
+        
+        Activity activity=new Activity();
+        activity.setUserNo(user.getUserNo());
+        activity.setActivityText(user.getUserName()+"님의 회원가입을 환영합니다. 새로운 추억을 만들어가세요~");
+        userService.setActivity(activity);
+      }*/
       
      
       

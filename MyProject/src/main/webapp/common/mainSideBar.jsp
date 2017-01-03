@@ -20,7 +20,7 @@
       <!-- 유저정보 -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/html/dist/img/profile/${targetUser.profileImg}" class="img-circle" onerror="this.src='/html/dist/img/defaultImage.jpg';" >
         </div>
         <div class="pull-left info">
           <p>${targetUser.userId}</p>
@@ -77,8 +77,8 @@
               
               <c:if test="${!photoFolder.photoTheme.isEmpty()}">
                  <ul class="treeview-menu">
-                  <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
-                    <li><a href="/mapBoard/getPhotoFolder?folderNum=${photoFolder.pfNo}"><i class="fa fa-circle-o"></i>${photoTheme.themeName}</a></li>
+                  <c:forEach var="photoTheme" items="${photoFolder.photoTheme}" varStatus="status">
+                    <li><a href="/mapBoard/getPhotoFolder?folderNum=${photoFolder.pfNo}"><i class="fa fa-circle-o"></i>${status.count}</a></li>
                   </c:forEach>
                  </ul>
               </c:if>
@@ -90,7 +90,7 @@
   
   
   
-<div id ="modalType" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+ <div id ="modalType" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
       <!--   Creative Tim Branding   -->
 
     <!--  Made With Paper Kit  -->

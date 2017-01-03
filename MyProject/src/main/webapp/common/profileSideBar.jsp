@@ -7,14 +7,58 @@
 	<div class="box box-primary">
 		<div class="box-body box-profile">
 			<!-- <img class="profile-user-img img-responsive img-circle" src="/html/dist/img/user2-160x160.jpg" alt="User profile picture"> -->
-			<div id='profile-upload'>
+			<c:if test="${targetUser.userNo==myUser.userNo}">
+			<div id='profile-upload' style="background-image:url('/html/dist/img/profile/${targetUser.profileImg}') " >
 				<div class="hvr-profile-img">
 					<input type="file" name="logo" id='getval' class="upload w180"
 						title="Dimensions 180 X 180" id="imag">
 				</div>
 				<i class="fa fa-camera"></i>
 			</div>
-
+			</c:if>
+			<c:if test="${targetUser.userNo!=myUser.userNo&&targetUser.profileImg==null}">
+			     <div id='profile-upload' style="background-image:url('/html/dist/img/profile/${targetUser.profileImg}') " >
+                
+                <i class="fa fa-camera"></i>
+            </div>
+			</c:if>
+		   <c:if test="${targetUser.userNo!=myUser.userNo&&targetUser.profileImg!=null}">
+            <div id='profile-upload' style="background-image:url('/html/dist/img/profile/${targetUser.profileImg}') " data-target="#getProfileImg" data-toggle="modal" >
+            
+            <div class="modal fade" id="getProfileImg">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="#getProfileImg">×</button>
+                                                       <!--  header title -->
+                                                        <h4 class="modal-title">프로필 사진</h4>
+                                                    </div>
+                                                    
+                                                    <!--body-->
+                                                    <div  class="modal-body" >
+                                                        <div class="row">
+                                                            <div id="photopull" class="pattern">
+                                                                <img alt="" src="/html/dist/img/profile/${targetUser.profileImg }" style="width:80%;height:80%;">
+                                                               <!--  <textarea name ="status" class="form-control" id="statusMessage" placeholder=${targetUser.status}></textarea> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                   <!-- Footer -->
+                                                    <div class="modal-footer">
+                                                        Footer
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">닫기</button>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                         </div>
+    
+                <i class="fa fa-camera"></i>
+            </div>
+            </c:if>
+            <%-- <c:if test=""></c:if>  --%>
 
 
 			<h3 class="profile-username text-center">
@@ -22,12 +66,17 @@
 			</h3>
 			<p id="teststatus" class="text-muted text-center">
 			<c:if test="${targetUser.userNo==myUser.userNo}">
-			<a id="statusButton" data-target="#getStatus" data-toggle="modal">
-			=====${targetUser.status}=====
+			<a id="statusButton" data-target="#getStatus" data-toggle="modal" placeholder="====">
+			<c:if test="${empty targetUser.status}" >
+                    현재상태명을 입력해주세요.
+            </c:if>
+            <c:if test="${!empty targetUser.status}">
+			=====${targetUser.status}=====</h5>
+			</c:if>
 			</a>
 			</c:if>
 			<c:if test="${targetUser.userNo!=myUser.userNo}">
-			=====${targetUser.status}=====
+			<h5>${targetUser.status}</h5>
 			</c:if>
 			</p>
 
@@ -80,7 +129,7 @@
 									<div class="row">
 										<div class="pattern">
 											<ul id="bodyModal" class="list img-list" style="padding:0;">
-			                                     
+			                               
 			                                </ul>
 										</div>
 									</div>
@@ -167,6 +216,7 @@
 						                                        data-dismiss="modal">닫기</button>
 						                                </div>
 						                            </div>
+						                        </div>
 						                        </div>
 					</li>
 			</ul>

@@ -45,6 +45,10 @@ public interface UserDao {
 	public List<User> searchUser(String userId) throws Exception;
 	
 	public void updateStatus(String status, int userNo) throws Exception;
+	
+	public void updatepfphoto(int userNo, String originalFilename)throws Exception;
+	
+	public void removeActivity(int activityNo)throws Exception;
 }
 
 

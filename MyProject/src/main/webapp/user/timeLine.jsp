@@ -26,6 +26,8 @@
   <link rel="stylesheet" href="/html/assets/css/style.css">  
   
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
+  
+  <link rel="stylesheet" href="/html/assets/test/css/style.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,18 +78,63 @@
                   </div>
                   <c:if test="${!photoFolder.photoTheme.isEmpty()}">
 	                  <div class="row margin-bottom">
-	                    <div class="col-sm-6">
-	                     <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
+
+<%-- 	                     <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
 	                      <c:if test="${!photoTheme.photoList.isEmpty()}">
 	                       <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoTheme.photoList.get(0).folderName}" alt="Photo">
 	                      </c:if>
-	                     </c:forEach>
-	                    </div>
-	                    <!-- /.col -->
-	                    <div class="col-sm-6">
-	                      
-	                    </div>
-	                    <!-- /.col -->
+	                     </c:forEach> --%>
+	                     <c:set var="item1" value="0" scope="request"></c:set>
+                    <div class="col-sm-6">
+                      <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}" alt="Photo">
+                    </div>
+                    <c:if test="${item1+1==photoFolder.photoTheme.size()}">                   
+                      <c:set var="item1" value="0" scope="request"></c:set>
+                    </c:if>
+                    <c:if test="${item1+1!=photoFolder.photoTheme.size()}">
+                      <c:set var="item1" value="${item1+1}" scope="request"></c:set>                   
+                    </c:if>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}" alt="Photo">
+                          <br>
+                          <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                            <c:set var="item1" value="${item1+1}" scope="request"></c:set>                   
+                          </c:if>                          
+                          <c:if test="${item1==photoFolder.photoTheme.size()}">                   
+			                      <c:set var="item1" value="0" scope="request"></c:set>
+			                    </c:if>
+
+
+                          <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}" alt="Photo">
+                          <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                            <c:set var="item1" value="${item1+1}" scope="request"></c:set>                   
+                          </c:if>                          
+                          <c:if test="${item1==photoFolder.photoTheme.size()}">                   
+                            <c:set var="item1" value="0" scope="request"></c:set>
+                          </c:if>
+
+                         
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                          <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}" alt="Photo">
+                          <br>
+                          <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                            <c:set var="item1" value="${item1+1}" scope="request"></c:set>                   
+                          </c:if>                          
+                          <c:if test="${item1==photoFolder.photoTheme.size()}">                   
+                            <c:set var="item1" value="0" scope="request"></c:set>
+                          </c:if>
+                          <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}" alt="Photo">
+                        </div>
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+
 	                  </div>
                   </c:if>
                   <p>
@@ -477,6 +524,9 @@ $("#fileUpload").fileinput({
     
  <script src="/html/photo/like.js"></script>
  
+ <script src="/html/assets/test/js/index.js"></script>
+ 
+ 
  <script type="text/javascript">
  $(function(){
 	 
@@ -522,7 +572,139 @@ $("#fileUpload").fileinput({
 
 <c:import url="/user/layer.jsp"></c:import>
 
+<script type="text/javascript">
 
+var page = 1;
+ 
+$(window).scroll(function() {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+      console.log(++page);
+      $.ajax({
+          
+          url: "/mapBoard/getJsonNewsFeed?userNo=${myUser.userNo}&col="+page,
+          method :"POST",
+          dataType : "json" ,
+          headers : {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+          },
+          success : function(JSONData , status) {
+        	  if(JSONData.newsfeed.length==0){
+        		  alert("모든게시물을 확인하셨습니다.");
+        	  } 
+              for (var i in JSONData.newsfeed) {
+        		  console.log(JSONData.newsfeed[i].user.userName+"sssss");
+        		  var count=0;
+        		  var aaa ='<div class="post" name="aaa">'
+                      +'<div class="user-block">'
+                      +'<img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="user image">'
+                      +'<span class="username">'
+                        +'<a href="#">'+JSONData.newsfeed[i].user.userName+'</a>'
+                        +'<a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>'
+                      +'</span>'
+                      +'<span class="description">'+JSONData.newsfeed[i].user.userId+' - '+JSONData.newsfeed[i].photoDate+'</span>'
+                    +'</div>';
+                 if(JSONData.newsfeed[i].photoTheme.length!=0){
+                	 aaa=aaa+'<div class="row margin-bottom">'
+                     +'<div class="col-sm-6">'
+                       +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                     +'</div>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }
+                     aaa=aaa+'<div class="col-sm-6">'
+                       +'<div class="row">'
+                         +'<div class="col-sm-6">'
+                           +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                           +'<br>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }                           
+                  aaa=aaa+'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'                
+                        +'</div>';
+                         <!-- /.col -->
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }  
+                        aaa =aaa+'<div class="col-sm-6">'
+                           +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                           +'<br>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                     count =0;
+                  }   
+                           aaa=aaa+'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                         +'</div>'
+                         <!-- /.col -->
+                       +'</div>'
+                     <!-- /.row -->
+                    +'</div>'                  
+                   +'</div>';
+                    }
+                   aaa=aaa+'<p>'+JSONData.newsfeed[i].text+'</p>'
+                   +'<ul class="list-inline">'
+                      +'<button type="button" class="btn btn-default btn-xs">'
+                         +'<i class="fa fa-share"></i> Share'
+                       +'</button>'
+                       +'<button id="likeBt" type="button" class="btn btn-default btn-xs" style="color:#444">'
+                         +'<div name="${myUser.userNo}"></div>'
+                         +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                         +'<div name="'+JSONData.newsfeed[i].likeCode+'"></div>'
+                         +'<i class="fa fa-thumbs-o-up"></i> Like'
+                       +'</button>'
+                       +'<span id="likeCount" class="pull-right text-muted"><a href="#">'+JSONData.newsfeed[i].likeCount+'likeCount</a></span>'
+                       +'<span class="pull-right text-muted"><a href="#" id="commentCount">'+JSONData.newsfeed[i].commentCount+'comment</a></span>'
+                    +'</ul>'
+                    +'<div id="CommentBox" class="box-footer box-comments">'
+                    for (var z in JSONData.newsfeed[i].commentList) {
+                    	aaa=aaa+'<div class="box-comment">'
+                      +'<img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image">'
+                      +'<div class="comment-text">'
+                        +'<span class="username">'+JSONData.newsfeed[i].commentList[z].userId
+                          +'<span class="text-muted pull-right" >'
+                           +'<Button id="removebtn" name="'+JSONData.newsfeed[i].commentList[z].commentNo+'" style="width: 100% ; height: 100%;">X'
+                             +'<div name="${myUser.userNo}"></div>'
+                             +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                            +'</button>'
+                           +'</span>'
+                          +'<br/>'
+                          +'<span  class="text-muted pull-right">'+JSONData.newsfeed[i].commentList[z].date+'</span>'                   
+                        +'</span>'
+                          +JSONData.newsfeed[i].commentList[z].text
+                        +'</div>'
+                        <!-- /.comment-text -->
+                      +'</div>';
+                    }
+                    aaa=aaa+'</div>'
+                    +'<div class="box-footer">'
+                    +'<div class="form-horizontal">'
+                      +'<div class="form-group margin-bottom-none">'
+                        +'<div class="col-sm-9">'
+                          +'<input class="form-control input-sm" placeholder="Response">'
+                        +'</div>'
+                        +'<div class="col-sm-3">'
+                          +'<button id="sendCommentBt" class="btn btn-danger pull-right btn-block btn-sm">Send'
+                            +'<div name="'+JSONData.newsfeed[i].userNo+'"></div>'
+                            +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                          +'</button>'
+                        +'</div>'
+                      +'</div>'
+                    +'</div>'       
+                   +'</div>'
+                  +'</div>';
+        		  $("#activity").append(aaa);
+        		}
+
+          }
+          
+    });
+      
+    }
+});
+</script>
 
 </body>
 </html>

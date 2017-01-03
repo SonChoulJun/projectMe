@@ -83,7 +83,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:\\Users\\BitCamp\\git-realProject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -151,6 +151,83 @@ public class MapBoardController {
     }
     
     
+    
+    @RequestMapping(value = "addSubphoto/{themeNo}", method=RequestMethod.POST) //ajax에서 호출하는 부분
+    //@ResponseBody 
+    public void addSubphoto(@PathVariable int themeNo,MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
+      
+      System.out.println("들왓니?");
+        ArrayList<Photo> photoList =new ArrayList<Photo>();
+        Iterator<String> itr =  multipartRequest.getFileNames();
+
+        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
+         
+        while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
+             
+            /* 기존 주석처리
+            MultipartFile mpf = multipartRequest.getFile(itr.next());
+            String originFileName = mpf.getOriginalFilename();
+            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
+            */
+            Photo photo = new Photo(); 
+            MultipartFile mpf = multipartRequest.getFile(itr.next());
+      
+            String originalFilename = mpf.getOriginalFilename(); //파일명
+      
+            String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
+      
+            try {
+                //파일 저장
+                mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
+                 
+                System.out.println("originalFilename => "+originalFilename);
+                
+                System.out.println("fileFullPath => "+fileFullPath);
+                
+                File outputfile = new File(fileFullPath);
+                
+                try {
+                    MetadataExample metadataExample = new MetadataExample();
+                    metadataExample.metadataExample(outputfile);
+                    if(metadataExample.getLatitude()!=0 && metadataExample.getLongitude()!=0){
+                      photo.setGpsB(metadataExample.getLatitude()+"");
+                      photo.setGpsH(metadataExample.getLongitude()+"");
+                    }else{
+                    
+                    }
+                    
+                    String date =metadataExample.getDate();
+                    if(date!=null){
+                      String[] dateArray=date.split("'");
+                      photo.setPhotoDate(dateArray[1]);
+                    }
+                      photo.setFolderName(originalFilename);
+                      photoList.add(photo);
+                    
+                } catch (ImageReadException | IOException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
+                
+            } catch (Exception e) {
+                System.out.println("postTempFile_ERROR======>"+fileFullPath);
+                e.printStackTrace();
+                //return "Upload Failed";
+            }
+                          
+       }
+        
+        try {
+            System.out.println(boardService.addSubPhoto(themeNo, photoList));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+          
+
+    }
+    
+    
     @RequestMapping("getPhotoFolder/{folderNum}")
     public String getPhotoFolder(@PathVariable int folderNum, Model model){ 
         try {
@@ -164,6 +241,28 @@ public class MapBoardController {
             e.printStackTrace();
         }
       return "forward:/user/photoFolderOne.jsp";
+    }
+    
+    
+
+    
+    @RequestMapping("updatePhotoFolder")
+    public String updatePhotoFolder(@RequestParam("folderNum") int folderNum,Model model,HttpSession session){ 
+        try {
+          
+            System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
+            PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
+            model.addAttribute("photoFolderOne", photoFolderOne);
+            System.out.println("getPhotoFolder"+photoFolderOne);
+            model.addAttribute("likeOk", boardService.likeOk(folderNum, ((User)session.getAttribute("myUser")).getUserNo()));
+            model.addAttribute("likeCount", boardService.getLikeCount(folderNum));
+            int commentCount=boardService.getComment(folderNum).size();
+            model.addAttribute("commentCount",commentCount);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+      return "forward:/user/updatePhotoFolder.jsp";
     }
     
     
@@ -331,10 +430,43 @@ public class MapBoardController {
     
     @RequestMapping("getNewsFeed")
     public String getNewsFeed(@RequestParam("userNo") int userNo,Model model)throws Exception{
-      List<PhotoFolder> newsfeed =boardService.getNewsFeed(userNo);
+      List<PhotoFolder> newsfeed =boardService.getNewsFeed(userNo,1);
+      model.addAttribute("newsfeed",newsfeed);
+      System.out.println("newfeed"+newsfeed);
+      return "forward:/user/timeLine.jsp";
+    } 
+    
+    @RequestMapping("getJsonNewsFeed")
+    public String getJsonNewsFeed(@RequestParam("userNo") int userNo,@RequestParam("col") int col,Model model)throws Exception{
+      List<PhotoFolder> newsfeed =boardService.getNewsFeed(userNo,col);
       model.addAttribute("newsfeed",newsfeed);
       System.out.println("newfeed"+newsfeed);
       return "forward:/user/timeLine.jsp";
     }   
+    
+    
+    @RequestMapping("updateGPS")
+    public void updateGPS(@RequestParam("sendGPS") String[][] sendGPS,Model model)throws Exception{
+        System.out.println("들어옴");
+      System.out.println(sendGPS.length);
+      for(int i=0;i<sendGPS.length;i++){
+          if(sendGPS[i][3].equals("1")){
+              Photo photo = new Photo();
+              photo.setPhotoNo(Integer.parseInt(sendGPS[i][0]));
+              photo.setGpsH(sendGPS[i][2]);
+              photo.setGpsB(sendGPS[i][1]);
+              boardService.updateGSP(photo);
+          }
+      }
+    }
+    
+    
+    @RequestMapping("getSubPhoto/{themeNo}")
+    public String getSubPhoto(@PathVariable int themeNo,Model model)throws Exception{
+        model.addAttribute("subPhotoList",boardService.getSubPhoto(themeNo));
+      return "forward:/photo/photoAlbum.jsp";
+    }   
+    
+
    
 }

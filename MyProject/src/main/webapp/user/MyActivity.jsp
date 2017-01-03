@@ -92,9 +92,9 @@
                   </li>
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
-                  <li>
+                  <%-- <li>
                     <i class="fa fa-envelope bg-blue"></i>
-  <!-- ////////////////// -->
+
                     <div class="timeline-item" >
                       <span class="time"><i class="fa fa-clock-o"></i> ${activity[2].activityTime}</span>
 
@@ -110,15 +110,11 @@
                         <a class="btn btn-danger btn-xs">Delete</a>
                       </div>
                     </div>
-  <!--  /////////////////// -->
-                   
-         <!-- //////////////////// -->
-                        
-            <!--  ///////////////////////// -->       
-                  </li>
+    
+                  </li> --%>
                   <!-- END timeline item -->
                   <!-- timeline item -->
-                  <c:forEach var="i" items="${activity }">
+                  <c:forEach var="i" items="${activity }" varStatus="vs">
                   <li>
                     <i class="fa fa-user bg-aqua"></i>
 
@@ -126,13 +122,18 @@
                       <span class="time"><i class="fa fa-clock-o"></i> ${i.activityTime}</span>
 
                       <h3 class="timeline-header no-border"><a href="#">Sarah Young</a>  ${i.activityText} 
+                      <%-- <c:if test="${i.activityText==activity[0].activityText}">
+                      </c:if> --%>
+                      <c:if test="${!vs.last==true}">
+                            <a id="removeActivity" name="${i.activityNo}" class="btn btn-danger btn-xs">Delete</a>
+                      </c:if>
                       </h3>
                     </div>
                   </li>
                   </c:forEach>
                   <!-- END timeline item -->
                   <!-- timeline item -->
-                  <li>
+                  <%-- <li>
                     <i class="fa fa-comments bg-yellow"></i>
 
                     <div class="timeline-item">
@@ -147,7 +148,7 @@
                         <a class="btn btn-warning btn-flat btn-xs">View comment</a>
                       </div>
                     </div>
-                  </li>
+                  </li> --%>
                   <!-- END timeline item -->
                   <!-- timeline time label -->
                   <li class="time-label">
@@ -434,10 +435,35 @@ $("#fileUpload").fileinput({
     allowedFileExtensions : ['jpg', 'png','gif']   
 });
 </script>
+
 <script src="/html/folder-input/folder-input.js"></script>
 <script src="/html/side_menu/side_search.js"></script>
 
 <c:import url="/user/layer.jsp"></c:import>
+<script type="text/javascript">
 
+ $(function(){
+        $(document).on("click","#removeActivity",function(){
+            alert( "제거해줘");
+            var name_by_id = $(this).attr('name');
+            var aaa =$(this);
+            alert(name_by_id);
+            
+           $.ajax({
+               url: "/user/removeActivity?activityNo="+name_by_id,
+               method:"GET",
+               headers : {
+                   "Accept" : "application/json",
+                   "Content-Type" : "application/json"
+                },
+               success : function(JSONData , status) {
+                    
+                    aaa.parent().parent().parent().remove();
+                 }
+               
+           })          
+    });
+ });
+ </script>
 </body>
 </html>
