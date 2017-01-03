@@ -183,5 +183,11 @@ public class MapBoardDaoImpl implements MapBoardDao {
         return true;
     }
 
+    @Override
+    public List<PhotoFolder> getBest() throws Exception {
+      // TODO Auto-generated method stub
+      return sqlSession.selectList("BoardMapper.getBest");
+    }
+
 	
 }

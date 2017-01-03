@@ -62,7 +62,11 @@ public class ProfileController {
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);  // 사이트바 위해 포토폴더 받아오기
         System.out.println("asdasdsasad"+photoFolder);
+        
+        List<PhotoFolder> BestphotoFolder = boardService.getBest();
+        System.out.println("getBest : "+BestphotoFolder);
         try{
+            session.setAttribute("BestfolderList", BestphotoFolder);
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
             session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));

@@ -16,7 +16,7 @@
     <title>Stylish Portfolio - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/html/index/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/html/index/css/bootstrap.min.css?ver=1" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/html/index/css/stylish-portfolio.css" rel="stylesheet">
@@ -237,19 +237,19 @@
 
     <!-- Map -->
     <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://192.168.0.17:8080/mappc.jsp"></iframe>
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="/mappc.jsp"></iframe>
         <br />1
         <small>
-            <a href="http://192.168.0.17:8080/mappc.html"></a>
+            <a href="/mappc.html"></a>
         </small>
         </iframe>
     </section>
     
     <section id="contact" class="mapPhone" >
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://192.168.0.17:8080/mapmobile.jsp"></iframe>
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="/mapmobile.jsp"></iframe>
         <br />
         <small>
-            <a href="http://192.168.0.17:8080/mapmobile.html"></a>
+            <a href="/mapmobile.html"></a>
         </small>
         </iframe>
     </section>

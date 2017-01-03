@@ -44,7 +44,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 <!--  facebook -->
-    <meta property="og:url"           content="http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002" />
+    <meta property="og:url"           content="http://www.naver.com/" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="ShareTrip" />
     <meta property="og:description"   content="당신만의 특별한 추억 공유" />
@@ -659,7 +659,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
              }
              
        });
-         post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username"> ${commentList.userId} <span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">${commentList.date}</span>   </span> ${commentList.text} </div> </div>');
+       
          
     });
  });

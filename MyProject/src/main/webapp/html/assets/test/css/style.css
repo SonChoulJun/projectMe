@@ -246,7 +246,7 @@ h6 {
 }
 .module .posts-list article .post-thumbnail {
   display: block;
-  width: 50px;
+  width: 100%;
   height: 50px;
   margin: 0 10px 10px 0;
   float: left;

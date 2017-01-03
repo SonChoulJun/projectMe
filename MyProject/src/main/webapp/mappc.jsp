@@ -156,7 +156,7 @@
               geodesic: true,//거리는 기본적으로 미터 단위로 계산 or 픽셀단위
               strokeColor: '#2E2EFE',
               strokeOpacity: 0.7, //불투명도 1.0(불투명)~0.0(투명)
-              strokeWeight: 5, // 두께
+              strokeWeight: 1, // 두께
               icons: [{
                   icon: lineSymbol,
                   offset: '100%'

@@ -39,4 +39,6 @@ public interface MapBoardDao {
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     
     public List<PhotoFolder> getSideBar(int UserNo) throws Exception;
+
+    public List<PhotoFolder> getBest() throws Exception;
 }

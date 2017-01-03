@@ -23,7 +23,11 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
+  <!-- top5  -->
   <link rel="stylesheet" href="/html/assets/test/css/style.css">
+  
+  <!-- likeAnimate -->
+  <link rel="stylesheet" href="/html/assets/likeAnimate/style.css">
   
 
   <!-- profile photo -->
@@ -31,6 +35,13 @@
   <link rel="stylesheet" href="/html/assets/css/style.css">  
   
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
+ 
+   <!--profile follow modal -->
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <link rel="stylesheet" href="/html/assets/followmodal/style.css"> 
+  
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -626,9 +637,8 @@ facebookShare.onclick = function(e) {
 }
 </script>
 
- <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
 <script src="/html/dist/js/index.js"></script>
-<script src="/html/assets/test/js/index.js"></script>
+
 
 
 
@@ -752,7 +762,7 @@ $(function() {
   }); 
 </script> -->
 <c:import url="/user/layer.jsp"></c:import>
-<c:import url="/user/Following.jsp"></c:import>
+<%-- <c:import url="/user/Following.jsp"> --%>
 <!-- <script type="text/javascript">
    $(function(){
 	   $("#myModal").on("click",function(){
@@ -826,6 +836,13 @@ $(function() {
   <script src="/html/assets/themes/fa/theme.js"></script>
   <script src="/html/assets/js/locales/LANG.js"></script>
         
+  <!--profile follow modal -->      
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+  <script src="/html/assets/followmodal/index.js"></script> 
+  
+  <!-- likeAnimate -->
+  <script src="/html/assets/likeAnimate/index.js"></script> 
+  
   <script type="text/javascript">
   var folderNo;
   $(function() {
@@ -848,7 +865,7 @@ $(function() {
 	              dataType : "json" ,
 	              headers : {
 	                "Accept" : "application/json",
-	                "Content-Type" : "application/json"
+	                "Content-Type" : "application/json"    
 	              },
 	              success : function(JSONData , status) {
 	            	  $("#folderNo").attr("name",JSONData.folderNo);
@@ -890,6 +907,25 @@ $(function() {
 	  var url = "/profile/mainProfile";    
 	  $(location).attr('href',url);
   });
+  
+  $(document).on({
+	  "mouseover" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
+	  "touchstart" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
+	  "touchend" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")},
+	  "mouseout" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")}
+	  }, "#post");
+  
+  
+  
+  
+/*   $("#post").on("click",function(){    // id로 하면 앞에거만 먹힘 
+      alert("abc");
+  }); */
+ 
+  
+  
+  
+
   </script>
   
   

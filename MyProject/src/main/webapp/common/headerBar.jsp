@@ -244,9 +244,8 @@
               <!-- Menu Body -->
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                
-                  <a href="/user/get?userId=${myUser.getUserId() }" class="btn btn-default btn-flat">Profile</a>
+                <div class="pull-left">                
+                  <a href="/user/get?userId=${myUser.getUserId()}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>

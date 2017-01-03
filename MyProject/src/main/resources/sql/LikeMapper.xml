@@ -36,10 +36,7 @@
         select USER_NO 
         from BT_LIKE 
         where USER_NO = #{userNo} AND PF_NO = #{pfNo}
-    </select>
-    
-    
-    
+    </select>        
 	
 	<delete id="removeLike" parameterType="map">
 	   DELETE

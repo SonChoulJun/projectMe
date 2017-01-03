@@ -1,0 +1,438 @@
+html{
+  font-size: 69.5%;
+}
+html,
+body
+{
+    font-family: Arial, Calibri;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+*,
+*:after,
+*:before
+{
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.post-wrap{
+    width: 50%;
+        max-width: 430px;
+   
+    position: relative;
+    left: 50%;
+    padding: 0 10px;
+    -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+    border-right: 1.8px solid rgba(217, 224, 231, .7);
+  border-left: 1.8px solid rgba(217, 224, 231, .7);
+  box-shadow: 0 0 12px rgba(217, 224, 231, .5);
+  padding-bottom: 100px;
+}
+@media (max-width: 800px){
+  .post-wrap{
+        width: 90%;
+    left: 0;
+    transform: translate(0);
+  margin: 0 auto;
+  }
+  .inf-bl{
+    display: none;
+  }
+  .like:hover{
+    pointer-events: none !important;
+  }
+}
+.inf-bl{
+  text-transform: uppercase;
+  position: fixed;
+   left: 5%;
+  top: 45%;
+  font-size: 1.8rem;
+}
+.post{
+	width: 100%;
+	min-width: 200px;
+	max-width: 400px;
+	overflow: hidden;
+	padding: 25px 0;
+
+   
+}
+.post:not(:last-child){
+   border-bottom: 1.8px solid rgba(217, 224, 231, .8);
+}
+.post-image{
+	width: 15%;
+	float: left;
+}
+.post-image img{
+	width: 100%;
+}
+.post-header{
+	margin-bottom: 4px;
+}
+.post-content{
+	width: 83%;
+	margin-left: 2%;
+	float: left;
+}
+.user-name{
+	font-weight: 600;
+	font-size: 1.3rem;
+  font-family: Georgia, Times New Roman;
+  text-decoration: none;
+  color: #2B587A;
+}
+.user-name:hover{
+  text-decoration: underline;
+}
+.user-status{
+	display: block;
+	text-align: center;
+	padding-top: 4px;
+	color: #999;
+}
+.post-footer{
+	height: 30px;
+	margin-top: 5px;
+}
+.post-footer:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.post-date{
+	float: left;
+	line-height: 30px;
+	color: #999;
+  font-size: 1.1rem;
+}
+.post-action{
+	height: 100%;
+	   
+	float: right;
+}
+.content-img{
+	overflow: hidden;
+	width: 80%;
+}
+.content-img img{
+	width: 100%;
+}
+.like{
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+    padding: 0 7px;
+    border-radius: 4px;
+    opacity: .6;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.like:hover{
+	opacity: .9;
+}
+.like.active{
+	opacity: .9;
+}
+.like:hover{
+	background-color: #E9EDF1;
+}
+.like:hover .heart:after{
+	opacity: .5;
+}
+.like:hover .heart.heart--active:after{
+	opacity: 1;
+}
+.like-text{
+	color: #2F5879;
+	width: 27px;
+	float: left;
+  font-size: 1.2rem;
+	line-height: 30px;
+}
+.like-count{
+     display: inline-block;
+         width: 11px;
+    text-align: center;
+    color: #2F5879;
+    font-size: 1.2rem;
+    line-height: 30px;
+    font-weight: bold;
+        
+}
+.heart{
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	position: relative;
+	float: left;
+}
+.heart:after{
+	content: '';
+	position: absolute;
+       height: 20px;
+    width: 20px;
+    background-image: url(https://rawgit.com/IvanKushchenko/work/master/img/vk-like-sprite.svg);
+    background-position: 60% 70px;
+    background-size: 145%;
+    opacity: .3;
+    -ms-transform: translate(0, 6px);
+        transform: translate(0, 6px);
+}
+.heart.heart--active:after{
+	background-image: url(https://rawgit.com/IvanKushchenko/work/master/img/vk-like-sprite.svg);
+	    background-position: 60% 70px;
+	    background-size: 145%;
+    opacity: .9;
+}
+.heart-animated{
+	width: 20px;
+	height: 20px;
+	background-image: url(https://rawgit.com/IvanKushchenko/work/master/img/vk-like-sprite.svg);
+	    background-position: 50% -6px;
+	  background-size: 160%;
+	  background-repeat: no-repeat;
+	position: absolute;
+		top: -10px;
+	        left: 2px;
+	z-index: 100;
+
+}
+.heart-animated{
+	width: 19px;
+	height: 19px;
+	animation: heart-animated .5s ease-out;
+}
+@-webkit-keyframes heart-animated{
+	0%{
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+	25%{
+		opacity: 1;
+		transform: rotate(-20deg);
+	}
+	75%{
+		transform: rotate(20deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: -20px;
+		transform: rotate(0deg);
+	}
+}
+@-moz-keyframes heart-animated{
+	0%{
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+	25%{
+		opacity: 1;
+		transform: rotate(-20deg);
+	}
+	75%{
+		transform: rotate(20deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: -20px;
+		transform: rotate(0deg);
+	}
+}
+@keyframes heart-animated{
+	0%{
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+	25%{
+		opacity: 1;
+		transform: rotate(-20deg);
+	}
+	75%{
+		transform: rotate(20deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: -20px;
+		transform: rotate(0deg);
+	}
+}
+.heart-animated span{
+	display: none;
+}
+.heart-animated.unliked{
+	background: transparent;
+	animation: none;
+}
+.heart-animated.unliked span{
+	background:url(https://rawgit.com/IvanKushchenko/work/master/img/vk-like-sprite.svg) no-repeat;
+	background-size: 160%;
+	display: block;
+	height: 100%;
+	left: 50%;
+	margin-left: 1px;
+	position: absolute;
+	top: 0;
+}
+.heart-animated.unliked span.heart-left{
+	    background-position: 2px -28px;
+	width:19px;
+	    margin-left: -16px;
+	-ms-transform-origin:26px 54px;
+	    transform-origin:26px 54px;
+	animation: unlike-heart--left .8s ease-out;
+}
+.heart-animated.unliked span.heart-right{
+	    background-position: -18px -28px;
+	width:19px;
+	-ms-transform-origin:26px 54px;
+	    transform-origin:26px 54px;
+	animation: unlike-heart--right .8s ease-out;
+}
+
+.heart-wrap:hover span{
+	color: #2F5879;
+}
+@-webkit-keyframes unlike-heart--left{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+}
+@-moz-keyframes unlike-heart--left{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+}
+@keyframes unlike-heart--left{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(-15deg);
+	}
+}
+@-webkit-keyframes unlike-heart--right{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+}
+@-moz-keyframes unlike-heart--right{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+}
+@keyframes unlike-heart--right{
+	0%{
+		opacity: .6;
+		margin-top: -20px;
+		transform: rotate(0deg);
+
+	}
+	30%{
+		opacity: .6;
+		margin-top: -20px;
+
+	}
+	80%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+	100%{
+		opacity: 0;
+		margin-top: 0;
+		transform: rotate(15deg);
+	}
+}

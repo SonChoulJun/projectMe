@@ -75,6 +75,16 @@
 		where A.USER_NO=B.FOLLOWING_USER_NO
 		ORDER BY A.FOLDER_DATE DESC
 	</select>
+	
+   <select id="getBest" resultMap="boardSelectMap">
+       <![CDATA[
+       select
+       *
+       from
+       bt_photo_folder
+       where PF_NO IN (select PF_NO from (select count(*), pf_no from BT_LIKE where PF_NO in (select PF_NO from BT_LIKE) group by PF_NO order by count(*) DESC) where ROWNUM<='5')
+       ]]> 
+    </select> 
 
 	<delete id="removeComment" parameterType="int">
 		DELETE
@@ -187,6 +197,6 @@
 		HH24:MI:SS'),#{gpsB:VARCHAR},#{gpsH:VARCHAR})
 	</insert>
 
-
+    
 
 </mapper>
