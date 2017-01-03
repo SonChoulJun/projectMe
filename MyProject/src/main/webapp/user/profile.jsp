@@ -811,7 +811,7 @@ $(function() {
   }); 
 </script>
 
-
+  <!--   Core JS Files modal  -->
   <script src="/html/photo/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
   <!--  Plugin for the Wizard -->
@@ -881,7 +881,6 @@ $(function() {
   <script type="text/javascript">
   $('#input-id').on('filebatchuploadcomplete', function(event, files, extra) {
       console.log('File batch upload complete');
-      alert("가나다");
       $("#inputNext").attr("type","button");
   });
   

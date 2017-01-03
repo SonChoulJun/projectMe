@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
+import kr.co.bitcamp.service.domain.PhotoTheme;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardDao;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
@@ -51,6 +52,14 @@ public class MapBoardServiceImpl implements MapBoardService {
             boardDao.addTheme(folderNo,photoList);
          return true;
     }
+    
+    
+    @Override
+    public boolean addSubPhoto(int folderNo,List<Photo> photoList) throws Exception {
+            System.out.println("몇번들어오나욧 형님들~~");
+            boardDao.addSubPhoto(folderNo,photoList);
+         return true;
+    }
 
 
 
@@ -90,9 +99,9 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public List<Photo> getSubPhoto(int themeNo) throws Exception {
+    public PhotoTheme getSubPhoto(int themeNo) throws Exception {
         // TODO Auto-generated method stub
-        return null;
+        return boardDao.getSubPhoto(themeNo);
     }
     @Override
     public boolean likeOk(int photoFolderNo, int userNo)throws Exception{
@@ -145,9 +154,16 @@ public class MapBoardServiceImpl implements MapBoardService {
 
 
     @Override
-    public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception {
+    public List<PhotoFolder> getNewsFeed(int UserNo,int col) throws Exception {
         // TODO Auto-generated method stub
-        return boardDao.getNewsFeed(UserNo);
+        return boardDao.getNewsFeed(UserNo,col);
+    }
+
+
+    @Override
+    public void updateGSP(Photo photo) throws Exception {
+        boardDao.updateGSP(photo);
+        
     }
 
 

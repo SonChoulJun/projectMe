@@ -70,10 +70,16 @@
     </select>
 	
 	
-	<select id="getTimeline" parameterType="int" resultMap="boardSelectMap2">
-		select * from BT_PHOTO_FOLDER A, (select * from BT_FOLLOWER where FOLLOWER_USER_NO = #{value}) B 
+	<select id="getTimeline" parameterType="hashmap" resultMap="boardSelectMap2">
+	  SELECT *
+    FROM (  SELECT inner_table.* , ROWNUM AS row_seq
+    FROM(    
+		select * from BT_PHOTO_FOLDER A, (select * from BT_FOLLOWER where FOLLOWER_USER_NO = #{userNo}) B 
 		where A.USER_NO=B.FOLLOWING_USER_NO
 		ORDER BY A.FOLDER_DATE DESC
+		) inner_table
+            WHERE ROWNUM &lt;= #{endRowNum} )
+    WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	</select>
 
 	<delete id="removeComment" parameterType="int">
@@ -90,6 +96,14 @@
 		</set>
 		WHERE BT_COMMENT.PF_NO = BT_PHOTO_FOLDER.PF_NO AND
 		BT_COMMENT.USER_NO=BT_USER.USER_NO
+	</update>
+	
+	<update id="updateGPS" parameterType="kr.co.bitcamp.service.domain.Photo">
+	 update BT_PHOTO 
+	 <set> 
+	  GPS_B ='${gpsB}',GPS_H ='${gpsH}'
+	 </set> 
+	 WHERE PHOTO_NO =${photoNo}
 	</update>
 
 
@@ -140,15 +154,21 @@
 	<select id="getPhoto" parameterType="int" resultMap="photoSelectMap">
 		select PHOTO_NO,SV_FD,TEXT,TITLE,PHOTO_DATE,GPS_B,GPS_H
 		FROM BT_PHOTO
-		WHERE TM_NO =#{value} AND POINT='0'
+		WHERE TM_NO =#{value} ORDER BY POINT
 	</select>
 
 	<select id="getTheme" parameterType="int" resultMap="themeSelectMap">
-		select T.TM_NM,T.TM_NO
-		from BT_PHOTO_FOLDER P, BT_TM T
-		WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value}
-		ORDER BY T.TM_NM
+    select T.TM_NM,T.TM_NO
+    from BT_PHOTO_FOLDER P, BT_TM T, BT_PHOTO BP
+    WHERE T.PF_NO = P.PF_NO AND P.PF_NO=#{value} AND BP.TM_NO =T.TM_NO AND BP.POINT ='0'
+    ORDER BY PHOTO_DATE
 	</select>
+	
+	 <select id="getThemeOne" parameterType="int" resultMap="themeSelectMap">
+    select TM_NM,TM_NO
+    from BT_TM
+    WHERE TM_NO=#{value}
+  </select>
 
 
 
@@ -169,11 +189,10 @@
 	</select>
 
 	<select id="getThemeNo" parameterType="hashmap" resultType="int">
-		select TM_NO from BT_TM where TM_NM=#{themeName} AND PF_NO =
-		#{photoFolderNo}
+		select TM_NO from BT_TM where TM_NM=#{themeName} AND PF_NO =#{photoFolderNo}
 	</select>
 
-	<insert id="setTheme" parameterType="hashmap">
+	<insert id="setTheme" parameterType="hashmap" useGeneratedKeys="true" keyProperty="TM_NO" keyColumn="TM_NO">
 		insert
 		into BT_TM(TM_NO,PF_NO,TM_NM)
 		values(SEQ_BT_TM_NO.nextval,#{photoFolderNo},#{themeName})
@@ -186,6 +205,28 @@
 		values(SEQ_BT_PHOTO_NO.nextval,'0',#{themeNo},#{folderName},'...','제목',to_date(#{photoDate:DATE},'YYYY:MM:DD
 		HH24:MI:SS'),#{gpsB:VARCHAR},#{gpsH:VARCHAR})
 	</insert>
+	
+	 <insert id="setMainPhotoNull" parameterType="photo">
+    insert
+    into
+    BT_PHOTO(PHOTO_NO,POINT,TM_NO,SV_FD,TEXT,TITLE,GPS_B,GPS_H)
+    values(SEQ_BT_PHOTO_NO.nextval,'0',#{themeNo},#{folderName},'...','제목',#{gpsB:VARCHAR},#{gpsH:VARCHAR})
+  </insert>
+  
+    <insert id="setSubPhoto" parameterType="photo">
+    insert
+    into
+    BT_PHOTO(PHOTO_NO,POINT,TM_NO,SV_FD,TEXT,TITLE,PHOTO_DATE,GPS_B,GPS_H)
+    values(SEQ_BT_PHOTO_NO.nextval,'1',#{themeNo},#{folderName},'...','제목',to_date(#{photoDate:DATE},'YYYY:MM:DD
+    HH24:MI:SS'),#{gpsB:VARCHAR},#{gpsH:VARCHAR})
+  </insert>
+  
+   <insert id="setSubPhotoNull" parameterType="photo">
+    insert
+    into
+    BT_PHOTO(PHOTO_NO,POINT,TM_NO,SV_FD,TEXT,TITLE,GPS_B,GPS_H)
+    values(SEQ_BT_PHOTO_NO.nextval,'1',#{themeNo},#{folderName},'...','제목',#{gpsB:VARCHAR},#{gpsH:VARCHAR})
+  </insert>
 
 
 
