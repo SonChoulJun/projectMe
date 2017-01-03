@@ -186,6 +186,13 @@
 		values(SEQ_BT_PHOTO_NO.nextval,'0',#{themeNo},#{folderName},'...','제목',to_date(#{photoDate:DATE},'YYYY:MM:DD
 		HH24:MI:SS'),#{gpsB:VARCHAR},#{gpsH:VARCHAR})
 	</insert>
+	
+	<select id="searchBoard"    parameterType="string"   resultMap="boardSelectMap">
+        SELECT
+        *
+        FROM BT_PHOTO_FOLDER
+        WHERE TITLE LIKE  #{value}
+    </select>
 
 
 

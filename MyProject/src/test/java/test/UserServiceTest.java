@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.Comment;
+import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
 import kr.co.bitcamp.service.user.UserService;
@@ -153,13 +154,23 @@ public class UserServiceTest {
       System.out.println("내가 팔로잉한 사람아 나와주세요~"+list);
     }
   
-    @Test
+    //@Test
     public void testGetFollower() throws Exception{
       System.out.println("testGetFollower start().............................................");
       int userNo=10000;
       List<User> list =userService.getFollower(userNo);
       
       System.out.println("나를 팔로워한 사람아 나와주세요~"+list);
+    }
+    
+    @Test
+    public void testSearchBoard() throws Exception{
+      System.out.println("searchBoard start().................................");
+      List<PhotoFolder> list=boardService.searchBoard("유럽여행");
+      System.out.println("searchBoard end()................................."+list);
+      
+      System.out.println("사진 불러오기");
+      System.out.println(list.get(0).getPhotoTheme().get(0).getPhotoList());
     }
    
  }

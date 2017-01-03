@@ -183,5 +183,14 @@ public class MapBoardDaoImpl implements MapBoardDao {
         return true;
     }
 
+    @Override
+    public List<PhotoFolder> searchBoard(String text) throws Exception {
+      // TODO Auto-generated method stub
+      
+      System.out.println(sqlSession.selectList("UserMapper.searchUser", "%"+text+"%"));
+      return sqlSession.selectList("BoardMapper.searchBoard", "%"+text+"%");
+    }
+
+    
 	
 }

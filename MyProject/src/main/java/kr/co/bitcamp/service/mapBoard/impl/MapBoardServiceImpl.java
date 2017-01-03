@@ -151,6 +151,13 @@ public class MapBoardServiceImpl implements MapBoardService {
     }
 
 
+    @Override
+    public List<PhotoFolder> searchBoard(String text) throws Exception {
+      // TODO Auto-generated method stub
+      return boardDao.searchBoard(text);
+    }
+
+
 
     
     

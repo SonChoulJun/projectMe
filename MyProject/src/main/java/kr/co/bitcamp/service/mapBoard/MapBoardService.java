@@ -37,6 +37,8 @@ public interface MapBoardService {
     public List<PhotoFolder> getNewsFeed(int UserNo) throws Exception;
     
     public List<PhotoFolder> getSideBar(int userNo) throws Exception;
+    
+    public List<PhotoFolder> searchBoard(String text)throws Exception;
 
     
     

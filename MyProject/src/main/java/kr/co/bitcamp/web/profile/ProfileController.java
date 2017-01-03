@@ -97,7 +97,7 @@ public class ProfileController {
     }
 
     @RequestMapping("addprfphoto")
-    public void addprfphoto(MultipartHttpServletRequest multipartRequest) { //Multipart로 받는다.
+    public void addprfphoto(HttpSession session, MultipartHttpServletRequest multipartRequest, Model model)throws Exception { //Multipart로 받는다.
       
       System.out.println("들왓니?");
       
@@ -117,12 +117,18 @@ public class ProfileController {
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
             //int index = originalFilename.indexOf(".");
-            String filename1 = originalFilename.substring(originalFilename.indexOf("."), originalFilename.length());
-            System.out.println(filename1);
-            originalFilename="main"+filename1;
+
+            User user = (User)session.getAttribute("myUser");
             
+            
+            String filename1 = originalFilename.substring(originalFilename.indexOf("."), originalFilename.length());
+            System.out.println(filename1); //filename1=>.jpg
+            originalFilename=user.getUserNo()+filename1;
             String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
-      
+            
+            userService.updatepfphoto(user.getUserNo(), originalFilename);
+            
+            model.addAttribute("originalFilename" , originalFilename);
             try {
                 //파일 저장
                 mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
@@ -158,9 +164,13 @@ public class ProfileController {
     
     
     @RequestMapping("search")
-    public String search(@RequestParam("searchText") String searchTest,Model model) throws Exception{
+    public String search(@RequestParam("searchText") String searchTest,
+                              Model model) throws Exception{
         List<User> userList =userService.searchUser(searchTest);
+        List<PhotoFolder>boardList= boardService.searchBoard(searchTest);
         model.addAttribute("listUser",userList);
+        model.addAttribute("boardList", boardList);
+        
         return "forward:/user/searchList.jsp";
     }
     

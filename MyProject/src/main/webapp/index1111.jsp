@@ -1,30 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
 <head>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="description" content="">
     <meta name="author" content="">
-    
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
     
     <title>Stylish Portfolio - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/html/index/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="/html/index/css/stylish-portfolio.css" rel="stylesheet">
-    
-    <!--Slider CSS(ìì ) -->
-    
+    <!--Slider CSS(ìì ) -->   
     <link rel="stylesheet" href="/html/index/css/slider.css">
-    
     <!-- Custom Fonts -->
     <link href="/html/index/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
@@ -35,6 +31,19 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+    <!-- 아래는 login창 -->
+    <link rel="stylesheet" href="/html/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/html/plugins/iCheck/square/blue.css">
+  
 
 </head>
 
@@ -83,8 +92,12 @@
                                 </h1>
                                 </section>
             <br>
+            
+            <c:import url="/user/login1111.jsp"></c:import>
+            <c:import url="/user/register1111.jsp"></c:import>
             <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-            <a href="/user/login.jsp" class="btn btn-dark btn-lg">login</a>
+            <!-- <a href="/user/login.jsp" class="btn btn-dark btn-lg">login</a> -->
+            <a id="loginButton" class="btn btn-dark btn-lg"  data-target="#loginmodal" data-toggle="modal" >login</a>
         </div>
     </header>
 
@@ -287,15 +300,25 @@
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
     </footer>
+    
+    
 
     <!-- jQuery -->
     <script src="/html/index/js/jquery.js"></script>
+    
+    <!-- jQuery 2.2.3  login창 위한-->
+<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- iCheck login창 위한-->
+<script src="/html/plugins/iCheck/icheck.min.js"></script>
     
     <!-- Bootstrap Core JavaScript -->
     <script src="/html/index/js/bootstrap.min.js"></script>
     
     <!-- Slider JavaScript -->
     <script src="/html/index/js/slider.js"></script>
+    
+    <!-- iCheck 회원가입위한.-->
+<script src="/html/login/check.js"></script>
     
     <!-- Custom Theme JavaScript -->
     <script>
@@ -370,6 +393,89 @@
         // Enable map zooming with mouse scroll when the user clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
+    
+   <!-- 아래로 login창 위한.=== -->
+    
+    <script type="text/javascript">
+<!--
+    function fncLogin() {
+        var id=document.loginForm.userId.value;
+        var pw=document.loginForm.password.value;
+        if(id == null || id.length <1) {
+            alert('Email 을 입력하지 않으셨습니다.');
+            document.loginForm.userId.focus();
+            return;
+        }
+        
+        if(pw == null || pw.length <1) {
+            alert('패스워드를 입력하지 않으셨습니다.');
+            document.loginForm.password.focus();
+            return;
+        }
+        document.loginForm.submit();
+    }
+-->
+</script>
+
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+
+
+ <script type="text/javascript">
+  var folderNo;
+  $(function() {
+	  
+	  var aaa= registerButton;
+        $( "#registerButton" ).on("click",function() {
+            //alert(  $( this ).text().trim() );
+            
+            //////////////////////////// 추가 , 변경된 부분 ///////////////////////////////////
+            //self.location ="/user/getUser?userId="+$(this).text().trim();
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+            obj.title = $("#fileinputTitle").val();
+            obj.text = $("#fileinputText").val();
+             var json_data = JSON.stringify(obj);
+            $.ajax( 
+                {
+                  url : "/mapBoard/addFolder",
+                   method :"POST",
+                   data :json_data,
+                  dataType : "json" ,
+                  headers : {
+                    "Accept" : "application/json",
+                    "Content-Type" : "application/json"
+                  },
+                  success : function(JSONData , status) {
+                      $("#folderNo").attr("name",JSONData.folderNo);
+                      folderNo=JSONData.folderNo;
+                      alert("등록완료"+folderNo);
+                    
+                      
+                      //$("#input-id").fileinput();
+                      $("#input-id").fileinput('refresh', {
+                            language: 'LANG',
+                            uploadUrl: '/mapBoard/addphoto/'+folderNo,
+                            uploadAsync: true,
+                            multiple:true,
+                            allowedFileExtensions : ['jpg', 'png','gif']   
+                          });
+                  }
+              });
+                   
+        });  
+      }); 
+  </script>
+  
+
+
 
 </body>
 

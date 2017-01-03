@@ -144,5 +144,13 @@
     </set>
     WHERE USER_NO=#{userNo}
   </update>
+  
+  <update id="updatepfphoto" parameterType="map">
+    update bt_user
+    <set>
+    PROFILE_IMG=#{originalFilename}
+    </set>
+    WHERE USER_NO=#{userNo}
+  </update>
 
 </mapper>

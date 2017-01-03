@@ -39,6 +39,7 @@
 }
 .li-head {
   margin: 0;
+  padding-left:20px;
 }
 .li-sub {
   margin: 0;
@@ -53,6 +54,6 @@
 
 @media all and (min-width: 75em) {
   .list li {
-    width: 33.33333%;
+    width: 30% ;
   }
 }

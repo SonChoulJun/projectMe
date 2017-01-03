@@ -636,6 +636,7 @@ facebookShare.onclick = function(e) {
 
 $("#getval").on('change', function(e){
 	console.log("zz");
+	var date=new Date();
 	var files = e.target.files;
 	var data = new FormData();
 	$.each(files, function(key, value)
@@ -653,9 +654,13 @@ $("#getval").on('change', function(e){
 	    contentType: false,
 	    success: function(data, textStatus, jqXHR)
         {
+	    	
+ 	     
+	    console.log(data.originalFilename);
+	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename?+date.getTime()"')");
          if(typeof data.error === 'undefined') //에러가 없다면
          {
-        	 console.log("업로드완료");
+        	 console.log(data);
         	 
          }
          else//에러가 있다면
@@ -819,8 +824,6 @@ $(function() {
 
   <!--  More information about jquery.validate here: http://jqueryvalidation.org/  -->
   <script src="/html/photo/assets/js/jquery.validate.min.js" type="text/javascript"></script>
-  
-  
   <!--파일업로드 자바스크립트  -->
   <script src="/html/assets/js/fileinput.js" type="text/javascript"></script>
   <script src="/html/assets/themes/fa/theme.js"></script>
@@ -871,12 +874,7 @@ $(function() {
 	        
 	    });
 	    
-	    
-	    
 	  }); 
-  
-  
-
   </script>
   <script type="text/javascript">
   $('#input-id').on('filebatchuploadcomplete', function(event, files, extra) {
@@ -891,12 +889,6 @@ $(function() {
 	  $(location).attr('href',url);
   });
   </script>
-  
-  
-  
-
-        
-
-
+ 
 </body>
 </html>

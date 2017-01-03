@@ -20,7 +20,7 @@
       <!-- 유저정보 -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/html/dist/img/profile/${targetUser.profileImg}" class="img-circle" onerror="this.src='/html/dist/img/defaultImage.jpg';" >
         </div>
         <div class="pull-left info">
           <p>${targetUser.userId}</p>

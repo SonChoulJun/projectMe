@@ -17,6 +17,7 @@ import kr.co.bitcamp.service.user.UserDao;
 @Repository
 public class UserDaoImpl implements UserDao {
 
+  
   @Autowired
   @Qualifier("sqlSessionTemplate")
   private SqlSession sqlSession;
@@ -193,6 +194,21 @@ public class UserDaoImpl implements UserDao {
       map.put("status", status);
       map.put("userNo", userNo);
       sqlSession.update("UserMapper.updateStatus",map);
+    }
+    
+    @Override
+    public void updatepfphoto(int userNo, String originalFilename)throws Exception{
+      // TODO Auto-generated method stub
+      Map map=new HashMap();
+      map.put("userNo", userNo);
+      map.put("originalFilename", originalFilename);
+      sqlSession.update("UserMapper.updatepfphoto", map);
+    }
+
+    @Override
+    public void removeActivity(int activityNo) throws Exception {
+      // TODO Auto-generated method stub
+      sqlSession.delete("ActivityMapper.removeActivity", activityNo);
     }
     
     

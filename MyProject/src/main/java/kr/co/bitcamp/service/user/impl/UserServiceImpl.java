@@ -19,8 +19,6 @@ public class UserServiceImpl implements UserService {
     @Qualifier("userDaoImpl")
     private UserDao userDAO;
 
-    
-    
     public UserServiceImpl() {
         super();
         System.out.println("UserServiceImpl 생성");
@@ -183,13 +181,21 @@ public class UserServiceImpl implements UserService {
       // TODO Auto-generated method stub
       userDAO.updateStatus(status, userNo);
     }
+
+
+    @Override
+    public void updatepfphoto(int userNo, String originalFilename)throws Exception{
+      // TODO Auto-generated method stub
+      
+      userDAO.updatepfphoto(userNo, originalFilename);
+      
+    }
     
-    
-
-    
-
-
-
+    @Override
+    public void removeActivity(int activityNo) throws Exception {
+      // TODO Auto-generated method stub
+      userDAO.removeActivity(activityNo);
+    }
 /*	@Override
 	public boolean pwCheak(User user) throws Exception {
 		// TODO Auto-generated method stub
