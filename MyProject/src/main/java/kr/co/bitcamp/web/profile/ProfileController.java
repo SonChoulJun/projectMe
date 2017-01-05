@@ -65,6 +65,11 @@ public class ProfileController {
         
         List<PhotoFolder> BestphotoFolder = boardService.getBest();
         System.out.println("getBest : "+BestphotoFolder);
+        ////////////////////////////////
+        List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        model.addAttribute("newsfeed",newsfeed);
+        System.out.println("newfeed"+newsfeed);
+        //////////////////////////////////////
         try{
             session.setAttribute("BestfolderList", BestphotoFolder);
             session.setAttribute("folderList", photoFolder);
@@ -88,6 +93,11 @@ public class ProfileController {
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
+        //////////
+        List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        model.addAttribute("newsfeed",newsfeed);
+        System.out.println("newfeed"+newsfeed);
+        //////////////
         try{
             session.setAttribute("followerOk",userService.followOk(myUser.getUserNo(), userNo) );
             session.setAttribute("folderList", photoFolder);

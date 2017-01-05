@@ -23,8 +23,10 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   
-  <link rel="stylesheet" href="/html/assets/css/style.css">  
-  
+  <link rel="stylesheet" href="/html/assets/css/style.css"> 
+  <!-- top 5  -->
+  <link rel="stylesheet" href="/html/assets/test/css/style.css">
+  <!--  -->
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,8 +55,8 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li>
-              <li><a href="http://127.0.0.1:8080/user/timeLine.jsp" >TimeLine</a></li>
+              <!-- <li><a href="http://127.0.0.1:8080/user/myTravel" >MyTravel</a></li> -->
+              <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
               <li><a href="http://127.0.0.1:8080/user/getActivity"  >Activity</a></li>
               <li class="active"><a href="http://127.0.0.1:8080/user/settings.jsp" >Settings</a></li>
             </ul>

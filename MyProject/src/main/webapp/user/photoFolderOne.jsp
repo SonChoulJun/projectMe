@@ -142,7 +142,11 @@
   
                           <div class="comment-text">
                             <span class="username"> ${commentList.userId}
-                            <span class="text-muted pull-right" ><Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button></span>
+                            <span class="text-muted pull-right" >
+                            <c:if test="${commentList.userNo==myUser.userNo}">
+                            <Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button>
+                            </c:if>
+                            </span>
                             <br/>
                             <span  class="text-muted pull-right">${commentList.date}</span>
                             

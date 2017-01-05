@@ -24,8 +24,10 @@
   <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
   
-            <link rel="stylesheet" href="/html/assets/css/style.css">  
-
+            <link rel="stylesheet" href="/html/assets/css/style.css">
+            <!-- top 5 -->  
+<link rel="stylesheet" href="/html/assets/test/css/style.css">
+  <!--  -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -70,11 +72,11 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
             
-              <li><a href="/user/myTravel" >MyTravel</a></li>
-              <li><a href="/user/timeLine.jsp" >TimeLine</a></li>
+              <!-- <li><a href="/user/myTravel" >MyTravel</a></li> -->
+              <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
               <c:if test="${targetUser.userNo==user.userNo}">
               <li class="active"><a href="user/getActivity"  data-toggle="tab"; >Activity</a></li>
-              <li><a href="/user/settings.jsp" >Settings</a></li>
+             <!--  <li><a href="/user/settings.jsp" >Settings</a></li> -->
               </c:if>
             </ul>
             <div class="tab-content">
