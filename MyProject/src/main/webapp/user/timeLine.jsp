@@ -562,7 +562,7 @@ $("#fileUpload").fileinput({
              
        });
 	    
-	     
+	    
 	});
  });
  </script>
@@ -577,8 +577,10 @@ $("#fileUpload").fileinput({
 var page = 1;
  
 $(window).scroll(function() {
-    if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
-      console.log(++page);
+	console.log($(window).scrollTop()+"asasas"+($(document).height() - $(window).height()));
+    if ($(window).scrollTop() >= $(document).height() - $(window).height()-30) {
+
+    	console.log(++page);
       $.ajax({
           
           url: "/mapBoard/getJsonNewsFeed?userNo=${myUser.userNo}&col="+page,
@@ -590,7 +592,7 @@ $(window).scroll(function() {
           },
           success : function(JSONData , status) {
         	  if(JSONData.newsfeed.length==0){
-        		  alert("모든게시물을 확인하셨습니다.");
+        		  
         	  } 
               for (var i in JSONData.newsfeed) {
         		  console.log(JSONData.newsfeed[i].user.userName+"sssss");
@@ -698,13 +700,17 @@ $(window).scroll(function() {
         		  $("#activity").append(aaa);
         		}
 
-          }
+          }  
           
     });
       
     }
+
 });
 </script>
+
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
 
 </body>
 </html>

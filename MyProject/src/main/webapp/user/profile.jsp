@@ -93,7 +93,6 @@
               <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
               <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
-              <li><a href="/user/settings.jsp" >Settings</a></li>
               </c:if>
             </ul>
             <div class="tab-content">
@@ -667,7 +666,7 @@ $("#getval").on('change', function(e){
 	    	
  	     
 	    console.log(data.originalFilename);
-	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename?+date.getTime()"')");
+	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename+"')");
          if(typeof data.error === 'undefined') //에러가 없다면
          {
         	 console.log(data);
@@ -924,6 +923,9 @@ $(function() {
   
 
   </script>
+  
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
  
 </body>
 </html>

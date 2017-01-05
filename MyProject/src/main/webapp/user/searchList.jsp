@@ -343,5 +343,8 @@ $(function() {
   }); 
 </script> -->
 
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
+
 </body>
 </html>

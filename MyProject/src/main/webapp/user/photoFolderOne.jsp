@@ -124,6 +124,7 @@
                          <div name="${myUser.userNo}"></div>
                          <div name="${photoFolderOne.pfNo}"></div>
                          <div name="${likeOk}"></div>
+                         <div name="${targetUser.userNo}"></div>
                         <i class="fa fa-thumbs-o-up"></i> Like
                       </button>
                       
@@ -159,7 +160,7 @@
                     </div>
                     <!-- /.box-footer -->
                     <div class="box-footer">
-                      <form action="/mapBoard/setComment" method="post">
+                      <form id='commentSub'action="/mapBoard/setComment" method="post">
                         <img class="img-responsive img-circle img-sm"
                           src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
                         <!-- .img-push is used to add margin to elements next to floating images -->
@@ -745,7 +746,9 @@
   });
   </script>
   
-
+  
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
 
 
  <script src="/html/photo/comment.js"></script>
@@ -788,6 +791,8 @@
   //]]>
 </script>
 
+
+  
  <script type="text/javascript">
  $(function(){
      
@@ -809,13 +814,7 @@
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-                 if(JSONData.likeOk=="add"){
-                     $("#likeCount").text(JSONData.likeCount+" likeCount");
-                     upthis.css("color","blue");
-                 }else{
-                     $("#likeCount").text(JSONData.likeCount+" likeCount");
-                     upthis.css("color","#444");
-                 }
+            	 
              }
              
        });         
@@ -847,6 +846,8 @@
   <script type="text/javascript"></script>
   <c:import url="/user/googleMap.jsp"></c:import>
   <script src="/html/colorBox/jquery.colorbox-min.js"></script>
+  
+
   
 
   
