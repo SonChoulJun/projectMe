@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/html/assets/test/css/style.css">
   
   <!-- likeAnimate -->
-  <link rel="stylesheet" href="/html/assets/likeAnimate/style.css">
+  <!-- <link rel="stylesheet" href="/html/assets/likeAnimate/style.css"> -->
   
 
   <!-- profile photo -->
@@ -62,7 +62,8 @@
         height:100%;
         float: left;
     }
-
+    
+    
 </style>
   
 </head>
@@ -89,32 +90,191 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li>
-              <li><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" >TimeLine</a></li>
+              <!-- <li class="active"><a href="#myTravel" data-toggle="tab">MyTravel</a></li> -->
+              <li class="active"><a href="/mapBoard/getNewsFeed?userNo=${targetUser.userNo}" data-toggle="tab">TimeLine</a></li>
               <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
-              <li><a href="/user/settings.jsp" >Settings</a></li>
+             <!--  <li><a href="/user/settings.jsp" >Settings</a></li> -->
               </c:if>
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="myTravel">
-                 <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                  
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <a href="photo.jsp" onClick="window.open(this.href, '', 'width=900, height=600'); return false;" class="image featured"><img class="img-responsive" src="/html/images/map.PNG" alt="Photo"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="active tab-pane" id="activity">
+                                <!-- Post -->
+                                <c:forEach var="photoFolder" items="${newsfeed}">
+                                    <div class="post" name="aaa">
+                                        <div class="user-block">
+                                            <img class="img-circle img-bordered-sm"
+                                                src="/html/dist/img/user7-128x128.jpg" alt="user image">
+                                            <span class="username"> <a href="#">${photoFolder.user.userName }</a>
+                                                <a href="#" class="pull-right btn-box-tool"><i
+                                                    class="fa fa-times"></i></a>
+                                            </span> <span class="description">${photoFolder.user.userId}
+                                                - ${photoFolder.photoDate}</span>
+                                        </div>
+                                        <c:if test="${!photoFolder.photoTheme.isEmpty()}">
+                                            <div class="row margin-bottom">
+
+                                                <%--                         <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
+                          <c:if test="${!photoTheme.photoList.isEmpty()}">
+                           <img class="img-responsive" src="/html/assets/img/uploadedPhoto/${photoTheme.photoList.get(0).folderName}" alt="Photo">
+                          </c:if>
+                         </c:forEach> --%>
+                                                <c:set var="item1" value="0" scope="request"></c:set>
+                                                <div class="col-sm-6">
+                                                    <img class="img-responsive"
+                                                        src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}"
+                                                        alt="Photo">
+                                                </div>
+                                                <c:if test="${item1+1==photoFolder.photoTheme.size()}">
+                                                    <c:set var="item1" value="0" scope="request"></c:set>
+                                                </c:if>
+                                                <c:if test="${item1+1!=photoFolder.photoTheme.size()}">
+                                                    <c:set var="item1" value="${item1+1}" scope="request"></c:set>
+                                                </c:if>
+                                                <!-- /.col -->
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <img class="img-responsive"
+                                                                src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}"
+                                                                alt="Photo"> <br>
+                                                            <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="${item1+1}" scope="request"></c:set>
+                                                            </c:if>
+                                                            <c:if test="${item1==photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="0" scope="request"></c:set>
+                                                            </c:if>
+
+
+                                                            <img class="img-responsive"
+                                                                src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}"
+                                                                alt="Photo">
+                                                            <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="${item1+1}" scope="request"></c:set>
+                                                            </c:if>
+                                                            <c:if test="${item1==photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="0" scope="request"></c:set>
+                                                            </c:if>
+
+
+                                                        </div>
+                                                        <!-- /.col -->
+                                                        <div class="col-sm-6">
+                                                            <img class="img-responsive"
+                                                                src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}"
+                                                                alt="Photo"> <br>
+                                                            <c:if test="${item1!=photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="${item1+1}" scope="request"></c:set>
+                                                            </c:if>
+                                                            <c:if test="${item1==photoFolder.photoTheme.size()}">
+                                                                <c:set var="item1" value="0" scope="request"></c:set>
+                                                            </c:if>
+                                                            <img class="img-responsive"
+                                                                src="/html/assets/img/uploadedPhoto/${photoFolder.photoTheme.get(item1).photoList.get(0).folderName}"
+                                                                alt="Photo">
+                                                        </div>
+                                                        <!-- /.col -->
+                                                    </div>
+                                                    <!-- /.row -->
+                                                </div>
+
+                                            </div>
+                                        </c:if>
+                                        <p>${photoFolder.text}</p>
+                                        <ul class="list-inline">
+                                            <button type="button" class="btn btn-default btn-xs">
+                                                <i class="fa fa-share"></i> Share
+                                            </button>
+                                            <c:if test="${photoFolder.likeCode==0}">
+                                                <button id="likeBt" type="button"
+                                                    class="btn btn-default btn-xs" style="color: #444">
+                                                    <div name="${myUser.userNo}"></div>
+                                                    <div name="${photoFolder.pfNo}"></div>
+                                                    <div name="${photoFolder.likeCode}"></div>
+                                                    <i class="fa fa-thumbs-o-up"></i> Like
+                                                </button>
+
+                                            </c:if>
+                                            <c:if test="${photoFolder.likeCode!=0}">
+                                                <button id="likeBt" type="button"
+                                                    class="btn btn-default btn-xs" style="color: blue">
+                                                    <div name="${myUser.userNo}"></div>
+                                                    <div name="${photoFolder.pfNo}"></div>
+                                                    <div name="${photoFolder.likeCode}"></div>
+                                                    <i class="fa fa-thumbs-o-up"></i> Like
+                                                </button>
+
+                                            </c:if>
+
+                                            <span id="likeCount" class="pull-right text-muted"><a
+                                                href="#">${photoFolder.likeCount} likeCount</a></span>
+                                            <span class="pull-right text-muted"><a href="#"
+                                                id="commentCount">${photoFolder.commentCount} comment</a></span>
+                                        </ul>
+                                        <div id="CommentBox" class="box-footer box-comments">
+                                            <c:forEach var="commentList"
+                                                items="${photoFolder.commentList}">
+                                                <div class="box-comment">
+                                                    <!-- User image -->
+                                                    <img class="img-circle img-sm"
+                                                        src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+
+                                                    <div class="comment-text">
+                                                        <span class="username"> ${commentList.userId} <span
+                                                            class="text-muted pull-right"><Button
+                                                                    id="removebtn" name="${commentList.commentNo}"
+                                                                    style="width: 100%; height: 100%;">
+                                                                    X
+                                                                    <div name="${myUser.userNo}"></div>
+                                                                    <div name="${photoFolder.pfNo}"></div>
+                                                                </button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
+
+                                                        </span>
+                                                        <!-- /.username -->
+                                                        ${commentList.text}
+                                                    </div>
+                                                    <!-- /.comment-text -->
+                                                </div>
+                                            </c:forEach>
+                                            <!-- /.box-comment -->
+
+                                            <!-- /.box-comment -->
+                                        </div>
+                                        <div class="box-footer">
+                                            <%--                       <form action="/mapBoard/setComment" method="post">
+                        <img class="img-responsive img-circle img-sm"
+                          src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
+                        <!-- .img-push is used to add margin to elements next to floating images -->
+                        <div class="img-push">
+                          <input type="hidden" value="${myUser.userNo}" name="userNo" >
+                          <input type="hidden" value="${photoFolder.pfNo}" name="folderNo" >
+                          <input type="text" class="form-control input-sm"
+                            placeholder="Press enter to post comment" name="text">
+                        </div>
+                      </form> --%>
+                                            <div class="form-horizontal">
+                                                <div class="form-group margin-bottom-none">
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control input-sm"
+                                                            placeholder="Response">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <button id="sendCommentBt"
+                                                            class="btn btn-danger pull-right btn-block btn-sm">
+                                                            Send
+                                                            <div name="${myUser.userNo}"></div>
+                                                            <div name="${photoFolder.pfNo}"></div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                                <!-- /.user-block -->
+
+                            </div>
               
               <div class="tab-pane" id="timeline">
                 <!-- Post -->
@@ -295,7 +455,7 @@
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="activity">
+              <div class="tab-pane" id="activity22">
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline time label -->
@@ -826,6 +986,7 @@ $(function() {
   }); 
 </script>
 
+
   <!--   Core JS Files modal  -->
   <script src="/html/photo/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
@@ -844,7 +1005,19 @@ $(function() {
   <script src="/html/assets/followmodal/index.js"></script> 
   
   <!-- likeAnimate -->
-  <script src="/html/assets/likeAnimate/index.js"></script> 
+  <script src="/html/assets/likeAnimate/index.js"></script>
+  
+  <script type="text/javascript">
+$("#fileUpload").fileinput({    
+    language: 'LANG',
+    uploadUrl: 'user/fileUpload/post',
+    uploadAsync: true,
+    autoStart: true,
+    allowedFileExtensions : ['jpg', 'png','gif']   
+});
+
+
+</script> 
   
   <script type="text/javascript">
   var folderNo;
@@ -918,12 +1091,185 @@ $(function() {
 /*   $("#post").on("click",function(){    // id로 하면 앞에거만 먹힘 
       alert("abc");
   }); */
- 
-  
-  
-  
-
   </script>
+  
+  <script src="/html/photo/removeComment.js"></script>
+
+    <script src="/html/photo/like.js"></script>
+  
+  <script type="text/javascript">
+ $(function(){
+     
+     
+     $(document).on("click","#sendCommentBt",function(){
+         var userNo=${myUser.userNo};
+         var pfNo=$(this).find("div").eq(1).attr("name");
+         var text=$(this).parent().parent().find('input').eq(0).val();
+         alert(userNo+"+++"+pfNo+"++++"+text);
+         var post = $(this).parents(".post");
+         var aaa =$(this);
+         alert(post.attr("name"));
+         
+            var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+            obj.folderNo =pfNo;
+            obj.text = text;
+            obj.userNo = userNo;
+            var json_data = JSON.stringify(obj)
+       $.ajax({
+             
+             url: "/mapBoard/jsonSetComment",
+             method :"POST",
+             data :json_data,
+             dataType : "json" ,
+             headers : {
+               "Accept" : "application/json",
+               "Content-Type" : "application/json"
+             },
+             success : function(JSONData , status) {
+                 alert("성공");
+                 post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
+             }
+             
+       });
+        
+         
+    });
+ });
+ </script>
+  
+  <script type="text/javascript">
+
+var page = 1;
+ 
+$(window).scroll(function() {
+    if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+      console.log(++page);
+      $.ajax({
+          
+          url: "/mapBoard/getJsonNewsFeed?userNo=${myUser.userNo}&col="+page,
+          method :"POST",
+          dataType : "json" ,
+          headers : {
+            "Accept" : "application/json",
+            "Content-Type" : "application/json"
+          },
+          success : function(JSONData , status) {
+              if(JSONData.newsfeed.length==0){
+                  alert("모든게시물을 확인하셨습니다.");
+              } 
+              for (var i in JSONData.newsfeed) {
+                  console.log(JSONData.newsfeed[i].user.userName+"sssss");
+                  var count=0;
+                  var aaa ='<div class="post" name="aaa">'
+                      +'<div class="user-block">'
+                      +'<img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="user image">'
+                      +'<span class="username">'
+                        +'<a href="#">'+JSONData.newsfeed[i].user.userName+'</a>'
+                        +'<a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>'
+                      +'</span>'
+                      +'<span class="description">'+JSONData.newsfeed[i].user.userId+' - '+JSONData.newsfeed[i].photoDate+'</span>'
+                    +'</div>';
+                 if(JSONData.newsfeed[i].photoTheme.length!=0){
+                     aaa=aaa+'<div class="row margin-bottom">'
+                     +'<div class="col-sm-6">'
+                       +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                     +'</div>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }
+                     aaa=aaa+'<div class="col-sm-6">'
+                       +'<div class="row">'
+                         +'<div class="col-sm-6">'
+                           +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                           +'<br>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }                           
+                  aaa=aaa+'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'                
+                        +'</div>';
+                         <!-- /.col -->
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                    count =0;
+                  }  
+                        aaa =aaa+'<div class="col-sm-6">'
+                           +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                           +'<br>';
+                  count =count+1;
+                  if(count==JSONData.newsfeed[i].photoTheme.length){
+                     count =0;
+                  }   
+                           aaa=aaa+'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
+                         +'</div>'
+                         <!-- /.col -->
+                       +'</div>'
+                     <!-- /.row -->
+                    +'</div>'                  
+                   +'</div>';
+                    }
+                   aaa=aaa+'<p>'+JSONData.newsfeed[i].text+'</p>'
+                   +'<ul class="list-inline">'
+                      +'<button type="button" class="btn btn-default btn-xs">'
+                         +'<i class="fa fa-share"></i> Share'
+                       +'</button>'
+                       +'<button id="likeBt" type="button" class="btn btn-default btn-xs" style="color:#444">'
+                         +'<div name="${myUser.userNo}"></div>'
+                         +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                         +'<div name="'+JSONData.newsfeed[i].likeCode+'"></div>'
+                         +'<i class="fa fa-thumbs-o-up"></i> Like'
+                       +'</button>'
+                       +'<span id="likeCount" class="pull-right text-muted"><a href="#">'+JSONData.newsfeed[i].likeCount+'likeCount</a></span>'
+                       +'<span class="pull-right text-muted"><a href="#" id="commentCount">'+JSONData.newsfeed[i].commentCount+'comment</a></span>'
+                    +'</ul>'
+                    +'<div id="CommentBox" class="box-footer box-comments">'
+                    for (var z in JSONData.newsfeed[i].commentList) {
+                        aaa=aaa+'<div class="box-comment">'
+                      +'<img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image">'
+                      +'<div class="comment-text">'
+                        +'<span class="username">'+JSONData.newsfeed[i].commentList[z].userId
+                          +'<span class="text-muted pull-right" >'
+                           +'<Button id="removebtn" name="'+JSONData.newsfeed[i].commentList[z].commentNo+'" style="width: 100% ; height: 100%;">X'
+                             +'<div name="${myUser.userNo}"></div>'
+                             +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                            +'</button>'
+                           +'</span>'
+                          +'<br/>'
+                          +'<span  class="text-muted pull-right">'+JSONData.newsfeed[i].commentList[z].date+'</span>'                   
+                        +'</span>'
+                          +JSONData.newsfeed[i].commentList[z].text
+                        +'</div>'
+                        <!-- /.comment-text -->
+                      +'</div>';
+                    }
+                    aaa=aaa+'</div>'
+                    +'<div class="box-footer">'
+                    +'<div class="form-horizontal">'
+                      +'<div class="form-group margin-bottom-none">'
+                        +'<div class="col-sm-9">'
+                          +'<input class="form-control input-sm" placeholder="Response">'
+                        +'</div>'
+                        +'<div class="col-sm-3">'
+                          +'<button id="sendCommentBt" class="btn btn-danger pull-right btn-block btn-sm">Send'
+                            +'<div name="'+JSONData.newsfeed[i].userNo+'"></div>'
+                            +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                          +'</button>'
+                        +'</div>'
+                      +'</div>'
+                    +'</div>'       
+                   +'</div>'
+                  +'</div>';
+                  $("#activity").append(aaa);
+                }
+
+          }
+          
+    });
+      
+    }
+});
+</script>
  
 </body>
 </html>

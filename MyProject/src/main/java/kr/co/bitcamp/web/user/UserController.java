@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
+import kr.co.bitcamp.service.mapBoard.MapBoardService;
 import kr.co.bitcamp.service.user.UserService;
 
 @Controller
@@ -32,6 +34,10 @@ public class UserController {
     @Autowired
     @Qualifier("userServiceImpl")
     private UserService userService;
+    
+    @Autowired
+    @Qualifier("mapBoardServiceImpl")
+    private MapBoardService boardService;
 
     public UserController() {
         super();
@@ -68,7 +74,7 @@ public class UserController {
     
     
     @RequestMapping("login")
-    public String loginUser(@ModelAttribute("user") User user, HttpSession session) 
+    public String loginUser(@ModelAttribute("user") User user, HttpSession session,Model model) 
         throws Exception{
       
       System.out.println("[login() start........................]");
@@ -79,7 +85,9 @@ public class UserController {
       
       System.out.println("[login() end...............]\n");
       List<Activity> list=userService.getActivity(user01.getUserNo());
-      
+      //timeline을 첫페이지로.////////////////////////
+     
+      //////////////////////////////////////
           if(list.size()==0){
             
             Activity activity=new Activity();
@@ -95,6 +103,13 @@ public class UserController {
       
      
     }
+    /*@RequestMapping("getNewsFeed")
+    public String getNewsFeed(@RequestParam("userNo") int userNo,Model model)throws Exception{
+      List<PhotoFolder> newsfeed =boardService.getNewsFeed(userNo,1);
+      model.addAttribute("newsfeed",newsfeed);
+      System.out.println("newfeed"+newsfeed);
+      return "forward:/user/timeLine.jsp";
+    }*/
     
     ///////////////////////////////////////
     @RequestMapping( value="jsonLogin", method=RequestMethod.POST )
