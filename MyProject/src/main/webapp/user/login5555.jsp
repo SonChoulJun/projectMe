@@ -18,21 +18,8 @@
   <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="/html/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="/html/colorBox/colorbox.css" />
-  <style>
-    .login-page, .register-page {
-         background: white !important;
-    }   
-    
-    .bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
-    background-color: #3b5998 !important;
-    border-right:0px;
-    }
-    
-    .btn-social>:first-child {
-    border-right: 0px solid rgba(0,0,0,0.2);
-}
-  </style>
+  
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,23 +33,19 @@
 
 <div id="loginmodal" class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>M</b>e<b>M</b>o<b>r</b>y<br/><b>B</b>o<b>x</b></a>
+    <a href="index2.html"><b>Admin</b>LTE</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-  
-    <p class="login-box-msg"><a class="text-center">Sign in to start your session</a></p>
+    <p class="login-box-msg">Sign in to start your session</p>
 
-    <form  name="loginForm"  action="/user/login"  target="_parent" method="post">
+    <form  name="loginForm"  action="/user/login" method="post">
       <div class="form-group has-feedback">
-        <input name ="userId" type="email" class="form-control" placeholder="Email" style="
-																											    margin-bottom: 30px;
-																											    height: 50px;
-																											">
+        <input name ="userId" type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input name="password" type="password" class="form-control" placeholder="Password" style="height:50px;">
+        <input name="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -76,7 +59,7 @@
         <!-- /.col -->
         <div class="col-xs-4">
           .<a href="javascript:fncLogin();">
-                   <button type="submit" class="btn btn-primary btn-block btn-flat" style="height:50px;">Sign In</button>
+                   <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
            </a>
         </div>
         <!-- /.col -->
@@ -84,20 +67,16 @@
     </form>
 
     <div class="social-auth-links text-center">
-      <!-- <p>- OR -</p> -->
-      <a id="registerColorBox"  class="btn btn-block btn-social btn-facebook btn-flat" style="
-    margin-top: 40px;
-    height: 45px; padding-left: 60px;"><i class="fa fa-user bg-aqua" style="width: 45px; "></i> Sign in using
+      <p>- OR -</p>
+      <a href="/user/register.jsp" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
-      <!-- <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-user bg-aqua"></i> Sign in using
-        Google+</a> -->
-       
-       
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+        Google+</a>
     </div>
     <!-- /.social-auth-links -->
 
-    <!-- <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a> -->
+    <a href="#">I forgot my password</a><br>
+    <a href="register.html" class="text-center">Register a new membership</a>
 
   </div>
   <!-- /.login-box-body -->
@@ -139,27 +118,5 @@
     });
   });
 </script>
-
-<script src="/html/colorBox/jquery.colorbox-min.js"></script>
-<!-- <script type="text/javascript">
-$('#closebox').bind("click", function(){
-	$.colorbox.close();
-});
-</script> -->
-
-<script type="text/javascript">
-           /* $("registerColorBox").on("click", function({
-        	   $.colorbox({href:"/user/register2222.jsp" , iframe:true, width: "80%", height: "80%" });
-           }); */
-   /*  jQuery('a#registerColorBox').onClosed(); */
-   /* $('#registerColorBox').colorbox.close(); */
-             /* var $form = $("#registerColorBox").parent().parent().parent(); */
-       /*  jQuery('#registerColorBox').colorbox({inline:true,  opacity:0.5, width : '600px', height : '570px', scrolling: false, retinaUrl:true}); */ 
- /*    jQuery('#registerColorBox').colorbox({inline:true,  opacity:0.5, width : '600px', height : '570px', scrolling: false, retinaUrl:true}); */
-    $("#registerColorBox").on("click",function(){
-    	location.href="/user/register.jsp";
-    });
- 
- </script>
 </body>
 </html>

@@ -35,7 +35,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/html/colorBox/colorbox1.css" />
+
 </head>
 
 <body>
@@ -84,9 +84,7 @@
                                 </section>
             <br>
             <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
-            
-            <div  id="loginColorBox" class="btn btn-dark btn-lg">login</a>
-            
+            <a href="/user/login.jsp" class="btn btn-dark btn-lg">login</a>
         </div>
     </header>
 
@@ -371,23 +369,6 @@
         }
         // Enable map zooming with mouse scroll when the user clicks the map
     $('.map').on('click', onMapClickHandler);
-    </script>
-    
-    <script src="/html/colorBox/jquery.colorbox-min.js"></script>
-    
-    <script type="text/javascript">
-    $("#loginColorBox").on("click",function(){
-    	$.colorbox({
-    		
-    		href :"/user/login.jsp",
-    		opacity:0.5, 
-    		width : '600px', 
-    		height : '700px',
-    	 	iframe:true,
-    		scrolling: false 
-    	});
-    });
-    
     </script>
 
 </body>

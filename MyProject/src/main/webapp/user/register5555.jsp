@@ -18,21 +18,16 @@
   <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="/html/plugins/iCheck/square/blue.css">
-     <style>
-    .login-page, .register-page {
-         background: white !important;
-    }   
-  </style>
+
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="index2.html"><b>M</b>e<b>M</b>o<b>r</b>y<br/><b>B</b>o<b>x</b></a>
+    <a href="index2.html"><b>Admin</b>LTE</a>
   </div>
 
   <div class="register-box-body">
-  <p class="login-box-msg"><a class="text-center">Register a new membership</a></p>
-    
+    <p class="login-box-msg">Register a new membership</p>
 
     <form name ="Member_Input" action="/user/add" method="post">
       <div class="form-group has-feedback">
@@ -75,12 +70,13 @@
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="/user/login.jsp" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-user bg-aqua"></i> Login</a>
-      <!-- <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a> -->
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+        Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+        Google+</a>
     </div>
 
-    <!-- <a href="login.html" class="text-center">I already have a membership</a> -->
+    <a href="login.html" class="text-center">I already have a membership</a>
   </div>
   <!-- /.form-box -->
 </div>
@@ -93,7 +89,5 @@
 <!-- iCheck -->
 <script src="/html/plugins/iCheck/icheck.min.js"></script>
 <script src="/html/login/check.js"></script>
-
-
 </body>
 </html>

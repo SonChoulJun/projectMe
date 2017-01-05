@@ -374,6 +374,8 @@ public class MapBoardController {
     int commentCount=boardService.getComment(comment.getFolderNo()).size();
     Comment comment2 = comentList.get(commentCount-1);
     
+   /* User user=userService.getUser(comment2.getUserId());
+    model.addAttribute("commentUser",user);*/
     if(ok){
           model.addAttribute("setCommentOk","ok");
     }else{
