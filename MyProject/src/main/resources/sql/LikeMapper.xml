@@ -23,7 +23,7 @@
 	</insert>
     
     <select id="getLikeList" parameterType="int" resultMap="likeSelectMap">
-        SELECT * FROM BT_LIKE
+        SELECT USER_NO FROM BT_LIKE
         WHERE PF_NO=#{value}
     </select>
     

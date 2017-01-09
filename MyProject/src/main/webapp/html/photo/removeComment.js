@@ -6,7 +6,7 @@
             alert(name_by_id);
             
            $.ajax({
-        	   url: "/mapBoard/removeComment?commentNo="+name_by_id,
+        	   url: "/mapBoard/removeComment?commentNo="+name_by_id+"&photoFolderNo="+,
         	   method:"GET",
         	   headers : {
                    "Accept" : "application/json",
@@ -15,7 +15,7 @@
                success : function(JSONData , status) {
                     
             	    aaa.parent().parent().parent().parent().remove();
-                        
+            	    $("#commentCount").text(JSONData.commentCount+"comment");   
                  
                  }
         	   

@@ -87,11 +87,11 @@
                 <!-- The timeline -->
                 <ul class="timeline timeline-inverse">
                   <!-- timeline time label -->
-                  <li class="time-label">
+                 <%--  <li class="time-label">
                         <span class="bg-red">
                           ${activity[0].activityDate} 
                         </span>
-                  </li>
+                  </li> --%>
                   <!-- /.timeline-label -->
                   <!-- timeline item -->
                   <%-- <li>
@@ -121,9 +121,13 @@
                     <i class="fa fa-user bg-aqua"></i>
 
                     <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> ${i.activityTime}</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a>  ${i.activityText} 
+                    <c:if test="${vs.last==true}">
+                    <span class="time"><i class="fa fa-clock-o"></i> ${user.joinDate}</span>
+                    </c:if>
+                    <c:if test="${!vs.last==true}">
+                      <span class="time"><i class="fa fa-clock-o"></i>${i.activityDate} &nbsp ${i.activityTime}</span>
+                    </c:if>
+                      <h3 class="timeline-header no-border"><a href="#"><b>M</b>e<b>m</b>o<b>r</b>y</a>  ${i.activityText} 
                       <%-- <c:if test="${i.activityText==activity[0].activityText}">
                       </c:if> --%>
                       <c:if test="${!vs.last==true}">

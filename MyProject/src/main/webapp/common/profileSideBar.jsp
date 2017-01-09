@@ -234,6 +234,7 @@
 	<!-- /.box -->
 
 	<!-- About Me Box -->
+	<div class="floating">
 	<div class="box box-primary">
              <div class='et_pb_column et_pb_column_1_3'>
               <div class='module post-module'>
@@ -394,7 +395,7 @@
             </div>
             </div>
             </div>
-           
+           </div>
             
 
 

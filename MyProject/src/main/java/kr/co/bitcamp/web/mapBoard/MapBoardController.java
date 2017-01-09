@@ -228,20 +228,22 @@ public class MapBoardController {
     }
     
     
-    @RequestMapping("getPhotoFolder/{folderNum}")
+    /*@RequestMapping("getPhotoFolder/{folderNum}")
     public String getPhotoFolder(@PathVariable int folderNum, Model model){ 
         try {
             PhotoFolder photoFolderOne= boardService.getPhotoFolder(folderNum);
             List<Comment> comment = boardService.getComment(folderNum);
             System.out.println(comment);
+            
             model.addAttribute("photoFolderOne", photoFolderOne);
             model.addAttribute("commentList", comment);
+            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
       return "forward:/user/photoFolderOne.jsp";
-    }
+    }*/
     
     
 
@@ -267,7 +269,7 @@ public class MapBoardController {
     
     
     @RequestMapping("getPhotoFolder")
-    public String getPhotoFolderEx(@RequestParam("folderNum") int folderNum,Model model,HttpSession session){ 
+    public String getPhotoFolderEx(@RequestParam("folderNum") int folderNum, Model model,HttpSession session){ 
         try {
           
             System.out.println(folderNum+"++++++++++++++++++++++++++++++++++++");
@@ -318,6 +320,7 @@ public class MapBoardController {
     @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
     public void jsonSetLike(@PathVariable("userNo") int userNo,@PathVariable("pfNo") int pfNo,
                                      Model model) throws Exception{
+      User user=userService.getUser2(userNo);
       
       if(boardService.likeOk(pfNo, userNo)){
         boardService.setLike(pfNo, userNo);
@@ -330,6 +333,7 @@ public class MapBoardController {
         model.addAttribute("likeCount", boardService.getLikeCount(pfNo));
       }
       
+      model.addAttribute("targetUser", user);
       /*PhotoFolder pf=boardService.getPhotoFolder(pfNo);
       boolean likeCode = boardService.setLike(pfNo, userNo);
       
@@ -341,6 +345,13 @@ public class MapBoardController {
       }else{
         pf.setLikeCode(0);
       }*/
+    }
+    
+    @RequestMapping("getLikeMember")
+    public void getLikeMember(@RequestParam("pfNo")int pfNo, Model model)throws Exception{
+      
+      List<User> list=boardService.getLikeMember(pfNo);
+      model.addAttribute("LikeMember",list);
     }
       
 
@@ -423,10 +434,13 @@ public class MapBoardController {
     public void removeComment(@RequestParam("commentNo") int commentNo, HttpSession session) throws Exception{
         System.out.println("\n:: ==> remove() start.....");
         
+        
+        
        /* User user = (User)session.getAttribute("myUser");
         user.setUserId(user.getUserId());*/
         boardService.removeComment(commentNo);
         
+       
        
     }
     

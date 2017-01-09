@@ -67,8 +67,13 @@ public class ProfileController {
         System.out.println("getBest : "+BestphotoFolder);
         ////////////////////////////////
         List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        System.out.println("뉴스피드는 불러오긴하니????"+newsfeed);
+        
+        
+          
         model.addAttribute("newsfeed",newsfeed);
         System.out.println("newfeed"+newsfeed);
+       
         //////////////////////////////////////
         try{
             session.setAttribute("BestfolderList", BestphotoFolder);
@@ -85,8 +90,8 @@ public class ProfileController {
     
     @RequestMapping("subProfile")
     public String subProfile(@RequestParam("userId") String userId,HttpSession session, Model model) throws Exception{
-        User myUser = (User)session.getAttribute("myUser");
-        User user = userService.getUser(userId);
+        User myUser = (User)session.getAttribute("myUser");//내 세션불러온거.
+        User user = userService.getUser(userId); //대상user
         System.out.println(user);
         int userNo =user.getUserNo();
        
@@ -95,14 +100,18 @@ public class ProfileController {
         System.out.println("asdasdsasad"+photoFolder);
         //////////
         List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        
+        
         model.addAttribute("newsfeed",newsfeed);
         System.out.println("newfeed"+newsfeed);
+      
         //////////////
         try{
             session.setAttribute("followerOk",userService.followOk(myUser.getUserNo(), userNo) );
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
             session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
+            session.setAttribute("myUser", myUser);
         }catch (Exception e) {
             e.getMessage();
         }
@@ -179,11 +188,16 @@ public class ProfileController {
     
     @RequestMapping("search")
     public String search(@RequestParam("searchText") String searchTest,
+            HttpSession session,
                               Model model) throws Exception{
+       User user=(User)session.getAttribute("myUser");
+       User user1=(User)session.getAttribute("targetUser");
         List<User> userList =userService.searchUser(searchTest);
         List<PhotoFolder>boardList= boardService.searchBoard(searchTest);
         model.addAttribute("listUser",userList);
         model.addAttribute("boardList", boardList);
+        session.setAttribute("myUser",user);
+        session.setAttribute("targetUser",user1);
         
         return "forward:/user/searchList.jsp";
     }

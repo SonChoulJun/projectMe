@@ -147,7 +147,7 @@
 											</div>
 											<div class="col-xs-12 col-md-6">
 												<a class="btn btn-success"
-													 href="/mapboard/getPhotoFolder?folderNum=${photoFolder.pfNo}">보러가기</a>
+													 href="/mapBoard/getPhotoFolder?folderNum=${photoFolder.pfNo}">보러가기</a>
 											</div>
 										</div>
 									</div>

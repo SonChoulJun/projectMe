@@ -191,14 +191,18 @@
 														src="/html/dist/img/user3-128x128.jpg" alt="User Image">
 
 													<div class="comment-text">
-														<span class="username"> ${commentList.userId} <span
-															class="text-muted pull-right"><Button
-																	id="removebtn" name="${commentList.commentNo}"
-																	style="width: 100%; height: 100%;">
-																	X
-																	<div name="${myUser.userNo}"></div>
-																	<div name="${photoFolder.pfNo}"></div>
-																</button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
+														<span class="username"> ${commentList.userId} <c:if
+																test="${commentList.userNo==myUser.userNo}">
+																<span class="text-muted pull-right">
+																	<Button id="removebtn" name="${commentList.commentNo}"
+																		style="width: 100%; height: 100%;">
+																		X
+																		<div name="${myUser.userNo}"></div>
+																		<div name="${photoFolder.pfNo}"></div>
+																	</button>
+															</c:if>
+
+														</span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
 
 														</span>
 														<!-- /.username -->
@@ -569,7 +573,7 @@ $("#fileUpload").fileinput({
 
 	<c:import url="/user/layer.jsp"></c:import>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 var page = 1;
  
