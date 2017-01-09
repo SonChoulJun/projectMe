@@ -107,6 +107,7 @@
               <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
              <!--  <li><a href="/user/settings.jsp" >Settings</a></li> -->
+
               </c:if>
             </ul>
             
@@ -624,7 +625,7 @@ $("#getval").on('change', function(e){
 	    	
  	     
 	    console.log(data.originalFilename);
-	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename?+date.getTime()"')");
+	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename+"')");
          if(typeof data.error === 'undefined') //에러가 없다면
          {
         	 console.log(data);
@@ -966,8 +967,11 @@ $("#fileUpload").fileinput({
  });
  </script>
   
-  <script type="text/javascript">
+  
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
 
+<script type="text/javascript">
 var page = 1;
  
 $(window).scroll(function() {

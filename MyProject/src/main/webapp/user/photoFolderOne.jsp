@@ -111,6 +111,7 @@
                           data-widget="remove">
                           <i class="fa fa-times"></i>
                         </button> -->
+<<<<<<< HEAD
 										</div>
 										<!-- /.box-tools -->
 									</div>
@@ -207,6 +208,87 @@
 								<!-- /.box -->
 							</div>
 							<%-- <div class="post">
+=======
+                      </div>
+                      <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                      <div class="img-responsive" id="map"
+                                                style="height: 400px; margin: 0px auto;"></div>
+                                                <a href="/mapBoard/updatePhotoFolder?folderNum=${photoFolderOne.pfNo}">
+                      <button class="pull-right btn bg-purple btn-flat margin" >수정하기</button></a>
+                     
+                      <p>오랜만에 서울에 있는 철준이네 집에 다녀왔다. 여전히 연기를 잘한다.</p>
+                      <br>
+
+                      <div class="fb-share-button" data-href="http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.0.17%3A8080%2FmapBoard%2FgetPhotoFolder%3FfolderNum%3D10002&amp;src=sdkpreparse">공유하기</a></div>
+                      
+                            <a id="kakao-link-btn" href="javascript:sendLink()"><img src="/html/images/kakao.PNG" ></a>  
+                      
+                      <button id="likeBt" type="button" class="btn btn-default btn-xs">
+                         <div name="${myUser.userNo}"></div>
+                         <div name="${photoFolderOne.pfNo}"></div>
+                         <div name="${likeOk}"></div>
+                         <div name="${targetUser.userNo}"></div>
+                        <i class="fa fa-thumbs-o-up"></i> Like
+                      </button>
+                      
+                      <span id="likeCount" class="pull-right text-muted"><a href="#">${likeCount} likeCount</a></span>
+                      <span class="pull-right text-muted"><a href="#" id="commentCount">${commentCount} comment</a></span>
+                      <!-- span id="commentCount" class="pull-right text-muted"> comment</span> -->
+                      
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer box-comments">
+                      <c:forEach var="commentList" items="${commentList}">
+                        <div class="box-comment">
+                          <!-- User image -->
+                          <img class="img-circle img-sm"
+                            src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+  
+                          <div class="comment-text">
+                            <span class="username"> ${commentList.userId}
+                            <span class="text-muted pull-right" >
+                            <c:if test="${commentList.userNo==myUser.userNo}">
+                            <Button id="removebtn" name="${commentList.commentNo}" style="width: 100% ; height: 100%;">X</button>
+                            </c:if>
+                            </span>
+                            <br/>
+                            <span  class="text-muted pull-right">${commentList.date}</span>
+                            
+                            </span>
+                            <!-- /.username -->
+                            ${commentList.text}
+                          </div>
+                          <!-- /.comment-text -->
+                        </div>
+                      </c:forEach>
+                      <!-- /.box-comment -->
+
+                      <!-- /.box-comment -->
+                    </div>
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                      <form id='commentSub'action="/mapBoard/setComment" method="post">
+                        <img class="img-responsive img-circle img-sm"
+                          src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
+                        <!-- .img-push is used to add margin to elements next to floating images -->
+                        <div class="img-push">
+                          <input type="hidden" value="${myUser.userNo}" name="userNo" >
+                          <input type="hidden" value="${photoFolderOne.pfNo}" name="folderNo" >
+                          <input type="text" class="form-control input-sm"
+                            placeholder="Press enter to post comment" name="text">
+                           <button type="submit" class="btn bg-olive margin">commit</button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.box-footer -->
+                  </div>
+                  <!-- /.box -->
+                </div>
+                <%-- <div class="post">
+>>>>>>> 51593d3d12360061effd26499531343bc652e003
                   <div class="user-block">
                     <img class="img-circle img-bordered-sm"
                       src="/html/dist/img/user1-128x128.jpg" alt="user image">
@@ -783,6 +865,8 @@
   });
   </script>
 
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
 
 
 
@@ -826,6 +910,7 @@
   //]]>
 </script>
 
+<<<<<<< HEAD
 <script type="text/javascript">
  $(function(){
      
@@ -867,6 +952,11 @@
  </script>
 
 	<!-- <script type="text/javascript">
+=======
+
+  
+ <script type="text/javascript">
+>>>>>>> 51593d3d12360061effd26499531343bc652e003
  $(function(){
      
      
@@ -887,13 +977,7 @@
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-                 if(JSONData.likeOk=="add"){
-                     $("#likeCount").text(JSONData.likeCount+" likeCount");
-                     upthis.css("color","blue");
-                 }else{
-                     $("#likeCount").text(JSONData.likeCount+" likeCount");
-                     upthis.css("color","#444");
-                 }
+            	 
              }
              
        });         
@@ -929,9 +1013,6 @@
 	<script type="text/javascript"></script>
 	<c:import url="/user/googleMap.jsp"></c:import>
 	<script src="/html/colorBox/jquery.colorbox-min.js"></script>
-
-
-
 
 
 </body>

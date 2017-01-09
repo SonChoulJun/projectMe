@@ -408,6 +408,9 @@ $("#fileUpload").fileinput({
 <script src="/html/folder-input/folder-input.js"></script>
 <c:import url="/user/layer.jsp"></c:import>
 
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/html/common/common.js"></script>
+
 
 
 </body>
