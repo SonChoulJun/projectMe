@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,125 +19,52 @@
   <link rel="stylesheet" href="/html/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="/html/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
-  <!-- 이거 안넣으면 profileSideBar 사진 깨짐 -->
-  <link rel="stylesheet" href="/html/assets/css/style.css">
-  <!--  -->
-  <!-- top5 -->
-<link rel="stylesheet" href="/html/assets/test/css/style.css">
-  <!--  -->
+  
+  <!--파일업로드 CSS  -->
+        <link href="/html/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+  
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  
-  
-  <style type="text/css">
-
-    .profilephoto{
-        background-size: cover;
-
-    }
-
-    .profilephoto img{
-        
-        width:100%;
-        height:100%;
-        float: left;
-    }
-
-</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <c:import url="/common/headerBar.jsp"></c:import>
-  
+   <c:import url="/common/headerBar.jsp"></c:import>
+ 
+  <!-- Left side column. contains the logo and sidebar -->
   <c:import url="/common/mainSideBar.jsp"></c:import>
-  
-  
+
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <c:import url="/common/profileBar.jsp"></c:import>
+    <section class="content-header">
+      <h1>
+        File Upload Test
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+      </ol>
+    </section>
 
     <!-- Main content -->
     <section class="content">
 
       <div class="row">
-        <c:import url="/common/profileSideBar.jsp"></c:import>
-        
-        
-        <!-- /.col -->
-        <div class="col-md-9">
-                <!-- <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('/html/images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
-              <img src="/html/images/pic07.jpg" ; alt=""/>
-                </div> -->
-            <div class="rectang" style="    padding-left: 10%; padding-top: 5%; padding-bottom:5%;  background-color: rgba(000, 051, 103, 0.10); border-radius: 3px; border-top:3px solid #3c8dbc;" >
-            <div class="tab-pane" id="settings">
+       
+       
+           <input id="input-id" type="file" class="file" multiple="true" >
                 
-                <form class="form-horizontal" action="/user/update">
-                
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Name</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input name ="userName" type="text" class="form-control" id="inputName" placeholder=${user.userName }>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label" style="width:10%;">Email(id)</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input name ="userId" type="email" class="form-control" id="inputEmail" placeholder=${user.userId }>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label" style="width:10%;">Pwd</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input name ="password" type="text" class="form-control" id="inputName" placeholder= ${user.password }>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label" style="width:10%;">Phone</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <textarea name ="phone" class="form-control" id="inputExperience" placeholder=${user.phone }></textarea>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label" style="width:10%;">Join Date</label>
-                    <div class="col-sm-10" style="width: 50%">
-                      <input type="text" class="form-control" id="inputSkills" placeholder=${user.joinDate }>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group" style="width:30%;">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group" >
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                      <button type="submit" class="btn btn-danger"> 확 인</button>
-                    </div>
-                  </div>
-                  
-                </form>
-              </div>
-              </div>
         
-        </div>
-        <!-- /.col -->
+        
       </div>
       <!-- /.row -->
 
@@ -147,7 +72,13 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <c:import url="/common/mainFoot.jsp"></c:import>
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.7
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -346,15 +277,30 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="/html/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="/html/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="/html/plugins/fastclick/fastclick.js"></script>
+<script src="../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="/html/dist/js/app.min.js"></script>
+<script src="../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/html/dist/js/demo.js"></script>
+<script src="../dist/js/demo.js"></script>
 <script src="/html/folder-input/folder-input.js"></script>
+<!--파일업로드 자바스크립트  -->
+        <script src="../assets/js/fileinput.js" type="text/javascript"></script>
+        <script src="../assets/themes/fa/theme.js"></script>
+        <script src="../assets/js/locales/LANG.js"></script>
+<script>
+$("#input-id").fileinput({
+	language: 'LANG',
+    uploadUrl: 'user/fileUpload/post',
+    uploadAsync: true,
+    multiple:true,
+    allowedFileExtensions : ['jpg', 'png','gif']   
+});
+
+
+</script>
 </body>
 </html>

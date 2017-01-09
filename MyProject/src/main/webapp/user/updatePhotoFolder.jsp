@@ -686,9 +686,6 @@ $("#updateGPS").on("click",function(){
   //]]>
 </script>
 
-  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
-  <script src="/html/common/common.js"></script>
-  
  <script type="text/javascript">
  $(function(){
      
@@ -710,7 +707,6 @@ $("#updateGPS").on("click",function(){
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-            	 
                  if(JSONData.likeOk=="add"){
                      $("#likeCount").text(JSONData.likeCount+" likeCount");
                      upthis.css("color","blue");
@@ -726,6 +722,7 @@ $("#updateGPS").on("click",function(){
     });
  });
  </script>
+
 
 
 

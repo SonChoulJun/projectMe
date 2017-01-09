@@ -179,7 +179,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
                 fillOpacity: .6,
                 anchor: new google.maps.Point(12,-290),
                 strokeWeight: 0,
-                scale: .25,
+                scale: .10,
                 rotation: rotation
             }; 
            /*   var lineSymbol = {

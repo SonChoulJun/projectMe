@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/html/assets/test/css/style.css">
   
   <!-- likeAnimate -->
-  <!-- <link rel="stylesheet" href="/html/assets/likeAnimate/style.css"> -->
+  <link rel="stylesheet" href="/html/assets/likeAnimate/style.css">
   
 
   <!-- profile photo -->
@@ -95,7 +95,6 @@
               <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
              <!--  <li><a href="/user/settings.jsp" >Settings</a></li> -->
-
               </c:if>
             </ul>
             <div class="tab-content">
@@ -828,7 +827,7 @@ $("#getval").on('change', function(e){
 	    	
  	     
 	    console.log(data.originalFilename);
-	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename+"')");
+	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename?+date.getTime()"')");
          if(typeof data.error === 'undefined') //에러가 없다면
          {
         	 console.log(data);
@@ -1083,7 +1082,11 @@ $("#fileUpload").fileinput({
 	  "mouseover" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
 	  "touchstart" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
 	  "touchend" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")},
-	  "mouseout" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")}
+	  "mouseout" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")},
+	  "click" : function(){
+		  var url = "/mapBoard/getPhotoFolder?folderNum="+$(this).find("#zzz").attr("name");
+		  $(location).attr('href',url);}
+		  /* alert($(this).find("zzz").attr("name")) */  
 	  }, "#post");
   
   
@@ -1138,11 +1141,8 @@ $("#fileUpload").fileinput({
  });
  </script>
   
-  
-  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
-  <script src="/html/common/common.js"></script>
+  <script type="text/javascript">
 
-<script type="text/javascript">
 var page = 1;
  
 $(window).scroll(function() {

@@ -380,8 +380,5 @@
 <script src="/html/dist/js/demo.js"></script>
 
 <script src="/html/folder-input/folder-input.js"></script>
-
-  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
-  <script src="/html/common/common.js"></script>
 </body>
 </html>
