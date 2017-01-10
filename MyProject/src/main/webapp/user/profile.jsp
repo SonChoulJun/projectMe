@@ -102,7 +102,7 @@
 
 
         <c:import url="/common/profileSideBar.jsp"></c:import> 
-        <div id="myUserNo" name="${targetUser.userNo}"></div>
+        
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -1095,18 +1095,7 @@ $(window).scroll(function() {
 </script>
 
  <script src="/html/colorBox/jquery.colorbox-min.js"></script>
-    <script type="text/javascript">
-    $("#msgBt").on("click",function(){
-      $.colorbox({
-        
-        href :"/user/moveChat",
-        width : '900px', 
-        height : '1000px',
-        iframe:true,
-        scrolling: false 
-      });
-    });
-    </script>
+
     
       <script type="text/javascript">
     function pageMove(ptno){
@@ -1118,6 +1107,7 @@ $(window).scroll(function() {
     })
   </script>
   
+
   
   <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
   

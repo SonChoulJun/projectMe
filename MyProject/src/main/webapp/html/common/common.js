@@ -5,7 +5,7 @@
   
 
   socket.on('server message', function(msg){
-	  alert($("#mgAlramcount")==null);
+	  alert("알람도착");
 	    if(($("#mgAlramcount").text()=='')){
 	      $('#mgAlram').append('<span id="mgAlramcount" class="label label-success">1</span>');
 	    }else{    
@@ -34,7 +34,7 @@
   $("#mgAlram").on("click",function(){
       $.ajax({
             
-            url: "/user/updateAlramCount",
+            url: "/user/updateACount",
             method :"POST",
             dataType : "json" ,
             headers : {
@@ -46,5 +46,18 @@
             }
             
       }); 
+    });
+  
+  
+  
+  $("#msgBt").on("click",function(){
+      $.colorbox({
+        
+        href :"/user/moveChat",
+        width : '900px', 
+        height : '1000px',
+        iframe:true,
+        scrolling: false 
+      });
     });
   

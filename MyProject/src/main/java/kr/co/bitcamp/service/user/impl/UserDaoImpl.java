@@ -260,6 +260,8 @@ public class UserDaoImpl implements UserDao {
     public void updateAlram(User user) throws Exception {
         // TODO Auto-generated method stub
         user.setAlramCount(0);
+        System.out.println(user);
+        sqlSession.selectList("UserMapper.updateAlramCount", user);
     }
 
     public User getUser2(int userNo) throws Exception {

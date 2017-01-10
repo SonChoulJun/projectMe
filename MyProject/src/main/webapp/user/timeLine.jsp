@@ -714,6 +714,13 @@ $(window).scroll(function() {
     	location.href="/mapBoard/getPhotoFolder?folderNum="+ptno;
     }
   </script>
+  
+     <script src="/html/colorBox/jquery.colorbox-min.js"></script>
+  
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/html/common/common.js"></script>
+  
 
 
 </body>

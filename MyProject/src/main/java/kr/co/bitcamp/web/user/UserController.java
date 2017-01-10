@@ -414,9 +414,9 @@ public class UserController {
         userService.setActivity(activity);
       }*/
       
-      @RequestMapping( value="updateAlramCount" )
+      @RequestMapping( value="updateACount" )
       public void mgAlramcount(HttpSession seseion) throws Exception{
-
+          System.out.println("alram채ㅕ스들어오니??");
            User user =(User)seseion.getAttribute("myUser");
            userService.updateAlram(user);
            

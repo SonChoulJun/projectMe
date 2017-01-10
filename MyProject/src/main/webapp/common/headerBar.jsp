@@ -1,5 +1,6 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <header class="main-header">
+ <div id="myUserNo" name="${targetUser.userNo}"></div>
     <!-- Logo -->
     <a href="/profile/mainProfile" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
