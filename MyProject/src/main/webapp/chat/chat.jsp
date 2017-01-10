@@ -27,7 +27,7 @@
       
       <c:forEach var="userList" items="${userList}">
         <li id="mgUser" class="clearfix">
-          <img src="/html/dist/img/profile/${userList.profileImg}"  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px" >
+          <img src="/html/dist/img/profile/${userList.profileImg}"  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px;height: 45px" >
           <div class="about">
             <div id="chageImage" name="/html/dist/img/profile/${userList.profileImg}"></div>
             <div id="toUserNo" name="${userList.userNo}"></div>
@@ -50,7 +50,7 @@
     
     <div class="chat">
       <div class="chat-header clearfix">
-        <img id="userImage" src=""  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px" >
+        <img id="userImage" src=""  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px;height: 45px" >
         
         <div class="chat-about">
           <div id="mgMainUserNo" class="chat-with">Chat with Vincent Porter</div>

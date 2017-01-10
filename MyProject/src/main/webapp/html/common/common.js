@@ -1,12 +1,11 @@
 
   var socket = io.connect('http://192.168.0.20:3000/');
   var userNo = $("#myUserNo").attr("name");
-  alert(userNO);
   socket.emit('new', userNo);
   
 
   socket.on('server message', function(msg){
-	  alert("메세지 도착함");
+	  alert($("#mgAlramcount")==null);
 	    if(($("#mgAlramcount").text()=='')){
 	      $('#mgAlram').append('<span id="mgAlramcount" class="label label-success">1</span>');
 	    }else{    
