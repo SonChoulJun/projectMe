@@ -655,7 +655,7 @@
 			                            </div>
 			                            <div class="wizard-footer">
 			                                <div class="pull-right">
-			                                      <input id="photoSubFinish" type='button' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
+			                                      <input id="photoSubFinish22" type='button' class='btn btn-finish btn-fill btn-success btn-wd' name='finish' value='Finish' />
 			                  </div>
 			
 			<!--                                   <div class="pull-left">
@@ -744,7 +744,7 @@
   });
   
   
-  $("#photoSubFinish").on("click",function(){
+  $("#photoSubFinish22").on("click",function(){
     var url = "/mapBoard/getPhotoFolder?folderNum="+${photoFolderOne.pfNo};    
     $(location).attr('href',url);
   });
@@ -841,10 +841,7 @@
   <script type="text/javascript">
 
 	// Link to open the dialog
-	$( "#likeCount" ).click(function( event ) {
-	  $( "#photoSubUpload" ).modal();
-	  event.preventDefault();
-	});
+
   </script>
   
   <script type="text/javascript"></script>

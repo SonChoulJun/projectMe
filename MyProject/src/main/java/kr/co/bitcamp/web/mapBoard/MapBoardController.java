@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.common.util.MetadataExample;
 import kr.co.bitcamp.service.domain.Activity;
+import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
@@ -317,10 +318,18 @@ public class MapBoardController {
 
     @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
     public void jsonSetLike(@PathVariable("userNo") int userNo,@PathVariable("pfNo") int pfNo,
-                                     Model model) throws Exception{
+                                     Model model,HttpSession seseion) throws Exception{
       
       if(boardService.likeOk(pfNo, userNo)){
         boardService.setLike(pfNo, userNo);
+        User user = (User)seseion.getAttribute("myUser");
+        PhotoFolder folder =boardService.getPhotoFolder(pfNo);
+        Alram alram = new Alram();
+        alram.setPolderNo(pfNo);
+        alram.setUserNO(folder.getUserNo());
+        alram.setSendId(user.getUserId());
+        alram.setText("좋아요를 누르셨습니다");
+        userService.addAlram(alram);
         model.addAttribute("likeOk", "add");
         model.addAttribute("likeCount", boardService.getLikeCount(pfNo));
       }
@@ -351,6 +360,14 @@ public class MapBoardController {
 		System.out.println(comment);
 		boolean ok = boardService.setComment(comment);
 		int commentCount=boardService.getComment(comment.getFolderNo()).size();
+    User user = (User)session.getAttribute("myUser");
+    PhotoFolder folder =boardService.getPhotoFolder(comment.getFolderNo());
+    Alram alram = new Alram();
+    alram.setPolderNo(comment.getFolderNo());
+    alram.setUserNO(folder.getUserNo());
+    alram.setSendId(user.getUserId());
+    alram.setText("댓글을 달았습니다.");
+    userService.addAlram(alram);
 		
 		if(ok){
           model.addAttribute("setCommentOk","ok");
@@ -373,6 +390,16 @@ public class MapBoardController {
     List<Comment> comentList=boardService.getComment(comment.getFolderNo());
     int commentCount=boardService.getComment(comment.getFolderNo()).size();
     Comment comment2 = comentList.get(commentCount-1);
+    
+    User user = (User)session.getAttribute("myUser");
+    PhotoFolder folder =boardService.getPhotoFolder(comment.getFolderNo());
+    Alram alram = new Alram();
+    alram.setPolderNo(comment.getFolderNo());
+    alram.setUserNO(folder.getUserNo());
+    alram.setSendId(user.getUserId());
+    alram.setText("댓글을 달았습니다.");
+    userService.addAlram(alram);
+    
     
    /* User user=userService.getUser(comment2.getUserId());
     model.addAttribute("commentUser",user);*/

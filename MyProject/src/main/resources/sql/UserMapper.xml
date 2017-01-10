@@ -10,7 +10,7 @@
 	
 	<resultMap type="user" id="userSelectMap">
 
-	    <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+	  <result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
 		<result property="userId" column="USERID" jdbcType="VARCHAR"/>
 		<result property="userName" column="USER_NM" jdbcType="VARCHAR"/>
 		<result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
@@ -24,12 +24,20 @@
 	</resultMap>
 	
 	
-	<select id="getAlram"     parameterType="int"  resultType="alram">
-        
-		select A.ALRAM_NO as alramNo, A.SEND_ID as sendId, A.TEXT as text, A.ALTAM_DATE as alarmDate
-		from BT_USER U, BT_PHOTO_FOLDER P, BT_ALRAM A
-		WHERE U.USER_NO = A.USER_NO AND P.PF_NO = A.PF_NO AND U.USER_NO = #{value}
-		ORDER BY A.ALTAM_DATE
+	 <resultMap type="alram" id="alramSelectMap">
+
+    <result property="alramNo" column="ALRAM_NO" jdbcType="NUMERIC" />
+    <result property="userNO" column="USER_NO" jdbcType="NUMERIC"/>
+    <result property="polderNo" column="PF_NO" jdbcType="NUMERIC"/>
+    <result property="sendId" column="SEND_ID" jdbcType="VARCHAR"/>
+    <result property="text" column="TEXT" jdbcType="VARCHAR"/>
+    <result property="alarmDate" column="ALTAM_DATE" jdbcType="DATE"/>
+    <association property="user" column="USER_NO" select="getUser2" javaType="int"></association>
+  </resultMap>
+	
+	
+	<select id="getAlram"     parameterType="int"  resultMap="alramSelectMap">
+    select * from BT_ALRAM WHERE USER_NO = #{value} ORDER BY ALTAM_DATE DESC 
 	</select>
 	
 	 <select id="findUser"     parameterType="User" resultMap="userSelectMap" >
@@ -82,6 +90,15 @@
           0)
   </insert> 
   
+  <insert id="addAlram" parameterType="alram" >
+    insert into BT_ALRAM(ALRAM_NO, PF_NO, USER_NO, SEND_ID, TEXT, ALTAM_DATE) 
+    VALUES(SEQ_BT_ALRAM_NO.nextval,#{polderNo},#{userNO},#{sendId},#{text},sysdate)
+  </insert>
+  
+    <insert id="addAlram2" parameterType="alram" >
+    insert into BT_ALRAM(ALRAM_NO, USER_NO, SEND_ID, TEXT, ALTAM_DATE) 
+    VALUES(SEQ_BT_ALRAM_NO.nextval,#{userNO},#{sendId},#{text},sysdate)
+  </insert>
   
   <insert id="addFollowing" parameterType="map" >
     insert into BT_FOLLOWER(FOLLOWER_NO, FOLLOWER_USER_NO, FOLLOWING_USER_NO) 
@@ -128,6 +145,26 @@
         </set>
         WHERE USERID = #{userId}       
     </update>
+    
+      <update id="updateAlramCount" parameterType="user">
+        UPDATE bt_user 
+        <set>
+                                                   ALRAM_COUNT = #{alramCount},
+                                                              
+        </set>
+        WHERE USERID = #{userId}       
+    </update>
+    
+    
+    
+    
+    <update id="updateActivityON" parameterType="int">    
+      update BT_USER set ACTIVITY ='1' WHERE USER_NO=#{value}    
+    </update>
+    
+    <update id="updateActivityOff" parameterType="int">    
+      update BT_USER set ACTIVITY ='0' WHERE USER_NO=#{value}   
+    </update>
 	
   <select id="getFollwerCount" parameterType="int" resultType="int">	
     select count(*) from BT_FOLLOWER where FOLLOWING_USER_NO =#{value}
@@ -152,5 +189,16 @@
     </set>
     WHERE USER_NO=#{userNo}
   </update>
+  
+  <select id="getAllFollow" parameterType="int" resultMap="userSelectMap">
+      select  
+        USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT, PROFILE_IMG
+        FROM     bt_user
+        where USER_NO  IN (SELECT FOLLOWER_USER_NO
+         FROM BT_FOLLOWER
+         WHERE FOLLOWING_USER_NO = #{value}) OR USER_NO  IN (SELECT FOLLOWING_USER_NO 
+         FROM BT_FOLLOWER
+         WHERE FOLLOWER_USER_NO= #{value}) ORDER BY ACTIVITY DESC,user_nm
+  </select>
 
 </mapper>

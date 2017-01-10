@@ -71,6 +71,7 @@ public class ProfileController {
         System.out.println("newfeed"+newsfeed);
         //////////////////////////////////////
         try{
+            session.setAttribute("alramList", userService.getAlram(userNo));
             session.setAttribute("BestfolderList", BestphotoFolder);
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
@@ -90,6 +91,7 @@ public class ProfileController {
         System.out.println(user);
         int userNo =user.getUserNo();
        
+        
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
@@ -99,6 +101,7 @@ public class ProfileController {
         System.out.println("newfeed"+newsfeed);
         //////////////
         try{
+            session.setAttribute("alramList", userService.getAlram(userNo));
             session.setAttribute("followerOk",userService.followOk(myUser.getUserNo(), userNo) );
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));

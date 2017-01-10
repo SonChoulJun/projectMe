@@ -83,7 +83,7 @@
 												- ${photoFolder.photoDate}</span>
 										</div>
 										<c:if test="${!photoFolder.photoTheme.isEmpty()}">
-											<div class="row margin-bottom">
+											<div class="row margin-bottom" onclick="pageMove(${photoFolder.pfNo})">
 
 												<%-- 	                     <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
 	                      <c:if test="${!photoTheme.photoList.isEmpty()}">
@@ -198,6 +198,7 @@
 																	X
 																	<div name="${myUser.userNo}"></div>
 																	<div name="${photoFolder.pfNo}"></div>
+																	<div name="${photoFolder.user.userNo}"></div>
 																</button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
 
 														</span>
@@ -531,6 +532,7 @@ $("#fileUpload").fileinput({
 	 $(document).on("click","#sendCommentBt",function(){
 	     var userNo=$(this).find("div").eq(0).attr("name");
 	     var pfNo=$(this).find("div").eq(1).attr("name");
+	     var youNo=$(this).find("div").eq(2).attr("name");
 	     var text=$(this).parent().parent().find('input').eq(0).val();
 	     alert(userNo+"+++"+pfNo+"++++"+text);
 	     var post = $(this).parents(".post");
@@ -553,7 +555,8 @@ $("#fileUpload").fileinput({
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-            	 alert("성공");
+            	 alert(youNo);
+            	 socket.emit('client message', {to:youNo,name:${myUser.userName},folderNo:folderNo,msg:'댓글을 입력하셨습니다.',img:${myUser.profileImg});
             	 post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
              }
              
@@ -708,6 +711,12 @@ $(window).scroll(function() {
 
   <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
   <script src="/html/common/common.js"></script>
+  <script type="text/javascript">
+    function pageMove(ptno){
+    	alert("들어옴");
+    	location.href="/mapBoard/getPhotoFolder?folderNum="+ptno;
+    }
+  </script>
 
 </body>
 </html>

@@ -1,10 +1,11 @@
 
-  var socket = io.connect('http://localhost:3000/');
+  var socket = io.connect('http://192.168.0.20:3000/');
   var userNo = $("#myUserNo").attr("name");
   socket.emit('new', userNo);
   
 
   socket.on('server message', function(msg){
+	  alert("메세지 도착함");
 	    if(($("#mgAlramcount").text()=='')){
 	      $('#mgAlram').append('<span id="mgAlramcount" class="label label-success">1</span>');
 	    }else{    
@@ -12,4 +13,38 @@
 	      aaa = aaa+1;
 	      $("#mgAlramcount").text(aaa);
 	    }
+	      
+	      var bbb ='<li>';
+          bbb+='<a href="/mapBoard/getPhotoFolder?folderNum='+msg.folderNo+'">';
+        	  bbb+='    <div class="pull-left">';
+        	  bbb+=' <img src="/html/dist/img/profile/'+msg.img+'" class="user-image" onerror="this.src=\'/html/dist/img/defaultImage.jpg\';" >';
+        	  bbb+='</div>';
+        bbb+='<h4>';
+        	bbb+=msg.name;
+        		bbb+='    <small><i class="fa fa-clock-o"></i>2016/01/21</small>';
+        			bbb+=' </h4>';
+        				bbb+='    <p>'+msg.msg+'</p>';
+        					bbb+='    </a>';
+        						bbb+='    </li>';
+	      $("#alramMenu").prepend(bbb);
+	    
 	  });
+  
+  
+  $("#mgAlram").on("click",function(){
+      $.ajax({
+            
+            url: "/user/updateAlramCount",
+            method :"POST",
+            dataType : "json" ,
+            headers : {
+              "Accept" : "application/json",
+              "Content-Type" : "application/json"
+            },
+            success : function(JSONData , status) {
+                $("#mgAlramcount").remove();
+            }
+            
+      }); 
+    });
+  

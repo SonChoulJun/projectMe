@@ -34,7 +34,7 @@
           <li class="dropdown messages-menu">
             <a id="mgAlram" href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <c:if test="user.alramCount!=0">
+              <c:if test="true">
                 <span id="mgAlramcount" class="label label-success">${myUser.alramCount}</span>
               </c:if>
             </a>
@@ -42,74 +42,39 @@
               <li class="header">You have 4 messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+                <ul id ="alramMenu" class="menu">
+                <c:forEach    var="alramList"     items="${alramList}">
                   <li><!-- start message -->
-                    <a href="#">
+<%--                   <c:if test="${alramList.polderNo}==0">
+                  <a href="#">
+                  </c:if>
+                  <c:if test="${alramList.polderNo}!=0">
+                    <a href="/mapBoard/getPhotoFolder?folderNum=${alramList.polderNo}">
+                  </c:if> --%>
+                  <a href="/mapBoard/getPhotoFolder?folderNum=${alramList.polderNo}">
                       <div class="pull-left">
-                        <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/html/dist/img/profile/${alramList.user.profileImg}" class="user-image" onerror="this.src='/html/dist/img/defaultImage.jpg';" >
                       </div>
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        ${alramList.user.userName}
+                        <small><i class="fa fa-clock-o"></i> ${alramList.alarmDate}</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>${alramList.text}</p>
                     </a>
                   </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                  </c:forEach>
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
+          <li id="msgBt" class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+          </li>
 
           <!-- Tasks: style can be found in dropdown.less -->
 
@@ -136,7 +101,7 @@
                   <a href="/user/get?userId=${myUser.getUserId()}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/user/logout/${myUser.userNo}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

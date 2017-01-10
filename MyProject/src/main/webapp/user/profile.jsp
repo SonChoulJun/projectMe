@@ -42,6 +42,9 @@
   <link rel="stylesheet" href="/html/assets/followmodal/style.css"> 
   
   
+  <link rel="stylesheet" href="/html/colorBox/colorbox1.css" />
+  
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -106,14 +109,14 @@
                                         <div class="user-block">
                                             <img class="img-circle img-bordered-sm"
                                                 src="/html/dist/img/user7-128x128.jpg" alt="user image">
-                                            <span class="username"> <a href="#">${photoFolder.user.userName }</a>
+                                            <span class="username"> <a href="/profile/subProfile?userId=${photoFolder.user.userId}">${photoFolder.user.userName }</a>
                                                 <a href="#" class="pull-right btn-box-tool"><i
                                                     class="fa fa-times"></i></a>
                                             </span> <span class="description">${photoFolder.user.userId}
                                                 - ${photoFolder.photoDate}</span>
                                         </div>
                                         <c:if test="${!photoFolder.photoTheme.isEmpty()}">
-                                            <div class="row margin-bottom">
+                                            <div class="row margin-bottom" onclick="pageMove(${photoFolder.pfNo})" >
 
                                                 <%--                         <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
                           <c:if test="${!photoTheme.photoList.isEmpty()}">
@@ -228,6 +231,7 @@
                                                                     X
                                                                     <div name="${myUser.userNo}"></div>
                                                                     <div name="${photoFolder.pfNo}"></div>
+                                                                    <div name="${photoFolder.user.userNo}"></div>
                                                                 </button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
 
                                                         </span>
@@ -265,6 +269,7 @@
                                                             Send
                                                             <div name="${myUser.userNo}"></div>
                                                             <div name="${photoFolder.pfNo}"></div>
+                                                            <div name="${photoFolder.user.userNo}"></div>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -1109,7 +1114,9 @@ $("#fileUpload").fileinput({
          alert(userNo+"+++"+pfNo+"++++"+text);
          var post = $(this).parents(".post");
          var aaa =$(this);
-         alert(post.attr("name"));
+         var youNo =$(this).find("div").eq(2).attr("name");
+         alert(youNo);
+         
          
             var obj = new Object(); // JSON형식으로 변환 할 오브젝트
             obj.folderNo =pfNo;
@@ -1127,7 +1134,8 @@ $("#fileUpload").fileinput({
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-                 alert("성공");
+                 alert("성공"+pfNo);
+                 socket.emit('client message', {to:youNo,name:'${myUser.userName}',folderNo:pfNo,msg:'댓글을 입력하셨습니다.',img:'${myUser.profileImg}'});
                  post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
              }
              
@@ -1174,7 +1182,7 @@ $(window).scroll(function() {
                       +'<span class="description">'+JSONData.newsfeed[i].user.userId+' - '+JSONData.newsfeed[i].photoDate+'</span>'
                     +'</div>';
                  if(JSONData.newsfeed[i].photoTheme.length!=0){
-                     aaa=aaa+'<div class="row margin-bottom">'
+                     aaa=aaa+'<div id="photoPageMove" class="row margin-bottom" name="'+JSONData.newsfeed[i].pfNo+'">'
                      +'<div class="col-sm-6">'
                        +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
                      +'</div>';
@@ -1258,6 +1266,7 @@ $(window).scroll(function() {
                           +'<button id="sendCommentBt" class="btn btn-danger pull-right btn-block btn-sm">Send'
                             +'<div name="'+JSONData.newsfeed[i].userNo+'"></div>'
                             +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                            +'<div name="'+JSONData.newsfeed[i].user.userNo+"></div>'
                           +'</button>'
                         +'</div>'
                       +'</div>'
@@ -1274,6 +1283,29 @@ $(window).scroll(function() {
     }
 });
 </script>
- 
+ <script src="/html/colorBox/jquery.colorbox-min.js"></script>
+    <script type="text/javascript">
+    $("#msgBt").on("click",function(){
+      $.colorbox({
+        
+        href :"/user/moveChat",
+        width : '900px', 
+        height : '1000px',
+        iframe:true,
+        scrolling: false 
+      });
+    });
+    </script>
+    
+      <script type="text/javascript">
+    function pageMove(ptno){
+      location.href="/mapBoard/getPhotoFolder?folderNum="+ptno;
+    }
+    
+    $(document).on("click","#photoPageMove",function(){
+    	location.href="/mapBoard/getPhotoFolder?folderNum="+$(this).attr("name");
+    })
+  </script>
+
 </body>
 </html>

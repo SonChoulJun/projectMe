@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.Chat;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardService;
@@ -82,6 +83,7 @@ public class UserController {
       User user01=userService.login(user);
       user01.setActivity(true);
       session.setAttribute("myUser", user01);
+      userService.updateUserActivity(user01.getUserNo(), true);
       
       System.out.println("[login() end...............]\n");
       List<Activity> list=userService.getActivity(user01.getUserNo());
@@ -128,13 +130,14 @@ public class UserController {
 
     }
     
-    @RequestMapping("logout")
-    public String logoutUser(HttpSession session) throws Exception{
+    @RequestMapping("logout/{userNo}")
+    public String logoutUser(@PathVariable int userNo,HttpSession session) throws Exception{
       
       
         System.out.println("[로그아웃시작]");
         
         session.invalidate();
+        userService.updateUserActivity(userNo, false);
         
         System.out.println("[로그아웃 완료");
         
@@ -264,11 +267,17 @@ public class UserController {
     
     @RequestMapping("addFollower")
       public void addFollow(@RequestParam("userNo") int userNo,@RequestParam("followNo") int followNo,Model model,
-                                @RequestParam("followId") String followId) throws Exception{
+                                @RequestParam("followId") String followId,HttpSession session) throws Exception{
       
         Activity activity=new Activity();
         activity.setUserNo(userNo);
         User user=userService.getUser(followId);
+        User user1 = (User)session.getAttribute("myUser");
+        Alram alram = new Alram();
+        alram.setUserNO(followNo);
+        alram.setSendId(user1.getUserId());
+        alram.setText("팔로우 하였습니다.");
+        userService.addAlram(alram);
        
         if(userService.followOk(userNo, followNo)){
             userService.addFollow(userNo, followNo);
@@ -346,6 +355,52 @@ public class UserController {
         
       }
       
+      @RequestMapping("moveChat")
+      public String moveChat(HttpSession session,Model model)throws Exception{
+        
+        int userNo=((User)session.getAttribute("myUser")).getUserNo();
+        List<User> userList =userService.getAllFollower(userNo);
+        model.addAttribute("userList",userList);
+        return "forward:/chat/chat.jsp";
+        
+      }
+      
+      @RequestMapping("aaaa")
+      public String aaaa(HttpSession session,Model model)throws Exception{
+        
+        int userNo=((User)session.getAttribute("myUser")).getUserNo();
+        List<User> userList =userService.getAllFollower(userNo);
+        model.addAttribute("userList",userList);
+        return "forward:/NewFile2.jsp";
+        
+      }
+      
+      
+      @RequestMapping( value="insertMsg", method=RequestMethod.POST )
+      public void insertMsg(@RequestBody Chat chat,
+                            HttpSession session,
+                            Model model) throws Exception{
+      
+              System.out.println("chat들어옴"+chat);
+              userService.insertMsg(chat);
+       }
+      
+      @RequestMapping( value="getMsg/{roomNo}", method=RequestMethod.POST )
+      public void getMsg(@PathVariable String roomNo,
+                            HttpSession session,
+                            Model model) throws Exception{
+      
+              System.out.println("chat들어옴"+roomNo);
+              List<Chat> chatList =userService.gettMsg(roomNo);
+              System.out.println("chat들어옴"+chatList);
+              model.addAttribute("chatList",chatList);
+              
+       }
+
+
+
+      
+      
       /*@RequestMapping("firstActivity")
       public void firstActivity(HttpSession session)throws Exception{
         
@@ -358,6 +413,16 @@ public class UserController {
         activity.setActivityText(user.getUserName()+"님의 회원가입을 환영합니다. 새로운 추억을 만들어가세요~");
         userService.setActivity(activity);
       }*/
+      
+      @RequestMapping( value="updateAlramCount" )
+      public void mgAlramcount(HttpSession seseion) throws Exception{
+
+           User user =(User)seseion.getAttribute("myUser");
+           userService.updateAlram(user);
+           
+      }
+      
+      
       
      
       
