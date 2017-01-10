@@ -152,5 +152,12 @@
     </set>
     WHERE USER_NO=#{userNo}
   </update>
+  
+  <select id="getLikeUser" parameterType="int" resultMap="userSelectMap">
+        SELECT * FROM
+        BT_USER WHERE USER_NO IN
+        (SELECT USER_NO FROM BT_LIKE
+        WHERE PF_NO=#{value})
+    </select>
 
 </mapper>

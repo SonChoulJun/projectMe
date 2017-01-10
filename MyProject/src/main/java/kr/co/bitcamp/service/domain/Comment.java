@@ -10,6 +10,7 @@ public class Comment {
 	private Date date;
 	private String userId;
 	private int userNo;
+	private String profileImg;
 
 	public Comment() {
 
@@ -66,12 +67,24 @@ public class Comment {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    
+
+    public String getProfileImg() {
+      return profileImg;
+    }
+
+    public void setProfileImg(String profileImg) {
+      this.profileImg = profileImg;
+    }
 
     @Override
     public String toString() {
-        return "Comment [commentNo=" + commentNo + ", folderNo=" + folderNo + ", text=" + text + ", date=" + date
-                + ", userId=" + userId + ", userNo=" + userNo + "]";
+      return "Comment [commentNo=" + commentNo + ", folderNo=" + folderNo + ", text=" + text + ", date=" + date
+          + ", userId=" + userId + ", userNo=" + userNo + ", profileImg=" + profileImg + "]";
     }
+
+    
     
     
     

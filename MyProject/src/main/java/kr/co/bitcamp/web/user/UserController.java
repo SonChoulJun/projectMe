@@ -311,7 +311,7 @@ public class UserController {
         
         List<Activity> activityList =userService.getActivity(userNo);
        
-        
+        System.out.println("등록시간을 확인해보자."+activityList);
         System.out.println("액티비티 리스트 불러왔나 확인해바랏~~!!!!!!!!!!");
         model.addAttribute("user", user);
         model.addAttribute("activity", activityList);

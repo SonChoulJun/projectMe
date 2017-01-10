@@ -181,5 +181,10 @@ public class UserServiceTest {
         photo.setGpsB("37.45708761844412");
         boardService.updateGSP(photo);
     }
+    //@Test
+    public void testLikeMember()throws Exception{
+      List<User> list=boardService.getLikeMember(10152);
+      System.out.println("like list불러와라 얍얍얍!!!"+list);
+    }
    
  }

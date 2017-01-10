@@ -79,10 +79,14 @@
        
         <!-- /.col -->
         <div class="col-md-9">
+        
                 <!-- <div class="profilephoto" style="position: absolute ; width:20%; height: 35%; margin-top:12%; margin-left: 13%; background-image:url('/html/images/profileimage.JPG') ;  background-color:rgba(204, 204, 204, 0.6);  " >
               <img src="/html/images/pic07.jpg" ; alt=""/>
                 </div> -->
-            <div class="rectang" style=" padding-left: 10%; padding-top: 5%; padding-bottom:5%;  background-color: rgba(000, 051, 103, 0.10);  border-radius: 3px; border-top:3px solid #3c8dbc;" >
+            <div class="rectang" style=" padding-left: 10%; padding-top: 5%; padding-bottom:5%;  background-color: rgba(170, 216, 243, 0.1);  border-radius: 3px; border-top:3px solid #3c8dbc;" >
+            <div>
+           &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<h1><b>User &nbsp Profile</b></h1><hr/>
+        </div>
             <div class="tab-pane" id="settings" >
                 
                 <form class="form-horizontal" action="/user/updateUserView">

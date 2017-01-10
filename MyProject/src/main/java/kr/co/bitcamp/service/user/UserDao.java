@@ -18,6 +18,8 @@ public interface UserDao {
 	
 	public User getUser(String userId) throws Exception ;
 	
+	public User getUser2(int userNo)throws Exception;
+	
 	public List<User> getFollowing(int userNo)throws Exception;
 
 	public List<User> getFollower(int userNo) throws Exception ;
