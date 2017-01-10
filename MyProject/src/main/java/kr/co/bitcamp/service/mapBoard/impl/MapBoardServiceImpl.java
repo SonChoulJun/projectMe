@@ -181,6 +181,13 @@ public class MapBoardServiceImpl implements MapBoardService {
     }
 
 
+    @Override
+    public List<User> getLikeMember(int pfNo) throws Exception {
+      // TODO Auto-generated method stub
+      return boardDao.getLikeMember(pfNo);
+    }
+
+
 
     
     

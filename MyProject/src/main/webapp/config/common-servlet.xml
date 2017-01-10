@@ -63,10 +63,9 @@
 	     <mvc:resources mapping="/resources/**" location="/resources/" />
 	--> 
 
-	
    	<mvc:resources mapping="/html/**" location="/html/" />
    	<mvc:resources mapping="/node_modules/**" location="/node_modules/" />
-   	<mvc:resources mapping="/socket.io/**" location="/socket.io/" />
+
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
 			:: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->

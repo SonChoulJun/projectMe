@@ -6,6 +6,7 @@ import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.PhotoTheme;
+import kr.co.bitcamp.service.domain.User;
 
 public interface MapBoardDao {
     
@@ -48,5 +49,7 @@ public interface MapBoardDao {
     public List<PhotoFolder> searchBoard(String text)throws Exception;
 
     public void updateGSP(Photo photo) throws Exception;
+    
+    public List<User> getLikeMember(int pfNo)throws Exception;
 
 }

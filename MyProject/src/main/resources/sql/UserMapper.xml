@@ -32,7 +32,7 @@
     <result property="sendId" column="SEND_ID" jdbcType="VARCHAR"/>
     <result property="text" column="TEXT" jdbcType="VARCHAR"/>
     <result property="alarmDate" column="ALTAM_DATE" jdbcType="DATE"/>
-    <association property="user" column="USER_NO" select="getUser2" javaType="int"></association>
+    <association property="user" column="SEND_ID" select="getUser" javaType="int"></association>
   </resultMap>
 	
 	
@@ -190,6 +190,7 @@
     WHERE USER_NO=#{userNo}
   </update>
   
+
   <select id="getAllFollow" parameterType="int" resultMap="userSelectMap">
       select  
         USER_NO ,USERID, USER_NM, PASSWORD, PHONE, ACTIVITY, JOIN_DATE, ALRAM_ACTIVITY, ALRAM_COUNT, PROFILE_IMG
@@ -200,5 +201,12 @@
          FROM BT_FOLLOWER
          WHERE FOLLOWER_USER_NO= #{value}) ORDER BY ACTIVITY DESC,user_nm
   </select>
+
+  <select id="getLikeUser" parameterType="int" resultMap="userSelectMap">
+        SELECT * FROM
+        BT_USER WHERE USER_NO IN
+        (SELECT USER_NO FROM BT_LIKE
+        WHERE PF_NO=#{value})
+    </select>
 
 </mapper>

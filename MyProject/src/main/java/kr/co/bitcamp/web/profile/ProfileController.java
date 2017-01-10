@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +39,9 @@ public class ProfileController {
     @Autowired
     @Qualifier("mapBoardServiceImpl")
     private MapBoardService boardService;
+    
+    @Autowired
+    private ServletContext sc;
 
     public ProfileController() {
         super();
@@ -67,8 +71,13 @@ public class ProfileController {
         System.out.println("getBest : "+BestphotoFolder);
         ////////////////////////////////
         List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        System.out.println("뉴스피드는 불러오긴하니????"+newsfeed);
+        
+        
+          
         model.addAttribute("newsfeed",newsfeed);
         System.out.println("newfeed"+newsfeed);
+       
         //////////////////////////////////////
         try{
             session.setAttribute("alramList", userService.getAlram(userNo));
@@ -86,8 +95,8 @@ public class ProfileController {
     
     @RequestMapping("subProfile")
     public String subProfile(@RequestParam("userId") String userId,HttpSession session, Model model) throws Exception{
-        User myUser = (User)session.getAttribute("myUser");
-        User user = userService.getUser(userId);
+        User myUser = (User)session.getAttribute("myUser");//내 세션불러온거.
+        User user = userService.getUser(userId); //대상user
         System.out.println(user);
         int userNo =user.getUserNo();
        
@@ -97,15 +106,18 @@ public class ProfileController {
         System.out.println("asdasdsasad"+photoFolder);
         //////////
         List<PhotoFolder> newsfeed =boardService.getNewsFeed(user.getUserNo(),1);
+        
+        
         model.addAttribute("newsfeed",newsfeed);
         System.out.println("newfeed"+newsfeed);
+      
         //////////////
         try{
-            session.setAttribute("alramList", userService.getAlram(userNo));
             session.setAttribute("followerOk",userService.followOk(myUser.getUserNo(), userNo) );
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
             session.setAttribute("getFollwingCount",userService.getFollwingCount(userNo));
+            session.setAttribute("myUser", myUser);
         }catch (Exception e) {
             e.getMessage();
         }
@@ -120,7 +132,7 @@ public class ProfileController {
       
         Iterator<String> itr =  multipartRequest.getFileNames();
 
-        String filePath = "C:\\Users\\BitCamp\\git-realProject\\projectMe\\MyProject\\src\\main\\webapp\\html\\dist\\img\\profile\\"; //설정파일로 뺀다.
+        String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\dist\\img\\profile\\"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
              
@@ -141,7 +153,8 @@ public class ProfileController {
             String filename1 = originalFilename.substring(originalFilename.indexOf("."), originalFilename.length());
             System.out.println(filename1); //filename1=>.jpg
             originalFilename=user.getUserNo()+filename1;
-            String fileFullPath = filePath+originalFilename; //파일 전체 경로
+            /*String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로*/
+            String fileFullPath = sc.getRealPath("/html/dist/img/profile/"+originalFilename);
             
             userService.updatepfphoto(user.getUserNo(), originalFilename);
             
@@ -182,11 +195,16 @@ public class ProfileController {
     
     @RequestMapping("search")
     public String search(@RequestParam("searchText") String searchTest,
+            HttpSession session,
                               Model model) throws Exception{
+       User user=(User)session.getAttribute("myUser");
+       User user1=(User)session.getAttribute("targetUser");
         List<User> userList =userService.searchUser(searchTest);
         List<PhotoFolder>boardList= boardService.searchBoard(searchTest);
         model.addAttribute("listUser",userList);
         model.addAttribute("boardList", boardList);
+        session.setAttribute("myUser",user);
+        session.setAttribute("targetUser",user1);
         
         return "forward:/user/searchList.jsp";
     }

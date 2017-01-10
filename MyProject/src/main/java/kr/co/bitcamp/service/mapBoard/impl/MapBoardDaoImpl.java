@@ -14,6 +14,7 @@ import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.PhotoTheme;
+import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.mapBoard.MapBoardDao;
 
 @Repository
@@ -224,6 +225,14 @@ public class MapBoardDaoImpl implements MapBoardDao {
         }
         return true;
     }
+
+    @Override
+    public List<User> getLikeMember(int pfNo) throws Exception {
+      // TODO Auto-generated method stub
+      return sqlSession.selectList("UserMapper.getLikeUser",pfNo);
+    }
+    
+    
 
 	
 }

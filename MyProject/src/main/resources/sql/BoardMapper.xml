@@ -60,6 +60,7 @@
 		<result property="date" column="COMMENT_DATE" jdbcType="DATE" />
 		<result property="userId" column="USER_NM" jdbcType="VARCHAR" />
 		<result property="userNo" column="USER_NO" jdbcType="NUMERIC" />
+		<result property="profileImg" column="PROFILE_IMG" jdbcType="VARCHAR" />
 	</resultMap>
 	
 	
@@ -120,7 +121,7 @@
 	<select id="getComment" parameterType="int" resultMap="commentSelectMap">
 
 		select
-		C.CMT_NO,U.USER_NM,C.TEXT,C.COMMENT_DATE,U.USER_NO 
+		C.CMT_NO,U.USER_NM,C.TEXT,C.COMMENT_DATE,U.USER_NO ,U.PROFILE_IMG
 		from
 		BT_COMMENT C ,BT_USER U 
 		where C.USER_NO=U.USER_NO AND C.PF_NO = #{value} ORDER BY COMMENT_DATE

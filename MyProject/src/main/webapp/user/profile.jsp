@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="/html/assets/test/css/style.css">
   
   <!-- likeAnimate -->
-  <!-- <link rel="stylesheet" href="/html/assets/likeAnimate/style.css"> -->
+  <link rel="stylesheet" href="/html/assets/likeAnimate/style.css">
   
 
   <!-- profile photo -->
@@ -66,6 +66,18 @@
         float: left;
     }
     
+    /* .floating{
+   overflow:auto;
+    position: fixed;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 20%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);  */
+
+}
+    
     
 </style>
   
@@ -90,6 +102,7 @@
 
 
         <c:import url="/common/profileSideBar.jsp"></c:import> 
+        <div id="myUserNo" name="${targetUser.userNo}"></div>
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -98,12 +111,18 @@
               <c:if test="${targetUser.userNo==myUser.userNo}">
               <li><a href="/user/getActivity" >Activity</a></li>
              <!--  <li><a href="/user/settings.jsp" >Settings</a></li> -->
-
               </c:if>
             </ul>
+            
             <div class="tab-content">
               <div class="active tab-pane" id="activity">
                                 <!-- Post -->
+                                <c:if test="${empty newsfeed}">
+                                    <img src="/html/assets/img/uploadedPhoto/default.jpg" alt="no image" style="width:1150px; height: 620px;">
+                                
+                                </c:if>
+                                
+                                <c:if test="${newsfeed!=null}">
                                 <c:forEach var="photoFolder" items="${newsfeed}">
                                     <div class="post" name="aaa">
                                         <div class="user-block">
@@ -210,29 +229,72 @@
 
                                             </c:if>
 
-                                            <span id="likeCount" class="pull-right text-muted"><a
-                                                href="#">${photoFolder.likeCount} likeCount</a></span>
-                                            <span class="pull-right text-muted"><a href="#"
+                                            <span id="likeCount" class="pull-right text-muted"><a id="LikeMember"
+                                               name="${photoFolder.pfNo}" href="#" data-target="#LikeMembers" data-toggle="modal" >${photoFolder.likeCount} likeCount</a></span>
+                                                <!-- ====================== -->
+                                                <div class="modal fade" id="LikeMembers">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                                       <!--  header title -->
+                                                        <h4 class="modal-title">프로필 사진</h4>
+                                                    </div>
+                                                    
+                                                    <!--body-->
+                                                    <div  class="modal-body" >
+                                                        <div class="row">
+                                                            <div id="LikeUsers" class="pattern">
+                                                                
+                                                               <!--  <textarea name ="status" class="form-control" id="statusMessage" placeholder=${targetUser.status}></textarea> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                   <!-- Footer -->
+                                                    <div class="modal-footer">
+                                                        Footer
+                                                        <button type="button" class="btn btn-default"
+                                                            data-dismiss="modal">닫기</button>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                         </div>
+                                                
+                                                <!-- ====================== -->
+                                                
+                                            <span class="pull-right text-muted" id="CountReset"><a href="#"
                                                 id="commentCount">${photoFolder.commentCount} comment</a></span>
                                         </ul>
                                         <div id="CommentBox" class="box-footer box-comments">
-                                            <c:forEach var="commentList"
-                                                items="${photoFolder.commentList}">
+                                            <c:forEach var="commentList"  items="${photoFolder.commentList}">
                                                 <div class="box-comment">
                                                     <!-- User image -->
                                                     <img class="img-circle img-sm"
-                                                        src="/html/dist/img/user3-128x128.jpg" alt="User Image">
+                                                        src="/html/dist/img/profile/${commentList.profileImg}" alt="User Image" 
+                                                        onerror="this.src='/html/dist/img/defaultImage.jpg';">
 
                                                     <div class="comment-text">
-                                                        <span class="username"> ${commentList.userId} <span
-                                                            class="text-muted pull-right"><Button
+                                                    
+                                                        <span class="username"> ${commentList.userId} 
+                                                        <c:if test="${commentList.userNo==myUser.userNo||photoFolder.user.userNo==myUser.userNo}">
+                                                        <span
+                                                            class="text-muted pull-right">
+                                                            
+                                                            <Button
                                                                     id="removebtn" name="${commentList.commentNo}"
                                                                     style="width: 100%; height: 100%;">
                                                                     X
                                                                     <div name="${myUser.userNo}"></div>
                                                                     <div name="${photoFolder.pfNo}"></div>
                                                                     <div name="${photoFolder.user.userNo}"></div>
-                                                                </button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
+                                                                </button>
+                                                       </span> 
+                                                                <br /> 
+                                                       </c:if>
+                                                                <span class="text-muted pull-right">${commentList.date}</span>
+
 
                                                         </span>
                                                         <!-- /.username -->
@@ -245,7 +307,7 @@
 
                                             <!-- /.box-comment -->
                                         </div>
-                                        <div class="box-footer">
+                                        <div id="commentInput" class="box-footer">
                                             <%--                       <form action="/mapBoard/setComment" method="post">
                         <img class="img-responsive img-circle img-sm"
                           src="/html/dist/img/user4-128x128.jpg" alt="Alt Text">
@@ -278,280 +340,16 @@
                                         </div>
                                     </div>
                                 </c:forEach>
+                                </c:if>
                                 <!-- /.user-block -->
 
                             </div>
+                            
+              <!-- tab-pane timeLine remove -->
               
-              <div class="tab-pane" id="timeline">
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="/html/images/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Shared publicly - 7:30 PM today</span>
-                  </div>
-                  <!-- /.user-block -->
-                  
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  
-                  
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post clearfix">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Sent you a message - 3 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm" data-js="twitter-share"><i class="fa fa-share margin-r-5"></i>Share on Twitter</a></li>
-                    <li><a href="#" class="link-black text-sm" data-js="facebook-share"><i class="fa fa-share margin-r-5"></i> Share On Facebook</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                  <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                        <input class="form-control input-sm" placeholder="Response">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-
-                <!-- Post -->
-                <div class="post">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="/html/dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                    <span class="description">Posted 5 photos - 5 days ago</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <div class="row margin-bottom">
-                    <div class="col-sm-6">
-                      <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo2.png" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo3.jpg" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <img class="img-responsive" src="/html/dist/img/photo4.jpg" alt="Photo">
-                          <br>
-                          <img class="img-responsive" src="/html/dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
-
-                                    <form class="form-horizontal">
-                    <div class="form-group margin-bottom-none">
-                      <div class="col-sm-9">
-                      </div>
-                      <div class="col-sm-3">
-                        <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.post -->
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="activity22">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
-
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                      <div class="timeline-body" >
-                        ${activity.ActivityText} 
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
-              </div>
+              <!-- tab-pane activity remove -->
+              
+              
               <!-- /.tab-pane -->
               
             </div>
@@ -783,27 +581,8 @@
 <script src="/html/dist/js/demo.js"></script>
 
 
-<script type="text/javascript">
-var twitterShare = document.querySelector('[data-js="twitter-share"]');
 
-twitterShare.onclick = function(e) {
-  e.preventDefault();
-  var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
-  if(twitterWindow.focus) { twitterWindow.focus(); }
-    return false;
-  }
-
-var facebookShare = document.querySelector('[data-js="facebook-share"]');
-
-facebookShare.onclick = function(e) {
-  e.preventDefault();
-  var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
-  if(facebookWindow.focus) { facebookWindow.focus(); }
-    return false;
-}
-</script>
-
-<script src="/html/dist/js/index.js"></script>
+<!-- <script src="/html/dist/js/index.js"></script> -->
 
 
 
@@ -837,6 +616,7 @@ $("#getval").on('change', function(e){
          if(typeof data.error === 'undefined') //에러가 없다면
          {
         	 console.log(data);
+        	 location.href="/profile/mainProfile";
         	 
          }
          else//에러가 있다면
@@ -1088,7 +868,11 @@ $("#fileUpload").fileinput({
 	  "mouseover" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
 	  "touchstart" : function(){$(this).find(".post-thumbnail").css("width","100%").css("height","100%")},
 	  "touchend" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")},
-	  "mouseout" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")}
+	  "mouseout" : function(){$(this).find(".post-thumbnail").css("width","").css("height","")},
+	  "click" : function(){
+		  var url = "/mapBoard/getPhotoFolder?folderNum="+$(this).find("#zzz").attr("name");
+		  $(location).attr('href',url);}
+		  /* alert($(this).find("zzz").attr("name")) */  
 	  }, "#post");
   
   
@@ -1102,6 +886,35 @@ $("#fileUpload").fileinput({
   <script src="/html/photo/removeComment.js"></script>
 
     <script src="/html/photo/like.js"></script>
+    
+<script type="text/javascript">
+ $(function(){
+	 
+  
+    $(document).on("click","#LikeMember",function(){
+        	var pfNo=$(this).attr("name");
+             
+             $.ajax({
+                 
+                 url: "/mapBoard/getLikeMember/"+pfNo,
+                 method :"POST",
+                 dataType : "json" ,
+                 headers : {
+                   "Accept" : "application/json",
+                   "Content-Type" : "application/json"
+                 },
+                 success : function(JSONData , status) {
+                     alert("성공");
+                     $("#LikeUsers").append('<div>'+JSONData.LikeMember+'</div>');
+                     
+                    
+                     }
+                 
+           });
+     });
+        
+ });   
+    </script>
   
   <script type="text/javascript">
  $(function(){
@@ -1115,8 +928,7 @@ $("#fileUpload").fileinput({
          var post = $(this).parents(".post");
          var aaa =$(this);
          var youNo =$(this).find("div").eq(2).attr("name");
-         alert(youNo);
-         
+
          
             var obj = new Object(); // JSON형식으로 변환 할 오브젝트
             obj.folderNo =pfNo;
@@ -1138,6 +950,7 @@ $("#fileUpload").fileinput({
                  socket.emit('client message', {to:youNo,name:'${myUser.userName}',folderNo:pfNo,msg:'댓글을 입력하셨습니다.',img:'${myUser.profileImg}'});
                  post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
              }
+
              
        });
         
@@ -1146,11 +959,8 @@ $("#fileUpload").fileinput({
  });
  </script>
   
-  
-  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
-  <script src="/html/common/common.js"></script>
+  <script type="text/javascript">
 
-<script type="text/javascript">
 var page = 1;
  
 $(window).scroll(function() {
@@ -1266,7 +1076,7 @@ $(window).scroll(function() {
                           +'<button id="sendCommentBt" class="btn btn-danger pull-right btn-block btn-sm">Send'
                             +'<div name="'+JSONData.newsfeed[i].userNo+'"></div>'
                             +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
-                            +'<div name="'+JSONData.newsfeed[i].user.userNo+"></div>'
+                            +'<div name="'+JSONData.newsfeed[i].user.userNo+'"></div>'
                           +'</button>'
                         +'</div>'
                       +'</div>'
@@ -1283,6 +1093,7 @@ $(window).scroll(function() {
     }
 });
 </script>
+
  <script src="/html/colorBox/jquery.colorbox-min.js"></script>
     <script type="text/javascript">
     $("#msgBt").on("click",function(){
@@ -1306,6 +1117,12 @@ $(window).scroll(function() {
     	location.href="/mapBoard/getPhotoFolder?folderNum="+$(this).attr("name");
     })
   </script>
+  
+  
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/html/common/common.js"></script>
+
 
 </body>
 </html>

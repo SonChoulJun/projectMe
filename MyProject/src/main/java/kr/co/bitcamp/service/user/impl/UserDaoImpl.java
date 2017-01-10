@@ -87,6 +87,7 @@ public class UserDaoImpl implements UserDao {
 	  List<Activity> activityList=sqlSession.selectList("ActivityMapper.getActivity", userNo);
 	 
 	  for(int i=0;i<activityList.size()-1;i++){
+	    
   	  String[] dateArray=activityList.get(i).getActivityDate().split(" ");
       activityList.get(i).setActivityDate(dateArray[0]);
       activityList.get(i).setActivityTime(dateArray[1]);
@@ -259,7 +260,15 @@ public class UserDaoImpl implements UserDao {
     public void updateAlram(User user) throws Exception {
         // TODO Auto-generated method stub
         user.setAlramCount(0);
-        sqlSession.update("UserMapper.updateAlramCount", user);
+    }
+
+    public User getUser2(int userNo) throws Exception {
+      // TODO Auto-generated method stub
+      System.out.println("dao왔냐!!!!!!!!!!!!!!!");
+      User user =(User)sqlSession.selectOne("UserMapper.getUser2", userNo);
+      System.out.println(user);
+      
+      return user;
     }
     
     

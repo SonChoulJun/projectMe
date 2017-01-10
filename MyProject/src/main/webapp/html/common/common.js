@@ -1,6 +1,7 @@
 
   var socket = io.connect('http://192.168.0.20:3000/');
   var userNo = $("#myUserNo").attr("name");
+  alert(userNO);
   socket.emit('new', userNo);
   
 

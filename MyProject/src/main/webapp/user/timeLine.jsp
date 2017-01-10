@@ -200,7 +200,6 @@
 																	<div name="${photoFolder.pfNo}"></div>
 																	<div name="${photoFolder.user.userNo}"></div>
 																</button></span> <br /> <span class="text-muted pull-right">${commentList.date}</span>
-
 														</span>
 														<!-- /.username -->
 														${commentList.text}
@@ -562,7 +561,7 @@ $("#fileUpload").fileinput({
              
        });
 	    
-	    
+	     
 	});
  });
  </script>
@@ -572,15 +571,13 @@ $("#fileUpload").fileinput({
 
 	<c:import url="/user/layer.jsp"></c:import>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 var page = 1;
  
 $(window).scroll(function() {
-	console.log($(window).scrollTop()+"asasas"+($(document).height() - $(window).height()));
-    if ($(window).scrollTop() >= $(document).height() - $(window).height()-30) {
-
-    	console.log(++page);
+    if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+      console.log(++page);
       $.ajax({
           
           url: "/mapBoard/getJsonNewsFeed?userNo=${myUser.userNo}&col="+page,
@@ -592,7 +589,7 @@ $(window).scroll(function() {
           },
           success : function(JSONData , status) {
         	  if(JSONData.newsfeed.length==0){
-        		  
+        		  alert("모든게시물을 확인하셨습니다.");
         	  } 
               for (var i in JSONData.newsfeed) {
         		  console.log(JSONData.newsfeed[i].user.userName+"sssss");
@@ -700,14 +697,14 @@ $(window).scroll(function() {
         		  $("#activity").append(aaa);
         		}
 
-          }  
+          }
           
     });
       
     }
-
 });
 </script>
+
 
   <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
   <script src="/html/common/common.js"></script>
@@ -717,6 +714,7 @@ $(window).scroll(function() {
     	location.href="/mapBoard/getPhotoFolder?folderNum="+ptno;
     }
   </script>
+
 
 </body>
 </html>

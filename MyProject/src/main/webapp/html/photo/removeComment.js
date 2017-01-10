@@ -14,8 +14,7 @@
                 },
                success : function(JSONData , status) {
                     
-            	    aaa.parent().parent().parent().parent().remove();
-                        
+            	    aaa.parent().parent().parent().parent().remove();            	   
                  
                  }
         	   

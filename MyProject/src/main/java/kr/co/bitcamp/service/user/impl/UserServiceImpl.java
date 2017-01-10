@@ -196,6 +196,21 @@ public class UserServiceImpl implements UserService {
       // TODO Auto-generated method stub
       userDAO.removeActivity(activityNo);
     }
+
+
+    @Override
+    public User getUser2(int userNo) throws Exception {
+      // TODO Auto-generated method stub
+      
+      
+      return userDAO.getUser2(userNo);
+    }
+    
+    
+    
+    
+    
+    
 /*	@Override
 	public boolean pwCheak(User user) throws Exception {
 		// TODO Auto-generated method stub

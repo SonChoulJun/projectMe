@@ -32,8 +32,38 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
    
   function Locations() {  
       var locations = [
-                       <%for(int i=0;i<folder.getPhotoTheme().size();i++){
+	                     <%double lowGpsB =1000;
+	                       double highGpsB =-1000;
+	                       double lowGpsH =1000;
+	                       double highGpsH =-1000;
+                         double pointGPS=0;
+                         double centerGpsH=0;
+                         double centerGpsB=0;
+                       for(int i=0;i<folder.getPhotoTheme().size();i++){
                            if(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()!=null){
+                               if(lowGpsB>Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()))){
+                                   lowGpsB=Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()));
+                               }
+                               if(highGpsB<Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()))){
+                                   highGpsB=Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()));
+                               }
+                               if(lowGpsH>Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()))){
+                                   lowGpsH=Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()));
+                               }
+                               if(highGpsH<Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()))){
+                                   highGpsH=Math.abs(Double.parseDouble(folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()));
+                               }
+                               double pointGpsB=highGpsB-lowGpsB;
+                               double pointGpsH=highGpsH-lowGpsH;
+                               centerGpsH = (highGpsH+lowGpsH)/2;
+                               centerGpsB = (highGpsB+lowGpsB)/2;
+                               if(pointGpsB>pointGpsH){
+                                   pointGPS=pointGpsB;
+                                   
+                               }else{
+                                   pointGPS=pointGpsH;
+                               }
+                              
                           %>
                              {lat: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsB()%>, lng: <%=folder.getPhotoTheme().get(i).getPhotoList().get(0).getGpsH()%>},
                           <%}else{%>
@@ -48,16 +78,43 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
       var tempIndex;
       var flightPath;
       var markers = [];
+      <%
+      int zoom=10;
+      if(pointGPS<0.12){
+          zoom=12;
+        }else if(pointGPS<0.2){
+          zoom=11;
+        }else if(pointGPS<0.3){
+            zoom=11;
+        }else if(pointGPS<0.8){
+            zoom=10;
+        }else if(pointGPS<1.5){
+            zoom=9;
+        }else if(pointGPS<3){
+            zoom=8;
+        }else if(pointGPS<4.5){
+            zoom=7;
+        }else if(pointGPS<5.3){
+            zoom=6;
+        }else if(pointGPS<11.5){
+            zoom=5;
+        }else if(pointGPS<28){
+            zoom=4;
+        }else{
+            zoom=3;
+        }
+      %>
      
       this.initMap = function () { 
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 8, 
+            zoom: <%=zoom%>, 
             <%
+            System.out.println("ekekekeekekek"+pointGPS);
             if(folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()==null){
            %>
             center: new google.maps.LatLng(37.56347,126.990347),
            <%}else{%>
-            center: new google.maps.LatLng(<%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsB()%>, <%=folder.getPhotoTheme().get(0).getPhotoList().get(0).getGpsH()%>),
+            center: new google.maps.LatLng(<%=centerGpsB%>, <%=centerGpsH%>),
            <%}%>
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
@@ -179,7 +236,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
                 fillOpacity: .6,
                 anchor: new google.maps.Point(12,-290),
                 strokeWeight: 0,
-                scale: .25,
+                scale: .10,
                 rotation: rotation
             }; 
            /*   var lineSymbol = {
@@ -193,7 +250,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
               geodesic:true,
               strokeColor: '#2E2EFE',
               strokeOpacity: 0.7, 
-              strokeWeight: 5,
+              strokeWeight: 3,
               icons: [{
                   icon: lineSymbol,
                   offset: '100%'

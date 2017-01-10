@@ -27,8 +27,9 @@
       
       <c:forEach var="userList" items="${userList}">
         <li id="mgUser" class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
+          <img src="/html/dist/img/profile/${userList.profileImg}"  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px" >
           <div class="about">
+            <div id="chageImage" name="/html/dist/img/profile/${userList.profileImg}"></div>
             <div id="toUserNo" name="${userList.userNo}"></div>
             <div id="toUserId" name="${userList.userId}"></div>
             <div id="toUserName" class="name">${userList.userName}</div>
@@ -49,7 +50,7 @@
     
     <div class="chat">
       <div class="chat-header clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
+        <img id="userImage" src=""  onerror="this.src='/html/dist/img/defaultImage.jpg';" style="border-radius: 50%;max-width:45px" >
         
         <div class="chat-about">
           <div id="mgMainUserNo" class="chat-with">Chat with Vincent Porter</div>
@@ -115,16 +116,17 @@
   </li>
 </script>
 
-<script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script type="text/javascript">
 
-	  var socket = io.connect('http://192.168.0.20:4000/');
-	  socket.emit('new', {my:'${myUser.userNo}',to:$('#toUserNo').attr("name")});
-	    $("#sendUserNo").attr("name",$('#toUserNo').attr("name"));
-	    $("#sendUserName").attr("name",$('#toUserName').text());
-	    $("#mgMainUserNo").text($('#toUserName').text());
-	    $("#mgMainId").text($('#toUserId').attr("name"));
+    var socket = io.connect('http://192.168.0.20:4000/');
+    socket.emit('new', {my:'${myUser.userNo}',to:$('#toUserNo').attr("name")});
+      $("#sendUserNo").attr("name",$('#toUserNo').attr("name"));
+      $("#sendUserName").attr("name",$('#toUserName').text());
+      $("#mgMainUserNo").text($('#toUserName').text());
+      $("#mgMainId").text($('#toUserId').attr("name"));
+/*      $("#userImage").attr("src",$('#chageImage').attr("name")); */
   </script>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
@@ -134,14 +136,15 @@
     
     <script type="text/javascript">
      $(document).on("click","#mgUser",function(){
-    	 var upthis =this;
-    	 $('.chat-history').find('li').remove();
+       var upthis =this;
+       $('.chat-history').find('li').remove();
        socket.emit('delete', {my:'${myUser.userNo}',to:$('#sendUserNo').attr("name")});
-    	 $("#sendUserNo").attr("name",$(this).find('#toUserNo').attr("name"));
-    	 $("#sendUserName").attr("name",$(this).find('#toUserName').text());
-    	 $("#mgMainUserNo").text($(this).find('.name').text());
-    	 $("#mgMainId").text($(this).find('#toUserId').attr("name"));
-    	 socket.emit('new', {my:'${myUser.userNo}',to:$(this).find('#toUserNo').attr("name")});
+       $("#sendUserNo").attr("name",$(this).find('#toUserNo').attr("name"));
+       $("#sendUserName").attr("name",$(this).find('#toUserName').text());
+       $("#mgMainUserNo").text($(this).find('.name').text());
+       $("#mgMainId").text($(this).find('#toUserId').attr("name"));
+       $("#userImage").attr("src",$(this).find('#chageImage').attr("src"));
+       socket.emit('new', {my:'${myUser.userNo}',to:$(this).find('#toUserNo').attr("name")});
          var id=$("#userNo").attr("name");
          var youId=$("#sendUserNo").attr("name");
          var a;
@@ -155,32 +158,32 @@
            }
          var roomNo = a+','+b;
          
-    	 $.ajax( 
+       $.ajax( 
                  {
                    url : "/user/getMsg/"+roomNo,
                     method :"POST",
-                   dataType : "json" ,
+                   dataType : "json",
                    headers : {
                      "Accept" : "application/json",
                      "Content-Type" : "application/json"
                    },
                    success : function(JSONData , status) {
-                	   for (var i in JSONData.chatList) {
-                		   if(JSONData.chatList[i].userNo==id){
-                			   chat.send(JSONData.chatList[i]);
-                		   }else{
-                			   chat.response(JSONData.chatList[i]);
-                		   }
-                		   console.log(JSONData.chatList[i].userNo);
-                		 }
+                     for (var i in JSONData.chatList) {
+                       if(JSONData.chatList[i].userNo==id){
+                         chat.send(JSONData.chatList[i]);
+                       }else{
+                         chat.response(JSONData.chatList[i]);
+                       }
+                       console.log(JSONData.chatList[i].userNo);
+                     }
                    }
                });
      });
 
-	    	 var upThis =this;
-	     socket.on('server message', function(msg){
-	    	 console.log(this.chatMd);
-	       });
+         var upThis =this;
+       socket.on('server message', function(msg){
+         console.log(this.chatMd);
+         });
 
     </script>
 
