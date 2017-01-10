@@ -596,7 +596,7 @@ for(int i=0;i<folder.getPhotoTheme().size();i++){%>
               geodesic:true,
               strokeColor: '#2E2EFE',
               strokeOpacity: 0.7, 
-              strokeWeight: 4,
+              strokeWeight: 3,
               icons: [{
                   icon: lineSymbol,
                   offset: '100%'
