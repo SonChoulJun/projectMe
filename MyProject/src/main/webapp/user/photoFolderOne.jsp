@@ -53,15 +53,27 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-<!--  facebook -->
-<meta property="og:url" content="http://www.naver.com/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="ShareTrip" />
-<meta property="og:description" content="당신만의 특별한 추억 공유" />
-<meta property="og:image" content="http://192.168.0.17:8080/html/0.png" />
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '591904441003832',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 	<div class="wrapper">
 
 		<c:import url="/common/headerBar.jsp"></c:import>
@@ -127,17 +139,43 @@
                                             </c:if>
 										<p>오랜만에 서울에 있는 철준이네 집에 다녀왔다. 여전히 연기를 잘한다.</p>
 										<br>
+										
+	
+<a id="shareBtn"><img src="/html/images/facebook.PNG" width="78" height="18"></a>
 
-										<div class="fb-share-button"
-											data-href="http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002"
-											data-layout="button" data-size="small"
-											data-mobile-iframe="true">
-											<a class="fb-xfbml-parse-ignore" target="_blank"
-												href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.0.17%3A8080%2FmapBoard%2FgetPhotoFolder%3FfolderNum%3D10002&amp;src=sdkpreparse">공유하기</a>
-										</div>
+<script>
+document.getElementById('shareBtn').onclick = function() {
+	FB.ui({
+		  method: 'feed',
+		  link: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10046',
+		  caption: 'An example caption',
+		  description : "메모리박스에 우리만의 추억 공유해요",
+		  picture : 'http://222.116.108.119:8080/test/test.PNG',
+		  name : 'Memory Box'
+		}, function(response){});
+}
+</script>
 
-										<a id="kakao-link-btn" href="javascript:sendLink()"><img
-											src="/html/images/kakao.PNG"></a>
+<!-- /* Share on Twitter */ -->
+<a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'
++encodeURIComponent('http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}')+'%20-%20'+encodeURIComponent('MemoryBox'), 'twittersharedialog',
+ 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"
+ alt="Share on Twitter" ><img src="/html/images/twitter.PNG" width="78" height="18"></a>
+ 
+<a id="kakao-link-btn" href="javascript:sendLink()"><img
+src="/html/images/kakao.PNG"></a>
+
+<!--  /* Share on Kakaostory */ -->
+<!-- <a id="kakaostory-share-button" href="javascript:shareStory()">
+<img src="https://dev.kakao.com/sdk/js/resources/story/icon_small.png"/>
+</a> -->
+<!-- <div id="kakaostory-share-button"></div> -->
+<a href="javascript:shareStory()">
+<img src="/html/images/kakaostory.PNG" width="78" height="18"/>
+</a>
+<!-- <div id="kakaostory-share-button">
+<img src="//dev.kakao.com/sdk/js/resources/story/icon_small.png" width="24" height="24">
+</div> -->
 
 										<button id="likeBt" type="button"
 											class="btn btn-default btn-xs">
@@ -870,14 +908,7 @@
 	<script src="/html/photo/like.js"></script>
 
 
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.8";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
 
 	<script type='text/javascript'>
   //<![CDATA[
@@ -888,16 +919,33 @@
       container: '#kakao-link-btn',
       label: '나만의 여행으로 소통하자',
       image: {
-        src: 'http://192.168.0.17:8080/html/0.png',
+        src: 'http://222.116.108.119:8080/test/test.PNG',
         width: '300',
         height: '200'
       },
       webButton: {
-        text: '나만의 여행앱 ShareTrip',
-        url: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10002' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+        text: '나만의 여행앱 MemoryBox',
+        url: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      },
+      fail: function(){
+          alert('모바일 기기에서만 가능한 기능입니다.');
+          Kakao.Link.cleanup();
       }
     });
-  //]]>
+  //]]>    
+    // 스토리 공유 버튼을 생성합니다.
+    function shareStory() {
+      Kakao.Story.share({
+        url: 'http://www.naver.com/',
+        text: '나만의 여행앱 MemoryBox :)'
+      });
+    }    
+    /* Kakao.Story.createShareButton({
+      container: '#kakaostory-share-button',
+      url: 'www.naver.com',
+      text: '나만의 여행앱 MemoryBox :)'
+    }); */
+ 
 </script>
 
 <script type="text/javascript">
