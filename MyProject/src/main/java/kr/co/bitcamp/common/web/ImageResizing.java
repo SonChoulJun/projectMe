@@ -22,9 +22,9 @@ public class ImageResizing {
              return soruce.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
        }
  
-       public static void main(String[] args) {
-             String imgResdFile = "C:\\Users\\BitCamp\\git-realProject\\projectMe\\MyProject\\src\\main\\webapp\\html\\dist\\img\\profile\\10020.JPG";
-             String imgWriteFile = "C:\\Users\\BitCamp\\git-realProject\\projectMe\\MyProject\\src\\main\\webapp\\html\\dist\\img\\profile\\10020.JPG";
+       public static void photoResizeing(String imgref,int size) {
+             String imgResdFile = imgref;
+             String imgWriteFile = imgref;
  
              try {
                     // img = ImageIO.read( new File(fName));
@@ -38,7 +38,7 @@ public class ImageResizing {
                     double w =img.getWidth(null);
                     double h =img.getHeight(null);
                     while(true){
-                      if(w>=200 || h>=200){
+                      if(w>=size || h>=size){
                           w =w*0.8;
                           h =h*0.8;
                           

@@ -533,10 +533,8 @@ $("#fileUpload").fileinput({
 	     var pfNo=$(this).find("div").eq(1).attr("name");
 	     var youNo=$(this).find("div").eq(2).attr("name");
 	     var text=$(this).parent().parent().find('input').eq(0).val();
-	     alert(userNo+"+++"+pfNo+"++++"+text);
 	     var post = $(this).parents(".post");
 	     var aaa =$(this);
-	     alert(post.attr("name"));
 	     
 	        var obj = new Object(); // JSON형식으로 변환 할 오브젝트
 	        obj.folderNo =pfNo;

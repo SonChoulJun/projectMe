@@ -765,7 +765,7 @@
 												</div>
 												<div class="wizard-footer">
 													<div class="pull-right">
-														<input id="photoSubFinish" type='button'
+														<input id="photoSubFinish22" type='button'
 															class='btn btn-finish btn-fill btn-success btn-wd'
 															name='finish' value='Finish' />
 													</div>

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.common.util.MetadataExample;
+import kr.co.bitcamp.common.web.ImageResizing;
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.Comment;
@@ -115,6 +116,7 @@ public class MapBoardController {
                 
                 File outputfile = new File(fileFullPath);
                 
+                
                 try {
                     MetadataExample metadataExample = new MetadataExample();
                     metadataExample.metadataExample(outputfile);
@@ -137,6 +139,7 @@ public class MapBoardController {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
+                ImageResizing.photoResizeing(fileFullPath,400);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
@@ -215,6 +218,8 @@ public class MapBoardController {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
+                
+                ImageResizing.photoResizeing(fileFullPath,400);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
