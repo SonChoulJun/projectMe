@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.Chat;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.user.UserDao;
 import kr.co.bitcamp.service.user.UserService;
@@ -48,7 +49,6 @@ public class UserServiceImpl implements UserService {
 	  System.out.println("서비스단 진입??????????????????????/");
 	  
 	  User dbUser=userDAO.login(user.getUserId());
-    
     if(dbUser.getPassword().equals(user.getPassword())){
       dbUser.setActivity(true);
     }else{
@@ -217,5 +217,47 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
     */
+
+
+    @Override
+    public void addAlram(Alram alram) throws Exception {
+        userDAO.addAlram(alram);
+        
+    }
+
+
+    @Override
+    public void updateUserActivity(int UserNo, boolean cheak) throws Exception {
+        userDAO.updateUserActivity(UserNo, cheak);
+        
+    }
+
+
+    @Override
+    public List<User> getAllFollower(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return userDAO.getAllFollower(userNo);
+    }
+
+
+    @Override
+    public void insertMsg(Chat chat) throws Exception {
+        userDAO.insertMsg(chat);
+        
+    }
+
+
+    @Override
+    public List<Chat> gettMsg(String roomNo) throws Exception {
+        // TODO Auto-generated method stub
+        return userDAO.gettMsg(roomNo);
+    }
+
+
+    @Override
+    public void updateAlram(User user) throws Exception {
+        // TODO Auto-generated method stub
+        userDAO.updateAlram(user);
+    }
     
 }

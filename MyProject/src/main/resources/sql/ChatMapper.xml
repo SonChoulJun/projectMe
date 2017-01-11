@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 					
+<mapper namespace="ChatMapper">
+
+	<resultMap type="chat" id="chatSelectMap">
+	  <result property="chatNo" column="CHAT_NO" jdbcType="NUMERIC" />
+		<result property="userNo" column="USER_NO" jdbcType="NUMERIC"/>
+		<result property="msg" column="MSG" jdbcType="VARCHAR"/>
+		<result property="date" column="CHAT_DATE" jdbcType="DATE"/>
+	</resultMap>
+	
+	
+<insert id="insertMg" parameterType="chat">
+    INSERT 
+    INTO BT_CHAT(CHAT_NO, ROOM_NO, USER_NO, USER_NO2, MSG, CHAT_DATE, CHECK_OK)
+    VALUES(SEQ_BT_CHAT_NO.nextval,
+          #{roomNo},
+          #{userNo},
+          #{userNo2},
+          #{msg},
+          sysdate,
+          '1')
+  </insert> 
+  
+  
+  <select id="getMsg" parameterType="string" resultMap="chatSelectMap">
+    select * from bt_chat where ROOM_NO=#{value} ORDER BY CHAT_DATE
+  </select>
+	
+	
+	</mapper>

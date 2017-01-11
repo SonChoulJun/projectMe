@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.bitcamp.common.web.ImageResizing;
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.PhotoFolder;
 import kr.co.bitcamp.service.domain.User;
@@ -38,6 +40,9 @@ public class ProfileController {
     @Autowired
     @Qualifier("mapBoardServiceImpl")
     private MapBoardService boardService;
+    
+    @Autowired
+    private ServletContext sc;
 
     public ProfileController() {
         super();
@@ -76,6 +81,7 @@ public class ProfileController {
        
         //////////////////////////////////////
         try{
+            session.setAttribute("alramList", userService.getAlram(userNo));
             session.setAttribute("BestfolderList", BestphotoFolder);
             session.setAttribute("folderList", photoFolder);
             session.setAttribute("getFollwerCount",userService.getFollwerCount(userNo));
@@ -95,6 +101,7 @@ public class ProfileController {
         System.out.println(user);
         int userNo =user.getUserNo();
        
+        
         session.setAttribute("targetUser",user);
         List<PhotoFolder> photoFolder = boardService.getSideBar(userNo);
         System.out.println("asdasdsasad"+photoFolder);
@@ -147,7 +154,8 @@ public class ProfileController {
             String filename1 = originalFilename.substring(originalFilename.indexOf("."), originalFilename.length());
             System.out.println(filename1); //filename1=>.jpg
             originalFilename=user.getUserNo()+filename1;
-            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+            /*String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로*/
+            String fileFullPath = sc.getRealPath("/html/dist/img/profile/"+originalFilename);
             
             userService.updatepfphoto(user.getUserNo(), originalFilename);
             
@@ -155,6 +163,7 @@ public class ProfileController {
             try {
                 //파일 저장
                 mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
+                ImageResizing.photoResizeing(fileFullPath,400);
                 
                 System.out.println("originalFilename => "+originalFilename);
                 System.out.println("fileFullPath => "+fileFullPath);

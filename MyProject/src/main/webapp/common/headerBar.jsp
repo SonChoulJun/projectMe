@@ -1,5 +1,6 @@
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <header class="main-header">
+ <div id="myUserNo" name="${targetUser.userNo}"></div>
     <!-- Logo -->
     <a href="/profile/mainProfile" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -20,7 +21,7 @@
 
 
         
-
+<%--       <div id="myUserNo" name="${myUser.userNO}"></div> --%>
       <div class="navbar-custom-menu">
          <form action="/profile/search" method="post">
           <input type="text" name="searchText" class="form-control" placeholder="Search..."   name="text">
@@ -32,127 +33,54 @@
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a id="mgAlram" href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <c:if test="user.alramCount!=0">
-                <span class="label label-success">${myUser.alramCount}</span>
+
+              <c:if test="${myUser.alramCount!=0}">
+                <span id="mgAlramcount" class="label label-success">${myUser.alramCount}</span>
               </c:if>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+                <ul id ="alramMenu" class="menu">
+                <c:forEach    var="alramList"     items="${alramList}">
                   <li><!-- start message -->
-                    <a href="#">
+<%--                   <c:if test="${alramList.polderNo}==0">
+                  <a href="#">
+                  </c:if>
+                  <c:if test="${alramList.polderNo}!=0">
+                    <a href="/mapBoard/getPhotoFolder?folderNum=${alramList.polderNo}">
+                  </c:if> --%>
+                  <a href="/mapBoard/getPhotoFolder?folderNum=${alramList.polderNo}">
                       <div class="pull-left">
-                        <img src="/html/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/html/dist/img/profile/${alramList.user.profileImg}" class="user-image" onerror="this.src='/html/dist/img/defaultImage.jpg';" >
                       </div>
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        ${alramList.user.userName}
+                        <small><i class="fa fa-clock-o"></i> ${alramList.alarmDate}</small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>${alramList.text}</p>
                     </a>
                   </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/html/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                  </c:forEach>
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
+          <li id="msgBt" class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <!-- <span class="label label-warning">10</span> -->
             </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
           </li>
+
+
           <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
+<!--           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
@@ -160,9 +88,9 @@
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
               <li>
-                <!-- inner menu: contains the actual data -->
+                inner menu: contains the actual data
                 <ul class="menu">
-                  <li><!-- Task item -->
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Design some buttons
@@ -175,8 +103,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Create a nice theme
@@ -189,8 +117,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Some task I need to do
@@ -203,8 +131,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  end task item
+                  <li>Task item
                     <a href="#">
                       <h3>
                         Make beautiful transitions
@@ -217,14 +145,14 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
+                  end task item
                 </ul>
               </li>
               <li class="footer">
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -248,7 +176,7 @@
                   <a href="/user/get?userId=${myUser.getUserId()}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/user/logout/${myUser.userNo}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

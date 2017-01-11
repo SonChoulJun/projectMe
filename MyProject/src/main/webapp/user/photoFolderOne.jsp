@@ -690,6 +690,7 @@ src="/html/images/kakao.PNG"></a>
 									<!--                                   <div class="pull-left">
                                       <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
                                   </div> -->
+
 									<div class="clearfix"></div>
 								</div>
 							</form>
@@ -802,7 +803,7 @@ src="/html/images/kakao.PNG"></a>
 												</div>
 												<div class="wizard-footer">
 													<div class="pull-right">
-														<input id="photoSubFinish" type='button'
+														<input id="photoSubFinish22" type='button'
 															class='btn btn-finish btn-fill btn-success btn-wd'
 															name='finish' value='Finish' />
 													</div>
@@ -896,7 +897,7 @@ src="/html/images/kakao.PNG"></a>
   });
   
   
-  $("#photoSubFinish").on("click",function(){
+  $("#photoSubFinish22").on("click",function(){
     var url = "/mapBoard/getPhotoFolder?folderNum="+${photoFolderOne.pfNo};    
     $(location).attr('href',url);
   });
@@ -1047,16 +1048,19 @@ src="/html/images/kakao.PNG"></a>
 	<script type="text/javascript">
 
 	// Link to open the dialog
-	$( "#likeCount" ).click(function( event ) {
-	  $( "#photoSubUpload" ).modal();
-	  event.preventDefault();
-	});
+
   </script>
   <script src="/html/photo/removeComment.js"></script>  
 
 	<script type="text/javascript"></script>
 	<c:import url="/user/googleMap.jsp"></c:import>
-	<script src="/html/colorBox/jquery.colorbox-min.js"></script>
+	
+<script src="/html/colorBox/jquery.colorbox-min.js"></script>
+  
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/html/common/common.js"></script>
+	
 
 </body>
 </html>

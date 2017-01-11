@@ -5,12 +5,48 @@ import java.sql.Date;
 public class Alram {
  
   private int alramNo;
+  private int userNO;
+  private int polderNo;
   private String sendId;
   private String text;
   private Date alarmDate;
+  private User user;
 
 
-  public Alram(){
+
+
+
+public User getUser() {
+    return user;
+}
+
+
+public void setUser(User user) {
+    this.user = user;
+}
+
+
+public int getUserNO() {
+    return userNO;
+}
+
+
+public void setUserNO(int userNO) {
+    this.userNO = userNO;
+}
+
+
+public int getPolderNo() {
+    return polderNo;
+}
+
+
+public void setPolderNo(int polderNo) {
+    this.polderNo = polderNo;
+}
+
+
+public Alram(){
     
   }
   
@@ -49,10 +85,14 @@ public String getSendId() {
     this.alarmDate = alarmDate;
   }
 
-  @Override
-  public String toString() {
-    return "Alram [sendId=" + sendId + ", text=" + text + ", alarmDate=" + alarmDate + "]";
-  }
+
+@Override
+public String toString() {
+    return "Alram [alramNo=" + alramNo + ", userNO=" + userNO + ", polderNo=" + polderNo + ", sendId=" + sendId
+            + ", text=" + text + ", alarmDate=" + alarmDate + "]";
+}
+
+
   
   
 }

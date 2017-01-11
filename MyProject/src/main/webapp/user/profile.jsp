@@ -42,6 +42,9 @@
   <link rel="stylesheet" href="/html/assets/followmodal/style.css"> 
   
   
+  <link rel="stylesheet" href="/html/colorBox/colorbox1.css" />
+  
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,6 +102,7 @@
 
 
         <c:import url="/common/profileSideBar.jsp"></c:import> 
+        
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -124,14 +128,14 @@
                                         <div class="user-block">
                                             <img class="img-circle img-bordered-sm"
                                                 src="/html/dist/img/user7-128x128.jpg" alt="user image">
-                                            <span class="username"> <a href="#">${photoFolder.user.userName }</a>
+                                            <span class="username"> <a href="/profile/subProfile?userId=${photoFolder.user.userId}">${photoFolder.user.userName }</a>
                                                 <a href="#" class="pull-right btn-box-tool"><i
                                                     class="fa fa-times"></i></a>
                                             </span> <span class="description">${photoFolder.user.userId}
                                                 - ${photoFolder.photoDate}</span>
                                         </div>
                                         <c:if test="${!photoFolder.photoTheme.isEmpty()}">
-                                            <div class="row margin-bottom">
+                                            <div class="row margin-bottom" onclick="pageMove(${photoFolder.pfNo})" >
 
                                                 <%--                         <c:forEach var="photoTheme" items="${photoFolder.photoTheme}">
                           <c:if test="${!photoTheme.photoList.isEmpty()}">
@@ -284,11 +288,13 @@
                                                                     X
                                                                     <div name="${myUser.userNo}"></div>
                                                                     <div name="${photoFolder.pfNo}"></div>
+                                                                    <div name="${photoFolder.user.userNo}"></div>
                                                                 </button>
-                                                             
-                                                                </span> 
-                                                                </c:if>
-                                                                <br /> <span class="text-muted pull-right">${commentList.date}</span>
+                                                       </span> 
+                                                                <br /> 
+                                                       </c:if>
+                                                                <span class="text-muted pull-right">${commentList.date}</span>
+
 
                                                         </span>
                                                         <!-- /.username -->
@@ -325,6 +331,7 @@
                                                             Send
                                                             <div name="${myUser.userNo}"></div>
                                                             <div name="${photoFolder.pfNo}"></div>
+                                                            <div name="${photoFolder.user.userNo}"></div>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -573,10 +580,7 @@
 
 <script src="/html/dist/js/demo.js"></script>
 
-
-<script src="/html/dist/js/index.js"></script>
-
-
+<!-- <script src="/html/dist/js/index.js"></script> -->
 
 
 <script type="text/javascript">
@@ -604,10 +608,11 @@ $("#getval").on('change', function(e){
 	    	
  	     
 	    console.log(data.originalFilename);
-	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename?+date.getTime()"')");
+	    $("#profile-upload").css("background-image","url('/html/dist/img/profile/"+data.originalFilename+"')");
          if(typeof data.error === 'undefined') //에러가 없다면
          {
         	 console.log(data);
+        	 location.href="/profile/mainProfile";
         	 
          }
          else//에러가 있다면
@@ -883,7 +888,7 @@ $("#fileUpload").fileinput({
 	 
   
     $(document).on("click","#LikeMember",function(){
-        	var pfNo=$(this).attr("name"));
+        	var pfNo=$(this).attr("name");
              
              $.ajax({
                  
@@ -918,8 +923,8 @@ $("#fileUpload").fileinput({
          alert(userNo+"+++"+pfNo+"++++"+text);
          var post = $(this).parents(".post");
          var aaa =$(this);
-         
-         alert(post.attr("name"));
+         var youNo =$(this).find("div").eq(2).attr("name");
+
          
             var obj = new Object(); // JSON형식으로 변환 할 오브젝트
             obj.folderNo =pfNo;
@@ -937,11 +942,11 @@ $("#fileUpload").fileinput({
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-                 alert("성공");
-                 post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/profile/'+JSONData.comment.profileImg+'" alt="User Image" onerror="this.src=\'/html/dist/img/defaultImage.jpg\';"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
-                 $("#commentCount").text(JSONData.commentCount+"comment");
-                
-                 }
+                 alert("성공"+pfNo);
+                 socket.emit('client message', {to:youNo,name:'${myUser.userName}',folderNo:pfNo,msg:'댓글을 입력하셨습니다.',img:'${myUser.profileImg}'});
+                 post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
+             }
+
              
        });
         
@@ -983,7 +988,7 @@ $(window).scroll(function() {
                       +'<span class="description">'+JSONData.newsfeed[i].user.userId+' - '+JSONData.newsfeed[i].photoDate+'</span>'
                     +'</div>';
                  if(JSONData.newsfeed[i].photoTheme.length!=0){
-                     aaa=aaa+'<div class="row margin-bottom">'
+                     aaa=aaa+'<div id="photoPageMove" class="row margin-bottom" name="'+JSONData.newsfeed[i].pfNo+'">'
                      +'<div class="col-sm-6">'
                        +'<img class="img-responsive" src="/html/assets/img/uploadedPhoto/'+JSONData.newsfeed[i].photoTheme[count].photoList[0].folderName+'" alt="Photo">'
                      +'</div>';
@@ -1067,6 +1072,7 @@ $(window).scroll(function() {
                           +'<button id="sendCommentBt" class="btn btn-danger pull-right btn-block btn-sm">Send'
                             +'<div name="'+JSONData.newsfeed[i].userNo+'"></div>'
                             +'<div name="'+JSONData.newsfeed[i].pfNo+'"></div>'
+                            +'<div name="'+JSONData.newsfeed[i].user.userNo+'"></div>'
                           +'</button>'
                         +'</div>'
                       +'</div>'
@@ -1083,6 +1089,26 @@ $(window).scroll(function() {
     }
 });
 </script>
+
+ <script src="/html/colorBox/jquery.colorbox-min.js"></script>
+
+    
+      <script type="text/javascript">
+    function pageMove(ptno){
+      location.href="/mapBoard/getPhotoFolder?folderNum="+ptno;
+    }
+    
+    $(document).on("click","#photoPageMove",function(){
+    	location.href="/mapBoard/getPhotoFolder?folderNum="+$(this).attr("name");
+    })
+  </script>
+  
+
+  
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/html/common/common.js"></script>
+
 
 </body>
 </html>

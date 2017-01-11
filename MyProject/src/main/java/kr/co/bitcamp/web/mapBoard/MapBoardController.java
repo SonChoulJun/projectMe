@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.sanselan.ImageReadException;
@@ -23,7 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.bitcamp.common.util.MetadataExample;
+import kr.co.bitcamp.common.web.ImageResizing;
 import kr.co.bitcamp.service.domain.Activity;
+import kr.co.bitcamp.service.domain.Alram;
 import kr.co.bitcamp.service.domain.Comment;
 import kr.co.bitcamp.service.domain.Photo;
 import kr.co.bitcamp.service.domain.PhotoFolder;
@@ -43,6 +46,9 @@ public class MapBoardController {
     @Qualifier("userServiceImpl")
     private UserService userService;
 
+    @Autowired
+    private ServletContext sc;
+    
     public MapBoardController() {
         super();
         System.out.println("MapBoardController 생성");
@@ -83,6 +89,7 @@ public class MapBoardController {
         ArrayList<Photo> photoList =new ArrayList<Photo>();
         Iterator<String> itr =  multipartRequest.getFileNames();
 
+        
         String filePath = "C:\\Users\\jin\\git-realproject\\projectMe\\MyProject\\src\\main\\webapp\\html\\assets\\img\\uploadedPhoto"; //설정파일로 뺀다.
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
@@ -96,9 +103,9 @@ public class MapBoardController {
             MultipartFile mpf = multipartRequest.getFile(itr.next());
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
-      
-            String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
-      
+            String fileFullPath = sc.getRealPath("/html/assets/img/uploadedPhoto/"+originalFilename);
+ /*           String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
+*/      
             try {
                 //파일 저장
                 mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
@@ -108,6 +115,7 @@ public class MapBoardController {
                 System.out.println("fileFullPath => "+fileFullPath);
                 
                 File outputfile = new File(fileFullPath);
+                
                 
                 try {
                     MetadataExample metadataExample = new MetadataExample();
@@ -131,6 +139,7 @@ public class MapBoardController {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
+                ImageResizing.photoResizeing(fileFullPath,400);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
@@ -174,7 +183,8 @@ public class MapBoardController {
       
             String originalFilename = mpf.getOriginalFilename(); //파일명
       
-            String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로
+/*          String fileFullPath = filePath+"\\"+originalFilename; //파일 전체 경로*/
+            String fileFullPath = sc.getRealPath("/html/assets/img/uploadedPhoto/"+originalFilename);
       
             try {
                 //파일 저장
@@ -208,6 +218,8 @@ public class MapBoardController {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
+                
+                ImageResizing.photoResizeing(fileFullPath,400);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
@@ -319,11 +331,18 @@ public class MapBoardController {
 
     @RequestMapping( value="setLike/{userNo}/{pfNo}", method=RequestMethod.GET )
     public void jsonSetLike(@PathVariable("userNo") int userNo,@PathVariable("pfNo") int pfNo,
-                                     Model model) throws Exception{
+                                     Model model,HttpSession seseion) throws Exception{
       User user=userService.getUser2(userNo);
-      
       if(boardService.likeOk(pfNo, userNo)){
         boardService.setLike(pfNo, userNo);
+/*        User user = (User)seseion.getAttribute("myUser");*/
+        PhotoFolder folder =boardService.getPhotoFolder(pfNo);
+        Alram alram = new Alram();
+        alram.setPolderNo(pfNo);
+        alram.setUserNO(folder.getUserNo());
+        alram.setSendId(user.getUserId());
+        alram.setText("좋아요를 누르셨습니다");
+        userService.addAlram(alram);
         model.addAttribute("likeOk", "add");
         model.addAttribute("likeCount", boardService.getLikeCount(pfNo));
       }
@@ -362,6 +381,14 @@ public class MapBoardController {
 		System.out.println(comment);
 		boolean ok = boardService.setComment(comment);
 		int commentCount=boardService.getComment(comment.getFolderNo()).size();
+    User user = (User)session.getAttribute("myUser");
+    PhotoFolder folder =boardService.getPhotoFolder(comment.getFolderNo());
+    Alram alram = new Alram();
+    alram.setPolderNo(comment.getFolderNo());
+    alram.setUserNO(folder.getUserNo());
+    alram.setSendId(user.getUserId());
+    alram.setText("댓글을 달았습니다.");
+    userService.addAlram(alram);
 		
 		if(ok){
           model.addAttribute("setCommentOk","ok");
@@ -384,6 +411,16 @@ public class MapBoardController {
     List<Comment> comentList=boardService.getComment(comment.getFolderNo());
     int commentCount=boardService.getComment(comment.getFolderNo()).size();
     Comment comment2 = comentList.get(commentCount-1);
+    
+    User user = (User)session.getAttribute("myUser");
+    PhotoFolder folder =boardService.getPhotoFolder(comment.getFolderNo());
+    Alram alram = new Alram();
+    alram.setPolderNo(comment.getFolderNo());
+    alram.setUserNO(folder.getUserNo());
+    alram.setSendId(user.getUserId());
+    alram.setText("댓글을 달았습니다.");
+    userService.addAlram(alram);
+    
     
    /* User user=userService.getUser(comment2.getUserId());
     model.addAttribute("commentUser",user);*/

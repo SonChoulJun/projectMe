@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.Chat;
 import kr.co.bitcamp.service.domain.User;
 
 public interface UserService {
@@ -35,6 +36,8 @@ public interface UserService {
 	public List<Alram> getAlram(int userNo) throws Exception ;
 	
 	public List<Activity> getActivity(int userNo) throws Exception ;
+	
+	public void addAlram(Alram alram) throws Exception;
 
 	public void setActivity(Activity activity) throws Exception ;
 	
@@ -50,6 +53,15 @@ public interface UserService {
   
   public void removeActivity(int activityNo)throws Exception;
   
+  public void updateUserActivity(int UserNo,boolean cheak) throws Exception;
+  
+  public List<User> getAllFollower(int userNo) throws Exception;
+  
+  public void insertMsg(Chat chat) throws Exception;
+  
+  public List<Chat> gettMsg(String roomNo) throws Exception;
+  
+  public void updateAlram(User user) throws Exception;
 	
 //	public boolean pwCheak(User user) throws Exception ;
 }

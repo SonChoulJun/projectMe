@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.bitcamp.service.domain.Activity;
 import kr.co.bitcamp.service.domain.Alram;
+import kr.co.bitcamp.service.domain.Chat;
 import kr.co.bitcamp.service.domain.User;
 import kr.co.bitcamp.service.user.UserDao;
 
@@ -213,6 +214,56 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void addAlram(Alram alram) throws Exception {
+        User user = sqlSession.selectOne("UserMapper.getUser2", alram.getUserNO());
+        int a =user.getAlramCount();
+        a =a+1;
+        user.setAlramCount(a);
+        sqlSession.update("UserMapper.updateAlramCount", user);
+        if(alram.getPolderNo()!=0){
+            sqlSession.insert("UserMapper.addAlram", alram);
+        }else{
+            sqlSession.insert("UserMapper.addAlram2", alram);
+        }
+        
+    }
+
+    @Override
+    public void updateUserActivity(int UserNo, boolean cheak) throws Exception {
+        if(cheak){
+            sqlSession.update("UserMapper.updateActivityON", UserNo);
+        }else{
+            sqlSession.update("UserMapper.updateActivityOff", UserNo);
+        }
+        
+    }
+
+    @Override
+    public List<User> getAllFollower(int userNo) throws Exception {
+        // TODO Auto-generated method stub
+        return sqlSession.selectList("UserMapper.getAllFollow", userNo);
+    }
+
+    @Override
+    public void insertMsg(Chat chat) throws Exception {
+        // TODO Auto-generated method stub
+        sqlSession.insert("ChatMapper.insertMg", chat);
+    }
+
+    @Override
+    public List<Chat> gettMsg(String roomNo) throws Exception {
+        // TODO Auto-generated method stub
+        return sqlSession.selectList("ChatMapper.getMsg", roomNo);
+    }
+
+    @Override
+    public void updateAlram(User user) throws Exception {
+        // TODO Auto-generated method stub
+        user.setAlramCount(0);
+        System.out.println(user);
+        sqlSession.selectList("UserMapper.updateAlramCount", user);
+    }
+
     public User getUser2(int userNo) throws Exception {
       // TODO Auto-generated method stub
       System.out.println("dao왔냐!!!!!!!!!!!!!!!");

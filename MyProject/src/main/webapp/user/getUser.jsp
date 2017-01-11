@@ -384,5 +384,12 @@
 <script src="/html/dist/js/demo.js"></script>
 
 <script src="/html/folder-input/folder-input.js"></script>
+
+   <script src="/html/colorBox/jquery.colorbox-min.js"></script>
+  
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/html/common/common.js"></script>
+
 </body>
 </html>

@@ -161,6 +161,8 @@
 		WHERE U.USER_NO = P.USER_NO AND P.PF_NO=#{value}
 		ORDER BY P.PF_NO
 	</select>
+	
+
 
 	<select id="getPhoto" parameterType="int" resultMap="photoSelectMap">
 		select PHOTO_NO,SV_FD,TEXT,TITLE,PHOTO_DATE,GPS_B,GPS_H
