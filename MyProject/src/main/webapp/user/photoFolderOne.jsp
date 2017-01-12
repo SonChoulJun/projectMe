@@ -147,7 +147,7 @@
 document.getElementById('shareBtn').onclick = function() {
 	FB.ui({
 		  method: 'feed',
-		  link: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=10046',
+		  link: 'http://192.168.0.20:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}',
 		  caption: 'An example caption',
 		  description : "메모리박스에 우리만의 추억 공유해요",
 		  picture : 'http://222.116.108.119:8080/test/test.PNG',
@@ -158,7 +158,7 @@ document.getElementById('shareBtn').onclick = function() {
 
 <!-- /* Share on Twitter */ -->
 <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20'
-+encodeURIComponent('http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}')+'%20-%20'+encodeURIComponent('MemoryBox'), 'twittersharedialog',
++encodeURIComponent('http://192.168.0.20:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}')+'%20-%20'+encodeURIComponent('MemoryBox'), 'twittersharedialog',
  'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"
  alt="Share on Twitter" ><img src="/html/images/twitter.PNG" width="78" height="18"></a>
  
@@ -926,7 +926,7 @@ src="/html/images/kakao.PNG"></a>
       },
       webButton: {
         text: '나만의 여행앱 MemoryBox',
-        url: 'http://192.168.0.17:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+        url: 'http://192.168.0.20:8080/mapBoard/getPhotoFolder?folderNum=${photoFolderOne.pfNo}' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
       },
       fail: function(){
           alert('모바일 기기에서만 가능한 기능입니다.');
