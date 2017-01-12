@@ -122,6 +122,16 @@ angular.module('contactsApp', [])
 	                },
 	                success : function(followingList){
 	                	athletesList.clearAthlete();
+	                	if(followingList.length<4){
+	                		for(i=0 ; i<followingList.length ;i++){
+	    	                	athletesList.addAthlete(followingList[i].userName,'123',followingList[i].userNo,followingList[i].userId);
+	    	                	}
+	    	                    /*  for(var i=0 ; i<followingList.length ;i++){
+	    	                    athletesList.addAthlete(followingList[i].userName,'123');
+	    	                    }  */
+	    	                    $('#FollowingModal').modal();
+	    	                    $scope.$apply();	
+	                	}else{
 	                	for(i=0 ; i<4 ;i++){
 	                	athletesList.addAthlete(followingList[i].userName,'123',followingList[i].userNo,followingList[i].userId);
 	                	}
@@ -130,7 +140,7 @@ angular.module('contactsApp', [])
 	                    }  */
 	                    $('#FollowingModal').modal();
 	                    $scope.$apply();
-	                   
+	                	}
 	                   
 	                }
 	            });

@@ -832,7 +832,7 @@ $("#fileUpload").fileinput({
 	              success : function(JSONData , status) {
 	            	  $("#folderNo").attr("name",JSONData.folderNo);
 	            	  folderNo=JSONData.folderNo;
-	            	  alert("등록완료"+folderNo);
+	            	  alert("등록완료");
 	                
 	            	  
 	            	  //$("#input-id").fileinput();
@@ -924,7 +924,7 @@ $("#fileUpload").fileinput({
          var userNo=${myUser.userNo};
          var pfNo=$(this).find("div").eq(1).attr("name");
          var text=$(this).parent().parent().find('input').eq(0).val();
-         alert(userNo+"+++"+pfNo+"++++"+text);
+         
          var post = $(this).parents(".post");
          var aaa =$(this);
          var youNo =$(this).find("div").eq(2).attr("name");
@@ -946,7 +946,7 @@ $("#fileUpload").fileinput({
                "Content-Type" : "application/json"
              },
              success : function(JSONData , status) {
-                 alert("성공"+pfNo);
+                 
                  socket.emit('client message', {to:youNo,name:'${myUser.userName}',folderNo:pfNo,msg:'댓글을 입력하셨습니다.',img:'${myUser.profileImg}'});
                  post.find("div#CommentBox").append('<div class="box-comment"> <img class="img-circle img-sm" src="/html/dist/img/user3-128x128.jpg" alt="User Image"> <div class="comment-text"> <span class="username">'+ JSONData.comment.userId +'<span class="text-muted pull-right" ><Button id="removebtn" name="'+ JSONData.comment.commentNo +'" style="width: 100% ; height: 100%;">X</button></span> <br/> <span  class="text-muted pull-right">'+ JSONData.comment.date +'</span>   </span> '+ JSONData.comment.text +' </div> </div>');
              }

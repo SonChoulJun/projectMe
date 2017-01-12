@@ -139,7 +139,7 @@ public class MapBoardController {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
-                ImageResizing.photoResizeing(fileFullPath,400);
+                ImageResizing.photoResizeing(fileFullPath,700);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
@@ -219,7 +219,7 @@ public class MapBoardController {
                   e.printStackTrace();
                 }
                 
-                ImageResizing.photoResizeing(fileFullPath,400);
+                ImageResizing.photoResizeing(fileFullPath,700);
                 
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
