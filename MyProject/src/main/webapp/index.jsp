@@ -69,7 +69,7 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>Social Trip</h1>
+            <h1>Memory Box</h1>
             <!-- Slider -->
                             <section class="cd-intro">
                                 <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
