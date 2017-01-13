@@ -23,13 +23,13 @@
           <img src="/html/dist/img/profile/${targetUser.profileImg}" class="img-circle" onerror="this.src='/html/dist/img/defaultImage.jpg';" >
         </div>
         <div class="pull-left info">
-          <p>${targetUser.userId}</p>
-          <c:if test="${targetUser.activity}">
+         <p><a href="/profile/subProfile?userId=${targetUser.userId}">${targetUser.userId}</a></p>
+       <c:if test="${targetUser.activity}">
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </c:if>
           <c:if test="${!targetUser.activity}">
           <a href="#"><i class="fa fa-circle text-success"></i> Offline</a>
-          </c:if>
+          </c:if> 
         </div>
       </div>
       <!-- 검색 -->

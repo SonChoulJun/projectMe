@@ -45,6 +45,8 @@
 
 <link rel="stylesheet" href="/html/folder-input/folder-input.css">
 
+<link href="/html/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+ 
 <link rel="stylesheet" href="/html/colorBox/colorbox.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -103,7 +105,7 @@
 											<img class="img-circle"
 												src="/html/dist/img/profile/${photoFolderOne.user.profileImg }" alt="User Image" 
 												onerror="this.src='/html/dist/img/defaultImage.jpg';">
-											<span class="username"><a href="#">${photoFolderOne.title}
+											<span class="username"><a href="/profile/subProfile?userId=${photoFolderOne.user.userId}">${photoFolderOne.title}
 											</a></span> <span class="description">${photoFolderOne.photoDate}</span>
 										</div>
 										<!-- /.user-block -->

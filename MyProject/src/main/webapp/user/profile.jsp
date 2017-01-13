@@ -35,6 +35,8 @@
   <link rel="stylesheet" href="/html/assets/css/style.css">  
   
   <link rel="stylesheet" href="/html/folder-input/folder-input.css">
+  
+  <link href="/html/assets/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
  
    <!--profile follow modal -->
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
